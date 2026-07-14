@@ -9,6 +9,19 @@ Projektcasen om nyhedsmonitoren bor i sit EGET repo
 Denne forside linker derover; design-tokens (palet, skrifter, dobbeltstreg,
 stempel) er kopieret derfra og skal holdes i familie ved ændringer.
 
+## Engelsk udgave (en.html)
+
+`en.html` er et 1:1-spejl af `index.html` på engelsk (samme CSS/JS, kun tekst,
+lang-attributter, canonical/og-metas og linkmål er oversat). VED ENHVER ÆNDRING
+i index.html skal en.html have samme ændring — samme regel som på casen.
+Sprogskiftet er `.language-switch`-linket i topbarens `head-actions` (EN på
+dansk side, DA på engelsk). Den engelske side linker til casens `en.html` som
+primær knap og har eget delekort `og-image-en.png` (regenerér fra
+`og-template-en.html` med headless Chrome, når indholdet ændrer sig).
+Terminologi følger casens engelske udgave ("the Danish Prime Minister's
+Office", "real operational data"). hreflang-blokken (da/en/x-default) er ens i
+begge filer, og sitemap.xml fører begge URL'er med alternates.
+
 ## Tilføj et nyt projekt
 
 1. Kopiér `<article class="story">`-blokken (IKKE `.lead`) og udfyld kicker,
@@ -19,6 +32,16 @@ stempel) er kopieret derfra og skal holdes i familie ved ændringer.
 4. Regenerér `og-image.png` fra `og-template.html`, hvis forsidens indhold
    ændrer sig væsentligt (headless Chrome, se casens README).
 5. Sandfærdighed som på casen: kun tal fra rigtige kørsler/logs.
+6. Spejl ændringen i `en.html` (se afsnittet om den engelske udgave).
+
+## Når monitoren pensioneres (ugens afslutning)
+
+1. Opdatér nøgletallene i BEGGE sprog (kørsler/fejl efterprøves mod
+   `gh run list -R JonathanFribert/nyhedsmonitor` — pas på arbejdsmappen:
+   uden `-R` tælles det forkerte repos kørsler).
+2. Skift kicker fra "Sat i drift juli 2026" / "In production since July 2026"
+   til afsluttet form, og fjern `live-dot`-prikken (den signalerer aktiv drift).
+3. Casens efterskrift og case-brief opdateres samtidig — se casens README.
 
 ## Effekter (alle gated bag prefers-reduced-motion; fuld visning uden JS)
 
