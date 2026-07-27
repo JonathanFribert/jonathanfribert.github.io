@@ -3,3 +3,4 @@ Allow: /
 
 Sitemap: https://jonathanfribert.github.io/sitemap.xml
 Sitemap: https://jonathanfribert.github.io/nyhedsmonitor-case/sitemap.xml
+Sitemap: https://jonathanfribert.github.io/madspild-case/sitemap.xml
