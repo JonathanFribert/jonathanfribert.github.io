@@ -37,7 +37,11 @@ repo `JonathanFribert/blaze-9thwunder`): 428 commits på 30 unikke dage
 filer under `src/`, 105 filer i `supabase/migrations/`, 1.587 unit tests
 (Vitest, CI-kørsel 146 og lokal kørsel) og 1.126 pgTAP-assertions i 67 filer
 (CI's database-job). Appen er i lukket pilot: ingen bruger-, afstemnings- eller
-omsætningstal og ingen skærmbilleder, før der er en offentlig udgave.
+omsætningstal. Skærmbillederne (`skaerm-*.png`) er taget fra produktionssitet
+https://www.blazeitupradioafrica.com den 5. oktober 2026 med Playwright
+(desktop 1440 px, mobil 390 px i 2x) og viser kun den offentlige del; admin
+beskrives i tekst, fordi skærmbilleder derfra viser pilotens kontotal og
+testbetalinger.
 
 Figurerne i casen er ren HTML/CSS (ingen billeder): billetrejsen (ADR-230/235),
 søjler over de 67 pgTAP-filer grupperet efter filnavn, CI-banerne med
