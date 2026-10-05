@@ -39,6 +39,12 @@ filer under `src/`, 105 filer i `supabase/migrations/`, 1.587 unit tests
 (CI's database-job). Appen er i lukket pilot: ingen bruger-, afstemnings- eller
 omsætningstal og ingen skærmbilleder, før der er en offentlig udgave.
 
+Figurerne i casen er ren HTML/CSS (ingen billeder): billetrejsen (ADR-230/235),
+søjler over de 67 pgTAP-filer grupperet efter filnavn, CI-banerne med
+trin-varigheder fra GitHub Actions' tidsstempler i kørsel 146, og commits pr.
+kalenderdag fra `git log`. Regenerér tallene med samme kommandoer, hvis casen
+opdateres efter et nyt commit i app-repoet.
+
 ## Tilføj et nyt projekt
 
 1. Kopiér `<article class="story">`-blokken (IKKE `.lead`) og udfyld kicker,
