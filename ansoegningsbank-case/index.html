@@ -269,10 +269,6 @@
      (html uden .js) vises siden faerdig med det samme. */
   .read-progress { position: absolute; left: 0; bottom: -1px; height: 2px; width: 0; background: var(--accent); }
   html:not(.js) .read-progress { display: none; }
-  #opgaven .intro p:first-child::first-letter {
-    float: left; margin: 0.08em 0.12em 0 0; font-family: var(--serif); font-weight: 700;
-    font-size: 3.6em; line-height: 0.82; color: var(--accent);
-  }
   main { counter-reset: fig; }
   figure.fig { counter-increment: fig; }
   figure.fig .diagram-caption::before { content: "Figur " counter(fig) " · "; color: var(--accent); font-family: var(--mono); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; }
@@ -458,6 +454,141 @@
   .day-d { color: var(--muted); font-family: var(--mono); font-size: 0.74rem; }
   .day-t { color: var(--muted); font-size: 0.8rem; line-height: 1.35; margin-top: 0.2rem; }
   .days-gap { display: flex; justify-content: space-between; margin-top: 0.8rem; padding-top: 0.6rem; border-top: 1px solid var(--line); color: var(--muted); font-family: var(--mono); font-size: 0.74rem; }
+
+  /* Nye figurtyper: diagrammer (SVG), foer/efter, fliser, anatomi, baner, formel, faktatjek */
+  .dia-wrap { overflow-x: auto; margin-top: 1.2rem; -webkit-overflow-scrolling: touch; }
+  .dia { width: 100%; height: auto; display: block; font-family: var(--sans); }
+  @media (max-width: 640px) { .dia { min-width: 640px; } }
+  @media (max-width: 560px) { .mock .row { grid-template-columns: auto minmax(0, 1fr); } .mock .row > div { grid-column: 1 / -1; } .mock .row > .pill { justify-self: end; } }
+  .dia .nd rect { fill: var(--surface); stroke: var(--line); stroke-width: 1.5; }
+  .dia .nd.blue rect { stroke: var(--c1); fill: color-mix(in srgb, var(--c1) 10%, var(--surface)); }
+  .dia .nd.green rect { stroke: var(--c3); fill: color-mix(in srgb, var(--c3) 10%, var(--surface)); }
+  .dia .nd.amber rect { stroke: var(--c4); fill: color-mix(in srgb, var(--c4) 14%, var(--surface)); }
+  .dia .nd.red rect { stroke: var(--c2); fill: color-mix(in srgb, var(--c2) 10%, var(--surface)); }
+  .dia .nd.grey rect { stroke: var(--line); fill: var(--surface-soft); }
+  .dia .t { fill: var(--ink); font-size: 14px; font-weight: 700; }
+  .dia .s { fill: var(--muted); font-size: 11.5px; }
+  .dia .l { fill: var(--muted); font-size: 11.5px; font-family: var(--mono); }
+  .dia .ar { fill: none; stroke: var(--muted); stroke-width: 1.5; }
+  .dia .ar.dash { stroke-dasharray: 4 4; }
+  .dia .ahp { fill: var(--muted); }
+  .ba { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: 1.2rem; margin-top: 1.4rem; }
+  .ba-card { border: 1px solid var(--line); border-top: 4px solid var(--c2); border-radius: 10px; background: var(--surface); padding: 1rem 1.2rem; }
+  .ba-card.new { border-top-color: var(--c1); background: color-mix(in srgb, var(--c1) 7%, var(--surface)); }
+  .ba-card h4 { margin: 0 0 0.6rem; font-family: var(--serif); font-size: 1.12rem; }
+  .ba-card ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+  .ba-card li { padding-left: 1.6rem; position: relative; font-size: 0.93rem; line-height: 1.45; }
+  .ba-card li::before { content: "✕"; position: absolute; left: 0; top: 0.05rem; color: var(--c2); font-family: var(--mono); font-weight: 700; }
+  .ba-card.new li::before { content: "✓"; color: var(--c1); }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 1rem; margin-top: 1.4rem; }
+  .tile { border: 1px solid var(--line); border-radius: 10px; background: var(--surface); padding: 1rem 1.1rem; }
+  .tile .no { display: inline-grid; place-items: center; width: 1.7rem; height: 1.7rem; border-radius: 999px; background: var(--c1); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 0.85rem; margin-bottom: 0.6rem; }
+  .tile h4 { margin: 0 0 0.35rem; font-family: var(--serif); font-size: 1.08rem; }
+  .tile p { margin: 0; color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
+  .tile ol { margin: 0.5rem 0 0 1.1rem; padding: 0; font-size: 0.88rem; color: var(--muted); line-height: 1.45; }
+  .tile ol li + li { margin-top: 0.25rem; }
+  .tile.t2 .no { background: var(--c3); } .tile.t3 .no { background: var(--c4); } .tile.t4 .no { background: var(--c5); } .tile.t5 .no { background: var(--c2); }
+  .tile.hi { background: color-mix(in srgb, var(--c1) 7%, var(--surface)); border-color: color-mix(in srgb, var(--c1) 35%, var(--line)); }
+  .anatomy { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 1.6rem; margin-top: 1.4rem; align-items: start; }
+  @media (max-width: 720px) { .anatomy { grid-template-columns: 1fr; } }
+  .mock { border: 1px solid var(--line); border-radius: 10px; background: var(--surface); padding: 1rem 1.1rem; box-shadow: 0 10px 30px -22px rgba(0,0,0,.35); font-family: var(--sans); }
+  .mock .row { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 0.5rem 0.9rem; align-items: start; }
+  .mock .row + .row { margin-top: 0.7rem; padding-top: 0.7rem; border-top: 1px solid var(--line); }
+  .mock .id { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); padding-top: 0.2rem; }
+  .pill { display: inline-flex; align-items: center; gap: 0.35rem; border-radius: 999px; padding: 0.12rem 0.6rem; font-size: 0.74rem; font-weight: 700; white-space: nowrap; font-family: var(--sans); }
+  .pill::before { content: ""; width: 0.45rem; height: 0.45rem; border-radius: 999px; background: currentColor; }
+  .pill.ok { background: var(--green-soft); color: var(--green); } .pill.warn { background: color-mix(in srgb, var(--amber) 16%, var(--surface)); color: var(--amber); } .pill.bad { background: var(--red-soft); color: var(--red); } .pill.neutral { background: var(--surface-soft); color: var(--muted); }
+  .mock .title { font-family: var(--serif); font-size: 1.05rem; font-weight: 700; line-height: 1.35; }
+  .mock .text { font-family: var(--serif); font-size: 0.98rem; line-height: 1.5; }
+  .mock .meta { font-size: 0.82rem; color: var(--muted); margin-top: 0.35rem; line-height: 1.45; }
+  .mark { display: inline-grid; place-items: center; width: 1.25rem; height: 1.25rem; border-radius: 999px; background: var(--c1); color: #fff; font-family: var(--mono); font-size: 0.7rem; font-weight: 700; vertical-align: middle; margin-left: 0.3rem; }
+  .callouts { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.7rem; }
+  .callouts li { display: grid; grid-template-columns: 1.6rem minmax(0, 1fr); gap: 0.6rem; font-size: 0.92rem; line-height: 1.5; }
+  .callouts li .mark { margin: 0.15rem 0 0; }
+  .callouts b { display: block; }
+  .lanes-wrap { overflow-x: auto; margin-top: 1.4rem; -webkit-overflow-scrolling: touch; }
+  table.lanes { width: 100%; min-width: 760px; border-collapse: separate; border-spacing: 0.4rem; font-family: var(--sans); font-size: 0.86rem; margin: 0 -0.4rem; }
+  .lanes th { text-align: left; font-weight: 700; }
+  .lanes thead th { font-family: var(--mono); font-size: 0.78rem; color: var(--ink); padding: 0 0.4rem 0.2rem; vertical-align: bottom; }
+  .lanes thead th b { display: inline-grid; place-items: center; width: 1.4rem; height: 1.4rem; border-radius: 999px; background: var(--c1); color: #fff; margin-right: 0.4rem; font-size: 0.72rem; }
+  .lanes tbody th { width: 7.5rem; font-family: var(--serif); font-size: 1rem; color: var(--ink); padding: 0.45rem 0.4rem; vertical-align: top; }
+  .lanes tbody th span { display: block; font-family: var(--sans); font-size: 0.76rem; font-weight: 400; color: var(--muted); }
+  .lanes td { vertical-align: top; border: 1px solid var(--line); border-radius: 8px; padding: 0.55rem 0.65rem; line-height: 1.4; background: var(--surface); }
+  .lanes tr.you td { background: color-mix(in srgb, var(--c1) 8%, var(--surface)); border-color: color-mix(in srgb, var(--c1) 30%, var(--line)); }
+  .lanes tr.model td { background: color-mix(in srgb, var(--c5) 8%, var(--surface)); border-color: color-mix(in srgb, var(--c5) 30%, var(--line)); }
+  .lanes td.none { background: transparent; border-style: dashed; color: var(--muted); text-align: center; }
+  .formula { margin-top: 0.9rem; border-left: 4px solid var(--c1); padding: 0.6rem 0.9rem; background: var(--surface-soft); border-radius: 0 8px 8px 0; font-family: var(--mono); font-size: 0.84rem; line-height: 1.65; }
+  .fc { display: grid; gap: 0.6rem; margin-top: 1.2rem; }
+  .fc-row { display: grid; grid-template-columns: 1.6rem 7.5rem minmax(0, 1fr); gap: 0.4rem 0.8rem; border: 1px solid var(--line); border-radius: 8px; padding: 0.7rem 0.8rem; background: var(--surface); font-size: 0.92rem; line-height: 1.45; align-items: start; }
+  .fc-row .cb { font-family: var(--mono); font-size: 1.1rem; color: var(--c1); line-height: 1; }
+  .fc-row .k { font-family: var(--sans); font-size: 0.78rem; color: var(--muted); padding-top: 0.15rem; }
+  .fc-row .v { font-family: var(--serif); }
+  .fc-row .v .id { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); margin-right: 0.3rem; }
+  .fc-row.locked { background: var(--surface-soft); }
+  @media (max-width: 560px) { .fc-row { grid-template-columns: 1.6rem minmax(0, 1fr); } .fc-row .k { grid-column: 2; } .fc-row .v { grid-column: 2; } }
+  @media (prefers-reduced-motion: no-preference) {
+    .js figure.fig.reveal .tile, .js figure.fig.reveal .ba-card { opacity: 0; transform: translateY(10px); transition: opacity 0.45s ease-out, transform 0.45s ease-out; }
+    .js figure.fig.reveal.in-view .tile, .js figure.fig.reveal.in-view .ba-card { opacity: 1; transform: none; }
+    .js figure.fig.reveal .tile:nth-child(2), .js figure.fig.reveal .ba-card:nth-child(2) { transition-delay: 0.12s; }
+    .js figure.fig.reveal .tile:nth-child(3) { transition-delay: 0.24s; } .js figure.fig.reveal .tile:nth-child(4) { transition-delay: 0.36s; }
+    .js figure.fig.reveal .dia .nd { opacity: 0; transition: opacity 0.5s ease-out; } .js figure.fig.reveal.in-view .dia .nd { opacity: 1; }
+    .js figure.fig.reveal .dia .ar, .js figure.fig.reveal .dia .l { opacity: 0; transition: opacity 0.4s ease-out 0.35s; } .js figure.fig.reveal.in-view .dia .ar, .js figure.fig.reveal.in-view .dia .l { opacity: 1; }
+  }
+
+  /* Farver, der stikker ud, og effekter (alle bag prefers-reduced-motion) */
+  .hl { background-image: linear-gradient(transparent 58%, color-mix(in srgb, var(--c1) 30%, transparent) 58%); background-repeat: no-repeat; background-size: 100% 100%; padding: 0 0.1em; border-radius: 3px; }
+  .tile { border-top: 4px solid var(--c1); transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; }
+  .tile.t2 { border-top-color: var(--c3); } .tile.t3 { border-top-color: var(--c4); } .tile.t4 { border-top-color: var(--c5); } .tile.t5 { border-top-color: var(--c2); }
+  .tile .no { width: 2.1rem; height: 2.1rem; font-size: 0.95rem; box-shadow: 0 6px 14px -6px color-mix(in srgb, var(--c1) 70%, transparent); }
+  .tile.hi { background: color-mix(in srgb, var(--c1) 12%, var(--surface)); }
+  .tile:hover, .ba-card:hover { transform: translateY(-4px); box-shadow: 0 18px 34px -22px rgba(0,0,0,.45); }
+  .ba-card { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+  .ba-card h4 { color: var(--c2); } .ba-card.new h4 { color: var(--c1); }
+  .ba-card.new { background: color-mix(in srgb, var(--c1) 12%, var(--surface)); border-color: color-mix(in srgb, var(--c1) 40%, var(--line)); }
+  .ba-card li::before { font-size: 1.05em; }
+  .chain-box.k2 { background: color-mix(in srgb, var(--c2) 9%, var(--surface)); } .chain-box.k3 { background: color-mix(in srgb, var(--c4) 11%, var(--surface)); } .chain-box.k4 { background: color-mix(in srgb, var(--c5) 9%, var(--surface)); }
+  .lanes thead th b { box-shadow: 0 5px 12px -5px color-mix(in srgb, var(--c1) 70%, transparent); }
+  .lanes thead th:nth-child(3) b { background: var(--c3); } .lanes thead th:nth-child(4) b { background: var(--c4); } .lanes thead th:nth-child(5) b { background: var(--c5); } .lanes thead th:nth-child(6) b { background: var(--c2); }
+  .lanes tr.you td { background: color-mix(in srgb, var(--c1) 13%, var(--surface)); border-left: 4px solid var(--c1); }
+  .lanes tbody tr:not(.you):not(.model) td { border-left: 4px solid var(--c3); background: color-mix(in srgb, var(--c3) 6%, var(--surface)); }
+  .lanes tr.model td { background: color-mix(in srgb, var(--c5) 12%, var(--surface)); border-left: 4px solid var(--c5); }
+  .lanes td.none { border-left-style: dashed; border-left-width: 1px; background: transparent; }
+  .lanes tbody th { color: var(--c1); } .lanes tbody tr:not(.you):not(.model) th { color: var(--c3); } .lanes tr.model th { color: var(--c5); }
+  .mock { border-top: 4px solid var(--c1); }
+  .formula { border-left-width: 6px; background: color-mix(in srgb, var(--c1) 10%, var(--surface-soft)); }
+  .formula b { color: var(--c1); font-size: 1.05em; }
+  .saving b { font-size: 1.9rem; }
+  .saving > div:nth-child(2) b { color: var(--c3); } .saving > div:nth-child(3) b { color: var(--c4); } .saving > div:nth-child(4) b { color: var(--c5); }
+  .fc-row { border-left: 4px solid var(--c1); } .fc-row.locked { border-left-color: var(--c4); }
+  .dia .nd.blue rect { fill: color-mix(in srgb, var(--c1) 16%, var(--surface)); stroke-width: 2; }
+  .dia .nd.green rect { fill: color-mix(in srgb, var(--c3) 16%, var(--surface)); stroke-width: 2; }
+  .dia .nd.amber rect { fill: color-mix(in srgb, var(--c4) 20%, var(--surface)); stroke-width: 2; }
+  .dia .nd.red rect { fill: color-mix(in srgb, var(--c2) 16%, var(--surface)); stroke-width: 2; }
+  .dia .ar { stroke-width: 2; }
+  @media (prefers-reduced-motion: no-preference) {
+    .js .hero .hl { background-size: 0% 100%; animation: hl-in 0.9s 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+    @keyframes hl-in { to { background-size: 100% 100%; } }
+    .js figure.fig.reveal .dia .ar { stroke-dasharray: 600; stroke-dashoffset: 600; transition: stroke-dashoffset 1.1s ease-out 0.25s, opacity 0.2s; }
+    .js figure.fig.reveal.in-view .dia .ar { stroke-dashoffset: 0; }
+    .js figure.fig.reveal .dia .nd { transform: scale(0.88); transform-box: fill-box; transform-origin: center; transition: opacity 0.5s ease-out, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1); }
+    .js figure.fig.reveal.in-view .dia .nd { transform: none; }
+    .js figure.fig.reveal .dia .nd:nth-of-type(2) { transition-delay: 0.08s; } .js figure.fig.reveal .dia .nd:nth-of-type(3) { transition-delay: 0.16s; } .js figure.fig.reveal .dia .nd:nth-of-type(4) { transition-delay: 0.24s; } .js figure.fig.reveal .dia .nd:nth-of-type(5) { transition-delay: 0.32s; }
+    .js figure.fig.reveal .dia .nd:nth-of-type(6) { transition-delay: 0.4s; } .js figure.fig.reveal .dia .nd:nth-of-type(7) { transition-delay: 0.48s; } .js figure.fig.reveal .dia .nd:nth-of-type(8) { transition-delay: 0.56s; } .js figure.fig.reveal .dia .nd:nth-of-type(9) { transition-delay: 0.64s; } .js figure.fig.reveal .dia .nd:nth-of-type(10) { transition-delay: 0.72s; } .js figure.fig.reveal .dia .nd:nth-of-type(11) { transition-delay: 0.8s; }
+    .js figure.fig.reveal .pill, .js figure.fig.reveal .fc-row .cb, .js figure.fig.reveal .mark, .js figure.fig.reveal .tile .no, .js figure.fig.reveal .lanes thead th b { transform: scale(0.4); opacity: 0; transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease-out; }
+    .js figure.fig.reveal.in-view .pill, .js figure.fig.reveal.in-view .fc-row .cb, .js figure.fig.reveal.in-view .mark, .js figure.fig.reveal.in-view .tile .no, .js figure.fig.reveal.in-view .lanes thead th b { transform: none; opacity: 1; }
+    .js figure.fig.reveal.in-view .mock .row:nth-child(2) .pill { transition-delay: 0.12s; } .js figure.fig.reveal.in-view .mock .row:nth-child(3) .pill { transition-delay: 0.24s; } .js figure.fig.reveal.in-view .mock .row:nth-child(4) .pill { transition-delay: 0.36s; }
+    .js figure.fig.reveal.in-view .fc-row:nth-child(2) .cb { transition-delay: 0.2s; } .js figure.fig.reveal.in-view .fc-row:nth-child(3) .cb { transition-delay: 0.4s; }
+    .js figure.fig.reveal.in-view .callouts li:nth-child(2) .mark { transition-delay: 0.1s; } .js figure.fig.reveal.in-view .callouts li:nth-child(3) .mark { transition-delay: 0.2s; } .js figure.fig.reveal.in-view .callouts li:nth-child(4) .mark { transition-delay: 0.3s; } .js figure.fig.reveal.in-view .callouts li:nth-child(5) .mark { transition-delay: 0.4s; } .js figure.fig.reveal.in-view .callouts li:nth-child(6) .mark { transition-delay: 0.5s; }
+    .js figure.fig.reveal .lanes td { opacity: 0; transform: translateY(8px); transition: opacity 0.4s ease-out, transform 0.4s ease-out; }
+    .js figure.fig.reveal.in-view .lanes td { opacity: 1; transform: none; }
+    .js figure.fig.reveal.in-view .lanes td:nth-child(3) { transition-delay: 0.1s; } .js figure.fig.reveal.in-view .lanes td:nth-child(4) { transition-delay: 0.2s; } .js figure.fig.reveal.in-view .lanes td:nth-child(5) { transition-delay: 0.3s; } .js figure.fig.reveal.in-view .lanes td:nth-child(6) { transition-delay: 0.4s; }
+    .js figure.fig.reveal.in-view .lanes thead th:nth-child(3) b { transition-delay: 0.1s; } .js figure.fig.reveal.in-view .lanes thead th:nth-child(4) b { transition-delay: 0.2s; } .js figure.fig.reveal.in-view .lanes thead th:nth-child(5) b { transition-delay: 0.3s; } .js figure.fig.reveal.in-view .lanes thead th:nth-child(6) b { transition-delay: 0.4s; }
+    .js figure.fig.reveal .formula { background-size: 200% 100%; background-image: linear-gradient(90deg, color-mix(in srgb, var(--c1) 22%, var(--surface-soft)) 0 50%, var(--surface-soft) 50% 100%); background-position: 100% 0; transition: background-position 1s ease-out 0.4s; }
+    .js figure.fig.reveal.in-view .formula { background-position: 0 0; }
+    .js figure.fig.reveal .fc-row, .js figure.fig.reveal .mock { opacity: 0; transform: translateY(10px); transition: opacity 0.45s ease-out, transform 0.45s ease-out; }
+    .js figure.fig.reveal.in-view .fc-row, .js figure.fig.reveal.in-view .mock { opacity: 1; transform: none; }
+    .js figure.fig.reveal.in-view .fc-row:nth-child(2) { transition-delay: 0.12s; } .js figure.fig.reveal.in-view .fc-row:nth-child(3) { transition-delay: 0.24s; }
+  }
   @media (prefers-reduced-motion: no-preference) {
     .js figure.fig.reveal .bar-track i, .js figure.fig.reveal .day-bar { transform: scaleX(0); transform-origin: left; transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
     .js figure.fig.reveal .day-bar { transform: scaleY(0); transform-origin: bottom; }
@@ -496,159 +627,335 @@
 <main id="indhold">
   <div class="shell hero">
     <p class="eyebrow">Case 04 · Sideprojekt</p>
-    <h1>Jeg byggede et værktøj, der skriver jobansøgninger ud fra det, du faktisk har gjort, og aldrig finder på noget</h1>
-    <p class="lead">Ansøgningsbanken vender ansøgningen om. I stedet for at skrive forfra hver gang bygger du én gang en bank med dine erfaringer, resultater og værktøjer, hvert punkt med en kilde. Når du finder et job, sætter du opslaget ind. Værktøjet læser kravene, viser hvad du dækker og mangler, og skriver først et udkast, når du selv har besluttet at søge. Hver sætning i udkastet peger tilbage på et punkt i din bank, og tal, der ikke står der, kommer ikke med. Det samme virker for små foreninger og kulturaktører, der søger fonde.</p>
+    <h1>Ansøgningsbanken skriver jobansøgninger ud fra det, du faktisk har gjort, og <span class="hl">finder aldrig på noget</span></h1>
+    <p class="lead">Ansøgningsbanken er et værktøj, jeg har bygget for at gøre det lettere at søge job uden at pynte og uden at starte fra nul hver gang. Du samler dine erfaringer, resultater og kompetencer ét sted, med en kilde bag hvert punkt. Når du finder et opslag, viser værktøjet, hvad du dækker, og hvad du mangler. Når du har besluttet dig for at søge, skriver det et udkast, hvor hver sætning kan føres tilbage til noget, du har gjort. Den samme kerne hjælper foreninger og kulturaktører med at søge fonde.</p>
 
     <div class="case-brief">
       <dl>
         <div><dt>Rolle</dt><dd>Idé, kravspecifikation, design, kode og test, med Claude Code som udviklingspartner</dd></div>
         <div><dt>Periode</dt><dd>29. september – 5. oktober 2026, fire arbejdsdage</dd></div>
         <div><dt>Status</dt><dd>I brug på mine egne ansøgninger, kører på min egen computer <b class="status-stamp" aria-hidden="true">I BRUG</b></dd></div>
-        <div><dt>Kode</dt><dd>Privat repo på GitHub, 54 commits, 137 automatiske tests</dd></div>
+        <div><dt>Kode</dt><dd>Repo på GitHub, 54 commits, 137 automatiske tests</dd></div>
       </dl>
-      <p class="case-disclaimer">Personligt sideprojekt. Skærmbillederne viser projektets egne opdigtede testdata (Mette Testesen, Kystbyens Bogholderi og Nordfjord Regnskab); ingen rigtige ansøgninger, CV&#8217;er eller personer indgår. Værktøjet sender aldrig noget selv: brugeren godkender og sender uden for systemet. Kildekoden er privat, fordi den stadig udvikles. Tallene i casen er talt op fra kodens historik den 5. oktober 2026.</p>
+      <p class="case-disclaimer">Personligt sideprojekt. Skærmbilleder og eksempler bruger projektets egne opdigtede testdata (Mette Testesen, Kystbyens Bogholderi og Nordfjord Regnskab); ingen rigtige ansøgninger, CV&#8217;er eller personer indgår. Værktøjet sender aldrig noget selv: brugeren godkender og sender uden for systemet. Tallene i casen er talt op fra kodens historik den 5. oktober 2026.</p>
     </div>
 
     <div class="stats" aria-label="Nøgletal for projektet">
-      <div class="stat"><div class="stat-value">4</div><div class="stat-label">arbejdsdage fra første dokument til et værktøj, jeg selv bruger; 54 commits</div></div>
+      <div class="stat"><div class="stat-value">4</div><div class="stat-label">arbejdsdage fra det første dokument til et værktøj, jeg selv bruger hver dag</div></div>
       <div class="stat"><div class="stat-value">137</div><div class="stat-label">automatiske tests, der kører grønt ved hver ændring, plus ni kontroller uden for koden</div></div>
       <div class="stat"><div class="stat-value">22</div><div class="stat-label">krav i kravspecifikationen, fra bankens opbygning til privatliv og kreditter</div></div>
-      <div class="stat"><div class="stat-value">11.900</div><div class="stat-label">linjer kode, heraf 9.231 Python; dertil 1.645 linjer dokumentation</div></div>
+      <div class="stat"><div class="stat-value">11.900</div><div class="stat-label">linjer kode, heraf 9.231 Python, og dertil 1.645 linjer dokumentation</div></div>
     </div>
   </div>
 
   <section class="section" id="opgaven">
     <div class="shell">
       <p class="section-label">01 · Idéen</p>
-      <h2>Idéen var at gøre en ansøgning til noget, man bygger af fakta, i stedet for noget, man skriver forfra hver gang</h2>
-      <div class="intro">
-        <p>Hver ansøgning begynder normalt ved nul. Man genfortæller sin erfaring med nye ord, glemmer de konkrete tal og resultater, og fristes til at pynte lidt, fordi opslaget beder om noget, man kun halvt har prøvet. AI-værktøjer gør det hurtigere, men ikke mere ærligt: de skriver flot om ting, man aldrig har gjort, og en ansøgning, der ikke kan holde til en samtale, er værre end ingen.</p>
-        <p>Ansøgningsbanken bygger på en anden rækkefølge. Først laver man sin bank: en liste af punkter, hvor hvert punkt er ét konkret faktum med en kilde, fx <em>Kundeansvarlig hos Nordfjord Regnskab, 40 faste kunder, 2021 til 2023, evidens: ansættelseskontrakt</em>. Banken bygges ud fra et CV, en portfolio eller tidligere ansøgninger, eller ved at svare på ét spørgsmål ad gangen. Hvert foreslået punkt skal godkendes af brugeren, før det må bruges. Derefter sætter man et jobopslag ind. Værktøjet finder opslagets krav, holder dem op mod banken og viser i klart sprog, hvad man dækker, hvad der er uafklaret, og hvad man mangler. Så beslutter man selv, om man vil søge. Først da skrives udkastet, i brugerens egen tone, og hver sætning i det kan føres tilbage til et punkt i banken. Inden man kopierer teksten, læser man hver påstand ved siden af kildens egen ordlyd. En overdrivelse bliver synlig, uden at man skal slå op.</p>
-        <p>Værktøjet er bygget til to slags brugere: jobsøgende og studerende, der søger job og studiejob, og små organisationer som foreninger og pladeselskaber, der søger fonde og puljer. Det er den samme kerne med to forskellige skabeloner. Tre principper gælder for begge: alt, der står i et udkast, har en kilde; mennesket tager alle beslutninger og sender selv; og strukturen er produktet, så brugeren aldrig skal formulere en instruks til en AI.</p>
-        <p>Idéen er ikke ny for mig. Den er en generalisering af et værktøj, jeg tidligere byggede til én bestemt jobsøgende, hvor princippet med en bank og et faktatjek blev afprøvet på rigtige ansøgninger. Denne udgave er skrevet fra bunden, så intet krav, ingen regel og ingen kode er lavet til én person.</p>
-      </div>
+      <h2>Hvorfor en ansøgning skal bygges af fakta i stedet for at blive skrevet forfra hver gang</h2>
+      <p class="intro">De fleste ansøgninger begynder ved nul. Man genfortæller sin erfaring i nye ord, glemmer de konkrete tal og fristes til at pynte, fordi opslaget beder om noget, man kun halvt har prøvet. AI-værktøjer gør det hurtigere, men ikke mere ærligt, for de skriver lige så flot om det, man aldrig har gjort. Formålet med Ansøgningsbanken er at vende rækkefølgen om. Først samler du fakta, så vurderer du opslaget, så beslutter du dig, og først derefter bliver der skrevet tekst.</p>
+
+      <figure class="fig" aria-labelledby="ba-title">
+        <h3 class="figure-title" id="ba-title">Sådan foregår det i dag, og sådan gør Ansøgningsbanken</h3>
+        <div class="ba">
+          <div class="ba-card">
+            <h4>Hver ansøgning skrives fra bunden</h4>
+            <ul>
+              <li>Erfaringen genfortælles i nye ord hver gang, og de konkrete tal bliver glemt.</li>
+              <li>Opslaget beder om noget, man kun halvt kan, og teksten kommer til at pynte lidt.</li>
+              <li>Et AI-værktøj skriver flot, men det kan ikke vide, hvad der er sandt.</li>
+              <li>Bagefter ved ingen, hvad der virkede, og hvad der gav afslag.</li>
+            </ul>
+          </div>
+          <div class="ba-card new">
+            <h4>Én bank, mange ansøgninger</h4>
+            <ul>
+              <li>Banken bygges én gang med ét faktum pr. punkt, og hvert punkt har en kilde og en status.</li>
+              <li>Opslaget sammenlignes med banken, og hullerne vises ærligt, før der skrives et ord.</li>
+              <li>Udkastet skrives kun ud fra bekræftede punkter, og tal, der ikke står i banken, bliver kasseret.</li>
+              <li>Hvert resultat gemmes, så man med tiden kan se, hvad der faktisk giver samtale.</li>
+            </ul>
+          </div>
+        </div>
+        <figcaption class="diagram-caption">Forskellen ligger i rækkefølgen: først fakta, så opslag, så beslutning, og først derefter tekst. Teksten bliver en afledning af banken i stedet for en ny opfindelse hver gang.</figcaption>
+      </figure>
+
+      <figure class="fig" aria-labelledby="flow-title">
+        <h3 class="figure-title" id="flow-title">Sådan virker det i fire trin</h3>
+        <div class="tiles">
+          <div class="tile"><span class="no">1</span><h4>Saml dine fakta ét sted</h4><p>Du lægger dit CV ind eller svarer på korte spørgsmål, og værktøjet foreslår små, konkrete punkter: en erfaring, et resultat eller et værktøj, du kan bruge. Du godkender hvert punkt, før det tæller.</p></div>
+          <div class="tile t2"><span class="no">2</span><h4>Sæt et jobopslag ind</h4><p>Du indsætter opslaget som tekst, PDF eller link. Værktøjet læser kravene ud af opslaget og sammenligner dem med dine godkendte punkter.</p></div>
+          <div class="tile t3"><span class="no">3</span><h4>Se, hvad du dækker, og beslut dig</h4><p>Du får en ærlig oversigt over, hvilke krav du dækker, hvilke du mangler, og et match fra 0 til 100. Derefter beslutter du selv, om du vil søge.</p></div>
+          <div class="tile t4"><span class="no">4</span><h4>Få et udkast, du kan stå inde for</h4><p>Værktøjet skriver en ansøgning ud fra dine godkendte punkter og intet andet. Du tjekker hver påstand mod kilden, retter til og kopierer teksten eller henter den som Word-fil.</p></div>
+        </div>
+        <figcaption class="diagram-caption">Værktøjet sender aldrig noget selv. Det foreslår, du beslutter, og du sender ansøgningen uden for systemet. Næste gang du finder et opslag, er banken allerede bygget, og du begynder ved trin 2.</figcaption>
+      </figure>
+
+      <figure class="fig" aria-labelledby="hvem-title">
+        <h3 class="figure-title" id="hvem-title">Hvem værktøjet er til</h3>
+        <div class="ba">
+          <div class="ba-card new">
+            <h4>Jobsøgende og studerende</h4>
+            <ul><li>Du søger job eller studiejob som dig selv.</li><li>Banken rummer dine erfaringer, resultater, kompetencer, værktøjer, uddannelse og sprog.</li><li>Skabelonen giver dig en CV-sektion, en ansøgning og en kort besked, du kan sende med.</li><li>Du kan sætte dine egne krav til løn, sted, arbejdstid og kontraktform.</li></ul>
+          </div>
+          <div class="ba-card new">
+            <h4>Små organisationer</h4>
+            <ul><li>Foreninger, pladeselskaber og kulturaktører søger fonde og puljer.</li><li>Banken rummer fakta om organisationen og dens projekter med formål, målgruppe og budget.</li><li>Skabelonen følger fondens egne spørgsmål og tegngrænser.</li><li>19 håndplukkede fondsprofiler inden for musik og kultur ligger klar.</li></ul>
+          </div>
+        </div>
+        <figcaption class="diagram-caption">Én konto kan have flere ansøgere, så du kan søge job som dig selv og fonde som din forening fra samme sted. Reglerne om kilde, beslutning og faktatjek er de samme for begge.</figcaption>
+      </figure>
     </div>
   </section>
 
-  <section class="section soft" id="loesningen">
+  <section class="section soft" id="banken">
     <div class="shell">
-      <p class="section-label">02 · Sådan hænger det sammen</p>
-      <h2>Sådan hænger det sammen: banken bygges én gang, og hver ansøgning følger de samme fem trin</h2>
-      <p class="intro">Banken er fundamentet, og den vokser for hver ansøgning: hvert hul, man svarer på, bliver til et nyt punkt. Selve ansøgningen følger altid fem synlige trin, så man på ethvert tidspunkt kan se, hvor man er, hvad man skal gøre nu, og hvad der sker, når man trykker.</p>
+      <p class="section-label">02 · Banken</p>
+      <h2>Banken består af små, konkrete fakta om dig, og hvert punkt har en kilde</h2>
+      <p class="intro">Et punkt i banken er ikke et afsnit fra et CV. Det er ét faktum, du kan stå inde for: hvad du gjorde, hvor, hvornår, og hvad det førte til. Hvert punkt har et kort ID, som udkastene henviser til, og en status, der afgør, om det må bruges.</p>
 
-      <div class="flow" role="img" aria-label="Diagram i fem led: Banken med punkter fra CV, interview og svar på huller. Opslag sættes ind som tekst, PDF eller link. Tjek finder kravene og matcher dem mod banken. Beslutning: ja, ikke endnu eller nej. Udkast skrives, valideres og faktatjekkes, hvorefter resultatet noteres.">
-        <div class="flow-box f1"><b>Banken</b><span>punkter med kilde og status, bygget fra CV, portfolio, spørgsmål og svar på huller</span></div>
-        <div class="flow-arrow" aria-hidden="true">→</div>
-        <div class="flow-box f2"><b>1 · Opslag</b><span>tekst, PDF eller link; værktøjet gætter typen, job eller fond, og man kan rette gættet</span></div>
-        <div class="flow-arrow" aria-hidden="true">→</div>
-        <div class="flow-box f3"><b>2 · Tjek</b><span>dine egne krav først, derefter opslagets krav, match og huller</span></div>
-        <div class="flow-arrow" aria-hidden="true">→</div>
-        <div class="flow-box f4"><b>3 · Beslutning</b><span>ja, jeg søger; ikke endnu, jeg mangler et svar; eller nej</span></div>
-        <div class="flow-arrow" aria-hidden="true">→</div>
-        <div class="flow-box f5"><b>4 · Udkast</b><span>skrives, valideres og faktatjekkes; kopiér eller hent som Word, når alt er tjekket</span></div>
-      </div>
-      <p class="flow-note">Det femte trin er resultatet: når udkastet er markeret som sendt, låses det med et øjebliksbillede af de punkter, det byggede på, så senere rettelser i banken ikke ændrer dokumentationen for en gammel ansøgning. Udfaldet noteres i faste kategorier, fra "sendt uden svar" til "tilbud" eller "bevilling", og når der er nok ansøgninger, viser værktøjet mønstre, fx at de ansøgninger, der gav samtale, alle havde et match over 70.</p>
-
-      <figure class="fig" aria-labelledby="ticket-title">
-        <h3 class="figure-title" id="ticket-title">Hvad der sker, fra opslaget er sat ind, til udkastet kan kopieres</h3>
-        <div class="journey">
-          <article class="journey-card j1">
-            <p class="journey-label">1 · Tjek</p>
-            <h3>Opslagets krav bliver fundet, mærket som krav eller ønske og holdt op mod banken</h3>
-            <p>AI-modellen læser opslaget og trækker kravene ud som en liste, på tværs af formuleringer, så "Ops Lead" og "Operations Manager" tæller som det samme. Matchet fra 0 til 100 regnes derefter uden model, kun ud fra bekræftede punkter, og et krav uden dækning vises altid over tallet. Brugerens egne krav, fx minimumsløn, tjekkes først og med en fast regel, der aldrig gætter valuta eller periode.</p>
-          </article>
-          <div class="journey-arrow" aria-hidden="true">→</div>
-          <article class="journey-card j2">
-            <p class="journey-label">2 · Huller</p>
-            <h3>Hvert krav, banken ikke dækker, får fire mulige svar</h3>
-            <ul class="check-list"><li>Jeg har erfaring med det: svaret bliver et nyt punkt</li><li>Det har jeg ikke: kravet vises som mangler</li><li>Ikke relevant for mig: kravet tages ud af matchet</li><li>Nævn det ærligt i ansøgningen: højst én sætning</li></ul>
-          </article>
-          <div class="journey-arrow" aria-hidden="true">→</div>
-          <article class="journey-card j3">
-            <p class="journey-label">3 · Beslutning</p>
-            <h3>Udkastet skrives først, når brugeren har sagt ja</h3>
-            <p>Valget er ja, ikke endnu eller nej. "Ikke endnu" gemmer, hvad der skal afklares, og en dato, og lægger en påmindelse på forsiden, når dagen kommer. "Nej" flytter ansøgningen til Afsluttet uden at slette noget. Svar på huller regnes ind i vurderingen med det samme, uden et nyt modelkald.</p>
-          </article>
-          <div class="journey-arrow" aria-hidden="true">→</div>
-          <article class="journey-card j4">
-            <p class="journey-label">4 · Udkast</p>
-            <h3>Udkastet skrives i brugerens tone og tjekkes, før nogen ser det</h3>
-            <p>Modellen får kun bekræftede punkter, opslaget og brugerens tone (neutral, varm, kort og direkte eller formel) samt op til fem tidligere tekster som stilreference, der kun må påvirke rytmen, aldrig fakta. Udkastet består af felter, CV-sektion, ansøgning og en kort besked, og hvert felt viser, hvilke punkter det bygger på.</p>
-          </article>
+      <figure class="fig" aria-labelledby="anat-title">
+        <h3 class="figure-title" id="anat-title">Et punkt i banken, del for del</h3>
+        <div class="anatomy">
+          <div class="mock" role="img" aria-label="Et punkt i banken: ID erf-01, status Bekræftet, titel Kundeansvarlig hos Nordfjord Regnskab, tekst Håndterede 40 faste kunder og deres månedlige afstemninger fra 2021 til 2023, evidens ansættelseskontrakt og udtalelse, nøgleord Nordfjord Regnskab og 40, kilde CV.">
+            <div class="row">
+              <span class="id">erf-01<span class="mark">1</span></span>
+              <div>
+                <div class="title">Kundeansvarlig hos Nordfjord Regnskab.<span class="mark">3</span></div>
+                <div class="text">Håndterede 40 faste kunder og deres månedlige afstemninger fra 2021 til 2023.<span class="mark">4</span></div>
+                <div class="meta">Evidens: ansættelseskontrakt og udtalelse.<span class="mark">5</span></div>
+                <div class="meta">Nøgleord: Nordfjord Regnskab, 40 · Kilde: CV, læst ind 29. september<span class="mark">6</span></div>
+              </div>
+              <span class="pill ok">Bekræftet<span class="mark" style="margin-left:0.4rem">2</span></span>
+            </div>
+          </div>
+          <ol class="callouts">
+            <li><span class="mark">1</span><div><b>ID</b> ID&#8217;et består af en type og et løbenummer. Typen erf står for erfaring, res for resultat, vaerk for værktøj og komp for kompetence. Udkastet henviser til ID&#8217;et og ikke til teksten, så kilden altid kan findes igen.</div></li>
+            <li><span class="mark">2</span><div><b>Status</b> Kun bekræftede punkter tæller med i vurderingen og må bruges i et udkast. Et punkt, som værktøjet har foreslået, venter, indtil du har sagt god for det.</div></li>
+            <li><span class="mark">3</span><div><b>Titel</b> Titlen er én linje, der kan stå alene i en liste og i faktatjekket.</div></li>
+            <li><span class="mark">4</span><div><b>Tekst</b> Teksten rummer det konkrete: hvad du gjorde, hvor meget og hvornår. De tal, der står her, er de eneste tal, et udkast må bruge.</div></li>
+            <li><span class="mark">5</span><div><b>Evidens</b> Evidensen er det, der beviser punktet, fx en kontrakt, en udtalelse, et link eller et dokument. Uden evidens får punktet status "mangler evidens".</div></li>
+            <li><span class="mark">6</span><div><b>Nøgleord og kilde</b> Nøgleordene er de ord, ærlighedskontrollen holder øje med i udkastet. Kilden fortæller, hvor punktet kom fra, fx dit CV.</div></li>
+          </ol>
         </div>
-        <figcaption class="diagram-caption">Et tjek eller et udkast kan tage op til et minut, fordi modellen skal læse hele opslaget. Begge kører derfor som baggrundsjob: brugeren ser, hvad der sker ("Læser opslaget", "Finder kravene"), kan forlade siden, og resultatet venter på forsiden, når det er klar.</figcaption>
+        <figcaption class="diagram-caption">Punkter findes på tre niveauer: om dig som ansøger, om ét projekt og om én enkelt ansøgning. Alle tre følger de samme regler, og et punkt kan flyttes op i banken, hvis det viser sig at kunne genbruges.</figcaption>
+      </figure>
+
+      <figure class="fig" aria-labelledby="ways-title">
+        <h3 class="figure-title" id="ways-title">Tre måder at fylde banken, og ingen af dem føles som en formular</h3>
+        <div class="tiles">
+          <div class="tile">
+            <span class="no">A</span><h4>Læg et dokument ind</h4>
+            <p>Du kan lægge dit CV, din portfolio, en tidligere ansøgning eller en projektbeskrivelse ind.</p>
+            <ol><li>Teksten læses ud af PDF-filen, og kontaktoplysninger filtreres fra.</li><li>Værktøjet foreslår punkter med type, tekst, evidens og nøgleord.</li><li>Du godkender, retter eller afviser ét punkt ad gangen.</li></ol>
+          </div>
+          <div class="tile t2">
+            <span class="no">B</span><h4>Svar på spørgsmål</h4>
+            <p>Værktøjet interviewer dig med ét konkret spørgsmål ad gangen.</p>
+            <ol><li>Et spørgsmål kan lyde: "Fortæl om en gang, du løste et problem for en kunde."</li><li>Dit svar bliver til et foreslået punkt med resultat og sammenhæng.</li><li>Tidligere spørgsmål kan ses igen, uden at AI-modellen skal bruges igen.</li></ol>
+          </div>
+          <div class="tile t3">
+            <span class="no">C</span><h4>Svar på et hul</h4>
+            <p>Når et tjek finder et krav, som banken ikke dækker, kan du svare direkte i tjekket.</p>
+            <ol><li>Svarer du "jeg har erfaring med det", bliver svaret til et nyt punkt.</li><li>Svarer du "det har jeg ikke", vises kravet ærligt som noget, du mangler.</li><li>Svaret tæller med i vurderingen med det samme.</li></ol>
+          </div>
+        </div>
+        <figcaption class="diagram-caption">Har du allerede et opslag, foreslår værktøjet kun de punkter fra dit CV, som netop det opslag har brug for. Så skal du ikke gennemgå hele dit CV, før du kan lave det første tjek. Resten af banken kan du udfylde senere.</figcaption>
+      </figure>
+
+      <figure class="fig" aria-labelledby="st-title">
+        <h3 class="figure-title" id="st-title">Et punkts vej fra forslag til noget, der må bruges</h3>
+        <div class="dia-wrap"><svg class="dia" viewBox="0 0 770 250" role="img" aria-label="Diagram over et punkts status: et foreslaaet punkt venter paa godkendelse og bliver enten bekraeftet eller afvist; et punkt uden evidens er markeret mangler evidens, til evidens tilfoejes; et svar paa et hul med det har jeg ikke bliver til status har jeg ikke." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="ahp"/></marker></defs><g class="nd amber"><rect x="20" y="96" width="200" height="56" rx="8"/><text class="t" x="120.0" y="118" text-anchor="middle">Venter på godkendelse</text><text class="s" x="120.0" y="136" text-anchor="middle">foreslået af værktøjet</text></g><g class="nd green"><rect x="310" y="20" width="180" height="56" rx="8"/><text class="t" x="400.0" y="42" text-anchor="middle">Bekræftet</text><text class="s" x="400.0" y="60" text-anchor="middle">må bruges i udkast</text></g><g class="nd grey"><rect x="310" y="172" width="180" height="56" rx="8"/><text class="t" x="400.0" y="194" text-anchor="middle">Afvist</text><text class="s" x="400.0" y="212" text-anchor="middle">slettes</text></g><g class="nd amber"><rect x="560" y="20" width="190" height="56" rx="8"/><text class="t" x="655.0" y="42" text-anchor="middle">Mangler evidens</text><text class="s" x="655.0" y="60" text-anchor="middle">må kun nævnes som uafklaret</text></g><g class="nd red"><rect x="560" y="172" width="190" height="56" rx="8"/><text class="t" x="655.0" y="194" text-anchor="middle">Har jeg ikke</text><text class="s" x="655.0" y="212" text-anchor="middle">vises ærligt som et hul</text></g><path class="ar " d="M220 116 L308 56" marker-end="url(#ah1)"/><text class="l" x="262" y="70" text-anchor="middle">Godkend</text><path class="ar " d="M220 132 L308 192" marker-end="url(#ah1)"/><text class="l" x="262" y="182" text-anchor="middle">Afvis</text><path class="ar " d="M560 48 L492 48" marker-end="url(#ah1)"/><text class="l" x="526" y="12" text-anchor="middle">evidens tilføjet</text><text class="l" x="20" y="60">fra CV, portfolio,</text><text class="l" x="20" y="76">spørgsmål eller svar</text><path class="ar " d="M80 82 L80 94" marker-end="url(#ah1)"/><text class="l" x="560" y="130">svar på et hul:</text><text class="l" x="560" y="146">"det har jeg ikke"</text><path class="ar " d="M620 152 L620 170" marker-end="url(#ah1)"/></svg></div>
+        <figcaption class="diagram-caption">Intet foreslået punkt bliver bekræftet uden et aktivt valg fra dig. Svaret "har jeg ikke" findes, så et hul vises korrekt, og så værktøjet aldrig spørger om det samme igen. Hvis du ændrer et punkt, bliver de tjek og udkast, der bygger på det, markeret som forældede.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" id="arbejdsgangen">
+    <div class="shell">
+      <p class="section-label">03 · Arbejdsgangen</p>
+      <h2>Fem trin fra jobopslag til sendt ansøgning</h2>
+      <p class="intro">Hver ansøgning følger de samme fem trin, så du altid kan se, hvor du er, hvad du skal gøre nu, og hvad der sker, når du trykker. Figuren viser, hvad du selv gør, hvad værktøjet regner ud med faste regler, og hvornår AI-modellen er med.</p>
+
+      <figure class="fig" aria-labelledby="lanes-title">
+        <h3 class="figure-title" id="lanes-title">Hvem gør hvad i de fem trin</h3>
+        <div class="lanes-wrap">
+          <table class="lanes">
+            <thead><tr><th scope="col"></th><th scope="col"><b>1</b>Opslag</th><th scope="col"><b>2</b>Tjek</th><th scope="col"><b>3</b>Beslutning</th><th scope="col"><b>4</b>Udkast</th><th scope="col"><b>5</b>Resultat</th></tr></thead>
+            <tbody>
+              <tr class="you"><th scope="row">Du<span>beslutter og godkender</span></th>
+                <td>Du sætter opslaget ind som tekst, PDF eller link og retter typen, hvis værktøjet har gættet forkert på job eller fond.</td>
+                <td>Du svarer på hullerne: du har det, du har det ikke, det er ikke relevant, eller det skal nævnes ærligt.</td>
+                <td>Du vælger ja, ikke endnu eller nej. Vælger du "ikke endnu", får du en påmindelse på en dato, du selv sætter.</td>
+                <td>Du læser hver påstand ved siden af kilden, retter, vælger tone og kopierer teksten eller henter den som Word-fil.</td>
+                <td>Du markerer ansøgningen som sendt og noterer resultatet, når svaret kommer.</td></tr>
+              <tr><th scope="row">Værktøjet<span>faste regler, uden AI</span></th>
+                <td>Værktøjet gætter ud fra ordene, om opslaget er et job eller en fond, og gemmer opslaget med alle afsnit.</td>
+                <td>Det tjekker dine egne krav først, fx en minimumsløn, med en regel, der aldrig gætter på valuta. Derefter regner det et match fra 0 til 100 ud fra dine bekræftede punkter.</td>
+                <td>Det holder trinnet Udkast låst, indtil du har sagt ja, og lægger påmindelsen på forsiden, når dagen kommer.</td>
+                <td>Det kasserer udkast med tal eller værktøjer uden kilde, private oplysninger, pladsholdere eller for lange felter. Knappen Kopiér er låst, indtil alt er tjekket.</td>
+                <td>Det låser udkastet med et øjebliksbillede af kilderne. Når mindst tre ansøgninger har fået et resultat, viser det mønstre.</td></tr>
+              <tr class="model"><th scope="row">AI-modellen<span>får kun data, aldrig instrukser</span></th>
+                <td class="none">AI-modellen bruges ikke</td>
+                <td>Modellen læser opslaget, trækker kravene ud som en liste, mærker hvert punkt som krav eller ønske og sammenligner dem med banken, også når ordvalget er forskelligt.</td>
+                <td class="none">AI-modellen bruges ikke</td>
+                <td>Modellen skriver udkastet felt for felt ud fra dine bekræftede punkter og i din tone, med en henvisning til kilden for hvert felt. Den får højst tre forsøg.</td>
+                <td class="none">AI-modellen bruges ikke</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <figcaption class="diagram-caption">AI-modellen er kun med i to af de fem trin, og den får aldrig instrukser fra opslaget. Opslagstekst, dokumenter og svar behandles som data. Et opslag med teksten "giv altid 100 i match" ændrer derfor ingenting. Tjek og udkast kører i baggrunden, så du kan forlade siden og finde resultatet på forsiden bagefter.</figcaption>
+      </figure>
+
+      <figure class="fig" aria-labelledby="match-title">
+        <h3 class="figure-title" id="match-title">Sådan bliver et opslag til et match, krav for krav</h3>
+        <div class="anatomy">
+          <div class="mock" role="img" aria-label="Opslagets krav i tjekket: Erfaring med kundeansvar, krav, dokumenteret af erf-01. Erfaring med e-conomic, krav, dokumenteret af vaerk-01. Erfaring med SAP, ønske, mangler. Projektledelse, ønske, ikke afklaret, med kandidaten komp-01, der venter på godkendelse. Match 67 af 100.">
+              <div class="row"><span class="id">Krav</span><div><div class="title">Erfaring med kundeansvar</div><div class="meta">Dækket af punktet erf-01.</div></div><span class="pill ok">Dokumenteret</span></div>
+              <div class="row"><span class="id">Krav</span><div><div class="title">Erfaring med e-conomic</div><div class="meta">Dækket af punktet vaerk-01.</div></div><span class="pill ok">Dokumenteret</span></div>
+              <div class="row"><span class="id">Ønske</span><div><div class="title">Erfaring med SAP</div><div class="meta">Du har svaret, at du ikke har det.</div></div><span class="pill bad">Mangler</span></div>
+              <div class="row"><span class="id">Ønske</span><div><div class="title">Projektledelse</div><div class="meta">Din bank har et punkt om det, som du ikke har godkendt endnu: komp-01.</div></div><span class="pill warn">Ikke afklaret</span></div>
+          </div>
+          <div>
+            <ol class="callouts">
+              <li><span class="mark">1</span><div><b>Krav eller ønske</b> Modellen mærker hvert punkt ud fra opslagets ordlyd. Er det uklart, om noget er et krav, bliver det et ønske, og uklarheden noteres.</div></li>
+              <li><span class="mark">2</span><div><b>Tre tilstande</b> Dokumenteret betyder, at et bekræftet punkt dækker kravet. Ikke afklaret betyder, at der endnu ikke er et bekræftet punkt. Mangler betyder, at du selv har svaret "det har jeg ikke". En tynd bank giver derfor "ikke afklaret", aldrig "mangler".</div></li>
+              <li><span class="mark">3</span><div><b>Matchet regnes uden AI</b> Kun bekræftede punkter tæller, og et krav vejer dobbelt så meget som et ønske. Et krav uden dækning vises altid over tallet, så et højt match aldrig skjuler en manglende kvalifikation.</div></li>
+            </ol>
+            <div class="formula">match = dækkede point / alle point<br>krav = 2 point, ønske = 1 point<br>her: (2 + 2 + 0 + 0) / (2 + 2 + 1 + 1) = 4 / 6 = <b>67 af 100</b></div>
+          </div>
+        </div>
+        <figcaption class="diagram-caption">Dine egne krav tjekkes før opslagets, fx en minimumsløn, som er privat og aldrig kommer med i en ansøgning. Beløbskontrollen er en fast regel: ved ukendt valuta, manglende periode eller netto mod brutto svarer den "kræver afklaring" i stedet for at gætte. Dine svar på huller regnes med det samme, uden at AI-modellen bruges igen.</figcaption>
+      </figure>
+
+      <figure class="fig" aria-labelledby="dec-title">
+        <h3 class="figure-title" id="dec-title">Tre mulige beslutninger, og kun én af dem åbner for et udkast</h3>
+        <div class="tiles">
+          <div class="tile hi"><span class="no">Ja</span><h4>Ja, jeg søger</h4><p>Udkastet skrives i næste trin, eventuelt med ét tryk. Det bygger på alle dine bekræftede punkter i den tone, du har valgt, og det kan altid skrives igen med andre valg.</p></div>
+          <div class="tile t3"><span class="no">?</span><h4>Ikke endnu, jeg mangler et svar</h4><p>Du skriver, hvad der skal afklares, fx lønnen, og sætter en dato. Ansøgningen venter, og forsiden minder dig om den, når dagen kommer.</p></div>
+          <div class="tile t5"><span class="no">Nej</span><h4>Nej, jeg søger ikke</h4><p>Ansøgningen flyttes til Afsluttet med en valgfri begrundelse. Intet slettes, og du kan fortryde valget.</p></div>
+        </div>
+        <figcaption class="diagram-caption">Beslutningen ligger med vilje før skrivningen. Et værktøj, der skriver først og spørger bagefter, inviterer til at sende ansøgninger, man ikke har tænkt over.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section soft" id="aerlighed">
+    <div class="shell">
+      <p class="section-label">04 · Ærlighed</p>
+      <h2>Sådan holdes udkastet ærligt</h2>
+      <p class="intro">Modellen får kun dine bekræftede punkter, opslaget og den tone, du har valgt. Men en henvisning til et punkt beviser ikke, at påstanden er rigtig. "Deltog i et projekt med 20 deltagere" må ikke blive til "ledede et team på 20", selv om både punktet og tallet findes. Derfor kører der faste kontroller, efter at modellen har skrevet, og til sidst laver du selv et faktatjek.</p>
+
+      <figure class="fig" aria-labelledby="pr-title">
+        <h3 class="figure-title" id="pr-title">Tre regler, der gælder for alt i værktøjet</h3>
+        <div class="tiles">
+          <div class="tile"><span class="no">1</span><h4>Alt har en kilde</h4><p>Ingen sætning i et udkast står uden et punkt i banken bag sig. Tal, værktøjer og resultater, der ikke kan spores, bliver ikke sendt videre.</p></div>
+          <div class="tile t2"><span class="no">2</span><h4>Mennesket beslutter</h4><p>Værktøjet foreslår, og du godkender. Det sender aldrig noget selv, og status "sendt" kan kun sættes af dig.</p></div>
+          <div class="tile t3"><span class="no">3</span><h4>Struktur i stedet for prompts</h4><p>Du skal hverken skrive instrukser til en AI eller forstå, hvordan den virker. Strukturen er produktet.</p></div>
+        </div>
+        <figcaption class="diagram-caption">Idéen er generaliseret fra et værktøj, jeg tidligere byggede til én bestemt jobsøgende, hvor princippet blev afprøvet på rigtige ansøgninger. Denne udgave er skrevet fra bunden, så intet er lavet til én person.</figcaption>
       </figure>
 
       <figure class="fig" aria-labelledby="chain-title">
-        <h3 class="figure-title" id="chain-title">Hvad et udkast skal igennem, før brugeren får det at se</h3>
-        <div class="chain" role="img" aria-label="Kæde i fem led: modellen skriver udkastet felt for felt med kilde-ID pr. felt; ID-kontrollen kasserer påstande om værktøjer, systemer og tal uden kilde; talkontrollen kræver, at hvert tal står ordret i et brugt punkt; private felter, pladsholdere, tegngrænser og opgraderede roller fanges; til sidst læser brugeren hver påstand ved siden af kilden.">
-          <div class="chain-box k1"><b>1 · Modellen skriver</b><span>felt for felt som struktureret svar, hvert felt med de punkt-ID&#8217;er, det bygger på</span></div>
+        <h3 class="figure-title" id="chain-title">Fem kontroller mellem modellens svar og den tekst, du kan kopiere</h3>
+        <div class="chain" role="img" aria-label="Kæde i fem led: modellen skriver udkastet felt for felt med en kildehenvisning pr. felt; kildekontrollen kasserer påstande om værktøjer, systemer og tal uden kilde; talkontrollen kræver, at hvert tal står ordret i et brugt punkt; private oplysninger, pladsholdere, tegngrænser og opgraderede roller fanges; til sidst læser brugeren hver påstand ved siden af kilden.">
+          <div class="chain-box k1"><b>1 · Modellen skriver</b><span>Udkastet skrives felt for felt i et fast svarformat, og hvert felt angiver de punkter, det bygger på.</span></div>
           <div class="chain-arrow" aria-hidden="true">→</div>
-          <div class="chain-box k2"><b>2 · ID-kontrol</b><span>hvert navngivet værktøj, system og tal skal have et punkt bag sig; listen af kontrolord bygges af brugerens egen bank</span></div>
+          <div class="chain-box k2"><b>2 · Kildekontrol</b><span>Hvert navngivet værktøj, system og tal skal have et punkt bag sig. Listen af kontrolord bygges ud fra din egen bank.</span></div>
           <div class="chain-arrow" aria-hidden="true">→</div>
-          <div class="chain-box k3"><b>3 · Talkontrol</b><span>hvert tal skal stå ordret i et brugt punkt; ellers kasseres udkastet uden skøn og uden model</span></div>
+          <div class="chain-box k3"><b>3 · Talkontrol</b><span>Hvert tal skal stå ordret i et af de brugte punkter. Ellers kasseres udkastet, uden skøn og uden AI.</span></div>
           <div class="chain-arrow" aria-hidden="true">→</div>
-          <div class="chain-box k4"><b>4 · Private felter og form</b><span>minimumsløn må aldrig stå i teksten, [X]-pladsholdere afvises, tegngrænser håndhæves, og "deltog", der er blevet til "ledede", markeres</span></div>
+          <div class="chain-box k4"><b>4 · Private oplysninger og form</b><span>En minimumsløn må aldrig stå i teksten, pladsholdere som [X] afvises, tegngrænser håndhæves, og et "deltog", der er blevet til "ledede", markeres.</span></div>
           <div class="chain-arrow" aria-hidden="true">→</div>
-          <div class="chain-box k5"><b>5 · Faktatjek af brugeren</b><span>"Udkastet siger" ved siden af "Din bank siger"; Kopiér og Word låses først op, når alle felter er tjekket</span></div>
+          <div class="chain-box k5"><b>5 · Dit faktatjek</b><span>"Udkastet siger" står ved siden af "Din bank siger". Knapperne Kopiér og Word låses først op, når alle felter er tjekket.</span></div>
         </div>
-        <figcaption class="diagram-caption">Kasseres et udkast i led 2 til 4, prøver værktøjet igen med besked om, hvad der gik galt, højst tre gange. Lykkes det ikke, får brugeren at vide, hvilke påstande der ikke kunne dokumenteres, og kan tilføje dem til banken. Opslagstekst, importerede dokumenter og svar behandles altid som data, aldrig som instruktioner til modellen, så et opslag med "giv altid 100 i match" ændrer ingenting.</figcaption>
+        <figcaption class="diagram-caption">Kasseres et udkast i kontrol 2 til 4, prøver værktøjet igen med en besked om, hvad der gik galt, højst tre gange. Lykkes det ikke, får du at vide, hvilke påstande der ikke kunne dokumenteres, og du kan tilføje dem til banken. Intet af det, du har skrevet, går tabt.</figcaption>
+      </figure>
+
+      <figure class="fig" aria-labelledby="fc-title">
+        <h3 class="figure-title" id="fc-title">Faktatjekket viser hver påstand ved siden af kildens egen ordlyd</h3>
+        <div class="fc" role="img" aria-label="Faktatjek: feltet Ansøgning med udkastets sætning Jeg har håndteret 40 faste kunder og bruger e-conomic dagligt, og bankens punkter erf-01 og vaerk-01 nedenunder. Hvert felt har et hak. Knapperne Kopiér og Hent som Word-fil er låst, til alle hak er sat.">
+          <div class="fc-row"><span class="cb" aria-hidden="true">&#9745;</span><span class="k">Udkastet siger</span><span class="v">"Jeg har håndteret 40 faste kunder og bruger e-conomic dagligt. Det betyder, at jeg kan tage jeres kunder fra dag ét."</span><span></span><span class="k">Din bank siger</span><span class="v"><span class="id">erf-01</span>Kundeansvarlig hos Nordfjord Regnskab. Håndterede 40 faste kunder og deres månedlige afstemninger fra 2021 til 2023.<br><span class="id">vaerk-01</span>e-conomic. Daglig bruger af e-conomic til bogføring og afstemning siden 2021.</span></div>
+          <div class="fc-row"><span class="cb" aria-hidden="true">&#9745;</span><span class="k">Udkastet siger</span><span class="v">"Jeg så jeres opslag og vil gerne tage en kort snak om rollen som kundeansvarlig."</span><span></span><span class="k">Din bank siger</span><span class="v"><span class="id">erf-01</span>Kundeansvarlig hos Nordfjord Regnskab. Håndterede 40 faste kunder og deres månedlige afstemninger fra 2021 til 2023.</span></div>
+          <div class="fc-row locked"><span class="cb" aria-hidden="true">&#9744;</span><span class="k">Bemærk, før du sender</span><span class="v">Tjek, at antallet af kunder stadig er 40. · Ansøgningen slutter uden at lægge op til en samtale; danske vejledninger anbefaler én sætning om det til sidst.</span></div>
+        </div>
+        <figcaption class="diagram-caption">Hvert hak gemmes med det samme, og enhver rettelse eller ny generering nulstiller tjekket. Over listen står modellens egne noter og afsnittet "Kan blive bedre", en fast kvalitetsramme bygget på danske vejledninger om gode ansøgninger: højst én side, gå direkte til sagen, ét eksempel pr. kompetence. Intet kasseres på grund af kvalitet. Det afgør du selv.</figcaption>
+      </figure>
+
+      <figure class="fig" aria-labelledby="priv-title">
+        <h3 class="figure-title" id="priv-title">Hvad modellen får at se, og hvad den aldrig får</h3>
+        <div class="ba">
+          <div class="ba-card new">
+            <h4>Det, modellen får</h4>
+            <ul><li>Opslagets tekst, mærket som data.</li><li>Dine bekræftede punkter med ID, tekst og nøgleord.</li><li>Dine offentlige krav, fx "Aarhus eller remote".</li><li>Din tone og op til fem stilreferencer, mærket "kun stil".</li><li>Ved et tjek også punkter med kilde, som endnu ikke er godkendt, så de kan foreslås til godkendelse.</li></ul>
+          </div>
+          <div class="ba-card">
+            <h4>Det, modellen aldrig får</h4>
+            <ul><li>Beløbet på en privat minimumsløn, eller at den findes, når der skrives tekst.</li><li>Telefonnumre og e-mails fra de dokumenter, du har lagt ind.</li><li>Punkter, du ikke har godkendt, når der skrives udkast.</li><li>Fakta fra stilreferencerne; navne, tal og resultater derfra bruges aldrig.</li><li>Instruktioner, der er gemt i et opslag eller et dokument.</li></ul>
+          </div>
+        </div>
+        <figcaption class="diagram-caption">Private oplysninger fjernes teknisk fra det, modellen får, før den skriver, og et udkast, der alligevel gengiver beløbet, kasseres. Alt ligger i én database-fil på din egen computer. Det eneste, der forlader den, er kaldene til AI-modellen.</figcaption>
       </figure>
     </div>
   </section>
 
   <section class="section" id="teknik">
     <div class="shell">
-      <p class="section-label">03 · Teknikken</p>
-      <h2>Teknikken: en ren Python-kerne uden viden om skærmen, et tyndt webinterface og én database-fil</h2>
-      <p class="intro">Det meste software er delt i tre lag: det, brugeren ser, de regler, der afgør, hvad der må ske, og de data, der skal være rigtige uanset hvad. Her er reglerne bevidst lagt i en kerne, der ikke ved, at der findes et webinterface. Det gør det muligt at teste alle regler uden en browser og at skifte skærmdelen ud senere. Tabellen under figuren forklarer hvert værktøj: hvad det er, og hvorfor netop det blev valgt.</p>
+      <p class="section-label">05 · Teknikken</p>
+      <h2>Sådan er værktøjet bygget</h2>
+      <p class="intro">Alle regler ligger i en kerne, der ikke ved, at der findes et webinterface. Det gør det muligt at teste alle regler uden en browser og at skifte skærmdelen ud senere. Kontrolscriptet nægter at godkende en ændring, hvis kernen henter noget fra skærmlaget.</p>
       <figure class="fig" aria-labelledby="layers-title">
         <h3 class="figure-title" id="layers-title">Værktøjets tre lag og tjenesterne udenom</h3>
-        <div class="layers" role="img" aria-label="Trelagsfigur. Lag 1, skærm: FastAPI og Jinja2 med 29 serverrenderede sider, ét stylesheet og 229 linjer JavaScript. Lag 2, kernen: en ren Python-pakke med bank, analyse, krav, ærlighedsregler, skabeloner for job og fond, udfald, fonde, brugere, kreditter og baggrundsjob; kun ét modul taler med AI-modellen. Lag 3, data: SQLite med 18 tabeller og nummererede migreringer. Udenfor: Claude API, pypdf, python-docx, Playwright.">
+        <div class="layers" role="img" aria-label="Trelagsfigur. Lag 1, skærm: FastAPI og Jinja2 med 29 serverrenderede sider, ét stylesheet og 229 linjer JavaScript. Lag 2, kernen: en ren Python-pakke med bank, analyse, krav, ærlighedsregler, skabeloner for job og fond, resultater, fonde, brugere, kreditter og baggrundsjob; kun ét modul taler med AI-modellen. Lag 3, data: SQLite med 18 tabeller og nummererede migreringer. Udenfor: Claude API, pypdf, python-docx, Playwright.">
           <div class="layer l1">
-            <div class="layer-head"><span class="layer-no">1</span><b>Skærm</b><span>det, brugeren ser og udfylder</span></div>
-            <ul><li><b>FastAPI + Jinja2</b> 29 sider, der tegnes på serveren som almindelig HTML; de virker også uden JavaScript</li><li><b>Ét stylesheet</b> 508 linjer med designsystemet "Kobolt på papir", lyst og mørkt tema, skrifter gemt lokalt</li><li><b>229 linjer JavaScript</b> til ventesider, faktatjek uden genindlæsning og kladder, der gemmes løbende</li></ul>
+            <div class="layer-head"><span class="layer-no">1</span><b>Skærm</b><span>det, du ser og udfylder</span></div>
+            <ul><li><b>FastAPI og Jinja2</b> tegner 29 sider på serveren som almindelig HTML, og siderne virker også uden JavaScript.</li><li><b>Ét stylesheet</b> på 508 linjer rummer designsystemet "Kobolt på papir" med lyst og mørkt tema og skrifter gemt lokalt.</li><li><b>229 linjer JavaScript</b> bruges til ventesider, faktatjek uden genindlæsning og kladder, der gemmes løbende.</li></ul>
           </div>
           <div class="layer l2">
             <div class="layer-head"><span class="layer-no">2</span><b>Kernen</b><span>reglerne, uden viden om skærmen</span></div>
-            <ul><li><b>bank, analysis, constraints</b> punkter på tre niveauer, kravudtræk, match og huller, dine krav med fast beløbskontrol</li><li><b>guardrails, templates</b> ID- og talkontrol, private felter, skabeloner for job og fond med tegngrænser</li><li><b>outcomes, funds, users, credits, jobs</b> beslutninger og udfald, 19 fondsprofiler, login med invitationer, kreditter pr. modelkald, baggrundsjob</li><li><b>llm.py</b> det eneste modul, der taler med AI-modellen</li></ul>
+            <ul><li><b>bank, analysis og constraints</b> håndterer punkter på tre niveauer, kravudtræk, match og huller samt dine egne krav med den faste beløbskontrol.</li><li><b>guardrails og templates</b> rummer kilde- og talkontrollen, de private oplysninger og skabelonerne for job og fond med tegngrænser.</li><li><b>outcomes, funds, users, credits og jobs</b> står for beslutninger og resultater, de 19 fondsprofiler, login med invitationer, kreditter pr. kald og baggrundsjob.</li><li><b>llm.py</b> er det eneste modul, der taler med AI-modellen.</li></ul>
           </div>
           <div class="layer l3">
-            <div class="layer-head"><span class="layer-no">3</span><b>Data</b><span>én fil på brugerens computer</span></div>
-            <ul><li><b>SQLite</b> 18 tabeller: ansøgere, punkter, krav, opslag, tjek, beslutninger, udkast, udfald, hændelser, fondsprofiler, brugere, kreditter</li><li><b>Fire nummererede migreringer</b> og et øjebliksbillede af hvert sendt udkast, så dokumentationen aldrig ændrer sig bagud</li></ul>
+            <div class="layer-head"><span class="layer-no">3</span><b>Data</b><span>én fil på din egen computer</span></div>
+            <ul><li><b>SQLite</b> med 18 tabeller rummer ansøgere, punkter, krav, opslag, tjek, beslutninger, udkast, resultater, hændelser, fondsprofiler, brugere og kreditter.</li><li><b>Fire nummererede migreringer</b> udvikler databasen uden at miste data, og hvert sendt udkast gemmes som et øjebliksbillede, så dokumentationen aldrig ændrer sig bagud.</li></ul>
           </div>
           <div class="layer ext">
             <div class="layer-head"><b>Eksterne tjenester og biblioteker</b><span>det, kernen bruger udefra</span></div>
-            <ul><li><b>Claude API</b> læser opslag og dokumenter, stiller spørgsmål og skriver udkast, altid med et fast svarformat</li><li><b>pypdf</b> læser opslag og CV&#8217;er som PDF</li><li><b>python-docx</b> eksporterer udkastet som Word-fil</li><li><b>Playwright</b> tager skærmbilleder af hver side under gennemgange</li></ul>
+            <ul><li><b>Claude API</b> læser opslag og dokumenter, stiller spørgsmål og skriver udkast, altid i et fast svarformat.</li><li><b>pypdf</b> læser opslag og CV&#8217;er som PDF.</li><li><b>python-docx</b> eksporterer udkastet som Word-fil.</li><li><b>Playwright</b> tager skærmbilleder af hver side under gennemgange.</li></ul>
           </div>
         </div>
-        <figcaption class="diagram-caption">Kontrolscriptet nægter at godkende en ændring, hvis kernen importerer noget fra skærmlaget. Reglen er simpel, men det er den, der gør, at alle 137 tests kan køre på under 15 sekunder uden en browser, og at et andet interface kunne bygges oven på samme kerne.</figcaption>
+        <figcaption class="diagram-caption">Alle 137 tests kører på under 15 sekunder uden en browser, fordi kernen kan testes alene. Et andet interface, fx til en telefon, kunne bygges oven på den samme kerne.</figcaption>
       </figure>
 
-      <h2 style="margin-top:2.6rem">Hvert værktøj: hvad det gør, og hvorfor det blev valgt</h2>
+      <figure class="fig" aria-labelledby="er-title">
+        <h3 class="figure-title" id="er-title">Datamodellen i hovedtræk</h3>
+        <div class="dia-wrap"><svg class="dia" viewBox="0 0 820 290" role="img" aria-label="Datamodel: en bruger ejer ansoegere; en ansoeger har bankpunkter og opslag; et opslag har et tjek, en beslutning og udkast; et udkast faar et resultat; et projekt samler punkter og opslag; en fondsprofil kan knyttes til et opslag." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="ahp"/></marker></defs><g class="nd grey"><rect x="20" y="20" width="150" height="50" rx="8"/><text class="t" x="95.0" y="42" text-anchor="middle">Bruger</text><text class="s" x="95.0" y="60" text-anchor="middle">login, kreditter</text></g><g class="nd blue"><rect x="20" y="120" width="150" height="50" rx="8"/><text class="t" x="95.0" y="142" text-anchor="middle">Ansøger</text><text class="s" x="95.0" y="160" text-anchor="middle">person eller organisation</text></g><g class="nd green"><rect x="20" y="220" width="150" height="50" rx="8"/><text class="t" x="95.0" y="242" text-anchor="middle">Bankpunkt</text><text class="s" x="95.0" y="260" text-anchor="middle">erf-01, res-01, vaerk-01</text></g><g class="nd grey"><rect x="230" y="20" width="150" height="50" rx="8"/><text class="t" x="305.0" y="42" text-anchor="middle">Projekt</text><text class="s" x="305.0" y="60" text-anchor="middle">kun organisationer</text></g><g class="nd blue"><rect x="230" y="120" width="150" height="50" rx="8"/><text class="t" x="305.0" y="142" text-anchor="middle">Opslag</text><text class="s" x="305.0" y="160" text-anchor="middle">job eller fond</text></g><g class="nd amber"><rect x="440" y="20" width="150" height="50" rx="8"/><text class="t" x="515.0" y="42" text-anchor="middle">Tjek</text><text class="s" x="515.0" y="60" text-anchor="middle">krav, match, huller</text></g><g class="nd amber"><rect x="440" y="120" width="150" height="50" rx="8"/><text class="t" x="515.0" y="142" text-anchor="middle">Beslutning</text><text class="s" x="515.0" y="160" text-anchor="middle">ja, ikke endnu, nej</text></g><g class="nd green"><rect x="440" y="220" width="150" height="50" rx="8"/><text class="t" x="515.0" y="242" text-anchor="middle">Udkast</text><text class="s" x="515.0" y="260" text-anchor="middle">felter med kildehenvisning</text></g><g class="nd grey"><rect x="650" y="120" width="150" height="50" rx="8"/><text class="t" x="725.0" y="142" text-anchor="middle">Fondsprofil</text><text class="s" x="725.0" y="160" text-anchor="middle">kriterier, frist, bilag</text></g><g class="nd red"><rect x="650" y="220" width="150" height="50" rx="8"/><text class="t" x="725.0" y="242" text-anchor="middle">Resultat</text><text class="s" x="725.0" y="260" text-anchor="middle">samtale, tilbud, afslag</text></g><path class="ar " d="M95 70 L95 118" marker-end="url(#ah2)"/><path class="ar " d="M95 170 L95 218" marker-end="url(#ah2)"/><path class="ar " d="M170 145 L228 145" marker-end="url(#ah2)"/><path class="ar " d="M305 70 L305 118" marker-end="url(#ah2)"/><path class="ar " d="M230 245 L170 245" marker-end="url(#ah2)"/><g class="nd green"><rect x="230" y="220" width="150" height="50" rx="8"/><text class="t" x="305.0" y="242" text-anchor="middle">Projektpunkt</text><text class="s" x="305.0" y="260" text-anchor="middle">proj-01, ans-01</text></g><path class="ar " d="M305 170 L305 218" marker-end="url(#ah2)"/><path class="ar " d="M380 145 L438 45" marker-end="url(#ah2)"/><path class="ar " d="M380 145 L438 145" marker-end="url(#ah2)"/><path class="ar " d="M380 145 L438 245" marker-end="url(#ah2)"/><path class="ar dash" d="M650 145 L592 145" marker-end="url(#ah2)"/><path class="ar " d="M590 245 L648 245" marker-end="url(#ah2)"/></svg></div>
+        <figcaption class="diagram-caption">Pilene læses som "har": en ansøger har bankpunkter og opslag, et opslag har et tjek, en beslutning og udkast, og et udkast får et resultat. Et projekt, som kun organisationer bruger, samler punkter og opslag om samme sag. En fondsprofil kan knyttes til et fondsopslag, så fondens kriterier og bilag går med i tjekket. Når et udkast markeres som sendt, gemmes et øjebliksbillede af kilderne, så senere rettelser i banken ikke ændrer dokumentationen.</figcaption>
+      </figure>
+
+      <h2 style="margin-top:2.6rem">De vigtigste tekniske valg, og hvorfor de blev truffet</h2>
       <table class="tech-table why-table">
         <thead><tr><th>Værktøj</th><th>Hvad det er</th><th>Hvorfor det blev valgt</th></tr></thead>
-        <tr><td>Python</td><td>Programmeringssproget i hele projektet, både kernen, webdelen og testene.</td><td>Reglerne om ærlighed er tekstbehandling og lister, og det er Python god til. Kernen fra det tidligere værktøj var også Python, så den kunne generaliseres i stedet for at skrives om i et andet sprog.</td></tr>
-        <tr><td>FastAPI</td><td>Et lille webrammeværk, der tager imod formularer og sender sider tilbage.</td><td>Tyndt nok til at være et rent lag oven på kernen: hver side er en funktion, der kalder kernen og tegner et svar. Ingen magi, nemt at teste med en indbygget testklient.</td></tr>
-        <tr><td>Jinja2 i stedet for React</td><td>Skabeloner, der bliver til færdig HTML på serveren, før siden sendes til browseren.</td><td>Intet byggetrin, ingen pakker at vedligeholde, og siderne virker uden JavaScript. Et værktøj, man læser og udfylder, behøver ikke være en app; en hjemmeside er roligere og mere tilgængelig.</td></tr>
-        <tr><td>SQLite</td><td>En database, der ligger i én fil på computeren i stedet for på en server.</td><td>Version 1 kører lokalt for én konto. Én fil betyder, at en sikkerhedskopi er en kopi af filen, og at ingen persondata forlader computeren. Nummererede migreringer gør, at skemaet kan udvikles uden at miste data.</td></tr>
-        <tr><td>Claude API med struktureret svar</td><td>Anthropics AI-model, kaldt med et fast svarformat (et JSON-skema), så svaret altid har præcis de felter, koden forventer.</td><td>Et frit tekstsvar ville kræve gæt om, hvor kravene eller kilde-ID&#8217;erne står. Med et skema er svaret data fra første linje, og fejl fra tjenesten oversættes til almindelige danske beskeder. Modellen vælges i opsætningen, ikke i koden.</td></tr>
-        <tr><td>pypdf og python-docx</td><td>To små biblioteker: det ene læser tekst ud af PDF-filer, det andet skriver Word-filer.</td><td>Opslag og CV&#8217;er kommer som PDF, og en færdig ansøgning skal kunne afleveres som Word. Filerne selv gemmes aldrig; kun teksten.</td></tr>
-        <tr><td>pytest og check.sh</td><td>137 automatiske tests, og et script med ni kontroller af det, tests ikke dækker.</td><td>Scriptet tjekker bl.a., at appen kun lytter på den lokale maskine, at ingen nøgler, databaser eller CV&#8217;er er havnet i Git, at kernen ikke importerer skærmlaget, og at der ikke er tankestreger i brugerfladen. Ingen ændring kaldes færdig, før det er grønt.</td></tr>
-        <tr><td>Lokale skrifter, intet udefra</td><td>Fraunces og Manrope ligger i projektet; siderne henter intet fra andre domæner.</td><td>Sidefoden lover "Alt ligger på denne computer", og det skal også gælde skrifterne. En ansøgning er privat, og værktøjet skal ikke fortælle nogen, at man søger job.</td></tr>
-        <tr><td>Login, invitationer og kreditter</td><td>Konti med kodeord, invitationskoder fra en adminside, og en pris i kreditter for hvert modelkald.</td><td>Bygget, så værktøjet kan åbnes for andre senere uden at betale for fremmedes modelkald: fem handlinger koster kreditter, saldoen er altid synlig, og ved nul kreditter kalder knappen ikke modellen, men viser, hvem man kontakter.</td></tr>
+        <tr><td>Python</td><td>Programmeringssproget i hele projektet, både kernen, webdelen og testene.</td><td>Reglerne om ærlighed er tekstbehandling og lister, og det er Python god til. Kernen fra det tidligere værktøj var også Python, så den kunne generaliseres i stedet for at blive skrevet om.</td></tr>
+        <tr><td>FastAPI</td><td>Et lille webrammeværk, der tager imod formularer og sender sider tilbage.</td><td>Det er tyndt nok til at være et rent lag oven på kernen: hver side er en funktion, der kalder kernen og tegner et svar. Det er nemt at teste med en indbygget testklient.</td></tr>
+        <tr><td>Jinja2 i stedet for React</td><td>Skabeloner, der bliver til færdig HTML på serveren, før siden sendes til browseren.</td><td>Der er intet byggetrin og ingen pakker at vedligeholde, og siderne virker uden JavaScript. Et værktøj, man læser og udfylder, behøver ikke være en app.</td></tr>
+        <tr><td>SQLite</td><td>En database, der ligger i én fil på computeren i stedet for på en server.</td><td>Version 1 kører lokalt for én konto. En sikkerhedskopi er en kopi af filen, og ingen persondata forlader computeren. Nummererede migreringer udvikler databasen uden at miste data.</td></tr>
+        <tr><td>Claude API med struktureret svar</td><td>Anthropics AI-model, kaldt med et fast svarformat (et JSON-skema), så svaret altid har præcis de felter, koden forventer.</td><td>Et frit tekstsvar ville kræve gæt om, hvor kravene eller kildehenvisningerne står. Med et skema er svaret data fra første linje. Modellen vælges i opsætningen, ikke i koden.</td></tr>
+        <tr><td>pypdf og python-docx</td><td>To små biblioteker: det ene læser tekst ud af PDF-filer, det andet skriver Word-filer.</td><td>Opslag og CV&#8217;er kommer som PDF, og en færdig ansøgning skal kunne afleveres som Word. Filerne selv gemmes aldrig, kun teksten.</td></tr>
+        <tr><td>pytest og check.sh</td><td>137 automatiske tests og et script med ni kontroller af det, tests ikke dækker.</td><td>Scriptet tjekker blandt andet, at appen kun lytter på den lokale maskine, at ingen nøgler, databaser eller CV&#8217;er er havnet i Git, at kernen ikke henter noget fra skærmlaget, og at der ikke er tankestreger i brugerfladen.</td></tr>
+        <tr><td>Lokale skrifter, intet udefra</td><td>Skrifterne Fraunces og Manrope ligger i projektet, og siderne henter intet fra andre domæner.</td><td>Sidefoden lover "Alt ligger på denne computer", og det skal også gælde skrifterne. Værktøjet skal ikke fortælle nogen, at man søger job.</td></tr>
+        <tr><td>Login, invitationer og kreditter</td><td>Konti med kodeord, invitationskoder fra en adminside og en pris i kreditter for hver gang AI-modellen bruges.</td><td>Det er bygget, så værktøjet kan åbnes for andre senere uden at betale for fremmedes brug af modellen. Fem handlinger koster kreditter, saldoen er altid synlig, og når saldoen er nul, kalder knappen ikke modellen.</td></tr>
       </table>
     </div>
   </section>
 
   <section class="section soft" id="tallene">
     <div class="shell">
-      <p class="section-label">04 · Tallene</p>
-      <h2>Hvad projektet består af, talt op fra kildekoden den 5. oktober 2026</h2>
-      <p class="intro">Tallene herunder er ikke anslåede. De er talt direkte i kodens historik og filer samme dag, som casen blev skrevet.</p>
+      <p class="section-label">06 · Tallene</p>
+      <h2>Projektet i tal</h2>
+      <p class="intro">Tallene herunder er ikke anslåede. De er talt direkte i kodens historik og filer samme dag, som casen blev skrevet, den 5. oktober 2026.</p>
 
       <figure class="fig" aria-labelledby="code-title">
-        <h3 class="figure-title" id="code-title">Linjer fordelt på sprog, og tests fordelt på det, de beskytter</h3>
+        <h3 class="figure-title" id="code-title">Kodelinjer fordelt på sprog, og tests fordelt på det, de beskytter</h3>
         <div class="dist">
           <div>
             <h4>Linjer pr. filtype</h4>
@@ -659,43 +966,43 @@
             <div class="bars b-discount"><div class="bar-row"><span>Kernen</span><div class="bar-track"><i style="width:100.0%"></i></div><strong>56</strong></div><div class="bar-row"><span>Ærlighed</span><div class="bar-track"><i style="width:55.4%"></i></div><strong>31</strong></div><div class="bar-row"><span>Skærm og flow</span><div class="bar-track"><i style="width:50.0%"></i></div><strong>28</strong></div><div class="bar-row"><span>Brugere, kreditter</span><div class="bar-track"><i style="width:23.2%"></i></div><strong>13</strong></div><div class="bar-row"><span>Fonde, læring</span><div class="bar-track"><i style="width:16.1%"></i></div><strong>9</strong></div></div>
           </div>
         </div>
-        <figcaption class="diagram-caption">Dokumentationen fylder mere end skærmdelen. Det er med vilje: kravspecifikationen, designstandarden, arkitekturen og skrivereglerne blev skrevet, før den første linje kode, og hver arbejdssession begynder med at læse dem. Det er den disciplin, der gør det muligt at arbejde med en AI-udviklingspartner uden at miste retning. Testene for ærlighed (ID-kontrol, talkontrol, private felter, opgraderede roller, injektion i opslag) er regressionstests: de blev til, fordi hver af de fejl er sket én gang.</figcaption>
+        <figcaption class="diagram-caption">Dokumentationen fylder mere end skærmdelen, og det er med vilje. Kravspecifikationen, designstandarden, arkitekturen og skrivereglerne blev skrevet før den første linje kode, og hver arbejdssession begynder med at læse dem. Den disciplin gør det muligt at arbejde med en AI-udviklingspartner uden at miste retning. Hver af testene for ærlighed er skrevet, efter at den pågældende fejl er sket én gang, så den aldrig sker igen.</figcaption>
       </figure>
 
       <figure class="fig" aria-labelledby="size-title">
-        <h3 class="figure-title" id="size-title">Det, der skal holde styr på hinanden</h3>
+        <h3 class="figure-title" id="size-title">Det, værktøjet skal holde styr på</h3>
         <div class="saving">
-          <div><b>22</b><span>krav i kravspecifikationen, K1 til K22, hvert med SKAL eller BØR</span></div>
+          <div><b>22</b><span>krav i kravspecifikationen, K1 til K22, hver mærket SKAL eller BØR</span></div>
           <div><b>19</b><span>håndplukkede fondsprofiler inden for musik og kultur, med kriterier, frister og bilag</span></div>
-          <div><b>18</b><span>tabeller i databasen, fra ansøgere og punkter til udkast, udfald og kreditter</span></div>
-          <div><b>29</b><span>skærme, hver med forklaring til en førstegangsbruger</span></div>
+          <div><b>18</b><span>tabeller i databasen, fra ansøgere og punkter til udkast, resultater og kreditter</span></div>
+          <div><b>29</b><span>skærme, hver med en forklaring til den, der bruger værktøjet første gang</span></div>
         </div>
-        <figcaption class="diagram-caption">Fondsprofilerne er læst ind fra fondenes egne sider og skal bekræftes af et menneske, før de tæller. Profiler ældre end tolv måneder markeres automatisk til nyt tjek.</figcaption>
+        <figcaption class="diagram-caption">Fondsprofilerne er læst ind fra fondenes egne sider og skal bekræftes af et menneske, før de tæller. Profiler, der er ældre end tolv måneder, markeres automatisk til et nyt tjek.</figcaption>
       </figure>
     </div>
   </section>
 
   <section class="section" id="udseende">
     <div class="shell">
-      <p class="section-label">05 · Sådan ser det ud</p>
-      <h2>Skærmbilleder fra værktøjet med opdigtede testdata</h2>
-      <p class="intro">Taget fra en kørende udgave med projektets egne testdata og en opdigtet model, så ingen rigtige ansøgninger eller personer indgår. Designet hedder "Kobolt på papir": papirgrund, hvide kort, kobolt på det, man kan trykke på, og statusser som ord med en farvet prik, aldrig farve alene.</p>
+      <p class="section-label">07 · Sådan ser det ud</p>
+      <h2>Skærmbilleder fra værktøjet, med opdigtede testdata</h2>
+      <p class="intro">Skærmbillederne er taget fra en kørende udgave med projektets egne testdata og en opdigtet AI-model. Designet hedder "Kobolt på papir": en papirfarvet baggrund, hvide kort, kobolt på det, man kan trykke på, og statusser skrevet som ord med en farvet prik, aldrig som farve alene.</p>
       <div class="shots">
         <figure class="shot wide">
           <img src="skaerm-tjek.png" alt="Skærmbillede af trin 2, Tjek, for opslaget Kundeansvarlig: anbefaling Søg, match 67 af 100, dine krav med Minimumsløn opfyldt og Sted kræver afklaring, og opslagets krav med Erfaring med SAP som mangler og Projektledelse som ikke afklaret." loading="lazy" width="1440" height="900">
-          <figcaption>Tjek: vurderingen står først, i en sætning og ikke som et stort tal. Brugerens egne krav tjekkes før opslagets; minimumslønnen er privat og vises med en lås. Hvert krav i opslaget er dokumenteret, ikke afklaret eller mangler, og hullerne kan besvares direkte i rækken.</figcaption>
+          <figcaption>På trin 2, Tjek, står vurderingen først som en sætning og ikke som et stort tal. Dine egne krav tjekkes før opslagets, og minimumslønnen er privat og vises med en lås. Hullerne kan besvares direkte i rækken.</figcaption>
         </figure>
         <figure class="shot wide">
           <img src="skaerm-faktatjek.png" alt="Skærmbillede af faktatjekket på trin 4, Udkast: for hvert felt står udkastets sætning under Udkastet siger og bankens punkt under Din bank siger, med evidens. Nederst knapperne Kopiér ansøgningen og Hent som Word-fil." loading="lazy" width="1440" height="900">
-          <figcaption>Faktatjek før du sender: hver påstand i udkastet står ved siden af den ordlyd i banken, den bygger på, så en overdrivelse ses uden opslag. Kopiér og Word-fil låses først op, når alle felter er tjekket. Over listen står to kort: "Bemærk, før du sender" fra modellen og "Kan blive bedre" fra en fast kvalitetsramme bygget på danske vejledninger om gode ansøgninger.</figcaption>
+          <figcaption>Faktatjekket før du sender, som i figuren ovenfor, men her i selve værktøjet. Over listen står "Bemærk, før du sender" fra modellen og "Kan blive bedre" fra kvalitetsrammen.</figcaption>
         </figure>
         <figure class="shot wide">
           <img src="skaerm-idag.png" alt="Skærmbillede af forsiden I dag med én anbefalet handling: Kundeansvarlig er tjekket. Beslut, om du vil søge. Én knap, Se tjekket." loading="lazy" width="1440" height="900">
-          <figcaption>I dag: forsiden viser én anbefalet handling med én knap, ikke et dashboard. Handlingen kommer fra ansøgningernes frister, påmindelser og næste trin.</figcaption>
+          <figcaption>Forsiden I dag viser én anbefalet handling med én knap og ikke et dashboard. Handlingen kommer fra ansøgningernes frister, påmindelser og næste trin.</figcaption>
         </figure>
         <figure class="shot mobile">
           <img src="skaerm-mobil.png" alt="Skærmbillede af trin Tjek på en smal skærm, 390 pixel bred, med vurdering, dine krav og opslagets krav stablet under hinanden." loading="lazy" width="390" height="844">
-          <figcaption>Samme side på en telefon. Alle sider holder 390 px, og alt kan betjenes med tastatur. Brugbarheden blev testet med skærmbilleder af hver side i hver gennemgang.</figcaption>
+          <figcaption>Den samme side på en telefon. Alle sider holder 390 px i bredden, og alt kan betjenes med tastatur.</figcaption>
         </figure>
       </div>
     </div>
@@ -703,51 +1010,51 @@
 
   <section class="section soft" id="forloeb">
     <div class="shell">
-      <p class="section-label">06 · Forløbet</p>
-      <h2>Forløbet: fire arbejdsdage, hvor dokumentationen kom først og brugen af værktøjet styrede resten</h2>
-      <p class="intro">Projektet blev bygget i fire sessioner over en uge. Kodens historik er tidslinjen: 54 gemte ændringer fra 29. september til 5. oktober, hver mærket med nummeret på den opgave i planen, den løste.</p>
+      <p class="section-label">08 · Forløbet</p>
+      <h2>Fire arbejdsdage fra det første dokument til et værktøj i brug</h2>
+      <p class="intro">Projektet blev bygget i fire sessioner over en uge. Kodens historik er tidslinjen: 54 gemte ændringer fra 29. september til 5. oktober, hver mærket med nummeret på den opgave i planen, den løste. Dokumentationen kom først, og brugen af værktøjet styrede resten.</p>
 
       <figure class="fig" aria-labelledby="days-title">
-        <h3 class="figure-title" id="days-title">Antal gemte kodeændringer pr. arbejdsdag, 54 i alt på fire dage</h3>
+        <h3 class="figure-title" id="days-title">Gemte kodeændringer pr. arbejdsdag, 54 i alt</h3>
         <div class="days d4" role="img" aria-label="Søjlediagram: 29. september 15 commits, 30. september 1, 4. oktober 20, 5. oktober 18.">
           <div class="day"><div class="day-bar" style="--n:15"></div><div class="day-n">15</div><div class="day-d">29. sep.</div><div class="day-t">dokumentation og hele kernen</div></div>
-          <div class="day"><div class="day-bar" style="--n:1"></div><div class="day-n">1</div><div class="day-d">30. sep.</div><div class="day-t">første webinterface</div></div>
-          <div class="day"><div class="day-bar" style="--n:20"></div><div class="day-n">20</div><div class="day-d">4. okt.</div><div class="day-t">gennemgang, projekter, fonde</div></div>
-          <div class="day"><div class="day-bar" style="--n:18"></div><div class="day-n">18</div><div class="day-d">5. okt.</div><div class="day-t">brugere, kreditter, nyt design, rettelser efter brug</div></div>
+          <div class="day"><div class="day-bar" style="--n:1"></div><div class="day-n">1</div><div class="day-d">30. sep.</div><div class="day-t">det første webinterface</div></div>
+          <div class="day"><div class="day-bar" style="--n:20"></div><div class="day-n">20</div><div class="day-d">4. okt.</div><div class="day-t">gennemgang, projekter og fonde</div></div>
+          <div class="day"><div class="day-bar" style="--n:18"></div><div class="day-n">18</div><div class="day-d">5. okt.</div><div class="day-t">brugere, kreditter, nyt design og rettelser efter brug</div></div>
         </div>
         <div class="days-gap"><span>pause: 0 dage</span><span>pause: 3 dage</span><span>pause: 0 dage</span></div>
-        <figcaption class="diagram-caption">Fra kodens historik. Den første dag gik med at skrive krav, design, arkitektur og skriveregler og derefter bygge hele kernen med tests. De to sidste dage er de travleste, fordi værktøjet dér blev brugt på rigtige opslag, og hvert sted, hvor det føltes tungt, blev rettet samme dag.</figcaption>
+        <figcaption class="diagram-caption">Den første dag gik med at skrive krav, design, arkitektur og skriveregler og derefter bygge hele kernen med tests. De to sidste dage er de travleste, fordi værktøjet dér blev brugt på rigtige opslag, og hvert sted, hvor det føltes tungt, blev rettet samme dag.</figcaption>
       </figure>
 
       <div class="timeline">
-        <div class="timeline-item"><div class="timeline-date">29. september</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Dag 1: først dokumenterne, så kernen</strong>Dagen begyndte med fem dokumenter: 22 krav, en designstandard med ordliste fra systemord til brugerord, en arkitektur med datamodel, skrivereglerne for modellen og en opgaveliste. Derefter blev hele kernen bygget med tests fra start: database, bank, dine krav med beløbskontrol, ærlighedsregler, analyse, jobskabelon, beslutninger og udfald. Til sidst kørte hele flowet fra kommandolinjen på et opdigtet opslag.</div></div>
-        <div class="timeline-item"><div class="timeline-date">30. september</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Dag 2: et webinterface frem for Streamlit</strong>Valget faldt på en rigtig webapp med FastAPI og serverrenderede sider, fordi baggrundsjob, låste sendte udkast og faktatjekket med kilder krævede mere kontrol, end et hurtigere værktøj ville give. Første besøg, Min bank og de fem trin blev bygget i én session.</div></div>
-        <div class="timeline-item"><div class="timeline-date">4. oktober</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Dag 3: gennemgang fra otte vinkler og udvidelse til fonde</strong>Hver side blev gennemgået for sprog, tilgængelighed, afstande og rod: 110 fund blev til 24 ændringer i designsystemet og rettelser på 15 sider. Skrifterne blev lagt lokalt, fejl vises nu ved det felt, de hører til, og intet går tabt ved en fejl. Samme dag kom projekter for organisationer, fondsskabelonen med fondens egne skemafelter og tegngrænser, 14 fondsprofiler og de første mønstre fra resultatsporingen.</div></div>
-        <div class="timeline-item"><div class="timeline-date">5. oktober</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Dag 4: første rigtige brug, og alt det, der føltes tungt</strong>Værktøjet blev brugt på rigtige jobopslag, og ti fund blev rettet i tre runder samme dag: ventesider, der viser hvad der sker, svar på huller uden genindlæsning, klarere valg på Beslutning, dokumenttyper ud over CV. Dertil login med invitationer og kreditter, CSRF-beskyttelse, en kvalitetsramme bygget på danske vejledninger om gode ansøgninger, og et varmere design, "Kobolt på papir", efter at det første virkede fladt. Om aftenen en sidste gennemgang af alle skærme med fem små rettelser.</div></div>
+        <div class="timeline-item"><div class="timeline-date">29. september</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Dag 1 · Først dokumenterne, så kernen</strong>Dagen begyndte med fem dokumenter: 22 krav, en designstandard med en ordliste fra systemord til brugerord, en arkitektur med datamodel, skrivereglerne for modellen og en opgaveliste. Derefter blev hele kernen bygget med tests fra start, og hele forløbet blev kørt fra kommandolinjen på et opdigtet opslag.</div></div>
+        <div class="timeline-item"><div class="timeline-date">30. september</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Dag 2 · En rigtig webapp frem for et hurtigt prototypeværktøj</strong>Valget faldt på en webapp med sider, der tegnes på serveren, i stedet for et prototypeværktøj som Streamlit. Baggrundsjob, låste sendte udkast og faktatjekket med kilder krævede mere kontrol, end et hurtigere værktøj ville give. Første besøg, Min bank og de fem trin blev bygget i én session.</div></div>
+        <div class="timeline-item"><div class="timeline-date">4. oktober</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Dag 3 · En gennemgang fra otte vinkler og udvidelsen til fonde</strong>En gennemgang af alle skærme fra otte vinkler gav 110 fund, som blev til 24 ændringer i designsystemet og rettelser på 15 sider. Skrifterne blev lagt lokalt, fejl vises nu ved det felt, de hører til, og intet går tabt ved en fejl. Samme dag kom projekter for organisationer, fondsskabelonen med fondens egne skemafelter, 14 fondsprofiler og de første mønstre fra resultatsporingen.</div></div>
+        <div class="timeline-item"><div class="timeline-date">5. oktober</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Dag 4 · Den første rigtige brug, og alt det, der føltes tungt</strong>Ti fund fra rigtige opslag blev rettet i tre runder samme dag. Dertil kom login med invitationer og kreditter, beskyttelse mod forfalskede formularer, kvalitetsrammen fra danske vejledninger og det varmere design "Kobolt på papir". Om aftenen fulgte en sidste gennemgang af alle skærme med fem små rettelser.</div></div>
       </div>
     </div>
   </section>
 
   <section class="section" id="graenser">
     <div class="shell">
-      <p class="section-label">07 · Grænser og fravalg</p>
-      <h2>Grænser: hvad værktøjet bevidst ikke gør endnu</h2>
+      <p class="section-label">09 · Grænser og fravalg</p>
+      <h2>Det, værktøjet ikke gør endnu</h2>
       <div class="limits-grid">
         <div class="limit-card">
           <h3>Det kører på min egen computer, ikke på nettet</h3>
-          <p>Login, invitationer, kreditter og CSRF-beskyttelse er bygget, så værktøjet kan åbnes for andre. Det, der mangler, er drift: en server med HTTPS foran, daglig sikkerhedskopi af databasen og en plan for, hvad det må koste i modelkald. Indtil da er det et værktøj til mig og dem, jeg sidder ved siden af.</p>
+          <p>Login, invitationer, kreditter og beskyttelse mod forfalskede formularer er bygget, så værktøjet kan åbnes for andre. Det, der mangler, er drift: en server med HTTPS foran, en daglig sikkerhedskopi af databasen og en plan for, hvad brugen af AI-modellen må koste.</p>
         </div>
         <div class="limit-card">
           <h3>Fondsdelen er bygget, men ikke prøvet på en rigtig ansøgning</h3>
-          <p>Skabelonen følger fondens struktur, svarer på vurderingskriterierne ét ad gangen og holder tegngrænserne, og 19 profiler ligger klar. Men den første rigtige fondsansøgning, for et pladeselskab, venter på, at en runde åbner. Først da ved jeg, om skabelonen holder.</p>
+          <p>Skabelonen følger fondens struktur, svarer på vurderingskriterierne ét ad gangen og holder tegngrænserne, og 19 profiler ligger klar. Den første rigtige fondsansøgning venter på, at en runde åbner.</p>
         </div>
         <div class="limit-card">
           <h3>Et tjek tager op til et minut</h3>
-          <p>Modellen læser hele opslaget hver gang, og det tager tid. Værktøjet skjuler det ikke med en spinner, men viser trinene og lader brugeren forlade siden. Hurtigere ville kræve en mindre model eller at springe kravudtrækket over, og begge dele ville gå ud over ærligheden.</p>
+          <p>Modellen læser hele opslaget hver gang. Værktøjet skjuler det ikke bag en spinner, men viser trinene og lader dig forlade siden. Hurtigere ville kræve, at kravudtrækket blev sprunget over, og det ville gå ud over ærligheden.</p>
         </div>
         <div class="limit-card">
           <h3>Værktøjet er kun så godt som banken</h3>
-          <p>En tynd bank giver "ikke afklaret" på det meste, og det er med vilje: værktøjet gætter aldrig, at man kan noget. Det betyder også, at første ansøgning er den tungeste. Målet er under et kvarter fra oprettelse til første tjek med et CV, og det er ikke målt på en fremmed endnu.</p>
+          <p>En tynd bank giver "ikke afklaret" på det meste, og det er med vilje: værktøjet gætter aldrig, at du kan noget. Den første ansøgning er derfor den tungeste. Målet er under et kvarter fra oprettelse til det første tjek med et CV.</p>
         </div>
       </div>
     </div>
@@ -756,7 +1063,7 @@
   <section class="section cta-card" id="kontakt">
     <div class="shell cta-card">
       <div>
-        <p class="section-label">08 · Kontakt</p>
+        <p class="section-label">10 · Kontakt</p>
         <h2>Har du spørgsmål til værktøjet, eller vil du prøve det?</h2>
       </div>
       <div class="cta-actions">
