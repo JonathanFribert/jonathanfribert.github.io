@@ -22,15 +22,44 @@ Terminologi følger casens engelske udgave ("the Danish Prime Minister's
 Office", "real operational data"). hreflang-blokken (da/en/x-default) er ens i
 begge filer, og sitemap.xml fører begge URL'er med alternates.
 
+## Case 03: GlobeTunez (globetunez-case/)
+
+Casen om musikplatformen for Blaze It Up Radio Africa / 9thwunder ligger som
+undermappe i DETTE repo (`globetunez-case/index.html` + `en.html` + egen
+`sitemap.xml`) og serveres på `/globetunez-case/`, altså samme URL-mønster som
+de to andre cases, der bor i egne repos. Den kan flyttes til et eget repo
+(`JonathanFribert/globetunez-case`) uden at links ændrer sig; husk så at
+root-`robots.txt` stadig skal pege på dens sitemap.
+
+Tal i casen er fra 14. september 2026 (seneste commit `fbb90fc` i det private
+repo `JonathanFribert/blaze-9thwunder`): 428 commits på 30 unikke dage
+(`git log --format=%ad --date=short | sort -u`), 67.970 linjer TS/TSX i 498
+filer under `src/`, 105 filer i `supabase/migrations/`, 1.587 unit tests
+(Vitest, CI-kørsel 146 og lokal kørsel) og 1.126 pgTAP-assertions i 67 filer
+(CI's database-job). Appen er i lukket pilot: ingen bruger-, afstemnings- eller
+omsætningstal. Skærmbillederne (`skaerm-*.png`) er taget fra produktionssitet
+https://www.blazeitupradioafrica.com den 5. oktober 2026 med Playwright
+(desktop 1440 px, mobil 390 px i 2x) og viser kun den offentlige del; admin
+beskrives i tekst, fordi skærmbilleder derfra viser pilotens kontotal og
+testbetalinger.
+
+Figurerne i casen er ren HTML/CSS (ingen billeder): billetrejsen (ADR-230/235),
+søjler over de 67 pgTAP-filer grupperet efter filnavn, CI-banerne med
+trin-varigheder fra GitHub Actions' tidsstempler i kørsel 146, og commits pr.
+kalenderdag fra `git log`. Regenerér tallene med samme kommandoer, hvis casen
+opdateres efter et nyt commit i app-repoet.
+
 ## Tilføj et nyt projekt
 
 1. Kopiér `<article class="story">`-blokken (IKKE `.lead`) og udfyld kicker,
-   rubrik (med link), dek, nøgletal og knapper. Læg den før placeholder-kortet.
+   rubrik (med link), dek, nøgletal og knapper. Læg den nederst i `.stories`.
 2. Historie nummer to og frem bruger klassen `story` alene; kun den øverste
-   har `lead`. Placeholder-kortet fjernes, når der er 3+ rigtige historier.
+   har `lead`. Placeholder-kortet (og dets CSS) blev fjernet ved case 03;
+   nye historier lægges nederst i `.stories`.
 3. Nøgletal: `stat-value` skal starte med et heltal, hvis tallet skal tælle op.
 4. Regenerér `og-image.png` fra `og-template.html`, hvis forsidens indhold
-   ændrer sig væsentligt (headless Chrome, se casens README).
+   ændrer sig væsentligt (headless Chrome, se casens README). Udgavelinjens
+   måned (`.edition-line` og og-skabelonerne) opdateres til udgivelsesmåneden.
 5. Sandfærdighed som på casen: kun tal fra rigtige kørsler/logs.
 6. Spejl ændringen i `en.html` (se afsnittet om den engelske udgave).
 
