@@ -269,10 +269,6 @@
      (html uden .js) vises siden faerdig med det samme. */
   .read-progress { position: absolute; left: 0; bottom: -1px; height: 2px; width: 0; background: var(--accent); }
   html:not(.js) .read-progress { display: none; }
-  #brief .intro p:first-child::first-letter {
-    float: left; margin: 0.08em 0.12em 0 0; font-family: var(--serif); font-weight: 700;
-    font-size: 3.6em; line-height: 0.82; color: var(--accent);
-  }
   main { counter-reset: fig; }
   figure.fig { counter-increment: fig; }
   figure.fig .diagram-caption::before { content: "Figure " counter(fig) " · "; color: var(--accent); font-family: var(--mono); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; }
