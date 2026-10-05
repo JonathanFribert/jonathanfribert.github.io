@@ -200,6 +200,70 @@
     .stat + .stat { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); padding-top: 0.9rem; margin-top: 0.9rem; }
     .stats { grid-template-columns: 1fr 1fr; }
   }
+
+  /* Figurer: samme sprog som de andre cases (bånd, rejsekort, søjler). */
+  figure.fig { margin: 2.2rem 0 0; }
+  .figure-title { margin: 0 0 1rem; padding-bottom: 0.55rem; border-bottom: 1px solid var(--line); font-family: var(--serif); font-size: 1.35rem; line-height: 1.2; }
+  .diagram-caption { margin: 1rem 0 0; max-width: 44rem; color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+
+  .journey { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; gap: 0.9rem; align-items: start; }
+  .journey-arrow { display: grid; place-items: center; padding-top: 1.1rem; color: var(--accent); font-family: var(--mono); font-size: 1.4rem; font-weight: 700; }
+  .journey-card { border-top: 2px solid var(--line); padding: 0.9rem 0 0; min-width: 0; }
+  .journey-card.accent { border-top-color: var(--accent); }
+  .journey-label { margin: 0 0 0.5rem; color: var(--accent); font-family: var(--mono); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+  .journey-card h3 { margin: 0 0 0.4rem; font-family: var(--serif); font-size: 1.12rem; line-height: 1.25; }
+  .journey-card p { margin: 0; color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
+  .check-list { margin: 0.3rem 0 0; padding: 0; list-style: none; color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+  .check-list li { padding-left: 1.3rem; position: relative; }
+  .check-list li::before { content: "✓"; position: absolute; left: 0; color: var(--green); font-family: var(--mono); font-weight: 700; }
+
+  .coverage { display: grid; gap: 0.55rem; }
+  .coverage-row { display: grid; grid-template-columns: 15rem minmax(0, 1fr) 3rem; gap: 1rem; align-items: center; }
+  .coverage-row b { font-size: 0.94rem; font-weight: 600; }
+  .coverage-row b span { display: block; color: var(--muted); font-size: 0.8rem; font-weight: 400; }
+  .coverage-track { height: 1.3rem; border-radius: 3px; background: var(--surface-soft); overflow: hidden; }
+  .coverage-track span { display: block; height: 100%; background: var(--accent); border-radius: 3px; }
+  .coverage-row strong { text-align: right; font-family: var(--mono); font-size: 1rem; color: var(--accent); }
+
+  .lanes { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 0.6rem 0; }
+  .lane { display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: 1.2rem; align-items: center; padding: 0.55rem 0; }
+  .lane-label b { display: block; font-family: var(--mono); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; }
+  .lane-label span { display: block; color: var(--muted); font-size: 0.82rem; }
+  .lane-track { position: relative; height: 2rem; border-radius: 4px; background: var(--surface-soft); }
+  .lane-seg { position: absolute; top: 0; height: 100%; display: flex; align-items: center; overflow: hidden; white-space: nowrap; padding: 0 0.45rem; border-right: 2px solid var(--ground); box-sizing: border-box; color: var(--ground); font-family: var(--mono); font-size: 0.72rem; font-weight: 700; background: var(--muted); }
+  .lane-seg.run { background: var(--accent); }
+  .lane-seg.test { background: var(--green); }
+  .lane-seg.narrow { font-size: 0; padding: 0; }
+  .lane-axis { display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: 1.2rem; padding-bottom: 0.3rem; }
+  .lane-axis div:last-child { position: relative; height: 1.1rem; color: var(--muted); font-family: var(--mono); font-size: 0.74rem; font-weight: 700; }
+  .lane-axis div:last-child span { position: absolute; transform: translateX(-50%); }
+  .lane-axis div:last-child span:first-child { transform: none; }
+  .lane-axis div:last-child span:last-child { transform: translateX(-100%); }
+  .lane-legend { display: flex; flex-wrap: wrap; gap: 1.2rem; margin-top: 0.9rem; color: var(--muted); font-size: 0.82rem; }
+  .lane-legend i { display: inline-block; width: 0.8rem; height: 0.8rem; margin-right: 0.4rem; border-radius: 2px; background: var(--muted); vertical-align: -0.05rem; }
+  .lane-legend i.run { background: var(--accent); }
+  .lane-legend i.test { background: var(--green); }
+
+  .commit-strip { display: grid; grid-template-columns: repeat(37, minmax(0, 1fr)); gap: 2px; align-items: end; height: 8rem; border-bottom: 1px solid var(--line); }
+  .commit-bar { display: block; height: calc(var(--n) / 46 * 100%); min-height: 2px; background: var(--accent); border-radius: 2px 2px 0 0; }
+  .commit-bar.wknd { background: color-mix(in srgb, var(--accent) 55%, var(--surface-soft)); }
+  .commit-bar.zero { background: var(--line); }
+  .commit-axis { display: grid; grid-template-columns: repeat(37, minmax(0, 1fr)); margin-top: 0.4rem; color: var(--muted); font-family: var(--mono); font-size: 0.72rem; font-weight: 700; }
+  .commit-axis span { white-space: nowrap; }
+  .commit-peaks { display: flex; flex-wrap: wrap; gap: 1.2rem; margin-top: 0.9rem; color: var(--muted); font-size: 0.86rem; }
+  .commit-peaks b { color: var(--accent); font-family: var(--mono); }
+
+  @media (max-width: 760px) {
+    .journey { grid-template-columns: minmax(0, 1fr); }
+    .journey-arrow { padding: 0; transform: rotate(90deg); }
+    .coverage-row { grid-template-columns: minmax(0, 1fr) 3rem; }
+    .coverage-row b { grid-column: 1 / -1; }
+    .lane, .lane-axis { grid-template-columns: minmax(0, 1fr); gap: 0.3rem; }
+    .lane-axis div:first-child { display: none; }
+    .lane-seg { font-size: 0; padding: 0; }
+    .commit-strip { height: 6rem; }
+    .commit-axis { font-size: 0.66rem; }
+  }
 </style>
 </head>
 <body>
@@ -272,6 +336,36 @@
         <div class="flow-box"><b>Admin</b><span>moderation, resultater, dørscanning</span></div>
       </div>
       <p class="flow-note">Betalinger følger én regel: hovedbogen er sandheden. En webhook fra Stripe eller Paystack verificeres med signatur, reference, beløb, valuta og produkt, før appen udsteder noget, og den samme hændelse kan ikke udstede to gange. Rigtige penge kan slet ikke flyde, før en manuel låge er åbnet af et menneske; indtil da er alle køb simulerede og mærket som sådan.</p>
+
+      <figure class="fig" aria-labelledby="ticket-title">
+        <h3 class="figure-title" id="ticket-title">Én billet gennem systemet</h3>
+        <div class="journey">
+          <article class="journey-card">
+            <p class="journey-label">1 · Køb</p>
+            <h3>Stripe Checkout i dollars, Paystack i naira</h3>
+            <p>Pladsen reserveres i 15 minutter, mens betalingen gennemføres. En gentaget forespørgsel åbner aldrig en ny betaling for den samme ordre.</p>
+          </article>
+          <div class="journey-arrow" aria-hidden="true">→</div>
+          <article class="journey-card accent">
+            <p class="journey-label">2 · Webhook</p>
+            <h3>Leverandøren melder tilbage, appen kontrollerer</h3>
+            <ul class="check-list"><li>Signatur verificeret</li><li>Reference matcher ordren</li><li>Beløb og valuta stemmer</li><li>Produktet er det rigtige</li><li>Samme hændelse kun én gang</li></ul>
+          </article>
+          <div class="journey-arrow" aria-hidden="true">→</div>
+          <article class="journey-card accent">
+            <p class="journey-label">3 · Hovedbog</p>
+            <h3>Betalingen bogføres, før noget udstedes</h3>
+            <p>Hovedbogen er sandheden. Er pladsen i mellemtiden udsolgt, oprettes en refusionsanmodning i stedet for en billet.</p>
+          </article>
+          <div class="journey-arrow" aria-hidden="true">→</div>
+          <article class="journey-card">
+            <p class="journey-label">4 · Billet</p>
+            <h3>QR-kode i "mine billetter", scannet ved døren</h3>
+            <p>Billetten overlever, at kontoen slettes. En refusion trækker den tilbage igen; det er bevist i databasetestene og øvet i produktion den 14. september.</p>
+          </article>
+        </div>
+        <figcaption class="diagram-caption">Samme regler gælder for medlemskaber, der fornyer sig selv. Indtil den manuelle låge er åbnet, er alle køb simulerede og mærket som sådan.</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -289,6 +383,18 @@
         <tr><td>CI</td><td>GitHub Actions med tre jobs på hvert push: app (lint, typer, tests, build), database (migrationer og pgTAP i en frisk Postgres) og kritiske browserforløb. 146 kørsler</td></tr>
         <tr><td>Hosting</td><td>Vercel og hostet Supabase i produktion; lokal Supabase-stack i Docker til udvikling og test. Live video: ingen leverandør valgt endnu</td></tr>
       </table>
+
+      <figure class="fig" aria-labelledby="coverage-title">
+        <h3 class="figure-title" id="coverage-title">Hvad de 67 databasetestfiler dækker</h3>
+        <div class="coverage" role="img" aria-label="Søjlediagram over 67 pgTAP-filer fordelt på fem områder: betaling, billetter og medlemskab 21 filer; konti, roller og misbrug 16; afstemning og auditions 10; klub og dørscanning 10; kunstnere, events og medier 10.">
+          <div class="coverage-row"><b>Betaling, billetter og medlemskab<span>reservationer, refusion, webhook-gentagelser, hovedbog</span></b><div class="coverage-track"><span style="width:100%"></span></div><strong>21</strong></div>
+          <div class="coverage-row"><b>Konti, roller og misbrug<span>rolleændringer med audit, rate limiting, udelukkelser, sletning</span></b><div class="coverage-track"><span style="width:76.2%"></span></div><strong>16</strong></div>
+          <div class="coverage-row"><b>Afstemning og auditions<span>stemmefusk, resultater, offentliggørelse, afvisningsårsager</span></b><div class="coverage-track"><span style="width:47.6%"></span></div><strong>10</strong></div>
+          <div class="coverage-row"><b>Klub og dørscanning<span>medlemspas, indløsning, gæsteliste, scanning ved døren</span></b><div class="coverage-track"><span style="width:47.6%"></span></div><strong>10</strong></div>
+          <div class="coverage-row"><b>Kunstnere, events og medier<span>ansøgninger, følgere, billeder, live-sessioner</span></b><div class="coverage-track"><span style="width:47.6%"></span></div><strong>10</strong></div>
+        </div>
+        <figcaption class="diagram-caption">Grupperet efter filnavn i <code>supabase/tests/</code>. 58 af de 67 filer skifter databaserolle undervejs (anonym, logget ind, service) og prøver at læse eller skrive det, rollen ikke må. Tilsammen 1.126 assertions, alle grønne i CI-kørsel 146.</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -318,6 +424,18 @@
           <p>Da en tester i Nigeria ikke kunne modtage sms-koder, blev hændelsen diagnosticeret read-only i produktion, dokumenteret med tidsstempler og fejlkoder, og først derefter rettet i appens fejltekster og telefonnummer-håndtering. Ingen gættede løsninger blev slået til.</p>
         </div>
       </div>
+
+      <figure class="fig" aria-labelledby="ci-title">
+        <h3 class="figure-title" id="ci-title">Ét push, tre kontrolbaner, 6 minutter og 41 sekunder</h3>
+        <div class="lanes" role="img" aria-label="Tidslinje for CI-kørsel 146: app-jobbet tager 3 minutter 52 sekunder med lint, typer, 1.587 tests og build; database-jobbet 1 minut 47 sekunder med Postgres-start, 105 migrationer og 1.126 pgTAP-assertions; browser-jobbet 6 minutter 41 sekunder med Supabase-stack, build, tilgængelighedstjek, ydelsestjek og scanner-fallback.">
+          <div class="lane-axis" aria-hidden="true"><div></div><div><span style="left:0">0:00</span><span style="left:29.9%">2:00</span><span style="left:59.9%">4:00</span><span style="left:100%">6:41</span></div></div>
+          <div class="lane"><div class="lane-label"><b>app</b><span>3 min 52 s</span></div><div class="lane-track"><span class="lane-seg setup" style="left:0.0%;width:6.2%" title="opsætning">opsætning</span><span class="lane-seg run narrow" style="left:6.2%;width:4.0%" title="lint">lint</span><span class="lane-seg run narrow" style="left:10.2%;width:2.7%" title="typer">typer</span><span class="lane-seg test" style="left:13.0%;width:36.4%" title="1.587 unit tests">1.587 unit tests</span><span class="lane-seg run" style="left:49.4%;width:7.2%" title="build">build</span><span class="lane-seg run narrow" style="left:56.6%;width:1.2%" title=""></span></div></div>
+          <div class="lane"><div class="lane-label"><b>database</b><span>1 min 47 s</span></div><div class="lane-track"><span class="lane-seg setup narrow" style="left:0.0%;width:2.5%" title="opsætning">opsætning</span><span class="lane-seg run" style="left:2.5%;width:21.7%" title="Postgres + 105 migrationer">Postgres + 105 migrationer</span><span class="lane-seg test narrow" style="left:24.2%;width:1.7%" title="1.126 pgTAP">1.126 pgTAP</span><span class="lane-seg setup narrow" style="left:25.9%;width:0.7%" title=""></span></div></div>
+          <div class="lane"><div class="lane-label"><b>kritiske browserforløb</b><span>6 min 41 s</span></div><div class="lane-track"><span class="lane-seg setup" style="left:0.0%;width:19.5%" title="opsætning, Chromium">opsætning, Chromium</span><span class="lane-seg run" style="left:19.5%;width:33.7%" title="Supabase-stack">Supabase-stack</span><span class="lane-seg run" style="left:53.1%;width:21.4%" title="build + testdata">build + testdata</span><span class="lane-seg test" style="left:74.6%;width:11.2%" title="tilgængelighed">tilgængelighed</span><span class="lane-seg test" style="left:85.8%;width:11.2%" title="ydelse">ydelse</span><span class="lane-seg test narrow" style="left:97.0%;width:3.0%" title="scan">scan</span></div></div>
+        </div>
+        <div class="lane-legend" aria-hidden="true"><span><i></i>Opsætning</span><span><i class="run"></i>Byg og klargør</span><span><i class="test"></i>Tests</span></div>
+        <figcaption class="diagram-caption">Målt på CI-kørsel 146, commit <code>fbb90fc</code>, 14. september 2026. De tre jobs kører parallelt, så et push er færdigkontrolleret, når det langsomste er i mål. Varighederne er GitHub Actions' egne tidsstempler pr. trin.</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -326,6 +444,14 @@
       <p class="section-label">05 · Forløbet</p>
       <h2>Fem uger med git-historikken som tidslinje</h2>
       <p class="intro">Fra første commit til pilot på 30 arbejdsdage. Datoerne er fra git-historikken og beslutningsloggen.</p>
+
+      <figure class="fig" aria-labelledby="commits-title">
+        <h3 class="figure-title" id="commits-title">428 commits på 37 kalenderdage</h3>
+        <div class="commit-strip" role="img" aria-label="Søjlediagram over commits pr. dag fra 9. august til 14. september 2026. Tre toppe: 9. august med 46, 12. august med 45 og 27. august med 37. Syv dage uden commits, de fleste i september."><span class="commit-bar wknd" style="--n:46" title="9. aug.: 46 commits"></span><span class="commit-bar" style="--n:13" title="10. aug.: 13 commits"></span><span class="commit-bar" style="--n:23" title="11. aug.: 23 commits"></span><span class="commit-bar" style="--n:45" title="12. aug.: 45 commits"></span><span class="commit-bar" style="--n:34" title="13. aug.: 34 commits"></span><span class="commit-bar" style="--n:32" title="14. aug.: 32 commits"></span><span class="commit-bar wknd" style="--n:7" title="15. aug.: 7 commits"></span><span class="commit-bar wknd" style="--n:5" title="16. aug.: 5 commits"></span><span class="commit-bar" style="--n:13" title="17. aug.: 13 commits"></span><span class="commit-bar" style="--n:10" title="18. aug.: 10 commits"></span><span class="commit-bar" style="--n:3" title="19. aug.: 3 commits"></span><span class="commit-bar" style="--n:3" title="20. aug.: 3 commits"></span><span class="commit-bar zero" style="--n:0" title="21. aug.: 0 commits"></span><span class="commit-bar wknd zero" style="--n:0" title="22. aug.: 0 commits"></span><span class="commit-bar wknd" style="--n:6" title="23. aug.: 6 commits"></span><span class="commit-bar" style="--n:10" title="24. aug.: 10 commits"></span><span class="commit-bar" style="--n:1" title="25. aug.: 1 commit"></span><span class="commit-bar" style="--n:2" title="26. aug.: 2 commits"></span><span class="commit-bar" style="--n:37" title="27. aug.: 37 commits"></span><span class="commit-bar" style="--n:19" title="28. aug.: 19 commits"></span><span class="commit-bar wknd" style="--n:12" title="29. aug.: 12 commits"></span><span class="commit-bar wknd zero" style="--n:0" title="30. aug.: 0 commits"></span><span class="commit-bar" style="--n:1" title="31. aug.: 1 commit"></span><span class="commit-bar" style="--n:15" title="1. sep.: 15 commits"></span><span class="commit-bar" style="--n:28" title="2. sep.: 28 commits"></span><span class="commit-bar" style="--n:6" title="3. sep.: 6 commits"></span><span class="commit-bar" style="--n:2" title="4. sep.: 2 commits"></span><span class="commit-bar wknd" style="--n:1" title="5. sep.: 1 commit"></span><span class="commit-bar wknd" style="--n:15" title="6. sep.: 15 commits"></span><span class="commit-bar" style="--n:17" title="7. sep.: 17 commits"></span><span class="commit-bar zero" style="--n:0" title="8. sep.: 0 commits"></span><span class="commit-bar" style="--n:14" title="9. sep.: 14 commits"></span><span class="commit-bar zero" style="--n:0" title="10. sep.: 0 commits"></span><span class="commit-bar" style="--n:1" title="11. sep.: 1 commit"></span><span class="commit-bar wknd zero" style="--n:0" title="12. sep.: 0 commits"></span><span class="commit-bar wknd zero" style="--n:0" title="13. sep.: 0 commits"></span><span class="commit-bar" style="--n:7" title="14. sep.: 7 commits"></span></div>
+        <div class="commit-axis" aria-hidden="true"><span style="grid-column:1">9. aug.</span><span style="grid-column:8">16. aug.</span><span style="grid-column:15">23. aug.</span><span style="grid-column:22">30. aug.</span><span style="grid-column:29">6. sep.</span><span style="grid-column:35 / span 3; text-align:right">14. sep.</span></div>
+        <div class="commit-peaks"><span><b>46</b> 9. aug., fundamentet</span><span><b>45</b> 12. aug., første deploy og billetter</span><span><b>37</b> 27. aug., rettelser efter stort review</span><span><b>7</b> dage uden commits</span></div>
+        <figcaption class="diagram-caption">Fra <code>git log</code> i app-repoet; lyse søjler er weekend, grå er dage uden commits. Tempoet falder bevidst i september: der flyttes arbejde fra kode til drift, dokumentation og test med rigtige mennesker.</figcaption>
+      </figure>
       <div class="timeline">
         <div class="timeline-item"><div class="timeline-date">9. aug.</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Fundament på én dag</strong>46 commits: Next.js og Supabase sat op, rigtig login, kunstnerprofiler med følg-funktion, events og PWA-installation. Otte skærme gennemgået og godkendt samme dag.</div></div>
         <div class="timeline-item"><div class="timeline-date">10. aug.</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Ny prioritering efter samtale med partneren</strong>Auditions, afstemning, live-deltagelse og medlemsklub rykkede ind i kernen; det brede community-spor blev lagt på is. Nedskrevet som beslutning ADR-014, så agenterne byggede efter den nye retning.</div></div>

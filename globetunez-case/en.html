@@ -200,6 +200,70 @@
     .stat + .stat { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); padding-top: 0.9rem; margin-top: 0.9rem; }
     .stats { grid-template-columns: 1fr 1fr; }
   }
+
+  /* Figurer: samme sprog som de andre cases (bånd, rejsekort, søjler). */
+  figure.fig { margin: 2.2rem 0 0; }
+  .figure-title { margin: 0 0 1rem; padding-bottom: 0.55rem; border-bottom: 1px solid var(--line); font-family: var(--serif); font-size: 1.35rem; line-height: 1.2; }
+  .diagram-caption { margin: 1rem 0 0; max-width: 44rem; color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+
+  .journey { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; gap: 0.9rem; align-items: start; }
+  .journey-arrow { display: grid; place-items: center; padding-top: 1.1rem; color: var(--accent); font-family: var(--mono); font-size: 1.4rem; font-weight: 700; }
+  .journey-card { border-top: 2px solid var(--line); padding: 0.9rem 0 0; min-width: 0; }
+  .journey-card.accent { border-top-color: var(--accent); }
+  .journey-label { margin: 0 0 0.5rem; color: var(--accent); font-family: var(--mono); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+  .journey-card h3 { margin: 0 0 0.4rem; font-family: var(--serif); font-size: 1.12rem; line-height: 1.25; }
+  .journey-card p { margin: 0; color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
+  .check-list { margin: 0.3rem 0 0; padding: 0; list-style: none; color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+  .check-list li { padding-left: 1.3rem; position: relative; }
+  .check-list li::before { content: "✓"; position: absolute; left: 0; color: var(--green); font-family: var(--mono); font-weight: 700; }
+
+  .coverage { display: grid; gap: 0.55rem; }
+  .coverage-row { display: grid; grid-template-columns: 15rem minmax(0, 1fr) 3rem; gap: 1rem; align-items: center; }
+  .coverage-row b { font-size: 0.94rem; font-weight: 600; }
+  .coverage-row b span { display: block; color: var(--muted); font-size: 0.8rem; font-weight: 400; }
+  .coverage-track { height: 1.3rem; border-radius: 3px; background: var(--surface-soft); overflow: hidden; }
+  .coverage-track span { display: block; height: 100%; background: var(--accent); border-radius: 3px; }
+  .coverage-row strong { text-align: right; font-family: var(--mono); font-size: 1rem; color: var(--accent); }
+
+  .lanes { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 0.6rem 0; }
+  .lane { display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: 1.2rem; align-items: center; padding: 0.55rem 0; }
+  .lane-label b { display: block; font-family: var(--mono); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; }
+  .lane-label span { display: block; color: var(--muted); font-size: 0.82rem; }
+  .lane-track { position: relative; height: 2rem; border-radius: 4px; background: var(--surface-soft); }
+  .lane-seg { position: absolute; top: 0; height: 100%; display: flex; align-items: center; overflow: hidden; white-space: nowrap; padding: 0 0.45rem; border-right: 2px solid var(--ground); box-sizing: border-box; color: var(--ground); font-family: var(--mono); font-size: 0.72rem; font-weight: 700; background: var(--muted); }
+  .lane-seg.run { background: var(--accent); }
+  .lane-seg.test { background: var(--green); }
+  .lane-seg.narrow { font-size: 0; padding: 0; }
+  .lane-axis { display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: 1.2rem; padding-bottom: 0.3rem; }
+  .lane-axis div:last-child { position: relative; height: 1.1rem; color: var(--muted); font-family: var(--mono); font-size: 0.74rem; font-weight: 700; }
+  .lane-axis div:last-child span { position: absolute; transform: translateX(-50%); }
+  .lane-axis div:last-child span:first-child { transform: none; }
+  .lane-axis div:last-child span:last-child { transform: translateX(-100%); }
+  .lane-legend { display: flex; flex-wrap: wrap; gap: 1.2rem; margin-top: 0.9rem; color: var(--muted); font-size: 0.82rem; }
+  .lane-legend i { display: inline-block; width: 0.8rem; height: 0.8rem; margin-right: 0.4rem; border-radius: 2px; background: var(--muted); vertical-align: -0.05rem; }
+  .lane-legend i.run { background: var(--accent); }
+  .lane-legend i.test { background: var(--green); }
+
+  .commit-strip { display: grid; grid-template-columns: repeat(37, minmax(0, 1fr)); gap: 2px; align-items: end; height: 8rem; border-bottom: 1px solid var(--line); }
+  .commit-bar { display: block; height: calc(var(--n) / 46 * 100%); min-height: 2px; background: var(--accent); border-radius: 2px 2px 0 0; }
+  .commit-bar.wknd { background: color-mix(in srgb, var(--accent) 55%, var(--surface-soft)); }
+  .commit-bar.zero { background: var(--line); }
+  .commit-axis { display: grid; grid-template-columns: repeat(37, minmax(0, 1fr)); margin-top: 0.4rem; color: var(--muted); font-family: var(--mono); font-size: 0.72rem; font-weight: 700; }
+  .commit-axis span { white-space: nowrap; }
+  .commit-peaks { display: flex; flex-wrap: wrap; gap: 1.2rem; margin-top: 0.9rem; color: var(--muted); font-size: 0.86rem; }
+  .commit-peaks b { color: var(--accent); font-family: var(--mono); }
+
+  @media (max-width: 760px) {
+    .journey { grid-template-columns: minmax(0, 1fr); }
+    .journey-arrow { padding: 0; transform: rotate(90deg); }
+    .coverage-row { grid-template-columns: minmax(0, 1fr) 3rem; }
+    .coverage-row b { grid-column: 1 / -1; }
+    .lane, .lane-axis { grid-template-columns: minmax(0, 1fr); gap: 0.3rem; }
+    .lane-axis div:first-child { display: none; }
+    .lane-seg { font-size: 0; padding: 0; }
+    .commit-strip { height: 6rem; }
+    .commit-axis { font-size: 0.66rem; }
+  }
 </style>
 </head>
 <body>
@@ -272,6 +336,36 @@
         <div class="flow-box"><b>Admin</b><span>moderation, results, door scanning</span></div>
       </div>
       <p class="flow-note">Payments follow one rule: the ledger is the truth. A webhook from Stripe or Paystack is verified by signature, reference, amount, currency and product before the app issues anything, and the same event can never issue twice. Real money cannot flow at all until a human opens a manual gate; until then every purchase is simulated and labelled as such.</p>
+
+      <figure class="fig" aria-labelledby="ticket-title">
+        <h3 class="figure-title" id="ticket-title">One ticket through the system</h3>
+        <div class="journey">
+          <article class="journey-card">
+            <p class="journey-label">1 · Purchase</p>
+            <h3>Stripe Checkout in dollars, Paystack in naira</h3>
+            <p>The seat is reserved for 15 minutes while the payment completes. A retried request never opens a second payment for the same order.</p>
+          </article>
+          <div class="journey-arrow" aria-hidden="true">→</div>
+          <article class="journey-card accent">
+            <p class="journey-label">2 · Webhook</p>
+            <h3>The provider reports back, the app checks</h3>
+            <ul class="check-list"><li>Signature verified</li><li>Reference matches the order</li><li>Amount and currency agree</li><li>The product is the right one</li><li>Each event settles only once</li></ul>
+          </article>
+          <div class="journey-arrow" aria-hidden="true">→</div>
+          <article class="journey-card accent">
+            <p class="journey-label">3 · Ledger</p>
+            <h3>The payment is booked before anything is issued</h3>
+            <p>The ledger is the truth. If the tier sold out in the meantime, a refund request is created instead of a ticket.</p>
+          </article>
+          <div class="journey-arrow" aria-hidden="true">→</div>
+          <article class="journey-card">
+            <p class="journey-label">4 · Ticket</p>
+            <h3>QR code under "my tickets", scanned at the door</h3>
+            <p>The ticket outlives the account being deleted. A refund revokes it again; proven in the database tests and rehearsed in production on 14 September.</p>
+          </article>
+        </div>
+        <figcaption class="diagram-caption">The same rules apply to memberships that renew themselves. Until the manual gate is opened, every purchase is simulated and labelled as such.</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -289,6 +383,18 @@
         <tr><td>CI</td><td>GitHub Actions with three jobs on every push: app (lint, types, tests, build), database (migrations and pgTAP in a fresh Postgres) and critical browser flows. 146 runs</td></tr>
         <tr><td>Hosting</td><td>Vercel and hosted Supabase in production; a local Supabase stack in Docker for development and tests. Live video: no provider chosen yet</td></tr>
       </table>
+
+      <figure class="fig" aria-labelledby="coverage-title">
+        <h3 class="figure-title" id="coverage-title">What the 67 database test files cover</h3>
+        <div class="coverage" role="img" aria-label="Bar chart of 67 pgTAP files across five areas: payments, tickets and membership 21 files; accounts, roles and abuse 16; voting and auditions 10; club and door scanning 10; artists, events and media 10.">
+          <div class="coverage-row"><b>Payments, tickets and membership<span>reservations, refunds, webhook replays, ledger</span></b><div class="coverage-track"><span style="width:100%"></span></div><strong>21</strong></div>
+          <div class="coverage-row"><b>Accounts, roles and abuse<span>audited role changes, rate limiting, bans, deletion</span></b><div class="coverage-track"><span style="width:76.2%"></span></div><strong>16</strong></div>
+          <div class="coverage-row"><b>Voting and auditions<span>ballot stuffing, results, publication, rejection reasons</span></b><div class="coverage-track"><span style="width:47.6%"></span></div><strong>10</strong></div>
+          <div class="coverage-row"><b>Club and door scanning<span>member passes, redemption, guest list, scanning at the door</span></b><div class="coverage-track"><span style="width:47.6%"></span></div><strong>10</strong></div>
+          <div class="coverage-row"><b>Artists, events and media<span>applications, follows, images, live sessions</span></b><div class="coverage-track"><span style="width:47.6%"></span></div><strong>10</strong></div>
+        </div>
+        <figcaption class="diagram-caption">Grouped by file name in <code>supabase/tests/</code>. 58 of the 67 files switch database role along the way (anonymous, signed in, service) and try to read or write what that role must not. 1,126 assertions in total, all green in CI run 146.</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -318,6 +424,18 @@
           <p>When a tester in Nigeria could not receive SMS codes, the incident was diagnosed read-only in production, documented with timestamps and error codes, and only then fixed in the app's error copy and phone-number handling. No guessed fixes were switched on.</p>
         </div>
       </div>
+
+      <figure class="fig" aria-labelledby="ci-title">
+        <h3 class="figure-title" id="ci-title">One push, three check lanes, 6 minutes 41 seconds</h3>
+        <div class="lanes" role="img" aria-label="Timeline of CI run 146: the app job takes 3 minutes 52 seconds with lint, types, 1,587 tests and build; the database job 1 minute 47 seconds with Postgres start, 105 migrations and 1,126 pgTAP assertions; the browser job 6 minutes 41 seconds with the Supabase stack, build, accessibility check, performance check and scanner fallback.">
+          <div class="lane-axis" aria-hidden="true"><div></div><div><span style="left:0">0:00</span><span style="left:29.9%">2:00</span><span style="left:59.9%">4:00</span><span style="left:100%">6:41</span></div></div>
+          <div class="lane"><div class="lane-label"><b>app</b><span>3 min 52 s</span></div><div class="lane-track"><span class="lane-seg setup" style="left:0.0%;width:6.2%" title="setup">setup</span><span class="lane-seg run narrow" style="left:6.2%;width:4.0%" title="lint">lint</span><span class="lane-seg run narrow" style="left:10.2%;width:2.7%" title="types">types</span><span class="lane-seg test" style="left:13.0%;width:36.4%" title="1,587 unit tests">1,587 unit tests</span><span class="lane-seg run" style="left:49.4%;width:7.2%" title="build">build</span><span class="lane-seg run narrow" style="left:56.6%;width:1.2%" title=""></span></div></div>
+          <div class="lane"><div class="lane-label"><b>database</b><span>1 min 47 s</span></div><div class="lane-track"><span class="lane-seg setup narrow" style="left:0.0%;width:2.5%" title="setup">setup</span><span class="lane-seg run" style="left:2.5%;width:21.7%" title="Postgres + 105 migrations">Postgres + 105 migrations</span><span class="lane-seg test narrow" style="left:24.2%;width:1.7%" title="1,126 pgTAP">1,126 pgTAP</span><span class="lane-seg setup narrow" style="left:25.9%;width:0.7%" title=""></span></div></div>
+          <div class="lane"><div class="lane-label"><b>critical browser flows</b><span>6 min 41 s</span></div><div class="lane-track"><span class="lane-seg setup" style="left:0.0%;width:19.5%" title="setup, Chromium">setup, Chromium</span><span class="lane-seg run" style="left:19.5%;width:33.7%" title="Supabase stack">Supabase stack</span><span class="lane-seg run" style="left:53.1%;width:21.4%" title="build + test data">build + test data</span><span class="lane-seg test" style="left:74.6%;width:11.2%" title="accessibility">accessibility</span><span class="lane-seg test" style="left:85.8%;width:11.2%" title="performance">performance</span><span class="lane-seg test narrow" style="left:97.0%;width:3.0%" title="scan">scan</span></div></div>
+        </div>
+        <div class="lane-legend" aria-hidden="true"><span><i></i>Setup</span><span><i class="run"></i>Build and prepare</span><span><i class="test"></i>Tests</span></div>
+        <figcaption class="diagram-caption">Measured on CI run 146, commit <code>fbb90fc</code>, 14 September 2026. The three jobs run in parallel, so a push is fully checked when the slowest one finishes. Durations are GitHub Actions' own per-step timestamps.</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -326,6 +444,14 @@
       <p class="section-label">05 · The timeline</p>
       <h2>Five weeks, with git history as the timeline</h2>
       <p class="intro">From first commit to pilot in 30 working days. The dates come from git history and the decision log.</p>
+
+      <figure class="fig" aria-labelledby="commits-title">
+        <h3 class="figure-title" id="commits-title">428 commits across 37 calendar days</h3>
+        <div class="commit-strip" role="img" aria-label="Bar chart of commits per day from 9 August to 14 September 2026. Three peaks: 9 August with 46, 12 August with 45 and 27 August with 37. Seven days without commits, most of them in September."><span class="commit-bar wknd" style="--n:46" title="9 Aug: 46 commits"></span><span class="commit-bar" style="--n:13" title="10 Aug: 13 commits"></span><span class="commit-bar" style="--n:23" title="11 Aug: 23 commits"></span><span class="commit-bar" style="--n:45" title="12 Aug: 45 commits"></span><span class="commit-bar" style="--n:34" title="13 Aug: 34 commits"></span><span class="commit-bar" style="--n:32" title="14 Aug: 32 commits"></span><span class="commit-bar wknd" style="--n:7" title="15 Aug: 7 commits"></span><span class="commit-bar wknd" style="--n:5" title="16 Aug: 5 commits"></span><span class="commit-bar" style="--n:13" title="17 Aug: 13 commits"></span><span class="commit-bar" style="--n:10" title="18 Aug: 10 commits"></span><span class="commit-bar" style="--n:3" title="19 Aug: 3 commits"></span><span class="commit-bar" style="--n:3" title="20 Aug: 3 commits"></span><span class="commit-bar zero" style="--n:0" title="21 Aug: 0 commits"></span><span class="commit-bar wknd zero" style="--n:0" title="22 Aug: 0 commits"></span><span class="commit-bar wknd" style="--n:6" title="23 Aug: 6 commits"></span><span class="commit-bar" style="--n:10" title="24 Aug: 10 commits"></span><span class="commit-bar" style="--n:1" title="25 Aug: 1 commit"></span><span class="commit-bar" style="--n:2" title="26 Aug: 2 commits"></span><span class="commit-bar" style="--n:37" title="27 Aug: 37 commits"></span><span class="commit-bar" style="--n:19" title="28 Aug: 19 commits"></span><span class="commit-bar wknd" style="--n:12" title="29 Aug: 12 commits"></span><span class="commit-bar wknd zero" style="--n:0" title="30 Aug: 0 commits"></span><span class="commit-bar" style="--n:1" title="31 Aug: 1 commit"></span><span class="commit-bar" style="--n:15" title="1 Sep: 15 commits"></span><span class="commit-bar" style="--n:28" title="2 Sep: 28 commits"></span><span class="commit-bar" style="--n:6" title="3 Sep: 6 commits"></span><span class="commit-bar" style="--n:2" title="4 Sep: 2 commits"></span><span class="commit-bar wknd" style="--n:1" title="5 Sep: 1 commit"></span><span class="commit-bar wknd" style="--n:15" title="6 Sep: 15 commits"></span><span class="commit-bar" style="--n:17" title="7 Sep: 17 commits"></span><span class="commit-bar zero" style="--n:0" title="8 Sep: 0 commits"></span><span class="commit-bar" style="--n:14" title="9 Sep: 14 commits"></span><span class="commit-bar zero" style="--n:0" title="10 Sep: 0 commits"></span><span class="commit-bar" style="--n:1" title="11 Sep: 1 commit"></span><span class="commit-bar wknd zero" style="--n:0" title="12 Sep: 0 commits"></span><span class="commit-bar wknd zero" style="--n:0" title="13 Sep: 0 commits"></span><span class="commit-bar" style="--n:7" title="14 Sep: 7 commits"></span></div>
+        <div class="commit-axis" aria-hidden="true"><span style="grid-column:1">9 Aug</span><span style="grid-column:8">16 Aug</span><span style="grid-column:15">23 Aug</span><span style="grid-column:22">30 Aug</span><span style="grid-column:29">6 Sep</span><span style="grid-column:35 / span 3; text-align:right">14 Sep</span></div>
+        <div class="commit-peaks"><span><b>46</b> 9 Aug, the foundation</span><span><b>45</b> 12 Aug, first deploy and tickets</span><span><b>37</b> 27 Aug, fixes after a big review</span><span><b>7</b> days without commits</span></div>
+        <figcaption class="diagram-caption">From <code>git log</code> in the app repository; lighter bars are weekends, grey bars are days without commits. The pace drops deliberately in September as work shifts from code to operations, documentation and testing with real people.</figcaption>
+      </figure>
       <div class="timeline">
         <div class="timeline-item"><div class="timeline-date">9 Aug</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Foundation in one day</strong>46 commits: Next.js and Supabase set up, real sign-in, artist profiles with follow, events and PWA installation. Eight screens reviewed and approved the same day.</div></div>
         <div class="timeline-item"><div class="timeline-date">10 Aug</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>New priorities after talking to the partner</strong>Auditions, voting, live participation and the members' club moved into the core; the broad community track was put on hold. Written down as decision ADR-014, so the agents built towards the new direction.</div></div>
