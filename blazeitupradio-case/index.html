@@ -3,21 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Jonathan Fribert | Case: GlobeTunez</title>
-<meta name="description" content="Projektcase om GlobeTunez, en installerbar web-app med radio, kunstnerprofiler, talentshows, billetter og medlemsklub for Blaze It Up Radio Africa og 9thwunder. Bygget af Jonathan Fribert med AI-agenter som udviklingspartnere og dokumenteret med tal fra git og CI.">
+<title>Jonathan Fribert | Case: Blaze It Up Radio Africa-appen</title>
+<meta name="description" content="Projektcase om Blaze It Up Radio Africa-appen, en installerbar web-app med radio, kunstnerprofiler, talentshows, billetter og medlemsklub for Blaze It Up Radio Africa og 9thwunder. Bygget af Jonathan Fribert med AI-agenter som udviklingspartnere og dokumenteret med tal fra git og CI.">
 <meta name="theme-color" content="#F8F3EC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#19130F" media="(prefers-color-scheme: dark)">
-<meta property="og:title" content="Jonathan Fribert | Case: GlobeTunez">
+<meta property="og:title" content="Jonathan Fribert | Case: Blaze It Up Radio Africa-appen">
 <meta property="og:description" content="En musikplatform med radio, talentshows og billetter til et nigeriansk musikmiljø, bygget på 30 arbejdsdage med AI-agenter som udviklingspartnere.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://jonathanfribert.github.io/globetunez-case/">
+<meta property="og:url" content="https://jonathanfribert.github.io/blazeitupradio-case/">
 <meta property="og:locale" content="da_DK">
 <meta property="og:locale:alternate" content="en_GB">
 <meta name="twitter:card" content="summary">
-<link rel="canonical" href="https://jonathanfribert.github.io/globetunez-case/">
-<link rel="alternate" hreflang="da" href="https://jonathanfribert.github.io/globetunez-case/">
-<link rel="alternate" hreflang="en" href="https://jonathanfribert.github.io/globetunez-case/en.html">
-<link rel="alternate" hreflang="x-default" href="https://jonathanfribert.github.io/globetunez-case/">
+<link rel="canonical" href="https://jonathanfribert.github.io/blazeitupradio-case/">
+<link rel="alternate" hreflang="da" href="https://jonathanfribert.github.io/blazeitupradio-case/">
+<link rel="alternate" hreflang="en" href="https://jonathanfribert.github.io/blazeitupradio-case/en.html">
+<link rel="alternate" hreflang="x-default" href="https://jonathanfribert.github.io/blazeitupradio-case/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%238C3D15%22/><text x=%2232%22 y=%2243%22 text-anchor=%22middle%22 font-family=%22Menlo,monospace%22 font-size=%2228%22 font-weight=%22700%22 fill=%22white%22>JF</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -336,7 +336,7 @@
   <div class="shell hero">
     <p class="eyebrow">Case 03 · Partnerprojekt</p>
     <h1>Jeg byggede en musikplatform med radio, talentshows og billetter til et nigeriansk musikmiljø</h1>
-    <p class="lead">GlobeTunez er en installerbar web-app for Blaze It Up Radio Africa og 9thwunder: live radio, kunstnerprofiler, auditions med afstemning, events med billetsalg og en medlemsklub. Bygget mobile-first til billige Android-telefoner og ustabile netværk, med to AI-agenter som udviklingspartnere under skrevne regler.</p>
+    <p class="lead">Blaze It Up Radio Africa-appen er en installerbar web-app for radiostationen og 9thwunder: live radio, kunstnerprofiler, auditions med afstemning, events med billetsalg og en medlemsklub. Bygget mobile-first til billige Android-telefoner og ustabile netværk, med to AI-agenter som udviklingspartnere under skrevne regler.</p>
 
     <div class="case-brief">
       <dl>
@@ -345,7 +345,7 @@
         <div><dt>Status</dt><dd>Lukket pilot <b class="status-stamp" aria-hidden="true">PILOT</b></dd></div>
         <div><dt>Kode</dt><dd>Privat repo, 428 commits, CI grøn på seneste commit</dd></div>
       </dl>
-      <p class="case-disclaimer">Partnerprojekt med Blaze It Up Radio Africa og 9thwunder. Casen beskriver kun teknik og arbejdsform. Den indeholder ingen bruger-, omsætnings- eller partnertal, fordi platformen endnu ikke er lanceret offentligt. Alle tal er fra git-historik, kildekode og CI-kørsler pr. 14. september 2026.</p>
+      <p class="case-disclaimer">Partnerprojekt med Blaze It Up Radio Africa og 9thwunder; appens eget navn er GlobeTunez x Blaze It Up Radio. Casen beskriver kun teknik og arbejdsform. Den indeholder ingen bruger-, omsætnings- eller partnertal, fordi platformen endnu ikke er lanceret offentligt. Alle tal er fra git-historik, kildekode og CI-kørsler pr. 14. september 2026.</p>
     </div>
 
     <div class="stats" aria-label="Nøgletal for projektet">
@@ -615,15 +615,15 @@
       var next = current === 'dark' ? 'light' : 'dark';
       if ((next === 'dark') === systemDark.matches) {
         root.removeAttribute('data-theme');
-        try { localStorage.removeItem('globetunez-case-theme'); } catch (e) {}
+        try { localStorage.removeItem('blazeitupradio-case-theme'); } catch (e) {}
       } else {
         root.setAttribute('data-theme', next);
-        try { localStorage.setItem('globetunez-case-theme', next); } catch (e) {}
+        try { localStorage.setItem('blazeitupradio-case-theme', next); } catch (e) {}
       }
       syncAria();
     });
     try {
-      var saved = localStorage.getItem('globetunez-case-theme');
+      var saved = localStorage.getItem('blazeitupradio-case-theme');
       if (saved) document.documentElement.setAttribute('data-theme', saved);
     } catch (e) {}
     syncAria();

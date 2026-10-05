@@ -22,13 +22,13 @@ Terminologi følger casens engelske udgave ("the Danish Prime Minister's
 Office", "real operational data"). hreflang-blokken (da/en/x-default) er ens i
 begge filer, og sitemap.xml fører begge URL'er med alternates.
 
-## Case 03: GlobeTunez (globetunez-case/)
+## Case 03: Blaze It Up Radio Africa-appen (blazeitupradio-case/)
 
 Casen om musikplatformen for Blaze It Up Radio Africa / 9thwunder ligger som
-undermappe i DETTE repo (`globetunez-case/index.html` + `en.html` + egen
-`sitemap.xml`) og serveres på `/globetunez-case/`, altså samme URL-mønster som
+undermappe i DETTE repo (`blazeitupradio-case/index.html` + `en.html` + egen
+`sitemap.xml`) og serveres på `/blazeitupradio-case/`, altså samme URL-mønster som
 de to andre cases, der bor i egne repos. Den kan flyttes til et eget repo
-(`JonathanFribert/globetunez-case`) uden at links ændrer sig; husk så at
+(`JonathanFribert/blazeitupradio-case`) uden at links ændrer sig; husk så at
 root-`robots.txt` stadig skal pege på dens sitemap.
 
 Tal i casen er fra 14. september 2026 (seneste commit `fbb90fc` i det private
