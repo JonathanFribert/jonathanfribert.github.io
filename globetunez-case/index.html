@@ -264,12 +264,52 @@
     .commit-strip { height: 6rem; }
     .commit-axis { font-size: 0.66rem; }
   }
+
+  /* Effekter: alt gated bag prefers-reduced-motion, og uden JavaScript
+     (html uden .js) vises siden faerdig med det samme. */
+  .read-progress { position: absolute; left: 0; bottom: -1px; height: 2px; width: 0; background: var(--accent); }
+  html:not(.js) .read-progress { display: none; }
+  #opgaven .intro p:first-child::first-letter {
+    float: left; margin: 0.08em 0.12em 0 0; font-family: var(--serif); font-weight: 700;
+    font-size: 3.6em; line-height: 0.82; color: var(--accent);
+  }
+  main { counter-reset: fig; }
+  figure.fig { counter-increment: fig; }
+  figure.fig .diagram-caption::before { content: "Figur " counter(fig) " · "; color: var(--accent); font-family: var(--mono); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; }
+  .commit-readout { margin: 0.5rem 0 0; min-height: 1.4rem; color: var(--muted); font-family: var(--mono); font-size: 0.8rem; }
+  .commit-readout b { color: var(--accent); }
+  .commit-bar.active { background: var(--ink); }
+  .commit-strip { cursor: crosshair; touch-action: pan-y; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    @view-transition { navigation: auto; }
+    .status-stamp { animation: stamp 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s both; }
+    @keyframes stamp { from { opacity: 0; transform: rotate(-9deg) scale(1.7); } 60% { opacity: 1; } to { opacity: 1; transform: rotate(-2deg) scale(1); } }
+    .js figure.fig.reveal .coverage-track span { transform: scaleX(0); transform-origin: left; transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1); }
+    .js figure.fig.reveal.in-view .coverage-track span { transform: none; }
+    .js figure.fig.reveal .coverage-row:nth-child(2) .coverage-track span { transition-delay: 0.08s; }
+    .js figure.fig.reveal .coverage-row:nth-child(3) .coverage-track span { transition-delay: 0.16s; }
+    .js figure.fig.reveal .coverage-row:nth-child(4) .coverage-track span { transition-delay: 0.24s; }
+    .js figure.fig.reveal .coverage-row:nth-child(5) .coverage-track span { transition-delay: 0.32s; }
+    .js figure.fig.reveal .lane-track { clip-path: inset(0 100% 0 0); transition: clip-path 0.9s cubic-bezier(0.22, 1, 0.36, 1); }
+    .js figure.fig.reveal.in-view .lane-track { clip-path: inset(0); }
+    .js figure.fig.reveal .lane:nth-child(3) .lane-track { transition-delay: 0.1s; }
+    .js figure.fig.reveal .lane:nth-child(4) .lane-track { transition-delay: 0.2s; }
+    .js figure.fig.reveal .commit-bar { transform: scaleY(0); transform-origin: bottom; transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1); transition-delay: calc(var(--i) * 18ms); }
+    .js figure.fig.reveal.in-view .commit-bar { transform: none; }
+    .js figure.fig.reveal .journey-card { opacity: 0; transform: translateY(12px); transition: opacity 0.5s ease-out, transform 0.5s ease-out; }
+    .js figure.fig.reveal.in-view .journey-card { opacity: 1; transform: none; }
+    .js figure.fig.reveal .journey-card:nth-of-type(2) { transition-delay: 0.12s; }
+    .js figure.fig.reveal .journey-card:nth-of-type(3) { transition-delay: 0.24s; }
+    .js figure.fig.reveal .journey-card:nth-of-type(4) { transition-delay: 0.36s; }
+  }
 </style>
 </head>
 <body>
 <a class="skip-link" href="#indhold">Gå til indhold</a>
 
 <header class="masthead-bar">
+  <div class="read-progress" aria-hidden="true"></div>
   <div class="shell masthead-row">
     <a class="masthead-link" href="https://jonathanfribert.github.io/">← Jonathan Fribert</a>
     <div class="head-actions">
@@ -449,6 +489,7 @@
         <h3 class="figure-title" id="commits-title">428 commits på 37 kalenderdage</h3>
         <div class="commit-strip" role="img" aria-label="Søjlediagram over commits pr. dag fra 9. august til 14. september 2026. Tre toppe: 9. august med 46, 12. august med 45 og 27. august med 37. Syv dage uden commits, de fleste i september."><span class="commit-bar wknd" style="--n:46" title="9. aug.: 46 commits"></span><span class="commit-bar" style="--n:13" title="10. aug.: 13 commits"></span><span class="commit-bar" style="--n:23" title="11. aug.: 23 commits"></span><span class="commit-bar" style="--n:45" title="12. aug.: 45 commits"></span><span class="commit-bar" style="--n:34" title="13. aug.: 34 commits"></span><span class="commit-bar" style="--n:32" title="14. aug.: 32 commits"></span><span class="commit-bar wknd" style="--n:7" title="15. aug.: 7 commits"></span><span class="commit-bar wknd" style="--n:5" title="16. aug.: 5 commits"></span><span class="commit-bar" style="--n:13" title="17. aug.: 13 commits"></span><span class="commit-bar" style="--n:10" title="18. aug.: 10 commits"></span><span class="commit-bar" style="--n:3" title="19. aug.: 3 commits"></span><span class="commit-bar" style="--n:3" title="20. aug.: 3 commits"></span><span class="commit-bar zero" style="--n:0" title="21. aug.: 0 commits"></span><span class="commit-bar wknd zero" style="--n:0" title="22. aug.: 0 commits"></span><span class="commit-bar wknd" style="--n:6" title="23. aug.: 6 commits"></span><span class="commit-bar" style="--n:10" title="24. aug.: 10 commits"></span><span class="commit-bar" style="--n:1" title="25. aug.: 1 commit"></span><span class="commit-bar" style="--n:2" title="26. aug.: 2 commits"></span><span class="commit-bar" style="--n:37" title="27. aug.: 37 commits"></span><span class="commit-bar" style="--n:19" title="28. aug.: 19 commits"></span><span class="commit-bar wknd" style="--n:12" title="29. aug.: 12 commits"></span><span class="commit-bar wknd zero" style="--n:0" title="30. aug.: 0 commits"></span><span class="commit-bar" style="--n:1" title="31. aug.: 1 commit"></span><span class="commit-bar" style="--n:15" title="1. sep.: 15 commits"></span><span class="commit-bar" style="--n:28" title="2. sep.: 28 commits"></span><span class="commit-bar" style="--n:6" title="3. sep.: 6 commits"></span><span class="commit-bar" style="--n:2" title="4. sep.: 2 commits"></span><span class="commit-bar wknd" style="--n:1" title="5. sep.: 1 commit"></span><span class="commit-bar wknd" style="--n:15" title="6. sep.: 15 commits"></span><span class="commit-bar" style="--n:17" title="7. sep.: 17 commits"></span><span class="commit-bar zero" style="--n:0" title="8. sep.: 0 commits"></span><span class="commit-bar" style="--n:14" title="9. sep.: 14 commits"></span><span class="commit-bar zero" style="--n:0" title="10. sep.: 0 commits"></span><span class="commit-bar" style="--n:1" title="11. sep.: 1 commit"></span><span class="commit-bar wknd zero" style="--n:0" title="12. sep.: 0 commits"></span><span class="commit-bar wknd zero" style="--n:0" title="13. sep.: 0 commits"></span><span class="commit-bar" style="--n:7" title="14. sep.: 7 commits"></span></div>
         <div class="commit-axis" aria-hidden="true"><span style="grid-column:1">9. aug.</span><span style="grid-column:8">16. aug.</span><span style="grid-column:15">23. aug.</span><span style="grid-column:22">30. aug.</span><span style="grid-column:29">6. sep.</span><span style="grid-column:35 / span 3; text-align:right">14. sep.</span></div>
+        <p class="commit-readout" data-idle="Hold musen over eller tryk på en søjle for dato og antal." aria-live="polite">Hold musen over eller tryk på en søjle for dato og antal.</p>
         <div class="commit-peaks"><span><b>46</b> 9. aug., fundamentet</span><span><b>45</b> 12. aug., første deploy og billetter</span><span><b>37</b> 27. aug., rettelser efter stort review</span><span><b>7</b> dage uden commits</span></div>
         <figcaption class="diagram-caption">Fra <code>git log</code> i app-repoet; lyse søjler er weekend, grå er dage uden commits. Tempoet falder bevidst i september: der flyttes arbejde fra kode til drift, dokumentation og test med rigtige mennesker.</figcaption>
       </figure>
@@ -540,6 +581,99 @@
       if (saved) document.documentElement.setAttribute('data-theme', saved);
     } catch (e) {}
     syncAria();
+  })();
+
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* Laesefremdrift i topbjaelken. */
+    var progress = document.querySelector('.read-progress');
+    if (progress) {
+      var ticking = false;
+      var paint = function () {
+        var doc = document.documentElement;
+        var max = doc.scrollHeight - window.innerHeight;
+        progress.style.width = (max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0) + '%';
+        ticking = false;
+      };
+      window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(paint); } }, { passive: true });
+      window.addEventListener('resize', paint);
+      paint();
+    }
+
+    /* Aflaesning paa commit-soejlerne: hover, tryk eller tastatur. */
+    var strip = document.querySelector('.commit-strip');
+    var readout = document.querySelector('.commit-readout');
+    if (strip && readout) {
+      var bars = Array.prototype.slice.call(strip.querySelectorAll('.commit-bar'));
+      var idle = readout.getAttribute('data-idle');
+      var current = null;
+      var show = function (bar) {
+        if (current) current.classList.remove('active');
+        current = bar;
+        if (!bar) { readout.textContent = idle; return; }
+        bar.classList.add('active');
+        var t = bar.getAttribute('title') || '';
+        var i = t.indexOf(':');
+        readout.innerHTML = '<b>' + t.slice(0, i) + '</b>' + t.slice(i);
+      };
+      var pick = function (ev) {
+        var p = ev.touches ? ev.touches[0] : ev;
+        var el = document.elementFromPoint(p.clientX, p.clientY);
+        if (el && el.classList.contains('commit-bar')) show(el);
+      };
+      strip.addEventListener('pointermove', pick);
+      strip.addEventListener('pointerdown', pick);
+      strip.addEventListener('pointerleave', function () { show(null); });
+      bars.forEach(function (b, i) {
+        b.setAttribute('tabindex', '0');
+        b.style.setProperty('--i', i);
+        b.addEventListener('focus', function () { show(b); });
+        b.addEventListener('blur', function () { show(null); });
+      });
+      show(null);
+    }
+
+    if (reduced) return;
+
+    /* Figurerne tegner sig selv, naar de kommer i syne. */
+    var figs = Array.prototype.slice.call(document.querySelectorAll('figure.fig'));
+    if ('IntersectionObserver' in window && figs.length) {
+      figs.forEach(function (f) { f.classList.add('reveal'); });
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); } });
+      }, { threshold: 0.25 });
+      figs.forEach(function (f) { io.observe(f); });
+    }
+
+    /* Noegletallene i hero taeller op; tusindtalsseparator bevares. */
+    var statsBox = document.querySelector('.stats');
+    if ('IntersectionObserver' in window && statsBox) {
+      var sep = document.documentElement.lang === 'da' ? '.' : ',';
+      var counters = Array.prototype.slice.call(statsBox.querySelectorAll('.stat-value')).map(function (el) {
+        var raw = el.textContent.trim();
+        var m = raw.match(/^([\d.,]+)(.*)$/);
+        if (!m) return null;
+        return { el: el, target: parseInt(m[1].replace(/[.,]/g, ''), 10), suffix: m[2] };
+      }).filter(Boolean);
+      var fmt = function (n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, sep); };
+      var so = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          so.unobserve(entry.target);
+          var start = null, duration = 900;
+          var step = function (ts) {
+            if (start === null) start = ts;
+            var t = Math.min(1, (ts - start) / duration);
+            var eased = 1 - Math.pow(1 - t, 3);
+            counters.forEach(function (c) { c.el.textContent = fmt(Math.round(c.target * eased)) + c.suffix; });
+            if (t < 1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+        });
+      }, { threshold: 0.3 });
+      so.observe(statsBox);
+    }
   })();
 </script>
 </body>
