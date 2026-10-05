@@ -1,0 +1,915 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jonathan Fribert | Case: The Application Bank</title>
+<meta name="description" content="Project case about the Application Bank: a tool that writes honest, targeted job applications from one bank of your own experience, where every claim can be traced to a source. Built as a side project by Jonathan Fribert in four working days.">
+<meta name="theme-color" content="#F7F3EC" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14161C" media="(prefers-color-scheme: dark)">
+<meta property="og:title" content="Jonathan Fribert | Case: The Application Bank">
+<meta property="og:description" content="A tool that writes job applications from what you have actually done, and never makes anything up. Built in four working days with 137 automated tests.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jonathanfribert.github.io/ansoegningsbank-case/en.html">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="da_DK">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://jonathanfribert.github.io/ansoegningsbank-case/en.html">
+<link rel="alternate" hreflang="da" href="https://jonathanfribert.github.io/ansoegningsbank-case/">
+<link rel="alternate" hreflang="en" href="https://jonathanfribert.github.io/ansoegningsbank-case/en.html">
+<link rel="alternate" hreflang="x-default" href="https://jonathanfribert.github.io/ansoegningsbank-case/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%231F4BD8%22/><text x=%2232%22 y=%2243%22 text-anchor=%22middle%22 font-family=%22Menlo,monospace%22 font-size=%2228%22 font-weight=%22700%22 fill=%22white%22>JF</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,700;1,6..72,500&amp;family=IBM+Plex+Mono:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ground: #F7F3EC; --surface: #FFFFFF; --surface-soft: #F1ECE3;
+    --line: #E6DFD3; --ink: #1D1A16; --muted: #5F584E;
+    --accent: #1F4BD8; --accent-strong: #163BB3; --accent-soft: #E9EEFC;
+    --red: #B42318; --red-soft: #FBE5E1; --amber: #A3540A;
+    --green: #1B7A42; --green-soft: #E2F3E7;
+    --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+
+    --dark-ground: #14161C; --dark-surface: #1B1E27; --dark-surface-soft: #212533;
+    --dark-line: #343A4A; --dark-ink: #E9ECF3; --dark-muted: #9AA3B5;
+    --dark-accent: #8FB0FF; --dark-accent-strong: #B4CAFF; --dark-accent-soft: #1E2740;
+    --dark-red: #F28B80; --dark-red-soft: #3A2320; --dark-amber: #E0B25C;
+    --dark-green: #6FD39A; --dark-green-soft: #1C3328;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: var(--dark-ground); --surface: var(--dark-surface); --surface-soft: var(--dark-surface-soft);
+      --line: var(--dark-line); --ink: var(--dark-ink); --muted: var(--dark-muted);
+      --accent: var(--dark-accent); --accent-strong: var(--dark-accent-strong); --accent-soft: var(--dark-accent-soft);
+      --red: var(--dark-red); --red-soft: var(--dark-red-soft); --amber: var(--dark-amber);
+      --green: var(--dark-green); --green-soft: var(--dark-green-soft);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: var(--dark-ground); --surface: var(--dark-surface); --surface-soft: var(--dark-surface-soft);
+    --line: var(--dark-line); --ink: var(--dark-ink); --muted: var(--dark-muted);
+    --accent: var(--dark-accent); --accent-strong: var(--dark-accent-strong); --accent-soft: var(--dark-accent-soft);
+    --red: var(--dark-red); --red-soft: var(--dark-red-soft); --amber: var(--dark-amber);
+    --green: var(--dark-green); --green-soft: var(--dark-green-soft);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0; background: var(--ground); color: var(--ink);
+    font-family: var(--sans); font-size: 1.0625rem; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+  ::selection { background: var(--accent-soft); }
+  img { max-width: 100%; display: block; }
+  .shell { width: min(62rem, calc(100% - 3rem)); margin-inline: auto; }
+  .skip-link {
+    position: absolute; top: -3rem; left: 1rem; z-index: 100; padding: 0.7rem 1.1rem;
+    background: var(--ink); color: var(--ground); border-radius: 4px; font-weight: 700;
+    transition: top 0.15s ease;
+  }
+  .skip-link:focus { top: 1rem; }
+
+  header.masthead-bar {
+    position: sticky; top: 0; z-index: 40; background: color-mix(in srgb, var(--ground) 92%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .masthead-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.9rem 0; }
+  .masthead-link { text-decoration: none; font-family: var(--mono); font-weight: 700; font-size: 0.9rem; letter-spacing: 0.02em; }
+  .masthead-link:hover { color: var(--accent); }
+  .head-actions { display: flex; align-items: center; gap: 0.6rem; }
+  .language-switch {
+    display: inline-flex; align-items: center; min-height: 2.5rem; padding: 0 0.2rem;
+    color: var(--muted); font-family: var(--mono); font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 0.06em; text-decoration: none;
+  }
+  .language-switch:hover { color: var(--accent); }
+  .theme-toggle {
+    display: inline-flex; width: 2.5rem; height: 2.5rem; align-items: center; justify-content: center;
+    border: 1px solid var(--line); border-radius: 4px; background: var(--surface); color: var(--muted); cursor: pointer;
+  }
+  .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+  .theme-toggle .icon-sun { display: none; }
+  :root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+  :root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .theme-toggle .icon-moon { display: none; }
+    :root:not([data-theme="light"]) .theme-toggle .icon-sun { display: block; }
+  }
+  html:not(.js) .theme-toggle { display: none; }
+
+  .hero { padding: clamp(2.4rem, 6vw, 4.2rem) 0 clamp(2rem, 5vw, 3rem); }
+  .eyebrow { margin: 0 0 0.7rem; color: var(--accent); font-family: var(--mono); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+  h1 { margin: 0 0 1rem; font-family: var(--serif); font-weight: 700; font-size: clamp(2.2rem, 5vw, 3.4rem); line-height: 1.08; text-wrap: balance; }
+  .lead { margin: 0; max-width: 42rem; color: var(--muted); font-size: clamp(1.08rem, 1.6vw, 1.25rem); line-height: 1.65; text-wrap: pretty; }
+
+  .case-brief {
+    margin-top: 2.2rem; display: grid; grid-template-columns: 1fr; gap: 1rem;
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 1.3rem 0;
+  }
+  .case-brief dl { margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: 1rem 1.5rem; }
+  .case-brief dt { margin: 0 0 0.2rem; color: var(--muted); font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+  .case-brief dd { margin: 0; font-weight: 600; }
+  .status-stamp {
+    display: inline-block; margin-left: 0.6rem; border: 2px solid var(--amber); border-radius: 4px;
+    padding: 0.05rem 0.45rem; color: var(--amber); font-family: var(--mono); font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.06em; transform: rotate(-2deg); vertical-align: middle;
+  }
+  .case-disclaimer { margin: 0.6rem 0 0; color: var(--muted); font-size: 0.92rem; line-height: 1.6; }
+
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: 0; margin-top: 1.6rem; }
+  .stat { padding: 0.9rem 1.2rem 0.9rem 0; }
+  .stat + .stat { border-left: 1px solid var(--line); padding-left: 1.2rem; }
+  .stat-value { color: var(--accent); font-family: var(--mono); font-size: clamp(1.35rem, 2.1vw, 1.8rem); font-weight: 700; }
+  .stat-label { margin-top: 0.3rem; color: var(--muted); font-size: 0.86rem; line-height: 1.45; }
+
+  section.section { padding: clamp(3rem, 6vw, 4.6rem) 0; border-top: 1px solid var(--line); }
+  section.section.soft { background: color-mix(in srgb, var(--surface-soft) 55%, transparent); }
+  .section-label { margin: 0 0 0.7rem; color: var(--accent); font-family: var(--mono); font-size: 0.76rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; }
+  h2 { margin: 0 0 1rem; font-family: var(--serif); font-weight: 700; font-size: clamp(1.5rem, 3vw, 2.05rem); line-height: 1.18; text-wrap: balance; }
+  .intro { max-width: 44rem; margin: 0 0 1.6rem; color: var(--muted); font-size: 1.08rem; line-height: 1.65; text-wrap: pretty; }
+  .intro p { margin: 0 0 1rem; }
+  .intro p:last-child { margin-bottom: 0; }
+  .prose p { max-width: 42rem; margin: 0 0 1rem; line-height: 1.7; }
+  .prose p:last-child { margin-bottom: 0; }
+
+  .flow { display: flex; flex-wrap: wrap; align-items: stretch; gap: 0; margin: 2rem 0 0; }
+  .flow-box {
+    flex: 1 1 9rem; min-width: 9rem; border: 1px solid var(--line); border-radius: 10px;
+    background: var(--surface); padding: 0.9rem 1rem; display: flex; flex-direction: column; justify-content: center;
+  }
+  .flow-box b { display: block; font-family: var(--mono); font-size: 0.86rem; }
+  .flow-box span { display: block; margin-top: 0.25rem; color: var(--muted); font-size: 0.82rem; line-height: 1.4; }
+  .flow-box.accent { border-color: var(--accent); background: var(--accent-soft); }
+  .flow-arrow { flex: 0 0 auto; display: flex; align-items: center; justify-content: center; width: 2rem; color: var(--accent); font-weight: 700; }
+  @media (max-width: 640px) {
+    .flow { flex-direction: column; }
+    .flow-arrow { width: auto; height: 1.6rem; transform: rotate(90deg); }
+  }
+  .flow-note { max-width: 44rem; margin-top: 1rem; color: var(--muted); font-size: 0.9rem; }
+
+  .tech-table { width: 100%; margin-top: 1.6rem; border-collapse: collapse; font-size: 0.96rem; }
+  .tech-table th { text-align: left; padding: 0.55rem 1rem 0.55rem 0; color: var(--muted); font-family: var(--mono); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--line); }
+  .tech-table td { padding: 0.7rem 1rem 0.7rem 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .tech-table td:first-child { font-weight: 700; white-space: nowrap; }
+  .tech-table tr:last-child td { border-bottom: 0; }
+
+  .rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.4rem; margin-top: 1.6rem; }
+  .rule-card { border-left: 3px solid var(--accent); padding: 0.2rem 0 0.2rem 1rem; }
+  .rule-card h3 { margin: 0 0 0.4rem; font-family: var(--serif); font-size: 1.15rem; }
+  .rule-card p { margin: 0; color: var(--muted); font-size: 0.94rem; line-height: 1.55; }
+
+  .timeline { margin-top: 1.8rem; display: grid; gap: 0; position: relative; }
+  .timeline::before { content: ""; position: absolute; top: 0.5rem; bottom: 0.5rem; left: 5.2rem; width: 1px; background: var(--line); }
+  .timeline-item { display: grid; grid-template-columns: 4.6rem 1.6rem 1fr; gap: 0.8rem; padding: 0.75rem 0; align-items: start; }
+  .timeline-date { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); padding-top: 0.15rem; }
+  .timeline-dot { position: relative; width: 1.6rem; display: flex; justify-content: center; }
+  .timeline-dot::after { content: ""; width: 0.6rem; height: 0.6rem; border-radius: 50%; background: var(--accent); margin-top: 0.35rem; }
+  .timeline-copy { font-size: 0.98rem; line-height: 1.55; }
+  .timeline-copy strong { display: block; font-family: var(--serif); font-size: 1.08rem; margin-bottom: 0.1rem; }
+
+  .limits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.4rem; margin-top: 1.6rem; }
+  .limit-card { border-top: 2px solid var(--line); padding: 1rem 0 0; }
+  .limit-card h3 { margin: 0 0 0.4rem; font-family: var(--serif); font-size: 1.15rem; }
+  .limit-card p { margin: 0; color: var(--muted); font-size: 0.94rem; line-height: 1.55; }
+
+  .cta-card { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.6rem; }
+  .cta-card h2 { max-width: 20rem; }
+  .cta-actions { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+  .button {
+    display: inline-flex; align-items: center; gap: 0.4rem; border-radius: 999px; padding: 0.7rem 1.3rem;
+    font-weight: 700; font-size: 0.96rem; text-decoration: none; border: 1px solid var(--accent);
+    background: var(--accent); color: var(--ground);
+  }
+  .button:hover { background: var(--accent-strong); border-color: var(--accent-strong); }
+  .button.secondary { background: transparent; color: var(--ink); border-color: var(--line); }
+  .button.secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+  footer { padding: 2rem 0 3rem; border-top: 1px solid var(--line); }
+  .foot-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; color: var(--muted); font-size: 0.88rem; }
+  .foot-row a { text-decoration: underline; text-underline-offset: 2px; }
+
+  @media (max-width: 640px) {
+    .case-brief dl { grid-template-columns: 1fr 1fr; }
+    .stat + .stat { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); padding-top: 0.9rem; margin-top: 0.9rem; }
+    .stats { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* Figurer: samme sprog som de andre cases (bånd, rejsekort, søjler). */
+  figure.fig { margin: 2.2rem 0 0; }
+  .figure-title { margin: 0 0 1rem; padding-bottom: 0.55rem; border-bottom: 1px solid var(--line); font-family: var(--serif); font-size: 1.35rem; line-height: 1.2; }
+  .diagram-caption { margin: 1rem 0 0; max-width: 44rem; color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+
+  .journey { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; gap: 0.9rem; align-items: start; }
+  .journey-arrow { display: grid; place-items: center; padding-top: 1.1rem; color: var(--accent); font-family: var(--mono); font-size: 1.4rem; font-weight: 700; }
+  .journey-card { border-top: 2px solid var(--line); padding: 0.9rem 0 0; min-width: 0; }
+  .journey-card.accent { border-top-color: var(--accent); }
+  .journey-label { margin: 0 0 0.5rem; color: var(--accent); font-family: var(--mono); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+  .journey-card h3 { margin: 0 0 0.4rem; font-family: var(--serif); font-size: 1.12rem; line-height: 1.25; }
+  .journey-card p { margin: 0; color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
+  .check-list { margin: 0.3rem 0 0; padding: 0; list-style: none; color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+  .check-list li { padding-left: 1.3rem; position: relative; }
+  .check-list li::before { content: "✓"; position: absolute; left: 0; color: var(--green); font-family: var(--mono); font-weight: 700; }
+
+  .coverage { display: grid; gap: 0.55rem; }
+  .coverage-row { display: grid; grid-template-columns: 15rem minmax(0, 1fr) 3rem; gap: 1rem; align-items: center; }
+  .coverage-row b { font-size: 0.94rem; font-weight: 600; }
+  .coverage-row b span { display: block; color: var(--muted); font-size: 0.8rem; font-weight: 400; }
+  .coverage-track { height: 1.3rem; border-radius: 3px; background: var(--surface-soft); overflow: hidden; }
+  .coverage-track span { display: block; height: 100%; background: var(--accent); border-radius: 3px; }
+  .coverage-row strong { text-align: right; font-family: var(--mono); font-size: 1rem; color: var(--accent); }
+
+  .lanes { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 0.6rem 0; }
+  .lane { display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: 1.2rem; align-items: center; padding: 0.55rem 0; }
+  .lane-label b { display: block; font-family: var(--mono); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; }
+  .lane-label span { display: block; color: var(--muted); font-size: 0.82rem; }
+  .lane-track { position: relative; height: 2rem; border-radius: 4px; background: var(--surface-soft); }
+  .lane-seg { position: absolute; top: 0; height: 100%; display: flex; align-items: center; overflow: hidden; white-space: nowrap; padding: 0 0.45rem; border-right: 2px solid var(--ground); box-sizing: border-box; color: var(--ground); font-family: var(--mono); font-size: 0.72rem; font-weight: 700; background: var(--muted); }
+  .lane-seg.run { background: var(--accent); }
+  .lane-seg.test { background: var(--green); }
+  .lane-seg.narrow { font-size: 0; padding: 0; }
+  .lane-axis { display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: 1.2rem; padding-bottom: 0.3rem; }
+  .lane-axis div:last-child { position: relative; height: 1.1rem; color: var(--muted); font-family: var(--mono); font-size: 0.74rem; font-weight: 700; }
+  .lane-axis div:last-child span { position: absolute; transform: translateX(-50%); }
+  .lane-axis div:last-child span:first-child { transform: none; }
+  .lane-axis div:last-child span:last-child { transform: translateX(-100%); }
+  .lane-legend { display: flex; flex-wrap: wrap; gap: 1.2rem; margin-top: 0.9rem; color: var(--muted); font-size: 0.82rem; }
+  .lane-legend i { display: inline-block; width: 0.8rem; height: 0.8rem; margin-right: 0.4rem; border-radius: 2px; background: var(--muted); vertical-align: -0.05rem; }
+  .lane-legend i.run { background: var(--accent); }
+  .lane-legend i.test { background: var(--green); }
+
+  .commit-strip { display: grid; grid-template-columns: repeat(37, minmax(0, 1fr)); gap: 2px; align-items: end; height: 8rem; border-bottom: 1px solid var(--line); }
+  .commit-bar { display: block; height: calc(var(--n) / 46 * 100%); min-height: 2px; background: var(--accent); border-radius: 2px 2px 0 0; }
+  .commit-bar.wknd { background: color-mix(in srgb, var(--accent) 55%, var(--surface-soft)); }
+  .commit-bar.zero { background: var(--line); }
+  .commit-axis { display: grid; grid-template-columns: repeat(37, minmax(0, 1fr)); margin-top: 0.4rem; color: var(--muted); font-family: var(--mono); font-size: 0.72rem; font-weight: 700; }
+  .commit-axis span { white-space: nowrap; }
+  .commit-peaks { display: flex; flex-wrap: wrap; gap: 1.2rem; margin-top: 0.9rem; color: var(--muted); font-size: 0.86rem; }
+  .commit-peaks b { color: var(--accent); font-family: var(--mono); }
+
+  @media (max-width: 760px) {
+    .journey { grid-template-columns: minmax(0, 1fr); }
+    .journey-arrow { padding: 0; transform: rotate(90deg); }
+    .coverage-row { grid-template-columns: minmax(0, 1fr) 3rem; }
+    .coverage-row b { grid-column: 1 / -1; }
+    .lane, .lane-axis { grid-template-columns: minmax(0, 1fr); gap: 0.3rem; }
+    .lane-axis div:first-child { display: none; }
+    .lane-seg { font-size: 0; padding: 0; }
+    .commit-strip { height: 6rem; }
+    .commit-axis { font-size: 0.66rem; }
+  }
+
+  /* Effekter: alt gated bag prefers-reduced-motion, og uden JavaScript
+     (html uden .js) vises siden faerdig med det samme. */
+  .read-progress { position: absolute; left: 0; bottom: -1px; height: 2px; width: 0; background: var(--accent); }
+  html:not(.js) .read-progress { display: none; }
+  #brief .intro p:first-child::first-letter {
+    float: left; margin: 0.08em 0.12em 0 0; font-family: var(--serif); font-weight: 700;
+    font-size: 3.6em; line-height: 0.82; color: var(--accent);
+  }
+  main { counter-reset: fig; }
+  figure.fig { counter-increment: fig; }
+  figure.fig .diagram-caption::before { content: "Figure " counter(fig) " · "; color: var(--accent); font-family: var(--mono); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; }
+  .commit-readout { margin: 0.5rem 0 0; min-height: 1.4rem; color: var(--muted); font-family: var(--mono); font-size: 0.8rem; }
+  .commit-readout b { color: var(--accent); }
+  .commit-bar.active { background: var(--ink); }
+  .commit-strip { cursor: crosshair; touch-action: pan-y; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    @view-transition { navigation: auto; }
+    .status-stamp { animation: stamp 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s both; }
+    @keyframes stamp { from { opacity: 0; transform: rotate(-9deg) scale(1.7); } 60% { opacity: 1; } to { opacity: 1; transform: rotate(-2deg) scale(1); } }
+    .js figure.fig.reveal .coverage-track span { transform: scaleX(0); transform-origin: left; transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1); }
+    .js figure.fig.reveal.in-view .coverage-track span { transform: none; }
+    .js figure.fig.reveal .coverage-row:nth-child(2) .coverage-track span { transition-delay: 0.08s; }
+    .js figure.fig.reveal .coverage-row:nth-child(3) .coverage-track span { transition-delay: 0.16s; }
+    .js figure.fig.reveal .coverage-row:nth-child(4) .coverage-track span { transition-delay: 0.24s; }
+    .js figure.fig.reveal .coverage-row:nth-child(5) .coverage-track span { transition-delay: 0.32s; }
+    .js figure.fig.reveal .lane-track { clip-path: inset(0 100% 0 0); transition: clip-path 0.9s cubic-bezier(0.22, 1, 0.36, 1); }
+    .js figure.fig.reveal.in-view .lane-track { clip-path: inset(0); }
+    .js figure.fig.reveal .lane:nth-child(3) .lane-track { transition-delay: 0.1s; }
+    .js figure.fig.reveal .lane:nth-child(4) .lane-track { transition-delay: 0.2s; }
+    .js figure.fig.reveal .commit-bar { transform: scaleY(0); transform-origin: bottom; transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1); transition-delay: calc(var(--i) * 18ms); }
+    .js figure.fig.reveal.in-view .commit-bar { transform: none; }
+    .js figure.fig.reveal .journey-card { opacity: 0; transform: translateY(12px); transition: opacity 0.5s ease-out, transform 0.5s ease-out; }
+    .js figure.fig.reveal.in-view .journey-card { opacity: 1; transform: none; }
+    .js figure.fig.reveal .journey-card:nth-of-type(2) { transition-delay: 0.12s; }
+    .js figure.fig.reveal .journey-card:nth-of-type(3) { transition-delay: 0.24s; }
+    .js figure.fig.reveal .journey-card:nth-of-type(4) { transition-delay: 0.36s; }
+  }
+
+  .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1.4rem; margin-top: 1.8rem; align-items: start; }
+  .shot { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--surface); }
+  .shot img { width: 100%; height: auto; }
+  .shot figcaption { padding: 0.7rem 0.9rem; color: var(--muted); font-size: 0.85rem; line-height: 1.5; border-top: 1px solid var(--line); }
+  .shot.wide { grid-column: 1 / -1; }
+  .shot.mobile { max-width: 15rem; }
+  .admin-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.2rem 1.6rem; margin: 1.6rem 0 0; padding: 0; list-style: none; }
+  .admin-list li { border-top: 2px solid var(--line); padding-top: 0.8rem; font-size: 0.94rem; line-height: 1.55; color: var(--muted); }
+  .admin-list b { display: block; color: var(--ink); font-family: var(--serif); font-size: 1.1rem; margin-bottom: 0.25rem; }
+
+  /* Kategorifarver til figurerne (valideret for farveblindhed og kontrast i
+     begge temaer): 1 rust, 2 blaa, 3 groen, 4 rav, 5 blomme. */
+  :root { --c1: #1F4BD8; --c2: #C2491C; --c3: #2E8B57; --c4: #D9960A; --c5: #9A4FAA; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --c1: #3E85CC; --c2: #CC6233; --c3: #319C69; --c4: #BB8A1E; --c5: #A369BA; }
+  }
+  :root[data-theme="dark"] { --c1: #3E85CC; --c2: #CC6233; --c3: #319C69; --c4: #BB8A1E; --c5: #A369BA; }
+
+  .flow-box { border-top: 4px solid var(--line); }
+  .flow-box.f1 { border-top-color: var(--c2); } .flow-box.f1 b { color: var(--c2); }
+  .flow-box.f2 { border-top-color: var(--c1); } .flow-box.f2 b { color: var(--c1); }
+  .flow-box.f3 { border-top-color: var(--c3); background: color-mix(in srgb, var(--c3) 10%, var(--surface)); } .flow-box.f3 b { color: var(--c3); }
+  .flow-box.f4 { border-top-color: var(--c4); background: color-mix(in srgb, var(--c4) 12%, var(--surface)); } .flow-box.f4 b { color: var(--c4); }
+  .flow-box.f5 { border-top-color: var(--c5); } .flow-box.f5 b { color: var(--c5); }
+  .flow-box.accent { border-color: var(--line); }
+
+  .journey-card.j1 { border-top-color: var(--c2); } .journey-card.j1 .journey-label { color: var(--c2); }
+  .journey-card.j2 { border-top-color: var(--c1); } .journey-card.j2 .journey-label { color: var(--c1); }
+  .journey-card.j3 { border-top-color: var(--c4); } .journey-card.j3 .journey-label { color: var(--c4); }
+  .journey-card.j4 { border-top-color: var(--c3); } .journey-card.j4 .journey-label { color: var(--c3); }
+
+  .coverage-row:nth-child(1) .coverage-track span { background: var(--c1); }
+  .coverage-row:nth-child(2) .coverage-track span { background: var(--c2); }
+  .coverage-row:nth-child(3) .coverage-track span { background: var(--c3); }
+  .coverage-row:nth-child(4) .coverage-track span { background: var(--c4); }
+  .coverage-row:nth-child(5) .coverage-track span { background: var(--c5); }
+  .coverage-row strong { color: var(--ink); }
+
+  .lane-seg.run { background: var(--c1); }
+  .lane-seg.test { background: var(--c3); }
+  .lane-legend i.run { background: var(--c1); }
+  .lane-legend i.test { background: var(--c3); }
+
+  .commit-bar { background: var(--c1); }
+  .commit-bar.wknd { background: color-mix(in srgb, var(--c1) 45%, var(--surface-soft)); }
+  .commit-bar.peak { background: var(--c2); }
+  .commit-bar.zero { background: var(--line); }
+  .commit-bar.active { background: var(--ink); }
+  .commit-peaks b { color: var(--ink); }
+  .commit-peaks i { display: inline-block; width: 0.75rem; height: 0.75rem; margin-right: 0.4rem; border-radius: 2px; background: var(--c1); vertical-align: -0.05rem; }
+  .commit-peaks i.peak { background: var(--c2); }
+  .commit-peaks i.wknd { background: color-mix(in srgb, var(--c1) 45%, var(--surface-soft)); }
+  .commit-peaks i.zero { background: var(--line); }
+
+  /* Trelagsfiguren */
+  .layers { display: grid; grid-template-columns: minmax(0, 1fr) 15rem; gap: 0.8rem 1.2rem; margin-top: 1.4rem; }
+  .layer { border-radius: 10px; border: 1px solid var(--line); border-left: 6px solid var(--line); background: var(--surface); padding: 0.9rem 1.1rem; }
+  .layer.l1 { border-left-color: var(--c2); background: color-mix(in srgb, var(--c2) 7%, var(--surface)); }
+  .layer.l2 { border-left-color: var(--c1); background: color-mix(in srgb, var(--c1) 7%, var(--surface)); }
+  .layer.l3 { border-left-color: var(--c3); background: color-mix(in srgb, var(--c3) 8%, var(--surface)); }
+  .layer.ext { grid-column: 2; grid-row: 1 / span 3; border-left-color: var(--c4); background: color-mix(in srgb, var(--c4) 9%, var(--surface)); }
+  .layer-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.3rem 0.6rem; margin-bottom: 0.5rem; }
+  .layer-head b { font-family: var(--serif); font-size: 1.15rem; }
+  .layer-head span { color: var(--muted); font-size: 0.86rem; }
+  .layer-no { display: inline-grid; place-items: center; width: 1.5rem; height: 1.5rem; border-radius: 50%; color: var(--ground); font-family: var(--mono); font-size: 0.8rem; font-weight: 700; }
+  .layer.l1 .layer-no { background: var(--c2); } .layer.l2 .layer-no { background: var(--c1); } .layer.l3 .layer-no { background: var(--c3); }
+  .layer ul { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 0.35rem 1rem; }
+  .layer.ext ul { grid-template-columns: 1fr; }
+  .layer li { font-size: 0.9rem; line-height: 1.45; color: var(--muted); }
+  .layer li b { color: var(--ink); font-family: var(--mono); font-size: 0.82rem; }
+  .layer-arrow { grid-column: 1; text-align: center; color: var(--muted); font-family: var(--mono); font-size: 0.78rem; margin: -0.3rem 0; }
+  .layer-arrow::before { content: "↕ "; color: var(--accent); }
+  @media (max-width: 760px) {
+    .layers { grid-template-columns: minmax(0, 1fr); }
+    .layer.ext { grid-column: 1; grid-row: auto; }
+  }
+
+  /* Forklaringstabel med tre kolonner */
+  .why-table td:nth-child(2) { color: var(--muted); }
+  .why-table th:nth-child(1), .why-table td:nth-child(1) { width: 11rem; }
+  @media (max-width: 760px) {
+    .why-table, .why-table tbody, .why-table tr, .why-table td, .why-table th { display: block; width: auto; }
+    .why-table thead { display: none; }
+    .why-table tr { border-bottom: 1px solid var(--line); padding: 0.7rem 0; }
+    .why-table td { border: 0; padding: 0.15rem 0; }
+    .why-table td:first-child { white-space: normal; }
+    .why-table td:nth-child(3)::before { content: "Why: "; font-weight: 700; color: var(--ink); }
+  }
+
+  /* Flere effekter: loeft ved hover, lag og flow der kommer ind i raekkefoelge. */
+  @media (prefers-reduced-motion: no-preference) {
+    .journey-card, .limit-card, .rule-card, .shot, .flow-box, .layer, .admin-list li { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .journey-card:hover, .limit-card:hover, .rule-card:hover, .flow-box:hover, .layer:hover, .admin-list li:hover { transform: translateY(-3px); }
+    .shot:hover { transform: translateY(-3px); box-shadow: 0 12px 28px -18px rgba(0,0,0,0.45); }
+    .js .flow.reveal .flow-box { opacity: 0; transform: translateY(10px); transition: opacity 0.45s ease-out, transform 0.45s ease-out; }
+    .js .flow.reveal .flow-arrow { opacity: 0; transition: opacity 0.3s ease-out; }
+    .js .flow.reveal.in-view .flow-box, .js .flow.reveal.in-view .flow-arrow { opacity: 1; transform: none; }
+    .js .flow.reveal .flow-box:nth-of-type(3), .js .flow.reveal .flow-arrow:nth-of-type(2) { transition-delay: 0.12s; }
+    .js .flow.reveal .flow-box:nth-of-type(5), .js .flow.reveal .flow-arrow:nth-of-type(4) { transition-delay: 0.24s; }
+    .js .flow.reveal .flow-box:nth-of-type(7), .js .flow.reveal .flow-arrow:nth-of-type(6) { transition-delay: 0.36s; }
+    .js .flow.reveal .flow-box:nth-of-type(9), .js .flow.reveal .flow-arrow:nth-of-type(8) { transition-delay: 0.48s; }
+    .js figure.fig.reveal .layer { opacity: 0; transform: translateX(-14px); transition: opacity 0.5s ease-out, transform 0.5s ease-out; }
+    .js figure.fig.reveal.in-view .layer { opacity: 1; transform: none; }
+    .js figure.fig.reveal .layer.l2 { transition-delay: 0.14s; }
+    .js figure.fig.reveal .layer.l3 { transition-delay: 0.28s; }
+    .js figure.fig.reveal .layer.ext { transition-delay: 0.42s; transform: translateX(14px); }
+    .js .why-table.reveal tr { opacity: 0; transition: opacity 0.4s ease-out; }
+    .js .why-table.reveal.in-view tr { opacity: 1; }
+    .js .why-table.reveal.in-view tr:nth-child(2) { transition-delay: 0.05s; } .js .why-table.reveal.in-view tr:nth-child(3) { transition-delay: 0.1s; }
+    .js .why-table.reveal.in-view tr:nth-child(4) { transition-delay: 0.15s; } .js .why-table.reveal.in-view tr:nth-child(5) { transition-delay: 0.2s; }
+    .js .why-table.reveal.in-view tr:nth-child(6) { transition-delay: 0.25s; } .js .why-table.reveal.in-view tr:nth-child(7) { transition-delay: 0.3s; }
+    .js .why-table.reveal.in-view tr:nth-child(8) { transition-delay: 0.35s; } .js .why-table.reveal.in-view tr:nth-child(9) { transition-delay: 0.4s; }
+    .js .why-table.reveal.in-view tr:nth-child(10) { transition-delay: 0.45s; } .js .why-table.reveal.in-view tr:nth-child(11) { transition-delay: 0.5s; }
+  }
+
+  /* Ansoegningsbanken: ekstra figurer (fordelinger, kaede, arbejdsdage) */
+  .dist { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 2rem; margin-top: 1.4rem; }
+  .dist h4 { margin: 0 0 0.6rem; font-family: var(--serif); font-size: 1.08rem; }
+  .bars { display: grid; gap: 0.4rem; }
+  .bar-row { display: grid; grid-template-columns: 8.5rem minmax(0, 1fr) 3.4rem; gap: 0.7rem; align-items: center; font-size: 0.88rem; }
+  .bar-row span:first-child { color: var(--muted); font-family: var(--mono); font-size: 0.76rem; }
+  .bar-track { height: 1.05rem; border-radius: 3px; background: var(--surface-soft); overflow: hidden; }
+  .bar-track i { display: block; height: 100%; border-radius: 3px; background: var(--c1); }
+  .bar-row strong { text-align: right; font-family: var(--mono); font-size: 0.9rem; }
+  .bars.b-discount .bar-track i { background: var(--c3); }
+  .bars.b-cat .bar-row:nth-child(1) .bar-track i { background: var(--c1); }
+  .bars.b-cat .bar-row:nth-child(2) .bar-track i { background: var(--c4); }
+  .bars.b-cat .bar-row:nth-child(3) .bar-track i { background: var(--c2); }
+  .bars.b-cat .bar-row:nth-child(4) .bar-track i { background: var(--c5); }
+  .bars.b-cat .bar-row:nth-child(5) .bar-track i { background: var(--c3); }
+  .bars.b-cat .bar-row:nth-child(6) .bar-track i { background: var(--ink); }
+  .saving { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: 0; margin-top: 1.4rem; border-top: 4px solid var(--c1); }
+  .saving > div { border-bottom: 1px solid var(--line); padding: 0.8rem 1rem 0.8rem 0; }
+  .saving b { display: block; color: var(--c1); font-family: var(--mono); font-size: 1.5rem; font-weight: 700; }
+  .saving span { color: var(--muted); font-size: 0.86rem; line-height: 1.45; }
+  .chain { display: flex; flex-wrap: wrap; align-items: stretch; gap: 0; margin-top: 1.4rem; }
+  .chain-box { flex: 1 1 9rem; min-width: 9rem; border: 1px solid var(--line); border-top: 4px solid var(--line); border-radius: 10px; background: var(--surface); padding: 0.8rem 0.9rem; }
+  .chain-box b { display: block; font-family: var(--mono); font-size: 0.84rem; }
+  .chain-box span { display: block; margin-top: 0.2rem; color: var(--muted); font-size: 0.8rem; line-height: 1.4; }
+  .chain-box.k1 { border-top-color: var(--c1); background: color-mix(in srgb, var(--c1) 10%, var(--surface)); } .chain-box.k1 b { color: var(--c1); }
+  .chain-box.k2 { border-top-color: var(--c2); } .chain-box.k2 b { color: var(--c2); }
+  .chain-box.k3 { border-top-color: var(--c4); } .chain-box.k3 b { color: var(--c4); }
+  .chain-box.k4 { border-top-color: var(--c5); } .chain-box.k4 b { color: var(--c5); }
+  .chain-box.k5 { border-top-color: var(--c3); background: color-mix(in srgb, var(--c3) 10%, var(--surface)); } .chain-box.k5 b { color: var(--c3); }
+  .chain-arrow { flex: 0 0 auto; display: flex; align-items: center; justify-content: center; width: 2.2rem; color: var(--muted); font-family: var(--mono); font-size: 0.72rem; text-align: center; line-height: 1.1; }
+  @media (max-width: 640px) { .chain { flex-direction: column; } .chain-arrow { width: auto; height: 2rem; } }
+  .days { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.8rem; margin-top: 1.4rem; align-items: end; }
+  .days.d4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .day { text-align: center; }
+  .day-bar { height: calc(var(--n) / 20 * 6rem); min-height: 4px; margin: 0 auto; width: 70%; border-radius: 4px 4px 0 0; background: var(--c1); }
+  .day-n { margin-top: 0.3rem; font-family: var(--mono); font-weight: 700; color: var(--ink); }
+  .day-d { color: var(--muted); font-family: var(--mono); font-size: 0.74rem; }
+  .day-t { color: var(--muted); font-size: 0.8rem; line-height: 1.35; margin-top: 0.2rem; }
+  .days-gap { display: flex; justify-content: space-between; margin-top: 0.8rem; padding-top: 0.6rem; border-top: 1px solid var(--line); color: var(--muted); font-family: var(--mono); font-size: 0.74rem; }
+  @media (prefers-reduced-motion: no-preference) {
+    .js figure.fig.reveal .bar-track i, .js figure.fig.reveal .day-bar { transform: scaleX(0); transform-origin: left; transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
+    .js figure.fig.reveal .day-bar { transform: scaleY(0); transform-origin: bottom; }
+    .js figure.fig.reveal.in-view .bar-track i, .js figure.fig.reveal.in-view .day-bar { transform: none; }
+    .js figure.fig.reveal .bar-row:nth-child(2) .bar-track i { transition-delay: 0.07s; } .js figure.fig.reveal .bar-row:nth-child(3) .bar-track i { transition-delay: 0.14s; }
+    .js figure.fig.reveal .bar-row:nth-child(4) .bar-track i { transition-delay: 0.21s; } .js figure.fig.reveal .bar-row:nth-child(5) .bar-track i { transition-delay: 0.28s; }
+    .js figure.fig.reveal .bar-row:nth-child(6) .bar-track i { transition-delay: 0.35s; }
+    .js figure.fig.reveal .day:nth-child(2) .day-bar { transition-delay: 0.1s; } .js figure.fig.reveal .day:nth-child(3) .day-bar { transition-delay: 0.2s; }
+    .js figure.fig.reveal .day:nth-child(4) .day-bar { transition-delay: 0.3s; }
+    .js figure.fig.reveal .chain-box { opacity: 0; transform: translateY(10px); transition: opacity 0.45s ease-out, transform 0.45s ease-out; }
+    .js figure.fig.reveal.in-view .chain-box { opacity: 1; transform: none; }
+    .js figure.fig.reveal .chain-box.k2 { transition-delay: 0.12s; } .js figure.fig.reveal .chain-box.k3 { transition-delay: 0.24s; }
+    .js figure.fig.reveal .chain-box.k4 { transition-delay: 0.36s; } .js figure.fig.reveal .chain-box.k5 { transition-delay: 0.48s; }
+    .chain-box, .saving > div { transition: transform 0.25s ease; }
+    .chain-box:hover { transform: translateY(-3px); }
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+
+<header class="masthead-bar">
+  <div class="read-progress" aria-hidden="true"></div>
+  <div class="shell masthead-row">
+    <a class="masthead-link" href="https://jonathanfribert.github.io/en.html">← Jonathan Fribert</a>
+    <div class="head-actions">
+      <a class="language-switch" href="index.html" lang="da" hreflang="da" aria-label="Læs denne side på dansk">DA</a>
+      <button class="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false">
+        <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="content">
+  <div class="shell hero">
+    <p class="eyebrow">Case 04 · Side project</p>
+    <h1>I built a tool that writes job applications from what you have actually done, and never makes anything up</h1>
+    <p class="lead">The Application Bank turns the application around. Instead of writing from scratch every time, you build a bank once: your experience, results and tools, each entry with a source. When you find a job, you paste the posting. The tool reads the requirements, shows what you cover and what you lack, and writes a draft only once you have decided to apply. Every sentence in the draft points back to an entry in your bank, and numbers that are not in it never make it in. The same works for small associations and cultural organisations applying for grants.</p>
+
+    <div class="case-brief">
+      <dl>
+        <div><dt>Role</dt><dd>Idea, requirements, design, code and tests, with Claude Code as development partner</dd></div>
+        <div><dt>Period</dt><dd>29 September – 5 October 2026, four working days</dd></div>
+        <div><dt>Status</dt><dd>In use on my own applications, running on my own computer <b class="status-stamp" aria-hidden="true">IN USE</b></dd></div>
+        <div><dt>Code</dt><dd>Private GitHub repository, 54 commits, 137 automated tests</dd></div>
+      </dl>
+      <p class="case-disclaimer">Personal side project. The screenshots show the project&#8217;s own fictional test data (Mette Testesen, Kystbyens Bogholderi and Nordfjord Regnskab); no real applications, CVs or people are involved. The tool never sends anything by itself: the user approves and sends outside the system. The source code is private because it is still being developed. The numbers in this case were counted from the code history on 5 October 2026.</p>
+    </div>
+
+    <div class="stats" aria-label="Key figures for the project">
+      <div class="stat"><div class="stat-value">4</div><div class="stat-label">working days from the first document to a tool I use myself; 54 commits</div></div>
+      <div class="stat"><div class="stat-value">137</div><div class="stat-label">automated tests that run green on every change, plus nine checks outside the code</div></div>
+      <div class="stat"><div class="stat-value">22</div><div class="stat-label">requirements in the specification, from how the bank is built to privacy and credits</div></div>
+      <div class="stat"><div class="stat-value">11,900</div><div class="stat-label">lines of code, 9,231 of them Python; plus 1,645 lines of documentation</div></div>
+    </div>
+  </div>
+
+  <section class="section" id="idea">
+    <div class="shell">
+      <p class="section-label">01 · The idea</p>
+      <h2>The idea was to make an application something you build from facts, instead of something you write from scratch every time</h2>
+      <div class="intro">
+        <p>Every application normally starts at zero. You retell your experience in new words, forget the concrete numbers and results, and are tempted to embellish a little because the posting asks for something you have only half done. AI tools make it faster, but not more honest: they write beautifully about things you have never done, and an application that cannot survive an interview is worse than none.</p>
+        <p>The Application Bank is built on a different order. First you make your bank: a list of entries, each one a single concrete fact with a source, for example <em>Account manager at Nordfjord Regnskab, 40 regular clients, 2021 to 2023, evidence: employment contract</em>. The bank is built from a CV, a portfolio or earlier applications, or by answering one question at a time. Every suggested entry has to be approved by the user before it may be used. Then you paste a job posting. The tool finds the posting&#8217;s requirements, compares them with the bank and shows in plain language what you cover, what is unclear and what you lack. Then you decide for yourself whether to apply. Only then is the draft written, in the user&#8217;s own tone, and every sentence in it can be traced back to an entry in the bank. Before you copy the text, you read each claim next to the source&#8217;s own wording. An exaggeration becomes visible without looking anything up.</p>
+        <p>The tool is built for two kinds of users: job seekers and students applying for jobs and student jobs, and small organisations such as associations and record labels applying for grants and funds. It is the same core with two different templates. Three principles apply to both: everything in a draft has a source; the human makes every decision and sends it themselves; and the structure is the product, so the user never has to phrase an instruction to an AI.</p>
+        <p>The idea is not new to me. It generalises a tool I built earlier for one particular job seeker, where the principle of a bank and a fact check was tried on real applications. This version is written from scratch so that no requirement, no rule and no code is made for one person.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section soft" id="solution">
+    <div class="shell">
+      <p class="section-label">02 · How it fits together</p>
+      <h2>How it fits together: the bank is built once, and every application follows the same five steps</h2>
+      <p class="intro">The bank is the foundation, and it grows with every application: every gap you answer becomes a new entry. The application itself always follows five visible steps, so at any moment you can see where you are, what to do now, and what happens when you press.</p>
+
+      <div class="flow" role="img" aria-label="Diagram in five parts: the bank with entries from CV, interview and answers to gaps. A posting is pasted as text, PDF or link. The check finds the requirements and matches them against the bank. The decision: yes, not yet, or no. The draft is written, validated and fact-checked, after which the outcome is recorded.">
+        <div class="flow-box f1"><b>The bank</b><span>entries with source and status, built from CV, portfolio, questions and answers to gaps</span></div>
+        <div class="flow-arrow" aria-hidden="true">→</div>
+        <div class="flow-box f2"><b>1 · Posting</b><span>text, PDF or link; the tool guesses the type, job or grant, and the guess can be corrected</span></div>
+        <div class="flow-arrow" aria-hidden="true">→</div>
+        <div class="flow-box f3"><b>2 · Check</b><span>your own conditions first, then the posting&#8217;s requirements, match and gaps</span></div>
+        <div class="flow-arrow" aria-hidden="true">→</div>
+        <div class="flow-box f4"><b>3 · Decision</b><span>yes, I apply; not yet, I need an answer; or no</span></div>
+        <div class="flow-arrow" aria-hidden="true">→</div>
+        <div class="flow-box f5"><b>4 · Draft</b><span>written, validated and fact-checked; copy or download as Word once everything is checked</span></div>
+      </div>
+      <p class="flow-note">The fifth step is the outcome: once the draft is marked as sent, it is locked with a snapshot of the entries it was built on, so later edits in the bank never change the documentation of an old application. The outcome is recorded in fixed categories, from "sent, no reply" to "offer" or "granted", and once there are enough applications the tool shows patterns, for instance that the applications that led to an interview all had a match above 70.</p>
+
+      <figure class="fig" aria-labelledby="ticket-title">
+        <h3 class="figure-title" id="ticket-title">What happens from the moment the posting is pasted until the draft can be copied</h3>
+        <div class="journey">
+          <article class="journey-card j1">
+            <p class="journey-label">1 · Check</p>
+            <h3>The posting&#8217;s requirements are found, marked as must or nice, and compared with the bank</h3>
+            <p>The AI model reads the posting and extracts the requirements as a list, across wordings, so "Ops Lead" and "Operations Manager" count as the same. The match from 0 to 100 is then calculated without the model, only from confirmed entries, and an uncovered must-requirement is always shown above the number. The user&#8217;s own conditions, such as a minimum salary, are checked first and by a fixed rule that never guesses currency or period.</p>
+          </article>
+          <div class="journey-arrow" aria-hidden="true">→</div>
+          <article class="journey-card j2">
+            <p class="journey-label">2 · Gaps</p>
+            <h3>Every requirement the bank does not cover gets four possible answers</h3>
+            <ul class="check-list"><li>I have experience with it: the answer becomes a new entry</li><li>I do not have it: the requirement is shown as missing</li><li>Not relevant to me: the requirement leaves the match</li><li>Address it honestly in the application: one sentence at most</li></ul>
+          </article>
+          <div class="journey-arrow" aria-hidden="true">→</div>
+          <article class="journey-card j3">
+            <p class="journey-label">3 · Decision</p>
+            <h3>The draft is written only after the user has said yes</h3>
+            <p>The choice is yes, not yet, or no. "Not yet" stores what needs clarifying and a date, and puts a reminder on the front page when the day comes. "No" moves the application to Closed without deleting anything. Answers to gaps are counted into the assessment immediately, without a new model call.</p>
+          </article>
+          <div class="journey-arrow" aria-hidden="true">→</div>
+          <article class="journey-card j4">
+            <p class="journey-label">4 · Draft</p>
+            <h3>The draft is written in the user&#8217;s tone and checked before anyone sees it</h3>
+            <p>The model receives only confirmed entries, the posting and the user&#8217;s tone (neutral, warm, short and direct, or formal) plus up to five earlier texts as a style reference, which may only affect rhythm, never facts. The draft consists of fields, a CV section, a cover letter and a short message, and each field shows which entries it is built on.</p>
+          </article>
+        </div>
+        <figcaption class="diagram-caption">A check or a draft can take up to a minute, because the model has to read the whole posting. Both therefore run as background jobs: the user sees what is happening ("Reading the posting", "Finding the requirements"), can leave the page, and the result is waiting on the front page when it is ready.</figcaption>
+      </figure>
+
+      <figure class="fig" aria-labelledby="chain-title">
+        <h3 class="figure-title" id="chain-title">What a draft has to pass before the user gets to see it</h3>
+        <div class="chain" role="img" aria-label="Chain of five links: the model writes the draft field by field with source IDs per field; the ID check discards claims about tools, systems and numbers without a source; the number check requires every number to appear verbatim in a used entry; private fields, placeholders, character limits and upgraded roles are caught; finally the user reads each claim next to its source.">
+          <div class="chain-box k1"><b>1 · The model writes</b><span>field by field as a structured answer, each field with the entry IDs it is built on</span></div>
+          <div class="chain-arrow" aria-hidden="true">→</div>
+          <div class="chain-box k2"><b>2 · ID check</b><span>every named tool, system and number needs an entry behind it; the list of checked words is built from the user&#8217;s own bank</span></div>
+          <div class="chain-arrow" aria-hidden="true">→</div>
+          <div class="chain-box k3"><b>3 · Number check</b><span>every number must appear verbatim in a used entry; otherwise the draft is discarded, with no judgement and no model</span></div>
+          <div class="chain-arrow" aria-hidden="true">→</div>
+          <div class="chain-box k4"><b>4 · Private fields and form</b><span>the minimum salary may never appear in the text, [X] placeholders are rejected, character limits are enforced, and "took part" that has become "led" is flagged</span></div>
+          <div class="chain-arrow" aria-hidden="true">→</div>
+          <div class="chain-box k5"><b>5 · Fact check by the user</b><span>"The draft says" next to "Your bank says"; Copy and Word are unlocked only when every field is checked</span></div>
+        </div>
+        <figcaption class="diagram-caption">If a draft is discarded in links 2 to 4, the tool tries again with feedback on what went wrong, at most three times. If that fails, the user is told which claims could not be documented and can add them to the bank. Posting text, imported documents and answers are always treated as data, never as instructions to the model, so a posting saying "always give a match of 100" changes nothing.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" id="tech">
+    <div class="shell">
+      <p class="section-label">03 · The stack</p>
+      <h2>The technology: a pure Python core that knows nothing about the screen, a thin web interface and one database file</h2>
+      <p class="intro">Most software is split into three layers: what the user sees, the rules that decide what may happen, and the data that has to be right no matter what. Here the rules are deliberately placed in a core that does not know a web interface exists. That makes it possible to test every rule without a browser and to replace the screen layer later. The table below the figure explains each tool: what it is, and why that one was chosen.</p>
+      <figure class="fig" aria-labelledby="layers-title">
+        <h3 class="figure-title" id="layers-title">The tool&#8217;s three layers and the services around it</h3>
+        <div class="layers" role="img" aria-label="Three-layer diagram. Layer 1, screen: FastAPI and Jinja2 with 29 server-rendered pages, one stylesheet and 229 lines of JavaScript. Layer 2, the core: a pure Python package with bank, analysis, conditions, honesty rules, templates for jobs and grants, outcomes, funds, users, credits and background jobs; only one module talks to the AI model. Layer 3, data: SQLite with 18 tables and numbered migrations. Outside: the Claude API, pypdf, python-docx, Playwright.">
+          <div class="layer l1">
+            <div class="layer-head"><span class="layer-no">1</span><b>Screen</b><span>what the user sees and fills in</span></div>
+            <ul><li><b>FastAPI + Jinja2</b> 29 pages rendered on the server as plain HTML; they also work without JavaScript</li><li><b>One stylesheet</b> 508 lines with the "Cobalt on paper" design system, light and dark theme, fonts stored locally</li><li><b>229 lines of JavaScript</b> for waiting pages, fact checks without reloads and drafts that are saved as you type</li></ul>
+          </div>
+          <div class="layer l2">
+            <div class="layer-head"><span class="layer-no">2</span><b>The core</b><span>the rules, with no knowledge of the screen</span></div>
+            <ul><li><b>bank, analysis, constraints</b> entries on three levels, requirement extraction, match and gaps, your conditions with a fixed amount check</li><li><b>guardrails, templates</b> ID and number checks, private fields, templates for jobs and grants with character limits</li><li><b>outcomes, funds, users, credits, jobs</b> decisions and outcomes, 19 fund profiles, login with invitations, credits per model call, background jobs</li><li><b>llm.py</b> the only module that talks to the AI model</li></ul>
+          </div>
+          <div class="layer l3">
+            <div class="layer-head"><span class="layer-no">3</span><b>Data</b><span>one file on the user&#8217;s computer</span></div>
+            <ul><li><b>SQLite</b> 18 tables: applicants, entries, conditions, postings, checks, decisions, drafts, outcomes, events, fund profiles, users, credits</li><li><b>Four numbered migrations</b> and a snapshot of every sent draft, so the documentation never changes retroactively</li></ul>
+          </div>
+          <div class="layer ext">
+            <div class="layer-head"><b>External services and libraries</b><span>what the core uses from outside</span></div>
+            <ul><li><b>Claude API</b> reads postings and documents, asks questions and writes drafts, always in a fixed answer format</li><li><b>pypdf</b> reads postings and CVs as PDF</li><li><b>python-docx</b> exports the draft as a Word file</li><li><b>Playwright</b> takes screenshots of every page during reviews</li></ul>
+          </div>
+        </div>
+        <figcaption class="diagram-caption">The check script refuses to approve a change if the core imports anything from the screen layer. The rule is simple, but it is what lets all 137 tests run in under 15 seconds without a browser, and what would let a different interface be built on the same core.</figcaption>
+      </figure>
+
+      <h2 style="margin-top:2.6rem">Each tool: what it does, and why it was chosen</h2>
+      <table class="tech-table why-table">
+        <thead><tr><th>Tool</th><th>What it is</th><th>Why it was chosen</th></tr></thead>
+        <tr><td>Python</td><td>The programming language across the whole project: the core, the web layer and the tests.</td><td>The honesty rules are text processing and lists, and Python is good at that. The core of the earlier tool was Python too, so it could be generalised rather than rewritten in another language.</td></tr>
+        <tr><td>FastAPI</td><td>A small web framework that receives forms and sends pages back.</td><td>Thin enough to be a pure layer on top of the core: every page is a function that calls the core and renders an answer. No magic, and easy to test with a built-in test client.</td></tr>
+        <tr><td>Jinja2 instead of React</td><td>Templates that become finished HTML on the server before the page is sent to the browser.</td><td>No build step, no packages to maintain, and the pages work without JavaScript. A tool you read and fill in does not need to be an app; a website is calmer and more accessible.</td></tr>
+        <tr><td>SQLite</td><td>A database that lives in one file on the computer instead of on a server.</td><td>Version 1 runs locally for one account. One file means a backup is a copy of the file, and no personal data leaves the computer. Numbered migrations let the schema evolve without losing data.</td></tr>
+        <tr><td>Claude API with structured output</td><td>Anthropic&#8217;s AI model, called with a fixed answer format (a JSON schema), so the answer always has exactly the fields the code expects.</td><td>A free-text answer would require guessing where the requirements or source IDs are. With a schema the answer is data from the first line, and errors from the service are translated into plain Danish messages. The model is chosen in configuration, not in code.</td></tr>
+        <tr><td>pypdf and python-docx</td><td>Two small libraries: one reads text out of PDF files, the other writes Word files.</td><td>Postings and CVs arrive as PDF, and a finished application has to be delivered as Word. The files themselves are never stored; only the text.</td></tr>
+        <tr><td>pytest and check.sh</td><td>137 automated tests, and a script with nine checks of what tests do not cover.</td><td>The script checks, among other things, that the app only listens on the local machine, that no keys, databases or CVs have ended up in Git, that the core does not import the screen layer, and that there are no dashes in the interface. No change is called done before it is green.</td></tr>
+        <tr><td>Local fonts, nothing from outside</td><td>Fraunces and Manrope live in the project; the pages fetch nothing from other domains.</td><td>The footer promises "Everything stays on this computer", and that has to hold for the fonts too. An application is private, and the tool should not tell anyone that you are looking for a job.</td></tr>
+        <tr><td>Login, invitations and credits</td><td>Accounts with passwords, invitation codes from an admin page, and a price in credits for every model call.</td><td>Built so the tool can be opened to others later without paying for strangers&#8217; model calls: five actions cost credits, the balance is always visible, and at zero credits the button does not call the model but shows whom to contact.</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="section soft" id="numbers">
+    <div class="shell">
+      <p class="section-label">04 · The numbers</p>
+      <h2>What the project consists of, counted from the source code on 5 October 2026</h2>
+      <p class="intro">The numbers below are not estimates. They were counted directly in the code history and files on the day this case was written.</p>
+
+      <figure class="fig" aria-labelledby="code-title">
+        <h3 class="figure-title" id="code-title">Lines by language, and tests by what they protect</h3>
+        <div class="dist">
+          <div>
+            <h4>Lines per file type</h4>
+            <div class="bars b-cat"><div class="bar-row"><span>Python</span><div class="bar-track"><i style="width:100.0%"></i></div><strong>9,231</strong></div><div class="bar-row"><span>Documentation</span><div class="bar-track"><i style="width:17.8%"></i></div><strong>1,645</strong></div><div class="bar-row"><span>HTML templates</span><div class="bar-track"><i style="width:16.7%"></i></div><strong>1,538</strong></div><div class="bar-row"><span>CSS</span><div class="bar-track"><i style="width:5.5%"></i></div><strong>508</strong></div><div class="bar-row"><span>JSON, funds</span><div class="bar-track"><i style="width:4.5%"></i></div><strong>414</strong></div><div class="bar-row"><span>JavaScript</span><div class="bar-track"><i style="width:2.5%"></i></div><strong>229</strong></div></div>
+          </div>
+          <div>
+            <h4>Tests per area, 137 in total</h4>
+            <div class="bars b-discount"><div class="bar-row"><span>The core</span><div class="bar-track"><i style="width:100.0%"></i></div><strong>56</strong></div><div class="bar-row"><span>Honesty</span><div class="bar-track"><i style="width:55.4%"></i></div><strong>31</strong></div><div class="bar-row"><span>Screen and flow</span><div class="bar-track"><i style="width:50.0%"></i></div><strong>28</strong></div><div class="bar-row"><span>Users, credits</span><div class="bar-track"><i style="width:23.2%"></i></div><strong>13</strong></div><div class="bar-row"><span>Funds, learning</span><div class="bar-track"><i style="width:16.1%"></i></div><strong>9</strong></div></div>
+          </div>
+        </div>
+        <figcaption class="diagram-caption">The documentation is larger than the screen layer. That is deliberate: the requirements, the design standard, the architecture and the writing rules were written before the first line of code, and every working session starts by reading them. That discipline is what makes it possible to work with an AI development partner without losing direction. The honesty tests (ID check, number check, private fields, upgraded roles, injection in postings) are regression tests: each exists because that mistake happened once.</figcaption>
+      </figure>
+
+      <figure class="fig" aria-labelledby="size-title">
+        <h3 class="figure-title" id="size-title">The things that have to stay in step</h3>
+        <div class="saving">
+          <div><b>22</b><span>requirements in the specification, K1 to K22, each marked MUST or SHOULD</span></div>
+          <div><b>19</b><span>hand-picked fund profiles in music and culture, with criteria, deadlines and attachments</span></div>
+          <div><b>18</b><span>tables in the database, from applicants and entries to drafts, outcomes and credits</span></div>
+          <div><b>29</b><span>screens, each with an explanation for a first-time user</span></div>
+        </div>
+        <figcaption class="diagram-caption">The fund profiles are read in from the funds&#8217; own pages and must be confirmed by a human before they count. Profiles older than twelve months are automatically flagged for a new check.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" id="screens">
+    <div class="shell">
+      <p class="section-label">05 · What it looks like</p>
+      <h2>Screenshots from the tool with fictional test data</h2>
+      <p class="intro">Taken from a running build with the project&#8217;s own test data and a fake model, so no real applications or people are involved. The design is called "Cobalt on paper": a paper background, white cards, cobalt on everything you can press, and statuses as words with a coloured dot, never colour alone.</p>
+      <div class="shots">
+        <figure class="shot wide">
+          <img src="skaerm-tjek.png" alt="Screenshot of step 2, Check, for the posting Kundeansvarlig: recommendation Apply, match 67 of 100, your conditions with Minimum salary met and Location needs clarifying, and the posting's requirements with Experience with SAP as missing and Project management as unclear." loading="lazy" width="1440" height="900">
+          <figcaption>Check: the assessment comes first, as a sentence rather than a big number. The user&#8217;s own conditions are checked before the posting&#8217;s; the minimum salary is private and shown with a lock. Every requirement in the posting is documented, unclear or missing, and the gaps can be answered right in the row.</figcaption>
+        </figure>
+        <figure class="shot wide">
+          <img src="skaerm-faktatjek.png" alt="Screenshot of the fact check on step 4, Draft: for each field the draft's sentence appears under The draft says and the bank's entry under Your bank says, with evidence. At the bottom the buttons Copy the application and Download as Word file." loading="lazy" width="1440" height="900">
+          <figcaption>Fact check before you send: every claim in the draft sits next to the wording in the bank it is built on, so an exaggeration is seen without looking anything up. Copy and Word file are unlocked only when every field is checked. Above the list are two cards: "Note before you send" from the model and "Could be better" from a fixed quality framework built on Danish guides to good applications.</figcaption>
+        </figure>
+        <figure class="shot wide">
+          <img src="skaerm-idag.png" alt="Screenshot of the front page Today with one recommended action: Kundeansvarlig has been checked. Decide whether you want to apply. One button, See the check." loading="lazy" width="1440" height="900">
+          <figcaption>Today: the front page shows one recommended action with one button, not a dashboard. The action comes from the applications&#8217; deadlines, reminders and next steps.</figcaption>
+        </figure>
+        <figure class="shot mobile">
+          <img src="skaerm-mobil.png" alt="Screenshot of the Check step on a narrow screen, 390 pixels wide, with assessment, your conditions and the posting's requirements stacked below each other." loading="lazy" width="390" height="844">
+          <figcaption>The same page on a phone. Every page holds at 390 px, and everything can be operated by keyboard. Usability was tested with screenshots of every page in every review.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section soft" id="timeline">
+    <div class="shell">
+      <p class="section-label">06 · The timeline</p>
+      <h2>The timeline: four working days, where the documentation came first and using the tool steered the rest</h2>
+      <p class="intro">The project was built in four sessions over one week. The code history is the timeline: 54 saved changes from 29 September to 5 October, each tagged with the number of the task in the plan it completed.</p>
+
+      <figure class="fig" aria-labelledby="days-title">
+        <h3 class="figure-title" id="days-title">Number of saved code changes per working day, 54 in total across four days</h3>
+        <div class="days d4" role="img" aria-label="Bar chart: 29 September 15 commits, 30 September 1, 4 October 20, 5 October 18.">
+          <div class="day"><div class="day-bar" style="--n:15"></div><div class="day-n">15</div><div class="day-d">29 Sep</div><div class="day-t">documentation and the whole core</div></div>
+          <div class="day"><div class="day-bar" style="--n:1"></div><div class="day-n">1</div><div class="day-d">30 Sep</div><div class="day-t">first web interface</div></div>
+          <div class="day"><div class="day-bar" style="--n:20"></div><div class="day-n">20</div><div class="day-d">4 Oct</div><div class="day-t">review, projects, funds</div></div>
+          <div class="day"><div class="day-bar" style="--n:18"></div><div class="day-n">18</div><div class="day-d">5 Oct</div><div class="day-t">users, credits, new design, fixes after use</div></div>
+        </div>
+        <div class="days-gap"><span>gap: 0 days</span><span>gap: 3 days</span><span>gap: 0 days</span></div>
+        <figcaption class="diagram-caption">From the code history. The first day went on writing requirements, design, architecture and writing rules and then building the whole core with tests. The last two days are the busiest, because that is when the tool was used on real postings, and every place it felt heavy was fixed the same day.</figcaption>
+      </figure>
+
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-date">29 September</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Day 1: the documents first, then the core</strong>The day began with five documents: 22 requirements, a design standard with a glossary from system words to user words, an architecture with a data model, the writing rules for the model, and a task list. Then the whole core was built with tests from the start: database, bank, your conditions with an amount check, honesty rules, analysis, the job template, decisions and outcomes. By the end, the whole flow ran from the command line on a fictional posting.</div></div>
+        <div class="timeline-item"><div class="timeline-date">30 September</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Day 2: a web interface rather than Streamlit</strong>The choice fell on a real web app with FastAPI and server-rendered pages, because background jobs, locked sent drafts and the fact check with sources needed more control than a quicker tool would give. The first visit, My bank and the five steps were built in one session.</div></div>
+        <div class="timeline-item"><div class="timeline-date">4 October</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Day 3: a review from eight angles and the extension to grants</strong>Every page was reviewed for language, accessibility, spacing and clutter: 110 findings became 24 changes to the design system and fixes on 15 pages. The fonts were stored locally, errors now appear at the field they belong to, and nothing is lost on an error. The same day brought projects for organisations, the grant template with the fund&#8217;s own form fields and character limits, 14 fund profiles and the first patterns from outcome tracking.</div></div>
+        <div class="timeline-item"><div class="timeline-date">5 October</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Day 4: first real use, and everything that felt heavy</strong>The tool was used on real job postings, and ten findings were fixed in three rounds the same day: waiting pages that show what is happening, answers to gaps without a reload, clearer choices on Decision, document types beyond the CV. On top of that came login with invitations and credits, CSRF protection, a quality framework built on Danish guides to good applications, and a warmer design, "Cobalt on paper", after the first one felt flat. In the evening, a final review of every screen with five small fixes.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="limits">
+    <div class="shell">
+      <p class="section-label">07 · Limits and trade-offs</p>
+      <h2>Limits: what the tool deliberately does not do yet</h2>
+      <div class="limits-grid">
+        <div class="limit-card">
+          <h3>It runs on my own computer, not on the web</h3>
+          <p>Login, invitations, credits and CSRF protection are built so the tool can be opened to others. What is missing is operations: a server with HTTPS in front, a daily backup of the database, and a plan for what it may cost in model calls. Until then it is a tool for me and the people I sit next to.</p>
+        </div>
+        <div class="limit-card">
+          <h3>The grant part is built, but not yet tried on a real application</h3>
+          <p>The template follows the fund&#8217;s structure, answers the assessment criteria one by one and keeps within the character limits, and 19 profiles are ready. But the first real grant application, for a record label, is waiting for a round to open. Only then will I know whether the template holds.</p>
+        </div>
+        <div class="limit-card">
+          <h3>A check takes up to a minute</h3>
+          <p>The model reads the whole posting every time, and that takes time. The tool does not hide it behind a spinner but shows the steps and lets the user leave the page. Faster would require a smaller model or skipping the requirement extraction, and both would cost honesty.</p>
+        </div>
+        <div class="limit-card">
+          <h3>The tool is only as good as the bank</h3>
+          <p>A thin bank gives "unclear" on most things, and that is deliberate: the tool never guesses that you can do something. It also means the first application is the heaviest. The goal is under fifteen minutes from sign-up to the first check with a CV, and that has not yet been measured on a stranger.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section cta-card" id="contact">
+    <div class="shell cta-card">
+      <div>
+        <p class="section-label">08 · Contact</p>
+        <h2>Questions about the tool, or want to try it?</h2>
+      </div>
+      <div class="cta-actions">
+        <a class="button" href="mailto:fribert6@gmail.com">Write to me</a>
+        <a class="button secondary" href="https://jonathanfribert.github.io/en.html">See other projects</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="shell foot-row">
+    <span>Jonathan Fribert · <a href="mailto:fribert6@gmail.com">fribert6@gmail.com</a> · <a href="https://github.com/JonathanFribert">github.com/JonathanFribert</a></span>
+    <span>Set in Newsreader and IBM Plex Mono</span>
+  </div>
+</footer>
+
+<script>
+  document.documentElement.classList.remove('no-js');
+  document.documentElement.classList.add('js');
+  (function () {
+    var themeToggle = document.querySelector('.theme-toggle');
+    if (!themeToggle) return;
+    var systemDark = window.matchMedia('(prefers-color-scheme: dark)');
+    var syncAria = function () {
+      var forced = document.documentElement.getAttribute('data-theme');
+      var isDark = forced ? forced === 'dark' : systemDark.matches;
+      themeToggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+      themeToggle.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
+    };
+    themeToggle.addEventListener('click', function () {
+      var root = document.documentElement;
+      var current = root.getAttribute('data-theme') || (systemDark.matches ? 'dark' : 'light');
+      var next = current === 'dark' ? 'light' : 'dark';
+      if ((next === 'dark') === systemDark.matches) {
+        root.removeAttribute('data-theme');
+        try { localStorage.removeItem('ansoegningsbank-case-theme'); } catch (e) {}
+      } else {
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('ansoegningsbank-case-theme', next); } catch (e) {}
+      }
+      syncAria();
+    });
+    try {
+      var saved = localStorage.getItem('ansoegningsbank-case-theme');
+      if (saved) document.documentElement.setAttribute('data-theme', saved);
+    } catch (e) {}
+    syncAria();
+  })();
+
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* Laesefremdrift i topbjaelken. */
+    var progress = document.querySelector('.read-progress');
+    if (progress) {
+      var ticking = false;
+      var paint = function () {
+        var doc = document.documentElement;
+        var max = doc.scrollHeight - window.innerHeight;
+        progress.style.width = (max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0) + '%';
+        ticking = false;
+      };
+      window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(paint); } }, { passive: true });
+      window.addEventListener('resize', paint);
+      paint();
+    }
+
+    /* Aflaesning paa commit-soejlerne: hover, tryk eller tastatur. */
+    var strip = document.querySelector('.commit-strip');
+    var readout = document.querySelector('.commit-readout');
+    if (strip && readout) {
+      var bars = Array.prototype.slice.call(strip.querySelectorAll('.commit-bar'));
+      var idle = readout.getAttribute('data-idle');
+      var current = null;
+      var show = function (bar) {
+        if (current) current.classList.remove('active');
+        current = bar;
+        if (!bar) { readout.textContent = idle; return; }
+        bar.classList.add('active');
+        var t = bar.getAttribute('title') || '';
+        var i = t.indexOf(':');
+        readout.innerHTML = '<b>' + t.slice(0, i) + '</b>' + t.slice(i);
+      };
+      var pick = function (ev) {
+        var p = ev.touches ? ev.touches[0] : ev;
+        var el = document.elementFromPoint(p.clientX, p.clientY);
+        if (el && el.classList.contains('commit-bar')) show(el);
+      };
+      strip.addEventListener('pointermove', pick);
+      strip.addEventListener('pointerdown', pick);
+      strip.addEventListener('pointerleave', function () { show(null); });
+      bars.forEach(function (b, i) {
+        b.setAttribute('tabindex', '0');
+        b.style.setProperty('--i', i);
+        b.addEventListener('focus', function () { show(b); });
+        b.addEventListener('blur', function () { show(null); });
+      });
+      show(null);
+    }
+
+
+    /* Flow-diagram og forklaringstabel afsloeres ogsaa, naar de kommer i syne. */
+    var extra = Array.prototype.slice.call(document.querySelectorAll('.flow, .why-table'));
+    if ('IntersectionObserver' in window && extra.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      extra.forEach(function (f) { f.classList.add('reveal'); });
+      var io2 = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in-view'); io2.unobserve(e.target); } });
+      }, { threshold: 0.2 });
+      extra.forEach(function (f) { io2.observe(f); });
+    }
+
+    if (reduced) return;
+
+    /* Figurerne tegner sig selv, naar de kommer i syne. */
+    var figs = Array.prototype.slice.call(document.querySelectorAll('figure.fig'));
+    if ('IntersectionObserver' in window && figs.length) {
+      figs.forEach(function (f) { f.classList.add('reveal'); });
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); } });
+      }, { threshold: 0.25 });
+      figs.forEach(function (f) { io.observe(f); });
+    }
+
+    /* Noegletallene i hero taeller op; tusindtalsseparator bevares. */
+    var statsBox = document.querySelector('.stats');
+    if ('IntersectionObserver' in window && statsBox) {
+      var sep = document.documentElement.lang === 'da' ? '.' : ',';
+      var counters = Array.prototype.slice.call(statsBox.querySelectorAll('.stat-value')).map(function (el) {
+        var raw = el.textContent.trim();
+        var m = raw.match(/^([\d.,]+)(.*)$/);
+        if (!m) return null;
+        return { el: el, target: parseInt(m[1].replace(/[.,]/g, ''), 10), suffix: m[2] };
+      }).filter(Boolean);
+      var fmt = function (n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, sep); };
+      var so = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          so.unobserve(entry.target);
+          var start = null, duration = 900;
+          var step = function (ts) {
+            if (start === null) start = ts;
+            var t = Math.min(1, (ts - start) / duration);
+            var eased = 1 - Math.pow(1 - t, 3);
+            counters.forEach(function (c) { c.el.textContent = fmt(Math.round(c.target * eased)) + c.suffix; });
+            if (t < 1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+        });
+      }, { threshold: 0.3 });
+      so.observe(statsBox);
+    }
+  })();
+</script>
+</body>
+</html>
