@@ -3,21 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Jonathan Fribert | Case: GlobeTunez</title>
-<meta name="description" content="Projektcase om GlobeTunez, en installerbar web-app med radio, kunstnerprofiler, talentshows, billetter og medlemsklub for Blaze It Up Radio Africa og 9thwunder. Bygget af Jonathan Fribert med AI-agenter som udviklingspartnere og dokumenteret med tal fra git og CI.">
+<title>Jonathan Fribert | Case: Blaze It Up Radio Africa-appen</title>
+<meta name="description" content="Projektcase om Blaze It Up Radio Africa-appen, en installerbar web-app med radio, kunstnerprofiler, talentshows, billetter og medlemsklub for Blaze It Up Radio Africa og 9thwunder. Bygget af Jonathan Fribert med AI-agenter som udviklingspartnere og dokumenteret med tal fra git og CI.">
 <meta name="theme-color" content="#F8F3EC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#19130F" media="(prefers-color-scheme: dark)">
-<meta property="og:title" content="Jonathan Fribert | Case: GlobeTunez">
+<meta property="og:title" content="Jonathan Fribert | Case: Blaze It Up Radio Africa-appen">
 <meta property="og:description" content="En musikplatform med radio, talentshows og billetter til et nigeriansk musikmiljø, bygget på 30 arbejdsdage med AI-agenter som udviklingspartnere.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://jonathanfribert.github.io/globetunez-case/">
+<meta property="og:url" content="https://jonathanfribert.github.io/blazeitupradio-case/">
 <meta property="og:locale" content="da_DK">
 <meta property="og:locale:alternate" content="en_GB">
 <meta name="twitter:card" content="summary">
-<link rel="canonical" href="https://jonathanfribert.github.io/globetunez-case/">
-<link rel="alternate" hreflang="da" href="https://jonathanfribert.github.io/globetunez-case/">
-<link rel="alternate" hreflang="en" href="https://jonathanfribert.github.io/globetunez-case/en.html">
-<link rel="alternate" hreflang="x-default" href="https://jonathanfribert.github.io/globetunez-case/">
+<link rel="canonical" href="https://jonathanfribert.github.io/blazeitupradio-case/">
+<link rel="alternate" hreflang="da" href="https://jonathanfribert.github.io/blazeitupradio-case/">
+<link rel="alternate" hreflang="en" href="https://jonathanfribert.github.io/blazeitupradio-case/en.html">
+<link rel="alternate" hreflang="x-default" href="https://jonathanfribert.github.io/blazeitupradio-case/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%238C3D15%22/><text x=%2232%22 y=%2243%22 text-anchor=%22middle%22 font-family=%22Menlo,monospace%22 font-size=%2228%22 font-weight=%22700%22 fill=%22white%22>JF</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -313,6 +313,111 @@
   .admin-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.2rem 1.6rem; margin: 1.6rem 0 0; padding: 0; list-style: none; }
   .admin-list li { border-top: 2px solid var(--line); padding-top: 0.8rem; font-size: 0.94rem; line-height: 1.55; color: var(--muted); }
   .admin-list b { display: block; color: var(--ink); font-family: var(--serif); font-size: 1.1rem; margin-bottom: 0.25rem; }
+
+  /* Kategorifarver til figurerne (valideret for farveblindhed og kontrast i
+     begge temaer): 1 rust, 2 blaa, 3 groen, 4 rav, 5 blomme. */
+  :root { --c1: #C2491C; --c2: #2F6FBF; --c3: #2E9460; --c4: #D9960A; --c5: #9A4FAA; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --c1: #CC6233; --c2: #3E85CC; --c3: #319C69; --c4: #BB8A1E; --c5: #A369BA; }
+  }
+  :root[data-theme="dark"] { --c1: #CC6233; --c2: #3E85CC; --c3: #319C69; --c4: #BB8A1E; --c5: #A369BA; }
+
+  .flow-box { border-top: 4px solid var(--line); }
+  .flow-box.f1 { border-top-color: var(--c2); } .flow-box.f1 b { color: var(--c2); }
+  .flow-box.f2 { border-top-color: var(--c1); } .flow-box.f2 b { color: var(--c1); }
+  .flow-box.f3 { border-top-color: var(--c3); background: color-mix(in srgb, var(--c3) 10%, var(--surface)); } .flow-box.f3 b { color: var(--c3); }
+  .flow-box.f4 { border-top-color: var(--c4); background: color-mix(in srgb, var(--c4) 12%, var(--surface)); } .flow-box.f4 b { color: var(--c4); }
+  .flow-box.f5 { border-top-color: var(--c5); } .flow-box.f5 b { color: var(--c5); }
+  .flow-box.accent { border-color: var(--line); }
+
+  .journey-card.j1 { border-top-color: var(--c2); } .journey-card.j1 .journey-label { color: var(--c2); }
+  .journey-card.j2 { border-top-color: var(--c1); } .journey-card.j2 .journey-label { color: var(--c1); }
+  .journey-card.j3 { border-top-color: var(--c4); } .journey-card.j3 .journey-label { color: var(--c4); }
+  .journey-card.j4 { border-top-color: var(--c3); } .journey-card.j4 .journey-label { color: var(--c3); }
+
+  .coverage-row:nth-child(1) .coverage-track span { background: var(--c1); }
+  .coverage-row:nth-child(2) .coverage-track span { background: var(--c2); }
+  .coverage-row:nth-child(3) .coverage-track span { background: var(--c3); }
+  .coverage-row:nth-child(4) .coverage-track span { background: var(--c4); }
+  .coverage-row:nth-child(5) .coverage-track span { background: var(--c5); }
+  .coverage-row strong { color: var(--ink); }
+
+  .lane-seg.run { background: var(--c1); }
+  .lane-seg.test { background: var(--c3); }
+  .lane-legend i.run { background: var(--c1); }
+  .lane-legend i.test { background: var(--c3); }
+
+  .commit-bar { background: var(--c1); }
+  .commit-bar.wknd { background: color-mix(in srgb, var(--c1) 45%, var(--surface-soft)); }
+  .commit-bar.peak { background: var(--c2); }
+  .commit-bar.zero { background: var(--line); }
+  .commit-bar.active { background: var(--ink); }
+  .commit-peaks b { color: var(--ink); }
+  .commit-peaks i { display: inline-block; width: 0.75rem; height: 0.75rem; margin-right: 0.4rem; border-radius: 2px; background: var(--c1); vertical-align: -0.05rem; }
+  .commit-peaks i.peak { background: var(--c2); }
+  .commit-peaks i.wknd { background: color-mix(in srgb, var(--c1) 45%, var(--surface-soft)); }
+  .commit-peaks i.zero { background: var(--line); }
+
+  /* Trelagsfiguren */
+  .layers { display: grid; grid-template-columns: minmax(0, 1fr) 15rem; gap: 0.8rem 1.2rem; margin-top: 1.4rem; }
+  .layer { border-radius: 10px; border: 1px solid var(--line); border-left: 6px solid var(--line); background: var(--surface); padding: 0.9rem 1.1rem; }
+  .layer.l1 { border-left-color: var(--c2); background: color-mix(in srgb, var(--c2) 7%, var(--surface)); }
+  .layer.l2 { border-left-color: var(--c1); background: color-mix(in srgb, var(--c1) 7%, var(--surface)); }
+  .layer.l3 { border-left-color: var(--c3); background: color-mix(in srgb, var(--c3) 8%, var(--surface)); }
+  .layer.ext { grid-column: 2; grid-row: 1 / span 3; border-left-color: var(--c4); background: color-mix(in srgb, var(--c4) 9%, var(--surface)); }
+  .layer-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.3rem 0.6rem; margin-bottom: 0.5rem; }
+  .layer-head b { font-family: var(--serif); font-size: 1.15rem; }
+  .layer-head span { color: var(--muted); font-size: 0.86rem; }
+  .layer-no { display: inline-grid; place-items: center; width: 1.5rem; height: 1.5rem; border-radius: 50%; color: var(--ground); font-family: var(--mono); font-size: 0.8rem; font-weight: 700; }
+  .layer.l1 .layer-no { background: var(--c2); } .layer.l2 .layer-no { background: var(--c1); } .layer.l3 .layer-no { background: var(--c3); }
+  .layer ul { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 0.35rem 1rem; }
+  .layer.ext ul { grid-template-columns: 1fr; }
+  .layer li { font-size: 0.9rem; line-height: 1.45; color: var(--muted); }
+  .layer li b { color: var(--ink); font-family: var(--mono); font-size: 0.82rem; }
+  .layer-arrow { grid-column: 1; text-align: center; color: var(--muted); font-family: var(--mono); font-size: 0.78rem; margin: -0.3rem 0; }
+  .layer-arrow::before { content: "↕ "; color: var(--accent); }
+  @media (max-width: 760px) {
+    .layers { grid-template-columns: minmax(0, 1fr); }
+    .layer.ext { grid-column: 1; grid-row: auto; }
+  }
+
+  /* Forklaringstabel med tre kolonner */
+  .why-table td:nth-child(2) { color: var(--muted); }
+  .why-table th:nth-child(1), .why-table td:nth-child(1) { width: 11rem; }
+  @media (max-width: 760px) {
+    .why-table, .why-table tbody, .why-table tr, .why-table td, .why-table th { display: block; width: auto; }
+    .why-table thead { display: none; }
+    .why-table tr { border-bottom: 1px solid var(--line); padding: 0.7rem 0; }
+    .why-table td { border: 0; padding: 0.15rem 0; }
+    .why-table td:first-child { white-space: normal; }
+    .why-table td:nth-child(3)::before { content: "Hvorfor: "; font-weight: 700; color: var(--ink); }
+  }
+
+  /* Flere effekter: loeft ved hover, lag og flow der kommer ind i raekkefoelge. */
+  @media (prefers-reduced-motion: no-preference) {
+    .journey-card, .limit-card, .rule-card, .shot, .flow-box, .layer, .admin-list li { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .journey-card:hover, .limit-card:hover, .rule-card:hover, .flow-box:hover, .layer:hover, .admin-list li:hover { transform: translateY(-3px); }
+    .shot:hover { transform: translateY(-3px); box-shadow: 0 12px 28px -18px rgba(0,0,0,0.45); }
+    .js .flow.reveal .flow-box { opacity: 0; transform: translateY(10px); transition: opacity 0.45s ease-out, transform 0.45s ease-out; }
+    .js .flow.reveal .flow-arrow { opacity: 0; transition: opacity 0.3s ease-out; }
+    .js .flow.reveal.in-view .flow-box, .js .flow.reveal.in-view .flow-arrow { opacity: 1; transform: none; }
+    .js .flow.reveal .flow-box:nth-of-type(3), .js .flow.reveal .flow-arrow:nth-of-type(2) { transition-delay: 0.12s; }
+    .js .flow.reveal .flow-box:nth-of-type(5), .js .flow.reveal .flow-arrow:nth-of-type(4) { transition-delay: 0.24s; }
+    .js .flow.reveal .flow-box:nth-of-type(7), .js .flow.reveal .flow-arrow:nth-of-type(6) { transition-delay: 0.36s; }
+    .js .flow.reveal .flow-box:nth-of-type(9), .js .flow.reveal .flow-arrow:nth-of-type(8) { transition-delay: 0.48s; }
+    .js figure.fig.reveal .layer { opacity: 0; transform: translateX(-14px); transition: opacity 0.5s ease-out, transform 0.5s ease-out; }
+    .js figure.fig.reveal.in-view .layer { opacity: 1; transform: none; }
+    .js figure.fig.reveal .layer.l2 { transition-delay: 0.14s; }
+    .js figure.fig.reveal .layer.l3 { transition-delay: 0.28s; }
+    .js figure.fig.reveal .layer.ext { transition-delay: 0.42s; transform: translateX(14px); }
+    .js .why-table.reveal tr { opacity: 0; transition: opacity 0.4s ease-out; }
+    .js .why-table.reveal.in-view tr { opacity: 1; }
+    .js .why-table.reveal.in-view tr:nth-child(2) { transition-delay: 0.05s; } .js .why-table.reveal.in-view tr:nth-child(3) { transition-delay: 0.1s; }
+    .js .why-table.reveal.in-view tr:nth-child(4) { transition-delay: 0.15s; } .js .why-table.reveal.in-view tr:nth-child(5) { transition-delay: 0.2s; }
+    .js .why-table.reveal.in-view tr:nth-child(6) { transition-delay: 0.25s; } .js .why-table.reveal.in-view tr:nth-child(7) { transition-delay: 0.3s; }
+    .js .why-table.reveal.in-view tr:nth-child(8) { transition-delay: 0.35s; } .js .why-table.reveal.in-view tr:nth-child(9) { transition-delay: 0.4s; }
+    .js .why-table.reveal.in-view tr:nth-child(10) { transition-delay: 0.45s; } .js .why-table.reveal.in-view tr:nth-child(11) { transition-delay: 0.5s; }
+  }
 </style>
 </head>
 <body>
@@ -336,34 +441,34 @@
   <div class="shell hero">
     <p class="eyebrow">Case 03 · Partnerprojekt</p>
     <h1>Jeg byggede en musikplatform med radio, talentshows og billetter til et nigeriansk musikmiljø</h1>
-    <p class="lead">GlobeTunez er en installerbar web-app for Blaze It Up Radio Africa og 9thwunder: live radio, kunstnerprofiler, auditions med afstemning, events med billetsalg og en medlemsklub. Bygget mobile-first til billige Android-telefoner og ustabile netværk, med to AI-agenter som udviklingspartnere under skrevne regler.</p>
+    <p class="lead">Blaze It Up Radio Africa er en radiostation og et musikmiljø i Nigeria. Appen samler det, miljøet allerede gør, ét sted: lyt til radioen, se og stem på talentshowets auditions, køb billet til koncerterne, følg kunstnerne og støt dem gennem en medlemsklub. Den er bygget til billige Android-telefoner og ustabilt netværk og udviklet sammen med to AI-agenter efter skrevne regler.</p>
 
     <div class="case-brief">
       <dl>
-        <div><dt>Rolle</dt><dd>Udvikler og produktansvarlig, i partnerskab med radioens vært</dd></div>
+        <div><dt>Rolle</dt><dd>Udvikler og produktansvarlig; radioens vært er partner og kunde</dd></div>
         <div><dt>Periode</dt><dd>9. august – 14. september 2026, 30 arbejdsdage</dd></div>
-        <div><dt>Status</dt><dd>Lukket pilot <b class="status-stamp" aria-hidden="true">PILOT</b></dd></div>
-        <div><dt>Kode</dt><dd>Privat repo, 428 commits, CI grøn på seneste commit</dd></div>
+        <div><dt>Status</dt><dd>Lukket pilot: online, men kun for inviterede testere <b class="status-stamp" aria-hidden="true">PILOT</b></dd></div>
+        <div><dt>Kode</dt><dd>Privat kodebase, 428 commits; alle automatiske tests grønne</dd></div>
       </dl>
-      <p class="case-disclaimer">Partnerprojekt med Blaze It Up Radio Africa og 9thwunder. Casen beskriver kun teknik og arbejdsform. Den indeholder ingen bruger-, omsætnings- eller partnertal, fordi platformen endnu ikke er lanceret offentligt. Alle tal er fra git-historik, kildekode og CI-kørsler pr. 14. september 2026.</p>
+      <p class="case-disclaimer">Partnerprojekt med Blaze It Up Radio Africa og 9thwunder; appens eget navn er GlobeTunez x Blaze It Up Radio. Casen fortæller om teknikken og arbejdsmåden, ikke om forretningen: der er ingen bruger-, omsætnings- eller partnertal, fordi appen endnu ikke er lanceret offentligt. Alle tal stammer fra kodens historik og de automatiske testkørsler pr. 14. september 2026.</p>
     </div>
 
     <div class="stats" aria-label="Nøgletal for projektet">
-      <div class="stat"><div class="stat-value">30</div><div class="stat-label">arbejdsdage med commits, fra 9. august til 14. september</div></div>
-      <div class="stat"><div class="stat-value">428</div><div class="stat-label">commits; 67.970 linjer TypeScript i 498 filer</div></div>
-      <div class="stat"><div class="stat-value">1.587</div><div class="stat-label">unit tests, plus 1.126 SQL-tests af databasens rettigheder</div></div>
-      <div class="stat"><div class="stat-value">105</div><div class="stat-label">versionerede databasemigrationer</div></div>
+      <div class="stat"><div class="stat-value">30</div><div class="stat-label">arbejdsdage, fra 9. august til 14. september</div></div>
+      <div class="stat"><div class="stat-value">428</div><div class="stat-label">commits (gemte ændringer af koden); 67.970 linjer i alt</div></div>
+      <div class="stat"><div class="stat-value">1.587</div><div class="stat-label">automatiske tests af appen, plus 1.126 tests af databasens rettigheder</div></div>
+      <div class="stat"><div class="stat-value">105</div><div class="stat-label">nummererede ændringer af databasen (migrationer)</div></div>
     </div>
   </div>
 
   <section class="section" id="opgaven">
     <div class="shell">
       <p class="section-label">01 · Opgaven</p>
-      <h2>Ét digitalt hjem for et musikmiljø, der allerede findes i virkeligheden</h2>
+      <h2>Opgaven var at bygge ét digitalt samlingssted for et musikmiljø, der allerede findes</h2>
       <div class="intro">
-        <p>Blaze It Up Radio Africa og 9thwunder er et eksisterende græsrodsmiljø i Nigeria: en radiostation, talentshows med afstemning, fysiske koncerter og et magasin. Værten modtager allerede mange audition-videoer fra kunstnere og afholder konkurrencer, hvor publikum stemmer ved selve arrangementet. Det hele kørte på løse kanaler, uden ét sted hvor fans og kunstnere kunne mødes mellem events.</p>
-        <p>Opgaven blev at bygge det sted uden at erstatte det fysiske: en app, der forlænger et event før, under og efter. Fans lytter til radioen, opdager kunstnere, ser og stemmer på auditions, køber billetter og kan melde sig ind i klubben. Kunstnere indsender auditions, får en profil, følgere og adgang til næste mulighed. Arrangøren moderer, åbner og lukker afstemninger, scanner billetter ved døren og ser resultater.</p>
-        <p>Rammerne var hårde fra start: mange brugere har billige Android-telefoner, dyr data og ustabilt netværk. Derfor er appen en installerbar PWA uden app-butik, med én webfont, tydelige handlinger som LISTEN LIVE, VOTE og BUY TICKET, og en regel om at hver netværkshandling skal have en tilstand for indlæsning, succes og sikker fejl med mulighed for at prøve igen.</p>
+        <p>Blaze It Up Radio Africa er en radiostation, og 9thwunder er brandet bag den: talentshows, koncerter, et magasin og en fanklub, drevet fra Lagos med publikum i Nigeria og i den amerikanske diaspora. Det findes i virkeligheden i forvejen. Værten modtager allerede audition-videoer fra kunstnere, afholder konkurrencer, hvor publikum stemmer til selve showet, og sælger billetter til koncerterne. Men det hele foregik på løse kanaler som WhatsApp, Instagram og en ældre hjemmeside, uden ét sted hvor fans og kunstnere kunne mødes mellem to events.</p>
+        <p>Opgaven var at bygge det sted uden at erstatte det fysiske: en app, der gør et event større før, under og efter. Fans lytter til radioen, opdager kunstnere, ser og stemmer på auditions, køber billet og kan melde sig ind i Club 9thwunder, en medlemsklub hvor en del af kontingentet går direkte til én kunstner, som medlemmet selv vælger. Kunstnere sender en audition ind, får en profil og følgere og en vej til næste mulighed. Arrangøren godkender auditions, åbner og lukker afstemninger, scanner billetter ved døren og ser resultaterne.</p>
+        <p>Rammerne var hårde fra start: mange brugere har billige Android-telefoner, dyr mobildata og et netværk, der falder ud. Derfor er appen en PWA, en web-app der installeres direkte fra browseren uden app-butik, med én enkelt skrifttype at hente, store tydelige knapper som LISTEN LIVE, VOTE og BUY TICKET, og en fast regel: hver gang appen taler med serveren, skal brugeren kunne se, at den arbejder, at det lykkedes, eller at det gik galt og kan prøves igen.</p>
       </div>
     </div>
   </section>
@@ -371,50 +476,50 @@
   <section class="section soft" id="loesningen">
     <div class="shell">
       <p class="section-label">02 · Sådan hænger det sammen</p>
-      <h2>Rettigheder i databasen, penge i en hovedbog</h2>
-      <p class="intro">En modulær monolit: én Next.js-app mod én Postgres-database, hvor adgangskontrol ligger som Row Level Security i selve databasen og testes med pgTAP. Frontend skjuler aldrig noget som sikkerhed; det afgør databasen.</p>
+      <h2>Sådan hænger appen sammen: databasen afgør, hvem der må hvad, og hovedbogen holder styr på pengene</h2>
+      <p class="intro">Appen er bygget som ét samlet program (en modulær monolit) oven på én database. Hvem der må se og ændre hvad, afgøres nede i databasen med Row Level Security, altså rettigheder pr. række, og det testes automatisk med pgTAP. At noget er skjult på skærmen, tæller aldrig som sikkerhed; databasen siger nej uanset.</p>
 
       <div class="flow" role="img" aria-label="Diagram: Telefonen kører appen som installerbar PWA. Next.js håndterer server actions og sætter en ny CSP-nonce pr. forespørgsel. Supabase Postgres håndhæver rettigheder med Row Level Security over 105 migrationer. Stripe og Paystack sender webhooks, der verificeres og skrives til en hovedbog, før en billet eller et medlemskab udstedes. Admin-delen håndterer moderation, resultater og dørscanning.">
-        <div class="flow-box"><b>Telefon</b><span>installerbar PWA, offline-side, service worker</span></div>
+        <div class="flow-box f1"><b>Telefon</b><span>appen installeret fra browseren; en offline-side, hvis nettet falder ud</span></div>
         <div class="flow-arrow" aria-hidden="true">→</div>
-        <div class="flow-box"><b>Next.js 16</b><span>server actions, CSP-nonce pr. forespørgsel</span></div>
+        <div class="flow-box f2"><b>Next.js-server</b><span>udfører handlinger på brugerens vegne og tjekker login ved hver forespørgsel</span></div>
         <div class="flow-arrow" aria-hidden="true">→</div>
-        <div class="flow-box accent"><b>Supabase Postgres</b><span>Row Level Security, 105 migrationer</span></div>
+        <div class="flow-box f3"><b>Postgres-database</b><span>rettigheder pr. række (Row Level Security), 105 nummererede ændringer</span></div>
         <div class="flow-arrow" aria-hidden="true">→</div>
-        <div class="flow-box accent"><b>Hovedbog</b><span>Stripe/Paystack-webhooks → billet eller medlemskab</span></div>
+        <div class="flow-box f4"><b>Hovedbog</b><span>Stripe og Paystack melder betalinger ind; først derefter udstedes billet eller medlemskab</span></div>
         <div class="flow-arrow" aria-hidden="true">→</div>
-        <div class="flow-box"><b>Admin</b><span>moderation, resultater, dørscanning</span></div>
+        <div class="flow-box f5"><b>Admin</b><span>godkendelse af auditions, resultater, scanning ved døren</span></div>
       </div>
-      <p class="flow-note">Betalinger følger én regel: hovedbogen er sandheden. En webhook fra Stripe eller Paystack verificeres med signatur, reference, beløb, valuta og produkt, før appen udsteder noget, og den samme hændelse kan ikke udstede to gange. Rigtige penge kan slet ikke flyde, før en manuel låge er åbnet af et menneske; indtil da er alle køb simulerede og mærket som sådan.</p>
+      <p class="flow-note">Betalinger følger én regel: hovedbogen er sandheden. Hovedbogen er appens egen liste over hver eneste betaling, og intet udstedes, før en betaling står der. Når Stripe eller Paystack melder en betaling ind (en såkaldt webhook), kontrollerer appen afsenderens signatur, ordrens reference, beløb, valuta og produkt, før den skriver noget i bogen, og den samme besked kan aldrig udstede to billetter. Rigtige penge kan slet ikke bevæge sig, før et menneske har slået betalinger til med en manuel kontakt; indtil da er alle køb simulerede og tydeligt mærket som test.</p>
 
       <figure class="fig" aria-labelledby="ticket-title">
-        <h3 class="figure-title" id="ticket-title">Én billet gennem systemet</h3>
+        <h3 class="figure-title" id="ticket-title">Hvad der sker, fra en fan køber en billet, til den scannes ved døren</h3>
         <div class="journey">
-          <article class="journey-card">
+          <article class="journey-card j1">
             <p class="journey-label">1 · Køb</p>
-            <h3>Stripe Checkout i dollars, Paystack i naira</h3>
-            <p>Pladsen reserveres i 15 minutter, mens betalingen gennemføres. En gentaget forespørgsel åbner aldrig en ny betaling for den samme ordre.</p>
+            <h3>Fanen betaler med kort gennem Stripe eller Paystack</h3>
+            <p>Fanen vælger en billet i appen og sendes videre til betalingssiden hos Stripe, hvis der betales i dollars, eller hos Paystack, hvis der betales i naira. Imens pladsen betales, holder appen den reserveret i 15 minutter, så to personer ikke kan købe den samme plads. Trykker fanen på "køb" to gange, fordi nettet var langsomt, bliver der stadig kun oprettet én betaling.</p>
           </article>
           <div class="journey-arrow" aria-hidden="true">→</div>
-          <article class="journey-card accent">
-            <p class="journey-label">2 · Webhook</p>
-            <h3>Leverandøren melder tilbage, appen kontrollerer</h3>
-            <ul class="check-list"><li>Signatur verificeret</li><li>Reference matcher ordren</li><li>Beløb og valuta stemmer</li><li>Produktet er det rigtige</li><li>Samme hændelse kun én gang</li></ul>
+          <article class="journey-card j2">
+            <p class="journey-label">2 · Besked fra betalingsleverandøren</p>
+            <h3>Betalingsleverandøren melder tilbage, og appen kontrollerer beskeden</h3>
+            <ul class="check-list"><li>Beskeden er ægte: den er signeret af leverandøren</li><li>Beskeden hører til den rigtige ordre</li><li>Beløb og valuta er dem, fanen skulle betale</li><li>Det er den rigtige billet, der er betalt for</li><li>Samme besked kan kun bruges én gang</li></ul>
           </article>
           <div class="journey-arrow" aria-hidden="true">→</div>
-          <article class="journey-card accent">
+          <article class="journey-card j3">
             <p class="journey-label">3 · Hovedbog</p>
-            <h3>Betalingen bogføres, før noget udstedes</h3>
-            <p>Hovedbogen er sandheden. Er pladsen i mellemtiden udsolgt, oprettes en refusionsanmodning i stedet for en billet.</p>
+            <h3>Betalingen skrives i hovedbogen, før der udstedes noget</h3>
+            <p>Først når beskeden har bestået alle kontroller, skrives betalingen i appens hovedbog, som er den eneste liste, appen stoler på. Er pladsen blevet udsolgt i mellemtiden, får fanen ikke en billet, der ikke findes; i stedet oprettes en anmodning om at betale pengene tilbage.</p>
           </article>
           <div class="journey-arrow" aria-hidden="true">→</div>
-          <article class="journey-card">
+          <article class="journey-card j4">
             <p class="journey-label">4 · Billet</p>
-            <h3>QR-kode i "mine billetter", scannet ved døren</h3>
-            <p>Billetten overlever, at kontoen slettes. En refusion trækker den tilbage igen; det er bevist i databasetestene og øvet i produktion den 14. september.</p>
+            <h3>Billetten ligger som QR-kode i appen og scannes ved døren</h3>
+            <p>Billetten dukker op under "mine billetter" som en QR-kode, som arrangøren scanner ved indgangen. Den forsvinder ikke, selv om fanen sletter sin konto. Bliver pengene betalt tilbage, trækkes billetten tilbage, så den ikke længere kan scannes. Det er bevist i databasetestene og afprøvet med en rigtig betaling i produktion den 14. september.</p>
           </article>
         </div>
-        <figcaption class="diagram-caption">Samme regler gælder for medlemskaber, der fornyer sig selv. Indtil den manuelle låge er åbnet, er alle køb simulerede og mærket som sådan.</figcaption>
+        <figcaption class="diagram-caption">Samme regler gælder for medlemskaber, der fornyer sig selv hver måned. Indtil et menneske har slået rigtige betalinger til, er alle køb simulerede og mærket som test.</figcaption>
       </figure>
     </div>
   </section>
@@ -422,20 +527,48 @@
   <section class="section" id="teknik">
     <div class="shell">
       <p class="section-label">03 · Teknikken</p>
-      <h2>Stack og drift</h2>
-      <table class="tech-table">
-        <tr><th>Del</th><th>Værktøj</th></tr>
-        <tr><td>Frontend</td><td>Next.js 16 (App Router), React 19, TypeScript 5.9, Tailwind CSS 4; leveret som PWA med service worker og offline-side</td></tr>
-        <tr><td>Data</td><td>Supabase: Postgres med Row Level Security, Auth, Storage. Skemaet findes kun som 105 versionerede migrationer, aldrig håndredigeret</td></tr>
-        <tr><td>Betaling</td><td>Stripe Checkout til billetter i USD og automatisk fornyede medlemskaber; Paystack til billetter i naira. Alt bag en manuel låge, donationer ikke bygget</td></tr>
-        <tr><td>Radio</td><td>Stationens eksisterende stream afspilles i appen; "senest spillet" hentes fra radioens egen API, intet opdigtes</td></tr>
-        <tr><td>Test</td><td>1.587 unit tests (Vitest, Testing Library), 1.126 pgTAP-assertions i 67 SQL-filer, Playwright-kørsler for tilgængelighed, ydelse og kritiske brugerrejser</td></tr>
-        <tr><td>CI</td><td>GitHub Actions med tre jobs på hvert push: app (lint, typer, tests, build), database (migrationer og pgTAP i en frisk Postgres) og kritiske browserforløb. 146 kørsler</td></tr>
-        <tr><td>Hosting</td><td>Vercel og hostet Supabase i produktion; lokal Supabase-stack i Docker til udvikling og test. Live video: ingen leverandør valgt endnu</td></tr>
+      <h2>Teknikken: appen består af tre lag, og hvert valg har en begrundelse</h2>
+      <p class="intro">Det meste software er delt i tre lag: det, brugeren ser på skærmen, de regler, der afgør, hvad der må ske, og de data, der skal være rigtige uanset hvad. Figuren viser de tre lag i denne app og de eksterne tjenester, den taler med. Tabellen nedenunder forklarer hvert enkelt værktøj: hvad det er, og hvorfor netop det blev valgt.</p>
+      <figure class="fig" aria-labelledby="layers-title">
+        <h3 class="figure-title" id="layers-title">Appens tre lag og leverandørerne udenom</h3>
+        <div class="layers" role="img" aria-label="Trelagsfigur. Lag 1, præsentation: React og TypeScript, Tailwind CSS og PWA. Lag 2, applikation: Next.js-server med handlinger, webhooks og login-tjek. Lag 3, data: Postgres med Row Level Security, Supabase Auth og Storage. Ved siden af: leverandørerne Stripe, Paystack, Twilio, radiostationens stream og Vercel.">
+          <div class="layer l1">
+            <div class="layer-head"><span class="layer-no">1</span><b>Præsentation</b><span>det, brugeren ser og rører ved</span></div>
+            <ul><li><b>React + TypeScript</b> skærme, knapper og formularer</li><li><b>Tailwind CSS</b> udseende og afstande</li><li><b>PWA</b> installeres fra browseren og viser en offline-side uden net</li></ul>
+          </div>
+          <div class="layer l2">
+            <div class="layer-head"><span class="layer-no">2</span><b>Applikation</b><span>reglerne, udført på serveren</span></div>
+            <ul><li><b>Next.js 16</b> udfører handlinger som "stem" og "køb" på serveren</li><li><b>Webhooks</b> modtager og kontrollerer beskeder fra Stripe og Paystack</li><li><b>Login og sikkerhed</b> hver forespørgsel tjekkes, før den får lov</li></ul>
+          </div>
+          <div class="layer l3">
+            <div class="layer-head"><span class="layer-no">3</span><b>Data</b><span>det, der skal være sandt uanset hvad</span></div>
+            <ul><li><b>Postgres</b> relationel database med 105 nummererede ændringer</li><li><b>Row Level Security</b> rettigheder pr. række, testet med pgTAP</li><li><b>Supabase Auth og Storage</b> konti, adgangskoder, uploadede auditions</li></ul>
+          </div>
+          <div class="layer ext">
+            <div class="layer-head"><b>Eksterne tjenester</b><span>leverandører, appen taler med</span></div>
+            <ul><li><b>Vercel</b> skytjenesten, der kører selve appen</li><li><b>Supabase</b> skytjenesten, der kører databasen</li><li><b>Stripe</b> tager imod betalinger i dollars og abonnementer</li><li><b>Paystack</b> tager imod betalinger i naira</li><li><b>Twilio</b> sender sms-koder ved login</li><li><b>Radiostream</b> stationens egen lydstrøm, som appen afspiller</li></ul>
+          </div>
+        </div>
+        <figcaption class="diagram-caption">Lagene taler kun nedad: skærmen spørger serveren, og serveren spørger databasen. En ekstern tjeneste kan aldrig skrive direkte i databasen. Dens beskeder, for eksempel "betalingen er gennemført" fra Stripe, går altid gennem lag 2, hvor de kontrolleres, før der sker noget.</figcaption>
+      </figure>
+      <h2 style="margin-top:2.6rem">Hvert værktøj: hvad det gør, og hvorfor det blev valgt</h2>
+      <table class="tech-table why-table">
+        <thead><tr><th>Værktøj</th><th>Hvad det er</th><th>Hvorfor det blev valgt</th></tr></thead>
+        <tr><td>TypeScript</td><td>Programmeringssproget i hele appen; JavaScript med typer, så fejl fanges, før koden kører.</td><td>Ét sprog til både skærm og server, og typerne gør det sikrere at lade AI-agenter skrive og ændre store mængder kode.</td></tr>
+        <tr><td>React og Next.js 16</td><td>React tegner skærmene; Next.js er rammen udenom, der også kører serverdelen og bygger siderne.</td><td>Mest udbredte valg til denne slags app, så der findes svar på alt, og Next.js kan udføre handlinger på serveren uden et separat API-projekt.</td></tr>
+        <tr><td>Tailwind CSS</td><td>Værktøj til udseende og layout, skrevet som små klasser direkte i skærmkoden.</td><td>Hurtigt at holde ensartet på tværs af 60 skærme, og ubrugte stilarter fjernes automatisk, så appen bliver lille at hente.</td></tr>
+        <tr><td>PWA</td><td>Progressive Web App: en hjemmeside, der kan installeres på telefonens hjemmeskærm og delvist virke uden net.</td><td>Ingen app-butik, ingen ventetid på godkendelse, og den fylder næsten intet på en billig Android-telefon.</td></tr>
+        <tr><td>Postgres via Supabase</td><td>Postgres er en relationel database (tabeller med rækker og regler). Supabase hoster den og leverer login og fillagring oveni.</td><td>Rettigheder kan håndhæves i selve databasen, så ingen fejl på skærmen kan give adgang til andres data. Supabase sparer en hel driftsafdeling for et lille hold.</td></tr>
+        <tr><td>pgTAP</td><td>Tests, der kører inde i databasen og prøver at læse eller skrive som anonym, logget ind og admin.</td><td>Det er den eneste måde at bevise, at rettighederne holder, uanset hvad appen eller en angriber sender.</td></tr>
+        <tr><td>Vitest og Playwright</td><td>Vitest tester appens kode stykke for stykke; Playwright klikker igennem appen i en rigtig browser.</td><td>Hurtige tests fanger logikfejl på sekunder; browsertests fanger det, en bruger faktisk ville støde på, fx en knap man ikke kan ramme på mobil.</td></tr>
+        <tr><td>GitHub Actions</td><td>Automatiske kontroller, der kører i skyen hver gang kode sendes op (CI).</td><td>Indtil 24. august blev testene kun kørt, når nogen huskede det. Nu kan ingen glemme det, og tallene i denne case kommer herfra.</td></tr>
+        <tr><td>Vercel</td><td>Skytjenesten, der kører appen og leverer den fra servere tæt på brugeren.</td><td>Lavet af folkene bag Next.js, så udrulning er ét tryk, og der er intet at vedligeholde på en server.</td></tr>
+        <tr><td>Stripe og Paystack</td><td>To betalingsleverandører: Stripe til dollars og abonnementer, Paystack til naira og nigerianske kort.</td><td>Blaze havde allerede Stripe på sin amerikanske side, og Stripe kan ikke modtage naira fra nigerianske kort. Paystack kan. Begge taler sammen med appen på samme måde.</td></tr>
+        <tr><td>Twilio</td><td>Tjeneste, der sender sms-koder, når en bruger logger ind eller bekræfter sit telefonnummer.</td><td>Mange nigerianske brugere har et telefonnummer, men ikke en e-mail, de tjekker. Sms-login er i pilot, fordi leverandørens godkendelse til Nigeria endnu ikke er på plads.</td></tr>
       </table>
 
       <figure class="fig" aria-labelledby="coverage-title">
-        <h3 class="figure-title" id="coverage-title">Hvad de 67 databasetestfiler dækker</h3>
+        <h3 class="figure-title" id="coverage-title">Hvad de 67 databasetests kontrollerer, fordelt på område</h3>
         <div class="coverage" role="img" aria-label="Søjlediagram over 67 pgTAP-filer fordelt på fem områder: betaling, billetter og medlemskab 21 filer; konti, roller og misbrug 16; afstemning og auditions 10; klub og dørscanning 10; kunstnere, events og medier 10.">
           <div class="coverage-row"><b>Betaling, billetter og medlemskab<span>reservationer, refusion, webhook-gentagelser, hovedbog</span></b><div class="coverage-track"><span style="width:100%"></span></div><strong>21</strong></div>
           <div class="coverage-row"><b>Konti, roller og misbrug<span>rolleændringer med audit, rate limiting, udelukkelser, sletning</span></b><div class="coverage-track"><span style="width:76.2%"></span></div><strong>16</strong></div>
@@ -443,7 +576,7 @@
           <div class="coverage-row"><b>Klub og dørscanning<span>medlemspas, indløsning, gæsteliste, scanning ved døren</span></b><div class="coverage-track"><span style="width:47.6%"></span></div><strong>10</strong></div>
           <div class="coverage-row"><b>Kunstnere, events og medier<span>ansøgninger, følgere, billeder, live-sessioner</span></b><div class="coverage-track"><span style="width:47.6%"></span></div><strong>10</strong></div>
         </div>
-        <figcaption class="diagram-caption">Grupperet efter filnavn i <code>supabase/tests/</code>. 58 af de 67 filer skifter databaserolle undervejs (anonym, logget ind, service) og prøver at læse eller skrive det, rollen ikke må. Tilsammen 1.126 assertions, alle grønne i CI-kørsel 146.</figcaption>
+        <figcaption class="diagram-caption">Hver søjle er en gruppe testfiler, der kører inde i databasen. 58 af de 67 filer skifter rolle undervejs (anonym gæst, logget ind, system) og prøver at læse eller skrive det, rollen ikke må, for at sikre, at databasen siger nej. Tilsammen 1.126 enkeltkontroller, alle grønne i den seneste automatiske kørsel.</figcaption>
       </figure>
     </div>
   </section>
@@ -472,47 +605,47 @@
           <figcaption>Club 9thwunder: medlemskabet, der validerer én kunstner ad gangen. Siden lister fordelene og sender ind til login, før der kan tegnes noget.</figcaption>
         </figure>
       </div>
-      <h2 style="margin-top:2.6rem">Bag kulissen: admin</h2>
-      <p class="intro">Admin-delen er bygget til én arrangør på en telefon, ikke til en analytiker ved et skrivebord. Den viser kun det, der kræver en beslutning, og hver handling, der rører penge eller offentliggørelse, forklarer sig selv, før den udføres. Skærmbilleder herfra er med vilje udeladt, fordi de viser pilotens kontotal og testbetalinger.</p>
+      <h2 style="margin-top:2.6rem">Arrangørens side af appen: admin</h2>
+      <p class="intro">Admin er den del af appen, som kun arrangøren kan se. Den er bygget til én person med en telefon i hånden midt i et arrangement, ikke til en analytiker ved et skrivebord. Derfor viser den kun det, der kræver en beslutning lige nu, og hver handling, der rører penge eller noget offentligt, forklarer sig selv, før den udføres. Skærmbilleder fra admin er med vilje udeladt, fordi de viser pilotens kontotal og testbetalinger.</p>
       <ul class="admin-list">
-        <li><b>Venter på dig</b>Dashboardet åbner med tre kort: auditions der skal godkendes eller afvises, kunstneransøgninger og betalingstvister. Kan et tal ikke læses, står der "kunne ikke læses lige nu" i stedet for et nul.</li>
-        <li><b>Events og penge adskilt</b>Hvert event har sine egne tal. Naira og dollars vises altid hver for sig og lægges aldrig sammen, og testbetalinger står i egne rækker med tydelig mærkning.</li>
-        <li><b>Kontakter med konsekvens</b>Én side med alle afbrydere: alle betalinger, billetsalg, donationer, festival-tilstand, medlemspas, video i live-sessioner. Pengeafbryderne kræver, at man skriver et ord først, og hver ændring logges med hvem der gjorde det.</li>
-        <li><b>Stats målt på rigtige telefoner</b>Appens åbningstid måles hos brugerne selv, første gang appen indlæses, på de forbindelser de faktisk har. Siden viser median og "langsomste 1 ud af 20" og siger ærligt, at udloggede besøgende ikke tælles.</li>
-        <li><b>Dørscanning uden signal</b>Billetter og medlemspas scannes ved døren med en kode, der kun kræver netværk én gang. Derefter virker scanneren offline, og listen afstemmes, når signalet er tilbage.</li>
-        <li><b>Fejl som en side, ikke en mail</b>Serverfejl samles på en admin-side med kode og tekst, så en fejl i produktion kan læses af den, der driver appen, uden adgang til logs.</li>
+        <li><b>Det, der venter på arrangøren, står øverst</b>Forsiden af admin åbner med tre kort: auditions, der skal godkendes eller afvises, nye ansøgninger fra kunstnere, der vil have en profil, og eventuelle betalingstvister. Kan appen ikke hente et tal i øjeblikket, står der "kunne ikke læses lige nu" i stedet for et nul, så arrangøren aldrig tror, at køen er tom, når den ikke er.</li>
+        <li><b>Hvert event har sine egne tal, og valutaer blandes aldrig</b>Billetsalget vises pr. event, så arrangøren kan se, hvordan den enkelte koncert går. Naira og dollars vises altid hver for sig og lægges aldrig sammen til ét tal, fordi kursen svinger. Testbetalinger står i egne rækker og er tydeligt mærket, så de ikke forveksles med rigtige penge.</li>
+        <li><b>Afbrydere, der kan slukke betalinger og funktioner med det samme</b>Én side samler alle afbrydere: alle betalinger, billetsalg, donationer, en festival-tilstand, der skjuler alt unødvendigt på en koncertaften, medlemspas og video under live-shows. En ændring slår igennem med det samme, også på telefoner, der allerede har appen åben. Pengeafbryderne kræver, at man skriver et bestemt ord først, så ingen trykker ved et uheld, og hver ændring gemmes med navnet på den, der trykkede.</li>
+        <li><b>Statistik målt på brugernes egne telefoner</b>Hvor hurtigt appen åbner, måles ikke i et testmiljø, men hos brugerne selv, første gang appen indlæses, på de mobilforbindelser de faktisk har i Nigeria. Siden viser den typiske åbningstid og den langsomste ud af tyve, så arrangøren kan se, om appen er blevet tungere. Den siger også ærligt, at besøgende, der ikke er logget ind, ikke tælles med.</li>
+        <li><b>Billetscanning ved døren, også uden mobilsignal</b>Ved indgangen åbner arrangøren scanneren med en kode, som kun kræver netværk én gang. Derefter virker scanneren uden forbindelse, fordi gæstelisten ligger gemt på telefonen. Hvad der er scannet, sendes op, når signalet er tilbage, så en koncert i en hal uden dækning ikke går i stå ved døren.</li>
+        <li><b>Fejl i drift samles på én side</b>Når noget går galt på serveren, samles fejlen på en side i admin med fejlkode og en forklarende tekst. Den, der driver appen, kan dermed se, hvad der skete, uden at skulle have adgang til tekniske logfiler eller ringe til en udvikler.</li>
       </ul>
     </div>
   </section>
   <section class="section" id="arbejdsform">
     <div class="shell">
       <p class="section-label">05 · Arbejdsformen</p>
-      <h2>To AI-agenter som udviklere, under skrevne regler</h2>
+      <h2>Arbejdsformen: to AI-agenter skrev koden efter regler, der var skrevet ned på forhånd</h2>
       <div class="intro">
-        <p>Koden er skrevet af Claude Code og Codex, som skiftevis implementerede og gennemgik hinandens arbejde. Min rolle var produktbeslutninger, godkendelser og alt der rører produktion: anvende migrationer, verificere i den hostede database og tage de menneskelige låger, som agenterne ikke må åbne selv.</p>
-        <p>Det fungerede, fordi reglerne stod på skrift i repoet. Dokumentationen er en del af produktet: en ændring uden opdateret TODO, handover, changelog og beslutningslog er ikke færdig. Det er tydeligt i tallene. Beslutningsloggen rummer over 240 nummererede arkitekturbeslutninger, og changelog, beslutningslog og handover fylder tilsammen over en megabyte tekst.</p>
+        <p>Koden er skrevet af to AI-værktøjer, Claude Code og Codex, som skiftevis byggede og gennemgik hinandens arbejde. Min rolle var at tage produktbeslutningerne, godkende hvert trin og udføre alt det, der rører den rigtige drift: lægge databaseændringer i produktion, kontrollere at de virker, og tage de beslutninger, som kun et menneske må tage, for eksempel at slå rigtige betalinger til.</p>
+        <p>Det fungerede, fordi reglerne stod på skrift sammen med koden. Dokumentationen er en del af produktet: en ændring er ikke færdig, før opgavelisten, overdragelsesnoten, ændringsloggen og beslutningsloggen er opdateret. Det kan ses i tallene. Beslutningsloggen rummer over 240 nedskrevne beslutninger om, hvorfor noget er bygget, som det er, og de tre logbøger fylder tilsammen over en megabyte tekst.</p>
       </div>
       <div class="rules">
         <div class="rule-card">
-          <h3>Læs før du skriver</h3>
-          <p>Før en kodeændring læser agenten produkt-, scope-, arkitektur-, sikkerheds- og beslutningsdokumenterne. Ingen må udskifte framework, database, betalings- eller streamingleverandør uden et konkret problem, alternativer og menneskelig godkendelse.</p>
+          <h3>Agenten læser dokumentationen, før den ændrer noget</h3>
+          <p>Før en kodeændring læser agenten dokumenterne om produktet, afgrænsningen, arkitekturen, sikkerheden og de tidligere beslutninger. Ingen må udskifte en teknologi eller leverandør uden et konkret problem, beskrevne alternativer og en godkendelse fra et menneske.</p>
         </div>
         <div class="rule-card">
-          <h3>Gennemsyn fandt rigtige fejl</h3>
-          <p>Reviewrunderne mellem de to agenter fandt blandt andet et race condition, hvor to samtidige godkendelser kunne overskrive hinanden, og en godkendelse, der kunne degradere en admin. Begge blev rettet og bevist med to reelt samtidige databaseforbindelser, ikke kun resonneret om.</p>
+          <h3>De to agenter gennemgik hinandens arbejde og fandt rigtige fejl</h3>
+          <p>Når den ene agent havde bygget noget, gennemgik den anden det, før det blev godkendt. Gennemgangene fandt blandt andet et race condition, altså en fejl, der kun opstår, når to ting sker på præcis samme tid: to administratorer, der godkendte en audition samtidig, kunne overskrive hinanden. De fandt også en godkendelse, der ved et uheld kunne fjerne en administrators rettigheder. Begge fejl blev rettet, og rettelsen blev bevist ved at køre to reelt samtidige databaseforbindelser mod hinanden, ikke bare ved at forklare, at det nok virkede.</p>
         </div>
         <div class="rule-card">
-          <h3>Tal, en maskine genudregner</h3>
-          <p>Indtil 24. august kørte alle tests kun, når nogen huskede det, på én laptop. CI blev indført, efter at changelogen havde påstået 85 testfiler, hvor der var 83. Nu genudregnes hvert tal på hvert push, og denne case bruger kun tal fra den seneste grønne kørsel.</p>
+          <h3>Alle tal genudregnes automatisk, så ingen kan huske forkert</h3>
+          <p>Indtil 24. august kørte alle tests kun, når nogen huskede det, på én laptop. De automatiske kontroller blev indført, efter at ændringsloggen havde påstået 85 testfiler, hvor der var 83. Nu genudregnes hvert tal, hver gang kode sendes op, og denne case bruger kun tal fra den seneste grønne kørsel.</p>
         </div>
         <div class="rule-card">
-          <h3>Fejl i marken, ikke i teorien</h3>
-          <p>Da en tester i Nigeria ikke kunne modtage sms-koder, blev hændelsen diagnosticeret read-only i produktion, dokumenteret med tidsstempler og fejlkoder, og først derefter rettet i appens fejltekster og telefonnummer-håndtering. Ingen gættede løsninger blev slået til.</p>
+          <h3>Fejl blev undersøgt hos rigtige brugere, før de blev rettet</h3>
+          <p>Da en tester i Nigeria ikke kunne modtage sms-koder, blev hændelsen først undersøgt i produktion uden at ændre noget, dokumenteret med tidsstempler og fejlkoder, og først derefter rettet i appens fejltekster og håndtering af telefonnumre. Ingen gættede løsninger blev slået til.</p>
         </div>
       </div>
 
       <figure class="fig" aria-labelledby="ci-title">
-        <h3 class="figure-title" id="ci-title">Ét push, tre kontrolbaner, 6 minutter og 41 sekunder</h3>
+        <h3 class="figure-title" id="ci-title">Tre automatiske kontrolbaner kører, hver gang kode sendes op</h3>
         <div class="lanes" role="img" aria-label="Tidslinje for CI-kørsel 146: app-jobbet tager 3 minutter 52 sekunder med lint, typer, 1.587 tests og build; database-jobbet 1 minut 47 sekunder med Postgres-start, 105 migrationer og 1.126 pgTAP-assertions; browser-jobbet 6 minutter 41 sekunder med Supabase-stack, build, tilgængelighedstjek, ydelsestjek og scanner-fallback.">
           <div class="lane-axis" aria-hidden="true"><div></div><div><span style="left:0">0:00</span><span style="left:29.9%">2:00</span><span style="left:59.9%">4:00</span><span style="left:100%">6:41</span></div></div>
           <div class="lane"><div class="lane-label"><b>app</b><span>3 min 52 s</span></div><div class="lane-track"><span class="lane-seg setup" style="left:0.0%;width:6.2%" title="opsætning">opsætning</span><span class="lane-seg run narrow" style="left:6.2%;width:4.0%" title="lint">lint</span><span class="lane-seg run narrow" style="left:10.2%;width:2.7%" title="typer">typer</span><span class="lane-seg test" style="left:13.0%;width:36.4%" title="1.587 unit tests">1.587 unit tests</span><span class="lane-seg run" style="left:49.4%;width:7.2%" title="build">build</span><span class="lane-seg run narrow" style="left:56.6%;width:1.2%" title=""></span></div></div>
@@ -520,7 +653,7 @@
           <div class="lane"><div class="lane-label"><b>kritiske browserforløb</b><span>6 min 41 s</span></div><div class="lane-track"><span class="lane-seg setup" style="left:0.0%;width:19.5%" title="opsætning, Chromium">opsætning, Chromium</span><span class="lane-seg run" style="left:19.5%;width:33.7%" title="Supabase-stack">Supabase-stack</span><span class="lane-seg run" style="left:53.1%;width:21.4%" title="build + testdata">build + testdata</span><span class="lane-seg test" style="left:74.6%;width:11.2%" title="tilgængelighed">tilgængelighed</span><span class="lane-seg test" style="left:85.8%;width:11.2%" title="ydelse">ydelse</span><span class="lane-seg test narrow" style="left:97.0%;width:3.0%" title="scan">scan</span></div></div>
         </div>
         <div class="lane-legend" aria-hidden="true"><span><i></i>Opsætning</span><span><i class="run"></i>Byg og klargør</span><span><i class="test"></i>Tests</span></div>
-        <figcaption class="diagram-caption">Målt på CI-kørsel 146, commit <code>fbb90fc</code>, 14. september 2026. De tre jobs kører parallelt, så et push er færdigkontrolleret, når det langsomste er i mål. Varighederne er GitHub Actions' egne tidsstempler pr. trin.</figcaption>
+        <figcaption class="diagram-caption">Målt på automatisk kørsel nummer 146 den 14. september 2026. De tre baner kører samtidig, så en ændring er færdigkontrolleret, når den langsomste er i mål. Varighederne er GitHub Actions' egne tidsstempler pr. trin.</figcaption>
       </figure>
     </div>
   </section>
@@ -528,24 +661,24 @@
   <section class="section soft" id="forloeb">
     <div class="shell">
       <p class="section-label">06 · Forløbet</p>
-      <h2>Fem uger med git-historikken som tidslinje</h2>
-      <p class="intro">Fra første commit til pilot på 30 arbejdsdage. Datoerne er fra git-historikken og beslutningsloggen.</p>
+      <h2>Forløbet: fem uger fra første linje kode til lukket pilot</h2>
+      <p class="intro">Fra første linje kode til lukket pilot på 30 arbejdsdage. Datoerne er fra kodens historik og beslutningsloggen.</p>
 
       <figure class="fig" aria-labelledby="commits-title">
-        <h3 class="figure-title" id="commits-title">428 commits på 37 kalenderdage</h3>
-        <div class="commit-strip" role="img" aria-label="Søjlediagram over commits pr. dag fra 9. august til 14. september 2026. Tre toppe: 9. august med 46, 12. august med 45 og 27. august med 37. Syv dage uden commits, de fleste i september."><span class="commit-bar wknd" style="--n:46" title="9. aug.: 46 commits"></span><span class="commit-bar" style="--n:13" title="10. aug.: 13 commits"></span><span class="commit-bar" style="--n:23" title="11. aug.: 23 commits"></span><span class="commit-bar" style="--n:45" title="12. aug.: 45 commits"></span><span class="commit-bar" style="--n:34" title="13. aug.: 34 commits"></span><span class="commit-bar" style="--n:32" title="14. aug.: 32 commits"></span><span class="commit-bar wknd" style="--n:7" title="15. aug.: 7 commits"></span><span class="commit-bar wknd" style="--n:5" title="16. aug.: 5 commits"></span><span class="commit-bar" style="--n:13" title="17. aug.: 13 commits"></span><span class="commit-bar" style="--n:10" title="18. aug.: 10 commits"></span><span class="commit-bar" style="--n:3" title="19. aug.: 3 commits"></span><span class="commit-bar" style="--n:3" title="20. aug.: 3 commits"></span><span class="commit-bar zero" style="--n:0" title="21. aug.: 0 commits"></span><span class="commit-bar wknd zero" style="--n:0" title="22. aug.: 0 commits"></span><span class="commit-bar wknd" style="--n:6" title="23. aug.: 6 commits"></span><span class="commit-bar" style="--n:10" title="24. aug.: 10 commits"></span><span class="commit-bar" style="--n:1" title="25. aug.: 1 commit"></span><span class="commit-bar" style="--n:2" title="26. aug.: 2 commits"></span><span class="commit-bar" style="--n:37" title="27. aug.: 37 commits"></span><span class="commit-bar" style="--n:19" title="28. aug.: 19 commits"></span><span class="commit-bar wknd" style="--n:12" title="29. aug.: 12 commits"></span><span class="commit-bar wknd zero" style="--n:0" title="30. aug.: 0 commits"></span><span class="commit-bar" style="--n:1" title="31. aug.: 1 commit"></span><span class="commit-bar" style="--n:15" title="1. sep.: 15 commits"></span><span class="commit-bar" style="--n:28" title="2. sep.: 28 commits"></span><span class="commit-bar" style="--n:6" title="3. sep.: 6 commits"></span><span class="commit-bar" style="--n:2" title="4. sep.: 2 commits"></span><span class="commit-bar wknd" style="--n:1" title="5. sep.: 1 commit"></span><span class="commit-bar wknd" style="--n:15" title="6. sep.: 15 commits"></span><span class="commit-bar" style="--n:17" title="7. sep.: 17 commits"></span><span class="commit-bar zero" style="--n:0" title="8. sep.: 0 commits"></span><span class="commit-bar" style="--n:14" title="9. sep.: 14 commits"></span><span class="commit-bar zero" style="--n:0" title="10. sep.: 0 commits"></span><span class="commit-bar" style="--n:1" title="11. sep.: 1 commit"></span><span class="commit-bar wknd zero" style="--n:0" title="12. sep.: 0 commits"></span><span class="commit-bar wknd zero" style="--n:0" title="13. sep.: 0 commits"></span><span class="commit-bar" style="--n:7" title="14. sep.: 7 commits"></span></div>
+        <h3 class="figure-title" id="commits-title">Antal gemte kodeændringer pr. dag, 428 i alt over 37 dage</h3>
+        <div class="commit-strip" role="img" aria-label="Søjlediagram over commits pr. dag fra 9. august til 14. september 2026. Tre toppe: 9. august med 46, 12. august med 45 og 27. august med 37. Syv dage uden commits, de fleste i september."><span class="commit-bar wknd peak" style="--n:46" title="9. aug.: 46 commits"></span><span class="commit-bar" style="--n:13" title="10. aug.: 13 commits"></span><span class="commit-bar" style="--n:23" title="11. aug.: 23 commits"></span><span class="commit-bar peak" style="--n:45" title="12. aug.: 45 commits"></span><span class="commit-bar" style="--n:34" title="13. aug.: 34 commits"></span><span class="commit-bar" style="--n:32" title="14. aug.: 32 commits"></span><span class="commit-bar wknd" style="--n:7" title="15. aug.: 7 commits"></span><span class="commit-bar wknd" style="--n:5" title="16. aug.: 5 commits"></span><span class="commit-bar" style="--n:13" title="17. aug.: 13 commits"></span><span class="commit-bar" style="--n:10" title="18. aug.: 10 commits"></span><span class="commit-bar" style="--n:3" title="19. aug.: 3 commits"></span><span class="commit-bar" style="--n:3" title="20. aug.: 3 commits"></span><span class="commit-bar zero" style="--n:0" title="21. aug.: 0 commits"></span><span class="commit-bar wknd zero" style="--n:0" title="22. aug.: 0 commits"></span><span class="commit-bar wknd" style="--n:6" title="23. aug.: 6 commits"></span><span class="commit-bar" style="--n:10" title="24. aug.: 10 commits"></span><span class="commit-bar" style="--n:1" title="25. aug.: 1 commit"></span><span class="commit-bar" style="--n:2" title="26. aug.: 2 commits"></span><span class="commit-bar peak" style="--n:37" title="27. aug.: 37 commits"></span><span class="commit-bar" style="--n:19" title="28. aug.: 19 commits"></span><span class="commit-bar wknd" style="--n:12" title="29. aug.: 12 commits"></span><span class="commit-bar wknd zero" style="--n:0" title="30. aug.: 0 commits"></span><span class="commit-bar" style="--n:1" title="31. aug.: 1 commit"></span><span class="commit-bar" style="--n:15" title="1. sep.: 15 commits"></span><span class="commit-bar" style="--n:28" title="2. sep.: 28 commits"></span><span class="commit-bar" style="--n:6" title="3. sep.: 6 commits"></span><span class="commit-bar" style="--n:2" title="4. sep.: 2 commits"></span><span class="commit-bar wknd" style="--n:1" title="5. sep.: 1 commit"></span><span class="commit-bar wknd" style="--n:15" title="6. sep.: 15 commits"></span><span class="commit-bar" style="--n:17" title="7. sep.: 17 commits"></span><span class="commit-bar zero" style="--n:0" title="8. sep.: 0 commits"></span><span class="commit-bar" style="--n:14" title="9. sep.: 14 commits"></span><span class="commit-bar zero" style="--n:0" title="10. sep.: 0 commits"></span><span class="commit-bar" style="--n:1" title="11. sep.: 1 commit"></span><span class="commit-bar wknd zero" style="--n:0" title="12. sep.: 0 commits"></span><span class="commit-bar wknd zero" style="--n:0" title="13. sep.: 0 commits"></span><span class="commit-bar" style="--n:7" title="14. sep.: 7 commits"></span></div>
         <div class="commit-axis" aria-hidden="true"><span style="grid-column:1">9. aug.</span><span style="grid-column:8">16. aug.</span><span style="grid-column:15">23. aug.</span><span style="grid-column:22">30. aug.</span><span style="grid-column:29">6. sep.</span><span style="grid-column:35 / span 3; text-align:right">14. sep.</span></div>
         <p class="commit-readout" data-idle="Hold musen over eller tryk på en søjle for dato og antal." aria-live="polite">Hold musen over eller tryk på en søjle for dato og antal.</p>
-        <div class="commit-peaks"><span><b>46</b> 9. aug., fundamentet</span><span><b>45</b> 12. aug., første deploy og billetter</span><span><b>37</b> 27. aug., rettelser efter stort review</span><span><b>7</b> dage uden commits</span></div>
-        <figcaption class="diagram-caption">Fra <code>git log</code> i app-repoet; lyse søjler er weekend, grå er dage uden commits. Tempoet falder bevidst i september: der flyttes arbejde fra kode til drift, dokumentation og test med rigtige mennesker.</figcaption>
+        <div class="commit-peaks"><span><i class="peak"></i><b>46</b> 9. aug., fundamentet</span><span><i class="peak"></i><b>45</b> 12. aug., første udrulning og billetter</span><span><i class="peak"></i><b>37</b> 27. aug., rettelser efter stort gennemsyn</span><span><i class="wknd"></i>weekend</span><span><i class="zero"></i><b>7</b> dage uden commits</span></div>
+        <figcaption class="diagram-caption">Hver søjle er én dag, og højden er antallet af gemte kodeændringer den dag. Blå søjler er de tre travleste dage, lyse søjler er weekender, og grå søjler er dage uden ændringer. Tempoet falder bevidst i september, fordi arbejdet flytter fra at skrive kode til at drive appen, dokumentere og teste med rigtige mennesker.</figcaption>
       </figure>
       <div class="timeline">
-        <div class="timeline-item"><div class="timeline-date">9. aug.</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Fundament på én dag</strong>46 commits: Next.js og Supabase sat op, rigtig login, kunstnerprofiler med følg-funktion, events og PWA-installation. Otte skærme gennemgået og godkendt samme dag.</div></div>
-        <div class="timeline-item"><div class="timeline-date">10. aug.</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Ny prioritering efter samtale med partneren</strong>Auditions, afstemning, live-deltagelse og medlemsklub rykkede ind i kernen; det brede community-spor blev lagt på is. Nedskrevet som beslutning ADR-014, så agenterne byggede efter den nye retning.</div></div>
-        <div class="timeline-item"><div class="timeline-date">24. aug.</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>CI på hvert push</strong>Lint, typer, unit tests, build og pgTAP mod en frisk Postgres i GitHub Actions. Supabase-CLI'en blev låst til én version, efter at en automatisk opdatering havde ændret databasens rettigheder under projektet.</div></div>
-        <div class="timeline-item"><div class="timeline-date">2. sep.</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Betalingsskinner</strong>Paystack til naira, Stripe til dollars, medlemskaber der fornyer sig selv. Når den manuelle låge åbnes, slutter simuleringen helt: en skinne uden klar leverandør sælger intet i stedet for at lade som om.</div></div>
-        <div class="timeline-item"><div class="timeline-date">7.–9. sep.</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Drift før lancering</strong>Komplette resultatopgørelser for admin, login med engangskode på mail, nigerianske telefonnumre normaliseret til ét format, og første hændelse fra en rigtig tester i Nigeria, der ikke kunne modtage sms-koder.</div></div>
-        <div class="timeline-item"><div class="timeline-date">14. sep.</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Refusion øvet i produktion</strong>En testbillet til én dollar købt gennem Stripe Checkout og refunderet via API; statusrute, returside og "mine billetter" fulgte med. Øvelsen afslørede, at den hostede database manglede rettigheder, som den lokale havde som standard. Rettet med en migration og tolv nye databasetests.</div></div>
+        <div class="timeline-item"><div class="timeline-date">9. aug.</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Dag 1: fundamentet bygges på én dag</strong>På den første dag blev app og database sat op, og de grundlæggende dele kom på plads: rigtig login, kunstnerprofiler med mulighed for at følge en kunstner, events og installation på telefonens hjemmeskærm. Det blev til 46 gemte ændringer. Otte skærme blev gennemgået på skærmbilleder og godkendt samme aften.</div></div>
+        <div class="timeline-item"><div class="timeline-date">10. aug.</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Ny prioritering efter en samtale med partneren</strong>Efter en samtale med radioens vært blev rækkefølgen ændret. Auditions, afstemning, deltagelse under live-shows og medlemsklubben rykkede ind som det vigtigste, fordi det er dér, miljøet allerede har aktivitet. Et bredt socialt netværk med feed og beskeder blev lagt på is. Ændringen blev skrevet ned som en formel beslutning, så AI-agenterne byggede efter den nye retning fra næste dag.</div></div>
+        <div class="timeline-item"><div class="timeline-date">24. aug.</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Automatiske kontroller indføres ved hver ændring</strong>Fra denne dag blev al kode kontrolleret automatisk i skyen, hver gang den blev sendt op: kodekvalitet, typer, tests, bygning og databasetests mod en frisk database. Samme uge blev databaseværktøjet låst til én bestemt version, efter at en automatisk opdatering havde ændret databasens rettigheder midt i projektet uden at nogen havde bedt om det.</div></div>
+        <div class="timeline-item"><div class="timeline-date">2. sep.</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>To betalingsveje: naira og dollars</strong>Betalinger blev delt i to veje: Paystack til naira og Stripe til dollars, og medlemskaber, der fornyer sig selv hver måned. Samtidig blev reglen fastlagt, at den dag et menneske slår rigtige betalinger til, stopper al simulering. En valuta, der endnu ikke har en klar leverandør, sælger så ingenting i stedet for at lade som om.</div></div>
+        <div class="timeline-item"><div class="timeline-date">7.–9. sep.</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Klargøring til drift før lanceringen</strong>Tre dage med det, der skal til, før rigtige mennesker kan bruge appen: komplette resultatopgørelser til arrangøren, login med en engangskode sendt på mail, nigerianske telefonnumre skrevet på én fast måde, uanset hvordan brugeren taster dem, og den første hændelse fra en rigtig tester i Nigeria, der ikke kunne modtage sms-koder.</div></div>
+        <div class="timeline-item"><div class="timeline-date">14. sep.</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>En refusion øves med rigtige penge i produktion</strong>For at være sikker på, at penge kan gå begge veje, blev en testbillet til én dollar købt gennem Stripe og betalt tilbage igen. Billetstatus, kvitteringsside og "mine billetter" fulgte korrekt med. Øvelsen afslørede, at databasen i produktion manglede nogle rettigheder, som den lokale udgave havde som standard. Det blev rettet med én databaseændring og tolv nye databasetests, der sikrer, at det ikke sker igen.</div></div>
       </div>
     </div>
   </section>
@@ -553,23 +686,23 @@
   <section class="section" id="graenser">
     <div class="shell">
       <p class="section-label">07 · Grænser og fravalg</p>
-      <h2>Hvad platformen bevidst ikke er endnu</h2>
+      <h2>Grænser: hvad appen bevidst ikke kan endnu</h2>
       <div class="limits-grid">
         <div class="limit-card">
-          <h3>Ikke lanceret offentligt</h3>
-          <p>Appen kører i en lukket pilot med testere. Derfor står der ingen brugertal, afstemningstal eller omsætning her, og skærmbillederne viser kun den offentlige del. Admin er beskrevet i tekst, ikke vist.</p>
+          <h3>Appen er ikke lanceret offentligt endnu</h3>
+          <p>Appen er online, men kun inviterede testere bruger den, mens de sidste dele gøres klar. Derfor står der ingen brugertal, afstemningstal eller omsætning i denne case, og skærmbillederne viser kun den offentlige del. Arrangørens admin er beskrevet i tekst, ikke vist.</p>
         </div>
         <div class="limit-card">
-          <h3>Ingen rigtige penge uden godkendelse</h3>
-          <p>Billetter og medlemskaber er bygget mod Stripe og Paystack, men står bag en manuel låge. Donationer og medlemskaber i naira er ikke bygget. Udbetaling til kunstnere sker manuelt og gennemgået, aldrig automatisk.</p>
+          <h3>Rigtige betalinger kræver en menneskelig godkendelse</h3>
+          <p>Billetter og medlemskaber er bygget mod Stripe og Paystack, men rigtige betalinger kræver, at et menneske slår dem til. Donationer og medlemskaber i naira er ikke bygget endnu. Udbetaling til kunstnere sker manuelt og gennemgået, aldrig automatisk.</p>
         </div>
         <div class="limit-card">
-          <h3>Ingen livestream-leverandør</h3>
-          <p>Live-deltagelse (stem, ønsk en sang, følg den der spiller) er bygget, men selve videoen afventer et valg mellem Mux, Cloudflare Stream og Amazon IVS efter en prøve på et rigtigt netværk i Nigeria.</p>
+          <h3>Der er ikke valgt en leverandør af live-video endnu</h3>
+          <p>Deltagelse under et live-show (stem, ønsk en sang, følg den der spiller) er bygget, men selve videostreamen afventer et valg af leverandør, Mux, Cloudflare Stream eller Amazon IVS, efter en prøve på et rigtigt mobilnetværk i Nigeria.</p>
         </div>
         <div class="limit-card">
-          <h3>Community udskudt</h3>
-          <p>Et bredt socialt feed med opslag, kommentarer og beskeder er bevidst fravalgt i første version. Kernen er kæden fra audition til afstemning til event til støtte, ikke endnu et socialt netværk.</p>
+          <h3>Et socialt netværk er udskudt med vilje</h3>
+          <p>Et bredt socialt feed med opslag, kommentarer og beskeder er bevidst fravalgt i første version. Kernen er kæden fra audition til afstemning til koncert til støtte, ikke endnu et socialt netværk.</p>
         </div>
       </div>
     </div>
@@ -615,15 +748,15 @@
       var next = current === 'dark' ? 'light' : 'dark';
       if ((next === 'dark') === systemDark.matches) {
         root.removeAttribute('data-theme');
-        try { localStorage.removeItem('globetunez-case-theme'); } catch (e) {}
+        try { localStorage.removeItem('blazeitupradio-case-theme'); } catch (e) {}
       } else {
         root.setAttribute('data-theme', next);
-        try { localStorage.setItem('globetunez-case-theme', next); } catch (e) {}
+        try { localStorage.setItem('blazeitupradio-case-theme', next); } catch (e) {}
       }
       syncAria();
     });
     try {
-      var saved = localStorage.getItem('globetunez-case-theme');
+      var saved = localStorage.getItem('blazeitupradio-case-theme');
       if (saved) document.documentElement.setAttribute('data-theme', saved);
     } catch (e) {}
     syncAria();
@@ -678,6 +811,17 @@
         b.addEventListener('blur', function () { show(null); });
       });
       show(null);
+    }
+
+
+    /* Flow-diagram og forklaringstabel afsloeres ogsaa, naar de kommer i syne. */
+    var extra = Array.prototype.slice.call(document.querySelectorAll('.flow, .why-table'));
+    if ('IntersectionObserver' in window && extra.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      extra.forEach(function (f) { f.classList.add('reveal'); });
+      var io2 = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in-view'); io2.unobserve(e.target); } });
+      }, { threshold: 0.2 });
+      extra.forEach(function (f) { io2.observe(f); });
     }
 
     if (reduced) return;

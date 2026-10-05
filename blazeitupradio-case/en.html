@@ -3,21 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Jonathan Fribert | Case: GlobeTunez</title>
-<meta name="description" content="Project case about GlobeTunez, an installable web app with radio, artist profiles, talent shows, tickets and a members' club for Blaze It Up Radio Africa and 9thwunder. Built by Jonathan Fribert with AI agents as development partners and documented with numbers from git and CI.">
+<title>Jonathan Fribert | Case: The Blaze It Up Radio Africa app</title>
+<meta name="description" content="Project case about the Blaze It Up Radio Africa app, an installable web app with radio, artist profiles, talent shows, tickets and a members' club for Blaze It Up Radio Africa and 9thwunder. Built by Jonathan Fribert with AI agents as development partners and documented with numbers from git and CI.">
 <meta name="theme-color" content="#F8F3EC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#19130F" media="(prefers-color-scheme: dark)">
-<meta property="og:title" content="Jonathan Fribert | Case: GlobeTunez">
+<meta property="og:title" content="Jonathan Fribert | Case: The Blaze It Up Radio Africa app">
 <meta property="og:description" content="A music platform with radio, talent shows and tickets for a Nigerian music scene, built in 30 working days with AI agents as development partners.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://jonathanfribert.github.io/globetunez-case/en.html">
+<meta property="og:url" content="https://jonathanfribert.github.io/blazeitupradio-case/en.html">
 <meta property="og:locale" content="en_GB">
 <meta property="og:locale:alternate" content="da_DK">
 <meta name="twitter:card" content="summary">
-<link rel="canonical" href="https://jonathanfribert.github.io/globetunez-case/en.html">
-<link rel="alternate" hreflang="da" href="https://jonathanfribert.github.io/globetunez-case/">
-<link rel="alternate" hreflang="en" href="https://jonathanfribert.github.io/globetunez-case/en.html">
-<link rel="alternate" hreflang="x-default" href="https://jonathanfribert.github.io/globetunez-case/">
+<link rel="canonical" href="https://jonathanfribert.github.io/blazeitupradio-case/en.html">
+<link rel="alternate" hreflang="da" href="https://jonathanfribert.github.io/blazeitupradio-case/">
+<link rel="alternate" hreflang="en" href="https://jonathanfribert.github.io/blazeitupradio-case/en.html">
+<link rel="alternate" hreflang="x-default" href="https://jonathanfribert.github.io/blazeitupradio-case/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%238C3D15%22/><text x=%2232%22 y=%2243%22 text-anchor=%22middle%22 font-family=%22Menlo,monospace%22 font-size=%2228%22 font-weight=%22700%22 fill=%22white%22>JF</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -313,6 +313,111 @@
   .admin-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.2rem 1.6rem; margin: 1.6rem 0 0; padding: 0; list-style: none; }
   .admin-list li { border-top: 2px solid var(--line); padding-top: 0.8rem; font-size: 0.94rem; line-height: 1.55; color: var(--muted); }
   .admin-list b { display: block; color: var(--ink); font-family: var(--serif); font-size: 1.1rem; margin-bottom: 0.25rem; }
+
+  /* Kategorifarver til figurerne (valideret for farveblindhed og kontrast i
+     begge temaer): 1 rust, 2 blaa, 3 groen, 4 rav, 5 blomme. */
+  :root { --c1: #C2491C; --c2: #2F6FBF; --c3: #2E9460; --c4: #D9960A; --c5: #9A4FAA; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --c1: #CC6233; --c2: #3E85CC; --c3: #319C69; --c4: #BB8A1E; --c5: #A369BA; }
+  }
+  :root[data-theme="dark"] { --c1: #CC6233; --c2: #3E85CC; --c3: #319C69; --c4: #BB8A1E; --c5: #A369BA; }
+
+  .flow-box { border-top: 4px solid var(--line); }
+  .flow-box.f1 { border-top-color: var(--c2); } .flow-box.f1 b { color: var(--c2); }
+  .flow-box.f2 { border-top-color: var(--c1); } .flow-box.f2 b { color: var(--c1); }
+  .flow-box.f3 { border-top-color: var(--c3); background: color-mix(in srgb, var(--c3) 10%, var(--surface)); } .flow-box.f3 b { color: var(--c3); }
+  .flow-box.f4 { border-top-color: var(--c4); background: color-mix(in srgb, var(--c4) 12%, var(--surface)); } .flow-box.f4 b { color: var(--c4); }
+  .flow-box.f5 { border-top-color: var(--c5); } .flow-box.f5 b { color: var(--c5); }
+  .flow-box.accent { border-color: var(--line); }
+
+  .journey-card.j1 { border-top-color: var(--c2); } .journey-card.j1 .journey-label { color: var(--c2); }
+  .journey-card.j2 { border-top-color: var(--c1); } .journey-card.j2 .journey-label { color: var(--c1); }
+  .journey-card.j3 { border-top-color: var(--c4); } .journey-card.j3 .journey-label { color: var(--c4); }
+  .journey-card.j4 { border-top-color: var(--c3); } .journey-card.j4 .journey-label { color: var(--c3); }
+
+  .coverage-row:nth-child(1) .coverage-track span { background: var(--c1); }
+  .coverage-row:nth-child(2) .coverage-track span { background: var(--c2); }
+  .coverage-row:nth-child(3) .coverage-track span { background: var(--c3); }
+  .coverage-row:nth-child(4) .coverage-track span { background: var(--c4); }
+  .coverage-row:nth-child(5) .coverage-track span { background: var(--c5); }
+  .coverage-row strong { color: var(--ink); }
+
+  .lane-seg.run { background: var(--c1); }
+  .lane-seg.test { background: var(--c3); }
+  .lane-legend i.run { background: var(--c1); }
+  .lane-legend i.test { background: var(--c3); }
+
+  .commit-bar { background: var(--c1); }
+  .commit-bar.wknd { background: color-mix(in srgb, var(--c1) 45%, var(--surface-soft)); }
+  .commit-bar.peak { background: var(--c2); }
+  .commit-bar.zero { background: var(--line); }
+  .commit-bar.active { background: var(--ink); }
+  .commit-peaks b { color: var(--ink); }
+  .commit-peaks i { display: inline-block; width: 0.75rem; height: 0.75rem; margin-right: 0.4rem; border-radius: 2px; background: var(--c1); vertical-align: -0.05rem; }
+  .commit-peaks i.peak { background: var(--c2); }
+  .commit-peaks i.wknd { background: color-mix(in srgb, var(--c1) 45%, var(--surface-soft)); }
+  .commit-peaks i.zero { background: var(--line); }
+
+  /* Trelagsfiguren */
+  .layers { display: grid; grid-template-columns: minmax(0, 1fr) 15rem; gap: 0.8rem 1.2rem; margin-top: 1.4rem; }
+  .layer { border-radius: 10px; border: 1px solid var(--line); border-left: 6px solid var(--line); background: var(--surface); padding: 0.9rem 1.1rem; }
+  .layer.l1 { border-left-color: var(--c2); background: color-mix(in srgb, var(--c2) 7%, var(--surface)); }
+  .layer.l2 { border-left-color: var(--c1); background: color-mix(in srgb, var(--c1) 7%, var(--surface)); }
+  .layer.l3 { border-left-color: var(--c3); background: color-mix(in srgb, var(--c3) 8%, var(--surface)); }
+  .layer.ext { grid-column: 2; grid-row: 1 / span 3; border-left-color: var(--c4); background: color-mix(in srgb, var(--c4) 9%, var(--surface)); }
+  .layer-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.3rem 0.6rem; margin-bottom: 0.5rem; }
+  .layer-head b { font-family: var(--serif); font-size: 1.15rem; }
+  .layer-head span { color: var(--muted); font-size: 0.86rem; }
+  .layer-no { display: inline-grid; place-items: center; width: 1.5rem; height: 1.5rem; border-radius: 50%; color: var(--ground); font-family: var(--mono); font-size: 0.8rem; font-weight: 700; }
+  .layer.l1 .layer-no { background: var(--c2); } .layer.l2 .layer-no { background: var(--c1); } .layer.l3 .layer-no { background: var(--c3); }
+  .layer ul { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 0.35rem 1rem; }
+  .layer.ext ul { grid-template-columns: 1fr; }
+  .layer li { font-size: 0.9rem; line-height: 1.45; color: var(--muted); }
+  .layer li b { color: var(--ink); font-family: var(--mono); font-size: 0.82rem; }
+  .layer-arrow { grid-column: 1; text-align: center; color: var(--muted); font-family: var(--mono); font-size: 0.78rem; margin: -0.3rem 0; }
+  .layer-arrow::before { content: "↕ "; color: var(--accent); }
+  @media (max-width: 760px) {
+    .layers { grid-template-columns: minmax(0, 1fr); }
+    .layer.ext { grid-column: 1; grid-row: auto; }
+  }
+
+  /* Forklaringstabel med tre kolonner */
+  .why-table td:nth-child(2) { color: var(--muted); }
+  .why-table th:nth-child(1), .why-table td:nth-child(1) { width: 11rem; }
+  @media (max-width: 760px) {
+    .why-table, .why-table tbody, .why-table tr, .why-table td, .why-table th { display: block; width: auto; }
+    .why-table thead { display: none; }
+    .why-table tr { border-bottom: 1px solid var(--line); padding: 0.7rem 0; }
+    .why-table td { border: 0; padding: 0.15rem 0; }
+    .why-table td:first-child { white-space: normal; }
+    .why-table td:nth-child(3)::before { content: "Why: "; font-weight: 700; color: var(--ink); }
+  }
+
+  /* Flere effekter: loeft ved hover, lag og flow der kommer ind i raekkefoelge. */
+  @media (prefers-reduced-motion: no-preference) {
+    .journey-card, .limit-card, .rule-card, .shot, .flow-box, .layer, .admin-list li { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .journey-card:hover, .limit-card:hover, .rule-card:hover, .flow-box:hover, .layer:hover, .admin-list li:hover { transform: translateY(-3px); }
+    .shot:hover { transform: translateY(-3px); box-shadow: 0 12px 28px -18px rgba(0,0,0,0.45); }
+    .js .flow.reveal .flow-box { opacity: 0; transform: translateY(10px); transition: opacity 0.45s ease-out, transform 0.45s ease-out; }
+    .js .flow.reveal .flow-arrow { opacity: 0; transition: opacity 0.3s ease-out; }
+    .js .flow.reveal.in-view .flow-box, .js .flow.reveal.in-view .flow-arrow { opacity: 1; transform: none; }
+    .js .flow.reveal .flow-box:nth-of-type(3), .js .flow.reveal .flow-arrow:nth-of-type(2) { transition-delay: 0.12s; }
+    .js .flow.reveal .flow-box:nth-of-type(5), .js .flow.reveal .flow-arrow:nth-of-type(4) { transition-delay: 0.24s; }
+    .js .flow.reveal .flow-box:nth-of-type(7), .js .flow.reveal .flow-arrow:nth-of-type(6) { transition-delay: 0.36s; }
+    .js .flow.reveal .flow-box:nth-of-type(9), .js .flow.reveal .flow-arrow:nth-of-type(8) { transition-delay: 0.48s; }
+    .js figure.fig.reveal .layer { opacity: 0; transform: translateX(-14px); transition: opacity 0.5s ease-out, transform 0.5s ease-out; }
+    .js figure.fig.reveal.in-view .layer { opacity: 1; transform: none; }
+    .js figure.fig.reveal .layer.l2 { transition-delay: 0.14s; }
+    .js figure.fig.reveal .layer.l3 { transition-delay: 0.28s; }
+    .js figure.fig.reveal .layer.ext { transition-delay: 0.42s; transform: translateX(14px); }
+    .js .why-table.reveal tr { opacity: 0; transition: opacity 0.4s ease-out; }
+    .js .why-table.reveal.in-view tr { opacity: 1; }
+    .js .why-table.reveal.in-view tr:nth-child(2) { transition-delay: 0.05s; } .js .why-table.reveal.in-view tr:nth-child(3) { transition-delay: 0.1s; }
+    .js .why-table.reveal.in-view tr:nth-child(4) { transition-delay: 0.15s; } .js .why-table.reveal.in-view tr:nth-child(5) { transition-delay: 0.2s; }
+    .js .why-table.reveal.in-view tr:nth-child(6) { transition-delay: 0.25s; } .js .why-table.reveal.in-view tr:nth-child(7) { transition-delay: 0.3s; }
+    .js .why-table.reveal.in-view tr:nth-child(8) { transition-delay: 0.35s; } .js .why-table.reveal.in-view tr:nth-child(9) { transition-delay: 0.4s; }
+    .js .why-table.reveal.in-view tr:nth-child(10) { transition-delay: 0.45s; } .js .why-table.reveal.in-view tr:nth-child(11) { transition-delay: 0.5s; }
+  }
 </style>
 </head>
 <body>
@@ -336,34 +441,34 @@
   <div class="shell hero">
     <p class="eyebrow">Case 03 · Partner project</p>
     <h1>I built a music platform with radio, talent shows and tickets for a Nigerian music scene</h1>
-    <p class="lead">GlobeTunez is an installable web app for Blaze It Up Radio Africa and 9thwunder: live radio, artist profiles, auditions with voting, events with ticket sales and a members' club. Built mobile-first for low-end Android phones and unstable networks, with two AI agents as development partners working under written rules.</p>
+    <p class="lead">Blaze It Up Radio Africa is a radio station and a music scene in Nigeria. The app brings what the scene already does into one place: listen to the station, watch and vote on the talent show's auditions, buy tickets to the concerts, follow the artists and support them through a members' club. It is built for low-end Android phones and unstable networks, and developed together with two AI agents under written rules.</p>
 
     <div class="case-brief">
       <dl>
-        <div><dt>Role</dt><dd>Developer and product owner, in partnership with the station's host</dd></div>
+        <div><dt>Role</dt><dd>Developer and product owner; the station's host is partner and client</dd></div>
         <div><dt>Period</dt><dd>9 August – 14 September 2026, 30 working days</dd></div>
-        <div><dt>Status</dt><dd>Closed pilot <b class="status-stamp" aria-hidden="true">PILOT</b></dd></div>
-        <div><dt>Code</dt><dd>Private repo, 428 commits, CI green on the latest commit</dd></div>
+        <div><dt>Status</dt><dd>Closed pilot: online, but only for invited testers <b class="status-stamp" aria-hidden="true">PILOT</b></dd></div>
+        <div><dt>Code</dt><dd>Private codebase, 428 commits; all automated tests green</dd></div>
       </dl>
-      <p class="case-disclaimer">Partner project with Blaze It Up Radio Africa and 9thwunder. This case covers only the technology and the way of working. It contains no user, revenue or partner figures, because the platform has not launched publicly yet. All numbers come from git history, source code and CI runs as of 14 September 2026.</p>
+      <p class="case-disclaimer">Partner project with Blaze It Up Radio Africa and 9thwunder; the app's own name is GlobeTunez x Blaze It Up Radio. This case is about the technology and the way of working, not the business: there are no user, revenue or partner figures, because the app has not launched publicly yet. All numbers come from the code's history and the automated test runs as of 14 September 2026.</p>
     </div>
 
     <div class="stats" aria-label="Key figures for the project">
-      <div class="stat"><div class="stat-value">30</div><div class="stat-label">working days with commits, from 9 August to 14 September</div></div>
-      <div class="stat"><div class="stat-value">428</div><div class="stat-label">commits; 67,970 lines of TypeScript in 498 files</div></div>
-      <div class="stat"><div class="stat-value">1,587</div><div class="stat-label">unit tests, plus 1,126 SQL tests of the database's permissions</div></div>
-      <div class="stat"><div class="stat-value">105</div><div class="stat-label">versioned database migrations</div></div>
+      <div class="stat"><div class="stat-value">30</div><div class="stat-label">working days, from 9 August to 14 September</div></div>
+      <div class="stat"><div class="stat-value">428</div><div class="stat-label">commits (saved changes to the code); 67,970 lines in total</div></div>
+      <div class="stat"><div class="stat-value">1,587</div><div class="stat-label">automated tests of the app, plus 1,126 tests of the database's permissions</div></div>
+      <div class="stat"><div class="stat-value">105</div><div class="stat-label">numbered changes to the database (migrations)</div></div>
     </div>
   </div>
 
   <section class="section" id="brief">
     <div class="shell">
       <p class="section-label">01 · The brief</p>
-      <h2>One digital home for a music scene that already exists in the real world</h2>
+      <h2>The brief was to build one digital meeting place for a music scene that already exists</h2>
       <div class="intro">
-        <p>Blaze It Up Radio Africa and 9thwunder are an existing grassroots scene in Nigeria: a radio station, talent shows with audience voting, physical concerts and a magazine. The host already receives plenty of audition videos from artists and runs competitions where the crowd votes at the event itself. All of it ran on loose channels, with no single place where fans and artists could meet between events.</p>
-        <p>The brief was to build that place without replacing the physical side: an app that extends an event before, during and after. Fans listen to the radio, discover artists, watch and vote on auditions, buy tickets and can join the club. Artists submit auditions, get a profile, followers and a path to the next opportunity. The organiser moderates, opens and closes votes, scans tickets at the door and reads the results.</p>
-        <p>The constraints were hard from day one: many users have low-end Android phones, expensive data and unstable connections. So the app is an installable PWA with no app store, one webfont, unmistakable actions such as LISTEN LIVE, VOTE and BUY TICKET, and a rule that every network action needs a loading state, a success state and a safe failure state with a retry.</p>
+        <p>Blaze It Up Radio Africa is a radio station, and 9thwunder is the brand behind it: talent shows, concerts, a magazine and a fan club, run from Lagos with an audience in Nigeria and in the American diaspora. It already exists in the real world. The host already receives audition videos from artists, runs competitions where the crowd votes at the show itself, and sells tickets to the concerts. But all of it ran on loose channels such as WhatsApp, Instagram and an older website, with no single place where fans and artists could meet between two events.</p>
+        <p>The brief was to build that place without replacing the physical side: an app that makes an event bigger before, during and after. Fans listen to the radio, discover artists, watch and vote on auditions, buy a ticket and can join Club 9thwunder, a members' club where part of the fee goes directly to one artist the member chooses. Artists submit an audition, get a profile and followers, and a path to the next opportunity. The organiser approves auditions, opens and closes votes, scans tickets at the door and reads the results.</p>
+        <p>The constraints were hard from day one: many users have low-end Android phones, expensive mobile data and a network that drops. So the app is a PWA, a web app installed straight from the browser with no app store, with a single font to download, big unmistakable buttons such as LISTEN LIVE, VOTE and BUY TICKET, and one fixed rule: every time the app talks to the server, the user must be able to see that it is working, that it succeeded, or that it failed and can be retried.</p>
       </div>
     </div>
   </section>
@@ -371,50 +476,50 @@
   <section class="section soft" id="solution">
     <div class="shell">
       <p class="section-label">02 · How it fits together</p>
-      <h2>Permissions in the database, money in a ledger</h2>
-      <p class="intro">A modular monolith: one Next.js app against one Postgres database, where access control lives as Row Level Security inside the database itself and is tested with pgTAP. The frontend never hides anything as a security measure; the database decides.</p>
+      <h2>How the app fits together: the database decides who may do what, and the ledger keeps track of the money</h2>
+      <p class="intro">The app is built as one program (a modular monolith) on top of one database. Who may see and change what is decided down in the database with Row Level Security, that is, permissions per row, and it is tested automatically with pgTAP. Something being hidden on screen never counts as security; the database says no regardless.</p>
 
       <div class="flow" role="img" aria-label="Diagram: the phone runs the app as an installable PWA. Next.js handles server actions and sets a fresh CSP nonce per request. Supabase Postgres enforces permissions with Row Level Security across 105 migrations. Stripe and Paystack send webhooks that are verified and written to a ledger before a ticket or membership is issued. The admin area handles moderation, results and door scanning.">
-        <div class="flow-box"><b>Phone</b><span>installable PWA, offline page, service worker</span></div>
+        <div class="flow-box f1"><b>Phone</b><span>the app installed from the browser; an offline page if the network drops</span></div>
         <div class="flow-arrow" aria-hidden="true">→</div>
-        <div class="flow-box"><b>Next.js 16</b><span>server actions, CSP nonce per request</span></div>
+        <div class="flow-box f2"><b>Next.js server</b><span>performs actions on the user's behalf and checks the sign-in on every request</span></div>
         <div class="flow-arrow" aria-hidden="true">→</div>
-        <div class="flow-box accent"><b>Supabase Postgres</b><span>Row Level Security, 105 migrations</span></div>
+        <div class="flow-box f3"><b>Postgres database</b><span>permissions per row (Row Level Security), 105 numbered changes</span></div>
         <div class="flow-arrow" aria-hidden="true">→</div>
-        <div class="flow-box accent"><b>Ledger</b><span>Stripe/Paystack webhooks → ticket or membership</span></div>
+        <div class="flow-box f4"><b>Ledger</b><span>Stripe and Paystack report payments; only then is a ticket or membership issued</span></div>
         <div class="flow-arrow" aria-hidden="true">→</div>
-        <div class="flow-box"><b>Admin</b><span>moderation, results, door scanning</span></div>
+        <div class="flow-box f5"><b>Admin</b><span>approving auditions, results, scanning at the door</span></div>
       </div>
-      <p class="flow-note">Payments follow one rule: the ledger is the truth. A webhook from Stripe or Paystack is verified by signature, reference, amount, currency and product before the app issues anything, and the same event can never issue twice. Real money cannot flow at all until a human opens a manual gate; until then every purchase is simulated and labelled as such.</p>
+      <p class="flow-note">Payments follow one rule: the ledger is the truth. The ledger is the app's own list of every single payment, and nothing is issued until a payment is in it. When Stripe or Paystack reports a payment (a so-called webhook), the app checks the sender's signature, the order reference, amount, currency and product before writing anything into the ledger, and the same message can never issue two tickets. Real money cannot move at all until a human has switched payments on with a manual switch; until then every purchase is simulated and clearly labelled as a test.</p>
 
       <figure class="fig" aria-labelledby="ticket-title">
-        <h3 class="figure-title" id="ticket-title">One ticket through the system</h3>
+        <h3 class="figure-title" id="ticket-title">What happens from the moment a fan buys a ticket until it is scanned at the door</h3>
         <div class="journey">
-          <article class="journey-card">
+          <article class="journey-card j1">
             <p class="journey-label">1 · Purchase</p>
-            <h3>Stripe Checkout in dollars, Paystack in naira</h3>
-            <p>The seat is reserved for 15 minutes while the payment completes. A retried request never opens a second payment for the same order.</p>
+            <h3>The fan pays by card through Stripe or Paystack</h3>
+            <p>The fan picks a ticket in the app and is sent on to the payment page at Stripe when paying in dollars, or at Paystack when paying in naira. While the seat is being paid for, the app keeps it reserved for 15 minutes, so two people cannot buy the same seat. If the fan taps "buy" twice because the network was slow, still only one payment is created.</p>
           </article>
           <div class="journey-arrow" aria-hidden="true">→</div>
-          <article class="journey-card accent">
-            <p class="journey-label">2 · Webhook</p>
-            <h3>The provider reports back, the app checks</h3>
-            <ul class="check-list"><li>Signature verified</li><li>Reference matches the order</li><li>Amount and currency agree</li><li>The product is the right one</li><li>Each event settles only once</li></ul>
+          <article class="journey-card j2">
+            <p class="journey-label">2 · Message from the payment provider</p>
+            <h3>The payment provider reports back, and the app checks the message</h3>
+            <ul class="check-list"><li>The message is genuine: it is signed by the provider</li><li>The message belongs to the right order</li><li>Amount and currency are what the fan was meant to pay</li><li>It is the right ticket that has been paid for</li><li>The same message can only be used once</li></ul>
           </article>
           <div class="journey-arrow" aria-hidden="true">→</div>
-          <article class="journey-card accent">
+          <article class="journey-card j3">
             <p class="journey-label">3 · Ledger</p>
-            <h3>The payment is booked before anything is issued</h3>
-            <p>The ledger is the truth. If the tier sold out in the meantime, a refund request is created instead of a ticket.</p>
+            <h3>The payment is written into the ledger before anything is issued</h3>
+            <p>Only once the message has passed every check is the payment written into the app's ledger, the one list the app trusts. If the seats sold out in the meantime, the fan does not get a ticket that does not exist; instead a request to pay the money back is created.</p>
           </article>
           <div class="journey-arrow" aria-hidden="true">→</div>
-          <article class="journey-card">
+          <article class="journey-card j4">
             <p class="journey-label">4 · Ticket</p>
-            <h3>QR code under "my tickets", scanned at the door</h3>
-            <p>The ticket outlives the account being deleted. A refund revokes it again; proven in the database tests and rehearsed in production on 14 September.</p>
+            <h3>The ticket sits in the app as a QR code and is scanned at the door</h3>
+            <p>The ticket appears under "my tickets" as a QR code that the organiser scans at the entrance. It does not disappear even if the fan deletes their account. If the money is paid back, the ticket is revoked so it can no longer be scanned. This is proven in the database tests and was rehearsed with a real payment in production on 14 September.</p>
           </article>
         </div>
-        <figcaption class="diagram-caption">The same rules apply to memberships that renew themselves. Until the manual gate is opened, every purchase is simulated and labelled as such.</figcaption>
+        <figcaption class="diagram-caption">The same rules apply to memberships that renew themselves every month. Until a human has switched real payments on, every purchase is simulated and labelled as a test.</figcaption>
       </figure>
     </div>
   </section>
@@ -422,20 +527,48 @@
   <section class="section" id="tech">
     <div class="shell">
       <p class="section-label">03 · The stack</p>
-      <h2>Tech and operations</h2>
-      <table class="tech-table">
-        <tr><th>Part</th><th>Tool</th></tr>
-        <tr><td>Frontend</td><td>Next.js 16 (App Router), React 19, TypeScript 5.9, Tailwind CSS 4; delivered as a PWA with a service worker and an offline page</td></tr>
-        <tr><td>Data</td><td>Supabase: Postgres with Row Level Security, Auth, Storage. The schema exists only as 105 versioned migrations, never hand-edited</td></tr>
-        <tr><td>Payments</td><td>Stripe Checkout for tickets in USD and auto-renewing memberships; Paystack for tickets in naira. All behind a manual gate, donations not built</td></tr>
-        <tr><td>Radio</td><td>The station's existing stream plays inside the app; "recently played" comes from the station's own API, nothing is made up</td></tr>
-        <tr><td>Tests</td><td>1,587 unit tests (Vitest, Testing Library), 1,126 pgTAP assertions in 67 SQL files, Playwright runs for accessibility, performance and critical user journeys</td></tr>
-        <tr><td>CI</td><td>GitHub Actions with three jobs on every push: app (lint, types, tests, build), database (migrations and pgTAP in a fresh Postgres) and critical browser flows. 146 runs</td></tr>
-        <tr><td>Hosting</td><td>Vercel and hosted Supabase in production; a local Supabase stack in Docker for development and tests. Live video: no provider chosen yet</td></tr>
+      <h2>The technology: the app consists of three layers, and every choice has a reason</h2>
+      <p class="intro">Most software is split into three layers: what the user sees on screen, the rules that decide what may happen, and the data that has to be right no matter what. The figure shows the three layers in this app and the external services it talks to. The table below explains each tool: what it is, and why that one was chosen.</p>
+      <figure class="fig" aria-labelledby="layers-title">
+        <h3 class="figure-title" id="layers-title">The app's three layers and the providers around it</h3>
+        <div class="layers" role="img" aria-label="Three-layer diagram. Layer 1, presentation: React and TypeScript, Tailwind CSS and PWA. Layer 2, application: Next.js server with actions, webhooks and sign-in checks. Layer 3, data: Postgres with Row Level Security, Supabase Auth and Storage. Beside them: the providers Stripe, Paystack, Twilio, the station's stream and Vercel.">
+          <div class="layer l1">
+            <div class="layer-head"><span class="layer-no">1</span><b>Presentation</b><span>what the user sees and touches</span></div>
+            <ul><li><b>React + TypeScript</b> screens, buttons and forms</li><li><b>Tailwind CSS</b> looks and spacing</li><li><b>PWA</b> installs from the browser and shows an offline page without a network</li></ul>
+          </div>
+          <div class="layer l2">
+            <div class="layer-head"><span class="layer-no">2</span><b>Application</b><span>the rules, run on the server</span></div>
+            <ul><li><b>Next.js 16</b> performs actions such as "vote" and "buy" on the server</li><li><b>Webhooks</b> receive and check messages from Stripe and Paystack</li><li><b>Sign-in and security</b> every request is checked before it is allowed</li></ul>
+          </div>
+          <div class="layer l3">
+            <div class="layer-head"><span class="layer-no">3</span><b>Data</b><span>what has to be true no matter what</span></div>
+            <ul><li><b>Postgres</b> relational database with 105 numbered changes</li><li><b>Row Level Security</b> permissions per row, tested with pgTAP</li><li><b>Supabase Auth and Storage</b> accounts, passwords, uploaded auditions</li></ul>
+          </div>
+          <div class="layer ext">
+            <div class="layer-head"><b>External services</b><span>providers the app talks to</span></div>
+            <ul><li><b>Vercel</b> the cloud service that runs the app itself</li><li><b>Supabase</b> the cloud service that runs the database</li><li><b>Stripe</b> takes payments in dollars and subscriptions</li><li><b>Paystack</b> takes payments in naira</li><li><b>Twilio</b> sends SMS codes at sign-in</li><li><b>Radio stream</b> the station's own audio feed, which the app plays</li></ul>
+          </div>
+        </div>
+        <figcaption class="diagram-caption">The layers only talk downwards: the screen asks the server, and the server asks the database. An external service can never write straight into the database. Its messages, for instance "the payment went through" from Stripe, always pass through layer 2, where they are checked before anything happens.</figcaption>
+      </figure>
+      <h2 style="margin-top:2.6rem">Each tool: what it does, and why it was chosen</h2>
+      <table class="tech-table why-table">
+        <thead><tr><th>Tool</th><th>What it is</th><th>Why it was chosen</th></tr></thead>
+        <tr><td>TypeScript</td><td>The programming language across the whole app; JavaScript with types, so mistakes are caught before the code runs.</td><td>One language for both screen and server, and the types make it safer to let AI agents write and change large amounts of code.</td></tr>
+        <tr><td>React and Next.js 16</td><td>React draws the screens; Next.js is the framework around it that also runs the server side and builds the pages.</td><td>The most widespread choice for this kind of app, so answers exist for everything, and Next.js can perform actions on the server without a separate API project.</td></tr>
+        <tr><td>Tailwind CSS</td><td>A tool for looks and layout, written as small classes directly in the screen code.</td><td>Fast to keep consistent across 60 screens, and unused styles are removed automatically, so the app stays small to download.</td></tr>
+        <tr><td>PWA</td><td>Progressive Web App: a website that can be installed on the phone's home screen and partly work without a network.</td><td>No app store, no waiting for approval, and it takes almost no space on a low-end Android phone.</td></tr>
+        <tr><td>Postgres via Supabase</td><td>Postgres is a relational database (tables with rows and rules). Supabase hosts it and adds sign-in and file storage on top.</td><td>Permissions can be enforced in the database itself, so no mistake on screen can expose someone else's data. Supabase saves a small team an entire operations department.</td></tr>
+        <tr><td>pgTAP</td><td>Tests that run inside the database and try to read or write as an anonymous visitor, a signed-in user and an admin.</td><td>It is the only way to prove that the permissions hold, whatever the app or an attacker sends.</td></tr>
+        <tr><td>Vitest and Playwright</td><td>Vitest tests the app's code piece by piece; Playwright clicks through the app in a real browser.</td><td>Fast tests catch logic errors in seconds; browser tests catch what a user would actually hit, such as a button that cannot be tapped on mobile.</td></tr>
+        <tr><td>GitHub Actions</td><td>Automated checks that run in the cloud every time code is pushed (CI).</td><td>Until 24 August the tests only ran when somebody remembered. Now nobody can forget, and the numbers in this case come from there.</td></tr>
+        <tr><td>Vercel</td><td>The cloud service that runs the app and serves it from servers close to the user.</td><td>Made by the people behind Next.js, so deployment is one click, and there is no server to maintain.</td></tr>
+        <tr><td>Stripe and Paystack</td><td>Two payment providers: Stripe for dollars and subscriptions, Paystack for naira and Nigerian cards.</td><td>Blaze already had Stripe on the American site, and Stripe cannot take naira from Nigerian cards. Paystack can. Both talk to the app in the same way.</td></tr>
+        <tr><td>Twilio</td><td>A service that sends SMS codes when a user signs in or confirms a phone number.</td><td>Many Nigerian users have a phone number but not an email they check. SMS sign-in is in pilot, because the provider's approval for Nigeria is not in place yet.</td></tr>
       </table>
 
       <figure class="fig" aria-labelledby="coverage-title">
-        <h3 class="figure-title" id="coverage-title">What the 67 database test files cover</h3>
+        <h3 class="figure-title" id="coverage-title">What the 67 database tests check, by area</h3>
         <div class="coverage" role="img" aria-label="Bar chart of 67 pgTAP files across five areas: payments, tickets and membership 21 files; accounts, roles and abuse 16; voting and auditions 10; club and door scanning 10; artists, events and media 10.">
           <div class="coverage-row"><b>Payments, tickets and membership<span>reservations, refunds, webhook replays, ledger</span></b><div class="coverage-track"><span style="width:100%"></span></div><strong>21</strong></div>
           <div class="coverage-row"><b>Accounts, roles and abuse<span>audited role changes, rate limiting, bans, deletion</span></b><div class="coverage-track"><span style="width:76.2%"></span></div><strong>16</strong></div>
@@ -443,7 +576,7 @@
           <div class="coverage-row"><b>Club and door scanning<span>member passes, redemption, guest list, scanning at the door</span></b><div class="coverage-track"><span style="width:47.6%"></span></div><strong>10</strong></div>
           <div class="coverage-row"><b>Artists, events and media<span>applications, follows, images, live sessions</span></b><div class="coverage-track"><span style="width:47.6%"></span></div><strong>10</strong></div>
         </div>
-        <figcaption class="diagram-caption">Grouped by file name in <code>supabase/tests/</code>. 58 of the 67 files switch database role along the way (anonymous, signed in, service) and try to read or write what that role must not. 1,126 assertions in total, all green in CI run 146.</figcaption>
+        <figcaption class="diagram-caption">Each bar is a group of test files that run inside the database. 58 of the 67 files switch role along the way (anonymous visitor, signed in, system) and try to read or write what that role must not, to make sure the database says no. 1,126 individual checks in total, all green in the latest automated run.</figcaption>
       </figure>
     </div>
   </section>
@@ -472,47 +605,47 @@
           <figcaption>Club 9thwunder: the membership that validates one artist at a time. The page lists the benefits and sends you to sign in before anything can be bought.</figcaption>
         </figure>
       </div>
-      <h2 style="margin-top:2.6rem">Behind the scenes: admin</h2>
-      <p class="intro">The admin area is built for one organiser on a phone, not an analyst at a desk. It shows only what needs a decision, and every action that touches money or publication explains itself before it runs. Screenshots from it are deliberately left out, because they show the pilot's account counts and test payments.</p>
+      <h2 style="margin-top:2.6rem">The organiser's side of the app: admin</h2>
+      <p class="intro">Admin is the part of the app only the organiser can see. It is built for one person with a phone in hand in the middle of an event, not for an analyst at a desk. So it shows only what needs a decision right now, and every action that touches money or anything public explains itself before it runs. Screenshots from admin are deliberately left out, because they show the pilot's account counts and test payments.</p>
       <ul class="admin-list">
-        <li><b>Waiting on you</b>The dashboard opens with three cards: auditions to approve or reject, artist applications and payment disputes. If a number cannot be read, it says "couldn't read this just now" instead of showing a zero.</li>
-        <li><b>Events and money kept apart</b>Each event has its own numbers. Naira and dollars are always shown separately and never added together, and test payments sit in their own clearly labelled rows.</li>
-        <li><b>Switches with consequences</b>One page with every switch: all payments, ticket sales, donations, festival mode, member passes, video on live sessions. The money switches ask you to type a word first, and every change is recorded with who made it.</li>
-        <li><b>Stats measured on real phones</b>The app's opening time is measured on users' own phones, the first time the app loads, on the connections they actually have. The page shows the median and the "slowest 1 in 20" and says plainly that signed-out visitors are not counted.</li>
-        <li><b>Door scanning without signal</b>Tickets and member passes are scanned at the door with a code that needs the network only once. After that the scanner works offline, and the list reconciles when the signal is back.</li>
-        <li><b>Failures as a page, not an email</b>Server errors are collected on an admin page with code and message, so a production failure can be read by whoever runs the app, without access to logs.</li>
+        <li><b>What is waiting on the organiser comes first</b>The admin front page opens with three cards: auditions to approve or reject, new applications from artists who want a profile, and any payment disputes. If the app cannot fetch a number right now, it says "couldn't read this just now" instead of showing a zero, so the organiser never believes the queue is empty when it is not.</li>
+        <li><b>Each event has its own numbers, and currencies are never mixed</b>Ticket sales are shown per event, so the organiser can see how each concert is doing. Naira and dollars are always shown separately and never added into one number, because the exchange rate moves. Test payments sit in their own rows and are clearly labelled, so they are never mistaken for real money.</li>
+        <li><b>Switches that can turn off payments and features instantly</b>One page gathers every switch: all payments, ticket sales, donations, a festival mode that hides everything unnecessary on a concert night, member passes and video during live shows. A change takes effect immediately, even on phones that already have the app open. The money switches ask you to type a specific word first, so nobody presses one by accident, and every change is saved with the name of whoever pressed it.</li>
+        <li><b>Statistics measured on users' own phones</b>How fast the app opens is not measured in a test environment but on users' own phones, the first time the app loads, on the mobile connections they actually have in Nigeria. The page shows the typical opening time and the slowest one in twenty, so the organiser can see if the app has become heavier. It also says plainly that visitors who are not signed in are not counted.</li>
+        <li><b>Ticket scanning at the door, even without mobile signal</b>At the entrance the organiser opens the scanner with a code that needs the network only once. After that the scanner works without a connection, because the guest list is stored on the phone. What has been scanned is sent up when the signal returns, so a concert in a hall with no coverage does not grind to a halt at the door.</li>
+        <li><b>Failures in operation are collected on one page</b>When something goes wrong on the server, the error is collected on a page in admin with an error code and an explanatory message. Whoever runs the app can see what happened without needing access to technical log files or calling a developer.</li>
       </ul>
     </div>
   </section>
   <section class="section" id="process">
     <div class="shell">
       <p class="section-label">05 · The way of working</p>
-      <h2>Two AI agents as developers, under written rules</h2>
+      <h2>The way of working: two AI agents wrote the code following rules written down in advance</h2>
       <div class="intro">
-        <p>The code was written by Claude Code and Codex, which took turns implementing and reviewing each other's work. My role was product decisions, approvals and everything that touches production: applying migrations, verifying in the hosted database and taking the human gates the agents are not allowed to open themselves.</p>
-        <p>It worked because the rules were written down in the repository. Documentation is part of the product: a change without an updated TODO, handover, changelog and decision log is not finished. The numbers show it. The decision log holds more than 240 numbered architecture decisions, and the changelog, decision log and handover together run to over a megabyte of text.</p>
+        <p>The code was written by two AI tools, Claude Code and Codex, which took turns building and reviewing each other's work. My role was to make the product decisions, approve each step and do everything that touches real operations: put database changes into production, check that they work, and take the decisions only a human may take, such as switching real payments on.</p>
+        <p>It worked because the rules were written down next to the code. Documentation is part of the product: a change is not finished until the task list, the handover note, the changelog and the decision log are updated. The numbers show it. The decision log holds more than 240 written decisions about why something is built the way it is, and the three logbooks together run to over a megabyte of text.</p>
       </div>
       <div class="rules">
         <div class="rule-card">
-          <h3>Read before you write</h3>
-          <p>Before a code change the agent reads the product, scope, architecture, security and decision documents. Nobody may swap the framework, database, payment or streaming provider without a concrete problem, alternatives and human approval.</p>
+          <h3>The agent reads the documentation before changing anything</h3>
+          <p>Before a code change the agent reads the documents on the product, the scope, the architecture, security and earlier decisions. Nobody may swap a technology or provider without a concrete problem, written alternatives and approval from a human.</p>
         </div>
         <div class="rule-card">
-          <h3>Reviews found real bugs</h3>
-          <p>The review rounds between the two agents found, among other things, a race condition where two concurrent approvals could overwrite each other, and an approval that could demote an admin. Both were fixed and proven with two genuinely concurrent database connections, not just reasoned about.</p>
+          <h3>The two agents reviewed each other's work and found real bugs</h3>
+          <p>Once one agent had built something, the other reviewed it before it was approved. The reviews found, among other things, a race condition, that is, a bug that only appears when two things happen at exactly the same time: two administrators approving an audition simultaneously could overwrite each other. They also found an approval that could accidentally strip an administrator of their rights. Both bugs were fixed, and the fix was proven by running two genuinely concurrent database connections against each other, not just by explaining that it probably worked.</p>
         </div>
         <div class="rule-card">
-          <h3>Numbers a machine recomputes</h3>
-          <p>Until 24 August every check ran only when somebody remembered, on one laptop. CI was introduced after the changelog had claimed 85 test files where there were 83. Now every number is recomputed on every push, and this case uses only numbers from the latest green run.</p>
+          <h3>Every number is recomputed automatically, so nobody can misremember</h3>
+          <p>Until 24 August every check ran only when somebody remembered, on one laptop. The automated checks were introduced after the changelog had claimed 85 test files where there were 83. Now every number is recomputed every time code is pushed, and this case uses only numbers from the latest green run.</p>
         </div>
         <div class="rule-card">
-          <h3>Failures in the field, not in theory</h3>
-          <p>When a tester in Nigeria could not receive SMS codes, the incident was diagnosed read-only in production, documented with timestamps and error codes, and only then fixed in the app's error copy and phone-number handling. No guessed fixes were switched on.</p>
+          <h3>Failures were examined with real users before they were fixed</h3>
+          <p>When a tester in Nigeria could not receive SMS codes, the incident was first examined in production without changing anything, documented with timestamps and error codes, and only then fixed in the app's error copy and phone-number handling. No guessed fixes were switched on.</p>
         </div>
       </div>
 
       <figure class="fig" aria-labelledby="ci-title">
-        <h3 class="figure-title" id="ci-title">One push, three check lanes, 6 minutes 41 seconds</h3>
+        <h3 class="figure-title" id="ci-title">Three automated check lanes run every time code is pushed</h3>
         <div class="lanes" role="img" aria-label="Timeline of CI run 146: the app job takes 3 minutes 52 seconds with lint, types, 1,587 tests and build; the database job 1 minute 47 seconds with Postgres start, 105 migrations and 1,126 pgTAP assertions; the browser job 6 minutes 41 seconds with the Supabase stack, build, accessibility check, performance check and scanner fallback.">
           <div class="lane-axis" aria-hidden="true"><div></div><div><span style="left:0">0:00</span><span style="left:29.9%">2:00</span><span style="left:59.9%">4:00</span><span style="left:100%">6:41</span></div></div>
           <div class="lane"><div class="lane-label"><b>app</b><span>3 min 52 s</span></div><div class="lane-track"><span class="lane-seg setup" style="left:0.0%;width:6.2%" title="setup">setup</span><span class="lane-seg run narrow" style="left:6.2%;width:4.0%" title="lint">lint</span><span class="lane-seg run narrow" style="left:10.2%;width:2.7%" title="types">types</span><span class="lane-seg test" style="left:13.0%;width:36.4%" title="1,587 unit tests">1,587 unit tests</span><span class="lane-seg run" style="left:49.4%;width:7.2%" title="build">build</span><span class="lane-seg run narrow" style="left:56.6%;width:1.2%" title=""></span></div></div>
@@ -520,7 +653,7 @@
           <div class="lane"><div class="lane-label"><b>critical browser flows</b><span>6 min 41 s</span></div><div class="lane-track"><span class="lane-seg setup" style="left:0.0%;width:19.5%" title="setup, Chromium">setup, Chromium</span><span class="lane-seg run" style="left:19.5%;width:33.7%" title="Supabase stack">Supabase stack</span><span class="lane-seg run" style="left:53.1%;width:21.4%" title="build + test data">build + test data</span><span class="lane-seg test" style="left:74.6%;width:11.2%" title="accessibility">accessibility</span><span class="lane-seg test" style="left:85.8%;width:11.2%" title="performance">performance</span><span class="lane-seg test narrow" style="left:97.0%;width:3.0%" title="scan">scan</span></div></div>
         </div>
         <div class="lane-legend" aria-hidden="true"><span><i></i>Setup</span><span><i class="run"></i>Build and prepare</span><span><i class="test"></i>Tests</span></div>
-        <figcaption class="diagram-caption">Measured on CI run 146, commit <code>fbb90fc</code>, 14 September 2026. The three jobs run in parallel, so a push is fully checked when the slowest one finishes. Durations are GitHub Actions' own per-step timestamps.</figcaption>
+        <figcaption class="diagram-caption">Measured on automated run number 146 on 14 September 2026. The three lanes run at the same time, so a change is fully checked when the slowest one finishes. Durations are GitHub Actions' own per-step timestamps.</figcaption>
       </figure>
     </div>
   </section>
@@ -528,24 +661,24 @@
   <section class="section soft" id="timeline">
     <div class="shell">
       <p class="section-label">06 · The timeline</p>
-      <h2>Five weeks, with git history as the timeline</h2>
-      <p class="intro">From first commit to pilot in 30 working days. The dates come from git history and the decision log.</p>
+      <h2>The timeline: five weeks from the first line of code to a closed pilot</h2>
+      <p class="intro">From the first line of code to a closed pilot in 30 working days. The dates come from the code's history and the decision log.</p>
 
       <figure class="fig" aria-labelledby="commits-title">
-        <h3 class="figure-title" id="commits-title">428 commits across 37 calendar days</h3>
-        <div class="commit-strip" role="img" aria-label="Bar chart of commits per day from 9 August to 14 September 2026. Three peaks: 9 August with 46, 12 August with 45 and 27 August with 37. Seven days without commits, most of them in September."><span class="commit-bar wknd" style="--n:46" title="9 Aug: 46 commits"></span><span class="commit-bar" style="--n:13" title="10 Aug: 13 commits"></span><span class="commit-bar" style="--n:23" title="11 Aug: 23 commits"></span><span class="commit-bar" style="--n:45" title="12 Aug: 45 commits"></span><span class="commit-bar" style="--n:34" title="13 Aug: 34 commits"></span><span class="commit-bar" style="--n:32" title="14 Aug: 32 commits"></span><span class="commit-bar wknd" style="--n:7" title="15 Aug: 7 commits"></span><span class="commit-bar wknd" style="--n:5" title="16 Aug: 5 commits"></span><span class="commit-bar" style="--n:13" title="17 Aug: 13 commits"></span><span class="commit-bar" style="--n:10" title="18 Aug: 10 commits"></span><span class="commit-bar" style="--n:3" title="19 Aug: 3 commits"></span><span class="commit-bar" style="--n:3" title="20 Aug: 3 commits"></span><span class="commit-bar zero" style="--n:0" title="21 Aug: 0 commits"></span><span class="commit-bar wknd zero" style="--n:0" title="22 Aug: 0 commits"></span><span class="commit-bar wknd" style="--n:6" title="23 Aug: 6 commits"></span><span class="commit-bar" style="--n:10" title="24 Aug: 10 commits"></span><span class="commit-bar" style="--n:1" title="25 Aug: 1 commit"></span><span class="commit-bar" style="--n:2" title="26 Aug: 2 commits"></span><span class="commit-bar" style="--n:37" title="27 Aug: 37 commits"></span><span class="commit-bar" style="--n:19" title="28 Aug: 19 commits"></span><span class="commit-bar wknd" style="--n:12" title="29 Aug: 12 commits"></span><span class="commit-bar wknd zero" style="--n:0" title="30 Aug: 0 commits"></span><span class="commit-bar" style="--n:1" title="31 Aug: 1 commit"></span><span class="commit-bar" style="--n:15" title="1 Sep: 15 commits"></span><span class="commit-bar" style="--n:28" title="2 Sep: 28 commits"></span><span class="commit-bar" style="--n:6" title="3 Sep: 6 commits"></span><span class="commit-bar" style="--n:2" title="4 Sep: 2 commits"></span><span class="commit-bar wknd" style="--n:1" title="5 Sep: 1 commit"></span><span class="commit-bar wknd" style="--n:15" title="6 Sep: 15 commits"></span><span class="commit-bar" style="--n:17" title="7 Sep: 17 commits"></span><span class="commit-bar zero" style="--n:0" title="8 Sep: 0 commits"></span><span class="commit-bar" style="--n:14" title="9 Sep: 14 commits"></span><span class="commit-bar zero" style="--n:0" title="10 Sep: 0 commits"></span><span class="commit-bar" style="--n:1" title="11 Sep: 1 commit"></span><span class="commit-bar wknd zero" style="--n:0" title="12 Sep: 0 commits"></span><span class="commit-bar wknd zero" style="--n:0" title="13 Sep: 0 commits"></span><span class="commit-bar" style="--n:7" title="14 Sep: 7 commits"></span></div>
+        <h3 class="figure-title" id="commits-title">Number of saved code changes per day, 428 in total over 37 days</h3>
+        <div class="commit-strip" role="img" aria-label="Bar chart of commits per day from 9 August to 14 September 2026. Three peaks: 9 August with 46, 12 August with 45 and 27 August with 37. Seven days without commits, most of them in September."><span class="commit-bar wknd peak" style="--n:46" title="9 Aug: 46 commits"></span><span class="commit-bar" style="--n:13" title="10 Aug: 13 commits"></span><span class="commit-bar" style="--n:23" title="11 Aug: 23 commits"></span><span class="commit-bar peak" style="--n:45" title="12 Aug: 45 commits"></span><span class="commit-bar" style="--n:34" title="13 Aug: 34 commits"></span><span class="commit-bar" style="--n:32" title="14 Aug: 32 commits"></span><span class="commit-bar wknd" style="--n:7" title="15 Aug: 7 commits"></span><span class="commit-bar wknd" style="--n:5" title="16 Aug: 5 commits"></span><span class="commit-bar" style="--n:13" title="17 Aug: 13 commits"></span><span class="commit-bar" style="--n:10" title="18 Aug: 10 commits"></span><span class="commit-bar" style="--n:3" title="19 Aug: 3 commits"></span><span class="commit-bar" style="--n:3" title="20 Aug: 3 commits"></span><span class="commit-bar zero" style="--n:0" title="21 Aug: 0 commits"></span><span class="commit-bar wknd zero" style="--n:0" title="22 Aug: 0 commits"></span><span class="commit-bar wknd" style="--n:6" title="23 Aug: 6 commits"></span><span class="commit-bar" style="--n:10" title="24 Aug: 10 commits"></span><span class="commit-bar" style="--n:1" title="25 Aug: 1 commit"></span><span class="commit-bar" style="--n:2" title="26 Aug: 2 commits"></span><span class="commit-bar peak" style="--n:37" title="27 Aug: 37 commits"></span><span class="commit-bar" style="--n:19" title="28 Aug: 19 commits"></span><span class="commit-bar wknd" style="--n:12" title="29 Aug: 12 commits"></span><span class="commit-bar wknd zero" style="--n:0" title="30 Aug: 0 commits"></span><span class="commit-bar" style="--n:1" title="31 Aug: 1 commit"></span><span class="commit-bar" style="--n:15" title="1 Sep: 15 commits"></span><span class="commit-bar" style="--n:28" title="2 Sep: 28 commits"></span><span class="commit-bar" style="--n:6" title="3 Sep: 6 commits"></span><span class="commit-bar" style="--n:2" title="4 Sep: 2 commits"></span><span class="commit-bar wknd" style="--n:1" title="5 Sep: 1 commit"></span><span class="commit-bar wknd" style="--n:15" title="6 Sep: 15 commits"></span><span class="commit-bar" style="--n:17" title="7 Sep: 17 commits"></span><span class="commit-bar zero" style="--n:0" title="8 Sep: 0 commits"></span><span class="commit-bar" style="--n:14" title="9 Sep: 14 commits"></span><span class="commit-bar zero" style="--n:0" title="10 Sep: 0 commits"></span><span class="commit-bar" style="--n:1" title="11 Sep: 1 commit"></span><span class="commit-bar wknd zero" style="--n:0" title="12 Sep: 0 commits"></span><span class="commit-bar wknd zero" style="--n:0" title="13 Sep: 0 commits"></span><span class="commit-bar" style="--n:7" title="14 Sep: 7 commits"></span></div>
         <div class="commit-axis" aria-hidden="true"><span style="grid-column:1">9 Aug</span><span style="grid-column:8">16 Aug</span><span style="grid-column:15">23 Aug</span><span style="grid-column:22">30 Aug</span><span style="grid-column:29">6 Sep</span><span style="grid-column:35 / span 3; text-align:right">14 Sep</span></div>
         <p class="commit-readout" data-idle="Hover over or tap a bar for the date and count." aria-live="polite">Hover over or tap a bar for the date and count.</p>
-        <div class="commit-peaks"><span><b>46</b> 9 Aug, the foundation</span><span><b>45</b> 12 Aug, first deploy and tickets</span><span><b>37</b> 27 Aug, fixes after a big review</span><span><b>7</b> days without commits</span></div>
-        <figcaption class="diagram-caption">From <code>git log</code> in the app repository; lighter bars are weekends, grey bars are days without commits. The pace drops deliberately in September as work shifts from code to operations, documentation and testing with real people.</figcaption>
+        <div class="commit-peaks"><span><i class="peak"></i><b>46</b> 9 Aug, the foundation</span><span><i class="peak"></i><b>45</b> 12 Aug, first deployment and tickets</span><span><i class="peak"></i><b>37</b> 27 Aug, fixes after a big review</span><span><i class="wknd"></i>weekend</span><span><i class="zero"></i><b>7</b> days without commits</span></div>
+        <figcaption class="diagram-caption">Each bar is one day, and its height is the number of saved code changes that day. Blue bars are the three busiest days, lighter bars are weekends, and grey bars are days without changes. The pace drops deliberately in September, because the work shifts from writing code to running the app, documenting and testing with real people.</figcaption>
       </figure>
       <div class="timeline">
-        <div class="timeline-item"><div class="timeline-date">9 Aug</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Foundation in one day</strong>46 commits: Next.js and Supabase set up, real sign-in, artist profiles with follow, events and PWA installation. Eight screens reviewed and approved the same day.</div></div>
-        <div class="timeline-item"><div class="timeline-date">10 Aug</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>New priorities after talking to the partner</strong>Auditions, voting, live participation and the members' club moved into the core; the broad community track was put on hold. Written down as decision ADR-014, so the agents built towards the new direction.</div></div>
-        <div class="timeline-item"><div class="timeline-date">24 Aug</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>CI on every push</strong>Lint, types, unit tests, build and pgTAP against a fresh Postgres in GitHub Actions. The Supabase CLI was pinned to one version after an automatic update had changed the database's permissions under the project.</div></div>
-        <div class="timeline-item"><div class="timeline-date">2 Sep</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Payment rails</strong>Paystack for naira, Stripe for dollars, memberships that renew themselves. Once the manual gate opens, simulation ends completely: a rail without a ready provider sells nothing instead of pretending.</div></div>
-        <div class="timeline-item"><div class="timeline-date">7–9 Sep</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Operations before launch</strong>Complete results aggregation for admins, sign-in with a one-time code by email, Nigerian phone numbers normalised to one format, and the first incident from a real tester in Nigeria who could not receive SMS codes.</div></div>
-        <div class="timeline-item"><div class="timeline-date">14 Sep</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Refund rehearsed in production</strong>A one-dollar test ticket bought through Stripe Checkout and refunded through the API; the status route, return page and "my tickets" all followed. The rehearsal revealed that the hosted database lacked permissions the local one had by default. Fixed with a migration and twelve new database tests.</div></div>
+        <div class="timeline-item"><div class="timeline-date">9 Aug</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Day 1: the foundation is built in one day</strong>On the first day the app and database were set up and the basics fell into place: real sign-in, artist profiles with the option to follow an artist, events and installation on the phone's home screen. That came to 46 saved changes. Eight screens were reviewed from screenshots and approved the same evening.</div></div>
+        <div class="timeline-item"><div class="timeline-date">10 Aug</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>New priorities after a conversation with the partner</strong>After a conversation with the station's host, the order was changed. Auditions, voting, participation during live shows and the members' club moved in as the most important parts, because that is where the scene already has activity. A broad social network with a feed and messages was put on hold. The change was written down as a formal decision, so the AI agents built towards the new direction from the next day.</div></div>
+        <div class="timeline-item"><div class="timeline-date">24 Aug</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Automated checks introduced on every change</strong>From this day all code was checked automatically in the cloud every time it was pushed: code quality, types, tests, build and database tests against a fresh database. The same week the database tool was pinned to one specific version, after an automatic update had changed the database's permissions mid-project without anyone asking for it.</div></div>
+        <div class="timeline-item"><div class="timeline-date">2 Sep</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Two payment routes: naira and dollars</strong>Payments were split into two routes: Paystack for naira and Stripe for dollars, plus memberships that renew themselves every month. At the same time the rule was set that the day a human switches real payments on, all simulation stops. A currency that does not yet have a ready provider then sells nothing instead of pretending.</div></div>
+        <div class="timeline-item"><div class="timeline-date">7–9 Sep</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Getting ready for operation before the launch</strong>Three days on what it takes before real people can use the app: complete results for the organiser, sign-in with a one-time code sent by email, Nigerian phone numbers written one fixed way however the user types them, and the first incident from a real tester in Nigeria who could not receive SMS codes.</div></div>
+        <div class="timeline-item"><div class="timeline-date">14 Sep</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>A refund is rehearsed with real money in production</strong>To be sure money can go both ways, a one-dollar test ticket was bought through Stripe and paid back again. Ticket status, receipt page and "my tickets" all followed correctly. The rehearsal revealed that the production database lacked some permissions the local copy had by default. That was fixed with one database change and twelve new database tests that make sure it cannot happen again.</div></div>
       </div>
     </div>
   </section>
@@ -553,23 +686,23 @@
   <section class="section" id="limits">
     <div class="shell">
       <p class="section-label">07 · Limits and trade-offs</p>
-      <h2>What the platform deliberately is not yet</h2>
+      <h2>Limits: what the app deliberately cannot do yet</h2>
       <div class="limits-grid">
         <div class="limit-card">
-          <h3>Not launched publicly</h3>
-          <p>The app runs in a closed pilot with testers. That is why there are no user counts, vote counts or revenue here, and why the screenshots show only the public part. Admin is described in text, not shown.</p>
+          <h3>The app has not launched publicly yet</h3>
+          <p>The app is online, but only invited testers use it while the last parts are made ready. That is why there are no user counts, vote counts or revenue in this case, and why the screenshots show only the public part. The organiser's admin is described in text, not shown.</p>
         </div>
         <div class="limit-card">
-          <h3>No real money without approval</h3>
-          <p>Tickets and memberships are built against Stripe and Paystack but sit behind a manual gate. Donations and memberships in naira are not built. Payouts to artists are manual and reviewed, never automatic.</p>
+          <h3>Real payments require a human approval</h3>
+          <p>Tickets and memberships are built against Stripe and Paystack, but real payments require a human to switch them on. Donations and memberships in naira are not built yet. Payouts to artists are manual and reviewed, never automatic.</p>
         </div>
         <div class="limit-card">
-          <h3>No livestream provider</h3>
-          <p>Live participation (vote, request a song, follow the current performer) is built, but the video itself awaits a choice between Mux, Cloudflare Stream and Amazon IVS after a rehearsal on a real network in Nigeria.</p>
+          <h3>No live-video provider has been chosen yet</h3>
+          <p>Participation during a live show (vote, request a song, follow the current performer) is built, but the video stream itself awaits a choice of provider, Mux, Cloudflare Stream or Amazon IVS, after a rehearsal on a real mobile network in Nigeria.</p>
         </div>
         <div class="limit-card">
-          <h3>Community deferred</h3>
-          <p>A broad social feed with posts, comments and messages was deliberately left out of the first version. The core is the chain from audition to vote to event to support, not yet another social network.</p>
+          <h3>A social network is deferred on purpose</h3>
+          <p>A broad social feed with posts, comments and messages was deliberately left out of the first version. The core is the chain from audition to vote to concert to support, not yet another social network.</p>
         </div>
       </div>
     </div>
@@ -615,15 +748,15 @@
       var next = current === 'dark' ? 'light' : 'dark';
       if ((next === 'dark') === systemDark.matches) {
         root.removeAttribute('data-theme');
-        try { localStorage.removeItem('globetunez-case-theme'); } catch (e) {}
+        try { localStorage.removeItem('blazeitupradio-case-theme'); } catch (e) {}
       } else {
         root.setAttribute('data-theme', next);
-        try { localStorage.setItem('globetunez-case-theme', next); } catch (e) {}
+        try { localStorage.setItem('blazeitupradio-case-theme', next); } catch (e) {}
       }
       syncAria();
     });
     try {
-      var saved = localStorage.getItem('globetunez-case-theme');
+      var saved = localStorage.getItem('blazeitupradio-case-theme');
       if (saved) document.documentElement.setAttribute('data-theme', saved);
     } catch (e) {}
     syncAria();
@@ -678,6 +811,17 @@
         b.addEventListener('blur', function () { show(null); });
       });
       show(null);
+    }
+
+
+    /* Flow-diagram og forklaringstabel afsloeres ogsaa, naar de kommer i syne. */
+    var extra = Array.prototype.slice.call(document.querySelectorAll('.flow, .why-table'));
+    if ('IntersectionObserver' in window && extra.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      extra.forEach(function (f) { f.classList.add('reveal'); });
+      var io2 = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in-view'); io2.unobserve(e.target); } });
+      }, { threshold: 0.2 });
+      extra.forEach(function (f) { io2.observe(f); });
     }
 
     if (reduced) return;
