@@ -303,6 +303,16 @@
     .js figure.fig.reveal .journey-card:nth-of-type(3) { transition-delay: 0.24s; }
     .js figure.fig.reveal .journey-card:nth-of-type(4) { transition-delay: 0.36s; }
   }
+
+  .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1.4rem; margin-top: 1.8rem; align-items: start; }
+  .shot { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--surface); }
+  .shot img { width: 100%; height: auto; }
+  .shot figcaption { padding: 0.7rem 0.9rem; color: var(--muted); font-size: 0.85rem; line-height: 1.5; border-top: 1px solid var(--line); }
+  .shot.wide { grid-column: 1 / -1; }
+  .shot.mobile { max-width: 15rem; }
+  .admin-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.2rem 1.6rem; margin: 1.6rem 0 0; padding: 0; list-style: none; }
+  .admin-list li { border-top: 2px solid var(--line); padding-top: 0.8rem; font-size: 0.94rem; line-height: 1.55; color: var(--muted); }
+  .admin-list b { display: block; color: var(--ink); font-family: var(--serif); font-size: 1.1rem; margin-bottom: 0.25rem; }
 </style>
 </head>
 <body>
@@ -438,9 +448,45 @@
     </div>
   </section>
 
-  <section class="section soft" id="process">
+
+  <section class="section soft" id="screens">
     <div class="shell">
-      <p class="section-label">04 · The way of working</p>
+      <p class="section-label">04 · What it looks like</p>
+      <h2>Screenshots from the running app</h2>
+      <p class="intro">Taken from the production site on 5 October 2026. This is the public part anyone can see; the events and competitions are the ones that were actually in the database that day.</p>
+      <div class="shots">
+        <figure class="shot wide">
+          <img src="skaerm-forside.png" alt="Screenshot of the home page on desktop: a green hero with the heading 'Where Africa's next sound gets heard', a LIVE bar with a LISTEN button for Blaze It Up Radio Africa, a yellow banner saying 'Auditions are open' with SUBMIT AUDITION, and a Coming up list with two events." loading="lazy" width="1440" height="700">
+          <figcaption>Home: the radio first with one unmistakable LISTEN button, then the open audition with SUBMIT AUDITION and the upcoming events. Every important action is in capitals and never hidden behind a hover.</figcaption>
+        </figure>
+        <figure class="shot mobile">
+          <img src="skaerm-velkomst.png" alt="Screenshot of the welcome screen on mobile: 'This is GlobeTunez x Blaze It Up Radio' with four points about radio, tickets, live shows and the club pass, a 'Made in Naija' stamp and a large NEXT button." loading="lazy" width="780" height="1688">
+          <figcaption>The welcome on first visit: three short screens that can be skipped. An admin can switch them off with one toggle, for instance on a festival night.</figcaption>
+        </figure>
+        <figure class="shot mobile">
+          <img src="skaerm-mobil.png" alt="Screenshot of the home page on mobile with the LIVE bar, SUBMIT AUDITION and a fixed bottom navigation with Home, Radio, Live, Events, Artists and Me." loading="lazy" width="780" height="1688">
+          <figcaption>The mobile view the app is built for: fixed bottom navigation, one webfont and text that reads on a cheap Android screen in sunlight.</figcaption>
+        </figure>
+        <figure class="shot wide">
+          <img src="skaerm-klub.png" alt="Screenshot of the Club 9thwunder page: the club's logo, the 'Join Club 9thwunder' card with Sign in to join, and a list of member benefits." loading="lazy" width="1440" height="900">
+          <figcaption>Club 9thwunder: the membership that validates one artist at a time. The page lists the benefits and sends you to sign in before anything can be bought.</figcaption>
+        </figure>
+      </div>
+      <h2 style="margin-top:2.6rem">Behind the scenes: admin</h2>
+      <p class="intro">The admin area is built for one organiser on a phone, not an analyst at a desk. It shows only what needs a decision, and every action that touches money or publication explains itself before it runs. Screenshots from it are deliberately left out, because they show the pilot's account counts and test payments.</p>
+      <ul class="admin-list">
+        <li><b>Waiting on you</b>The dashboard opens with three cards: auditions to approve or reject, artist applications and payment disputes. If a number cannot be read, it says "couldn't read this just now" instead of showing a zero.</li>
+        <li><b>Events and money kept apart</b>Each event has its own numbers. Naira and dollars are always shown separately and never added together, and test payments sit in their own clearly labelled rows.</li>
+        <li><b>Switches with consequences</b>One page with every switch: all payments, ticket sales, donations, festival mode, member passes, video on live sessions. The money switches ask you to type a word first, and every change is recorded with who made it.</li>
+        <li><b>Stats measured on real phones</b>The app's opening time is measured on users' own phones, the first time the app loads, on the connections they actually have. The page shows the median and the "slowest 1 in 20" and says plainly that signed-out visitors are not counted.</li>
+        <li><b>Door scanning without signal</b>Tickets and member passes are scanned at the door with a code that needs the network only once. After that the scanner works offline, and the list reconciles when the signal is back.</li>
+        <li><b>Failures as a page, not an email</b>Server errors are collected on an admin page with code and message, so a production failure can be read by whoever runs the app, without access to logs.</li>
+      </ul>
+    </div>
+  </section>
+  <section class="section" id="process">
+    <div class="shell">
+      <p class="section-label">05 · The way of working</p>
       <h2>Two AI agents as developers, under written rules</h2>
       <div class="intro">
         <p>The code was written by Claude Code and Codex, which took turns implementing and reviewing each other's work. My role was product decisions, approvals and everything that touches production: applying migrations, verifying in the hosted database and taking the human gates the agents are not allowed to open themselves.</p>
@@ -479,9 +525,9 @@
     </div>
   </section>
 
-  <section class="section" id="timeline">
+  <section class="section soft" id="timeline">
     <div class="shell">
-      <p class="section-label">05 · The timeline</p>
+      <p class="section-label">06 · The timeline</p>
       <h2>Five weeks, with git history as the timeline</h2>
       <p class="intro">From first commit to pilot in 30 working days. The dates come from git history and the decision log.</p>
 
@@ -504,14 +550,14 @@
     </div>
   </section>
 
-  <section class="section soft" id="limits">
+  <section class="section" id="limits">
     <div class="shell">
-      <p class="section-label">06 · Limits and trade-offs</p>
+      <p class="section-label">07 · Limits and trade-offs</p>
       <h2>What the platform deliberately is not yet</h2>
       <div class="limits-grid">
         <div class="limit-card">
           <h3>Not launched publicly</h3>
-          <p>The app runs in a closed pilot with testers. That is why there are no user counts, vote counts or revenue here, and why the case shows no screenshots yet. They will come once there is a public version to show.</p>
+          <p>The app runs in a closed pilot with testers. That is why there are no user counts, vote counts or revenue here, and why the screenshots show only the public part. Admin is described in text, not shown.</p>
         </div>
         <div class="limit-card">
           <h3>No real money without approval</h3>
@@ -532,7 +578,7 @@
   <section class="section cta-card" id="contact">
     <div class="shell cta-card">
       <div>
-        <p class="section-label">07 · Contact</p>
+        <p class="section-label">08 · Contact</p>
         <h2>Questions about the platform?</h2>
       </div>
       <div class="cta-actions">

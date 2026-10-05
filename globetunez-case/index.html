@@ -303,6 +303,16 @@
     .js figure.fig.reveal .journey-card:nth-of-type(3) { transition-delay: 0.24s; }
     .js figure.fig.reveal .journey-card:nth-of-type(4) { transition-delay: 0.36s; }
   }
+
+  .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1.4rem; margin-top: 1.8rem; align-items: start; }
+  .shot { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--surface); }
+  .shot img { width: 100%; height: auto; }
+  .shot figcaption { padding: 0.7rem 0.9rem; color: var(--muted); font-size: 0.85rem; line-height: 1.5; border-top: 1px solid var(--line); }
+  .shot.wide { grid-column: 1 / -1; }
+  .shot.mobile { max-width: 15rem; }
+  .admin-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.2rem 1.6rem; margin: 1.6rem 0 0; padding: 0; list-style: none; }
+  .admin-list li { border-top: 2px solid var(--line); padding-top: 0.8rem; font-size: 0.94rem; line-height: 1.55; color: var(--muted); }
+  .admin-list b { display: block; color: var(--ink); font-family: var(--serif); font-size: 1.1rem; margin-bottom: 0.25rem; }
 </style>
 </head>
 <body>
@@ -438,9 +448,45 @@
     </div>
   </section>
 
-  <section class="section soft" id="arbejdsform">
+
+  <section class="section soft" id="udseende">
     <div class="shell">
-      <p class="section-label">04 · Arbejdsformen</p>
+      <p class="section-label">04 · Sådan ser det ud</p>
+      <h2>Skærmbilleder fra den kørende app</h2>
+      <p class="intro">Taget fra produktionssitet den 5. oktober 2026. Det er den offentlige del, som alle kan se; events og konkurrencer er dem, der faktisk lå i databasen den dag.</p>
+      <div class="shots">
+        <figure class="shot wide">
+          <img src="skaerm-forside.png" alt="Skærmbillede af forsiden på desktop: grøn hero med overskriften 'Where Africa's next sound gets heard', en LIVE-bjælke med LISTEN-knap til Blaze It Up Radio Africa, en gul banner med 'Auditions are open' og SUBMIT AUDITION, og listen Coming up med to events." loading="lazy" width="1440" height="700">
+          <figcaption>Forsiden: radioen øverst med én tydelig LISTEN-knap, dernæst den åbne audition med SUBMIT AUDITION og de kommende events. Alle vigtige handlinger står med store bogstaver og uden hover.</figcaption>
+        </figure>
+        <figure class="shot mobile">
+          <img src="skaerm-velkomst.png" alt="Skærmbillede af velkomstskærmen på mobil: 'This is GlobeTunez x Blaze It Up Radio' med fire punkter om radio, billetter, live shows og klubpas, stemplet 'Made in Naija' og en stor NEXT-knap." loading="lazy" width="780" height="1688">
+          <figcaption>Velkomsten ved første besøg: tre korte skærme, der kan springes over. Admin kan slukke dem med én kontakt, for eksempel på en festivalaften.</figcaption>
+        </figure>
+        <figure class="shot mobile">
+          <img src="skaerm-mobil.png" alt="Skærmbillede af forsiden på mobil med LIVE-bjælke, SUBMIT AUDITION og fast bundnavigation med Home, Radio, Live, Events, Artists og Me." loading="lazy" width="780" height="1688">
+          <figcaption>Mobilvisningen, som appen er bygget til: fast bundnavigation, én webfont og tekst der kan læses på en billig Android-skærm i sollys.</figcaption>
+        </figure>
+        <figure class="shot wide">
+          <img src="skaerm-klub.png" alt="Skærmbillede af siden Club 9thwunder: klubbens logo, kortet 'Join Club 9thwunder' med Sign in to join, og en liste over medlemsfordele." loading="lazy" width="1440" height="900">
+          <figcaption>Club 9thwunder: medlemskabet, der validerer én kunstner ad gangen. Siden lister fordelene og sender ind til login, før der kan tegnes noget.</figcaption>
+        </figure>
+      </div>
+      <h2 style="margin-top:2.6rem">Bag kulissen: admin</h2>
+      <p class="intro">Admin-delen er bygget til én arrangør på en telefon, ikke til en analytiker ved et skrivebord. Den viser kun det, der kræver en beslutning, og hver handling, der rører penge eller offentliggørelse, forklarer sig selv, før den udføres. Skærmbilleder herfra er med vilje udeladt, fordi de viser pilotens kontotal og testbetalinger.</p>
+      <ul class="admin-list">
+        <li><b>Venter på dig</b>Dashboardet åbner med tre kort: auditions der skal godkendes eller afvises, kunstneransøgninger og betalingstvister. Kan et tal ikke læses, står der "kunne ikke læses lige nu" i stedet for et nul.</li>
+        <li><b>Events og penge adskilt</b>Hvert event har sine egne tal. Naira og dollars vises altid hver for sig og lægges aldrig sammen, og testbetalinger står i egne rækker med tydelig mærkning.</li>
+        <li><b>Kontakter med konsekvens</b>Én side med alle afbrydere: alle betalinger, billetsalg, donationer, festival-tilstand, medlemspas, video i live-sessioner. Pengeafbryderne kræver, at man skriver et ord først, og hver ændring logges med hvem der gjorde det.</li>
+        <li><b>Stats målt på rigtige telefoner</b>Appens åbningstid måles hos brugerne selv, første gang appen indlæses, på de forbindelser de faktisk har. Siden viser median og "langsomste 1 ud af 20" og siger ærligt, at udloggede besøgende ikke tælles.</li>
+        <li><b>Dørscanning uden signal</b>Billetter og medlemspas scannes ved døren med en kode, der kun kræver netværk én gang. Derefter virker scanneren offline, og listen afstemmes, når signalet er tilbage.</li>
+        <li><b>Fejl som en side, ikke en mail</b>Serverfejl samles på en admin-side med kode og tekst, så en fejl i produktion kan læses af den, der driver appen, uden adgang til logs.</li>
+      </ul>
+    </div>
+  </section>
+  <section class="section" id="arbejdsform">
+    <div class="shell">
+      <p class="section-label">05 · Arbejdsformen</p>
       <h2>To AI-agenter som udviklere, under skrevne regler</h2>
       <div class="intro">
         <p>Koden er skrevet af Claude Code og Codex, som skiftevis implementerede og gennemgik hinandens arbejde. Min rolle var produktbeslutninger, godkendelser og alt der rører produktion: anvende migrationer, verificere i den hostede database og tage de menneskelige låger, som agenterne ikke må åbne selv.</p>
@@ -479,9 +525,9 @@
     </div>
   </section>
 
-  <section class="section" id="forloeb">
+  <section class="section soft" id="forloeb">
     <div class="shell">
-      <p class="section-label">05 · Forløbet</p>
+      <p class="section-label">06 · Forløbet</p>
       <h2>Fem uger med git-historikken som tidslinje</h2>
       <p class="intro">Fra første commit til pilot på 30 arbejdsdage. Datoerne er fra git-historikken og beslutningsloggen.</p>
 
@@ -504,14 +550,14 @@
     </div>
   </section>
 
-  <section class="section soft" id="graenser">
+  <section class="section" id="graenser">
     <div class="shell">
-      <p class="section-label">06 · Grænser og fravalg</p>
+      <p class="section-label">07 · Grænser og fravalg</p>
       <h2>Hvad platformen bevidst ikke er endnu</h2>
       <div class="limits-grid">
         <div class="limit-card">
           <h3>Ikke lanceret offentligt</h3>
-          <p>Appen kører i en lukket pilot med testere. Derfor står der ingen brugertal, afstemningstal eller omsætning her, og casen viser endnu ingen skærmbilleder. De kommer, når der er en offentlig udgave at vise.</p>
+          <p>Appen kører i en lukket pilot med testere. Derfor står der ingen brugertal, afstemningstal eller omsætning her, og skærmbillederne viser kun den offentlige del. Admin er beskrevet i tekst, ikke vist.</p>
         </div>
         <div class="limit-card">
           <h3>Ingen rigtige penge uden godkendelse</h3>
@@ -532,7 +578,7 @@
   <section class="section cta-card" id="kontakt">
     <div class="shell cta-card">
       <div>
-        <p class="section-label">07 · Kontakt</p>
+        <p class="section-label">08 · Kontakt</p>
         <h2>Har du spørgsmål til platformen?</h2>
       </div>
       <div class="cta-actions">
