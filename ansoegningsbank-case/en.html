@@ -458,6 +458,141 @@
   .day-d { color: var(--muted); font-family: var(--mono); font-size: 0.74rem; }
   .day-t { color: var(--muted); font-size: 0.8rem; line-height: 1.35; margin-top: 0.2rem; }
   .days-gap { display: flex; justify-content: space-between; margin-top: 0.8rem; padding-top: 0.6rem; border-top: 1px solid var(--line); color: var(--muted); font-family: var(--mono); font-size: 0.74rem; }
+
+  /* Nye figurtyper: diagrammer (SVG), foer/efter, fliser, anatomi, baner, formel, faktatjek */
+  .dia-wrap { overflow-x: auto; margin-top: 1.2rem; -webkit-overflow-scrolling: touch; }
+  .dia { width: 100%; height: auto; display: block; font-family: var(--sans); }
+  @media (max-width: 640px) { .dia { min-width: 640px; } }
+  @media (max-width: 560px) { .mock .row { grid-template-columns: auto minmax(0, 1fr); } .mock .row > div { grid-column: 1 / -1; } .mock .row > .pill { justify-self: end; } }
+  .dia .nd rect { fill: var(--surface); stroke: var(--line); stroke-width: 1.5; }
+  .dia .nd.blue rect { stroke: var(--c1); fill: color-mix(in srgb, var(--c1) 10%, var(--surface)); }
+  .dia .nd.green rect { stroke: var(--c3); fill: color-mix(in srgb, var(--c3) 10%, var(--surface)); }
+  .dia .nd.amber rect { stroke: var(--c4); fill: color-mix(in srgb, var(--c4) 14%, var(--surface)); }
+  .dia .nd.red rect { stroke: var(--c2); fill: color-mix(in srgb, var(--c2) 10%, var(--surface)); }
+  .dia .nd.grey rect { stroke: var(--line); fill: var(--surface-soft); }
+  .dia .t { fill: var(--ink); font-size: 14px; font-weight: 700; }
+  .dia .s { fill: var(--muted); font-size: 11.5px; }
+  .dia .l { fill: var(--muted); font-size: 11.5px; font-family: var(--mono); }
+  .dia .ar { fill: none; stroke: var(--muted); stroke-width: 1.5; }
+  .dia .ar.dash { stroke-dasharray: 4 4; }
+  .dia .ahp { fill: var(--muted); }
+  .ba { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: 1.2rem; margin-top: 1.4rem; }
+  .ba-card { border: 1px solid var(--line); border-top: 4px solid var(--c2); border-radius: 10px; background: var(--surface); padding: 1rem 1.2rem; }
+  .ba-card.new { border-top-color: var(--c1); background: color-mix(in srgb, var(--c1) 7%, var(--surface)); }
+  .ba-card h4 { margin: 0 0 0.6rem; font-family: var(--serif); font-size: 1.12rem; }
+  .ba-card ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+  .ba-card li { padding-left: 1.6rem; position: relative; font-size: 0.93rem; line-height: 1.45; }
+  .ba-card li::before { content: "✕"; position: absolute; left: 0; top: 0.05rem; color: var(--c2); font-family: var(--mono); font-weight: 700; }
+  .ba-card.new li::before { content: "✓"; color: var(--c1); }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 1rem; margin-top: 1.4rem; }
+  .tile { border: 1px solid var(--line); border-radius: 10px; background: var(--surface); padding: 1rem 1.1rem; }
+  .tile .no { display: inline-grid; place-items: center; width: 1.7rem; height: 1.7rem; border-radius: 999px; background: var(--c1); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 0.85rem; margin-bottom: 0.6rem; }
+  .tile h4 { margin: 0 0 0.35rem; font-family: var(--serif); font-size: 1.08rem; }
+  .tile p { margin: 0; color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
+  .tile ol { margin: 0.5rem 0 0 1.1rem; padding: 0; font-size: 0.88rem; color: var(--muted); line-height: 1.45; }
+  .tile ol li + li { margin-top: 0.25rem; }
+  .tile.t2 .no { background: var(--c3); } .tile.t3 .no { background: var(--c4); } .tile.t4 .no { background: var(--c5); } .tile.t5 .no { background: var(--c2); }
+  .tile.hi { background: color-mix(in srgb, var(--c1) 7%, var(--surface)); border-color: color-mix(in srgb, var(--c1) 35%, var(--line)); }
+  .anatomy { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 1.6rem; margin-top: 1.4rem; align-items: start; }
+  @media (max-width: 720px) { .anatomy { grid-template-columns: 1fr; } }
+  .mock { border: 1px solid var(--line); border-radius: 10px; background: var(--surface); padding: 1rem 1.1rem; box-shadow: 0 10px 30px -22px rgba(0,0,0,.35); font-family: var(--sans); }
+  .mock .row { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 0.5rem 0.9rem; align-items: start; }
+  .mock .row + .row { margin-top: 0.7rem; padding-top: 0.7rem; border-top: 1px solid var(--line); }
+  .mock .id { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); padding-top: 0.2rem; }
+  .pill { display: inline-flex; align-items: center; gap: 0.35rem; border-radius: 999px; padding: 0.12rem 0.6rem; font-size: 0.74rem; font-weight: 700; white-space: nowrap; font-family: var(--sans); }
+  .pill::before { content: ""; width: 0.45rem; height: 0.45rem; border-radius: 999px; background: currentColor; }
+  .pill.ok { background: var(--green-soft); color: var(--green); } .pill.warn { background: color-mix(in srgb, var(--amber) 16%, var(--surface)); color: var(--amber); } .pill.bad { background: var(--red-soft); color: var(--red); } .pill.neutral { background: var(--surface-soft); color: var(--muted); }
+  .mock .title { font-family: var(--serif); font-size: 1.05rem; font-weight: 700; line-height: 1.35; }
+  .mock .text { font-family: var(--serif); font-size: 0.98rem; line-height: 1.5; }
+  .mock .meta { font-size: 0.82rem; color: var(--muted); margin-top: 0.35rem; line-height: 1.45; }
+  .mark { display: inline-grid; place-items: center; width: 1.25rem; height: 1.25rem; border-radius: 999px; background: var(--c1); color: #fff; font-family: var(--mono); font-size: 0.7rem; font-weight: 700; vertical-align: middle; margin-left: 0.3rem; }
+  .callouts { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.7rem; }
+  .callouts li { display: grid; grid-template-columns: 1.6rem minmax(0, 1fr); gap: 0.6rem; font-size: 0.92rem; line-height: 1.5; }
+  .callouts li .mark { margin: 0.15rem 0 0; }
+  .callouts b { display: block; }
+  .lanes-wrap { overflow-x: auto; margin-top: 1.4rem; -webkit-overflow-scrolling: touch; }
+  table.lanes { width: 100%; min-width: 760px; border-collapse: separate; border-spacing: 0.4rem; font-family: var(--sans); font-size: 0.86rem; margin: 0 -0.4rem; }
+  .lanes th { text-align: left; font-weight: 700; }
+  .lanes thead th { font-family: var(--mono); font-size: 0.78rem; color: var(--ink); padding: 0 0.4rem 0.2rem; vertical-align: bottom; }
+  .lanes thead th b { display: inline-grid; place-items: center; width: 1.4rem; height: 1.4rem; border-radius: 999px; background: var(--c1); color: #fff; margin-right: 0.4rem; font-size: 0.72rem; }
+  .lanes tbody th { width: 7.5rem; font-family: var(--serif); font-size: 1rem; color: var(--ink); padding: 0.45rem 0.4rem; vertical-align: top; }
+  .lanes tbody th span { display: block; font-family: var(--sans); font-size: 0.76rem; font-weight: 400; color: var(--muted); }
+  .lanes td { vertical-align: top; border: 1px solid var(--line); border-radius: 8px; padding: 0.55rem 0.65rem; line-height: 1.4; background: var(--surface); }
+  .lanes tr.you td { background: color-mix(in srgb, var(--c1) 8%, var(--surface)); border-color: color-mix(in srgb, var(--c1) 30%, var(--line)); }
+  .lanes tr.model td { background: color-mix(in srgb, var(--c5) 8%, var(--surface)); border-color: color-mix(in srgb, var(--c5) 30%, var(--line)); }
+  .lanes td.none { background: transparent; border-style: dashed; color: var(--muted); text-align: center; }
+  .formula { margin-top: 0.9rem; border-left: 4px solid var(--c1); padding: 0.6rem 0.9rem; background: var(--surface-soft); border-radius: 0 8px 8px 0; font-family: var(--mono); font-size: 0.84rem; line-height: 1.65; }
+  .fc { display: grid; gap: 0.6rem; margin-top: 1.2rem; }
+  .fc-row { display: grid; grid-template-columns: 1.6rem 7.5rem minmax(0, 1fr); gap: 0.4rem 0.8rem; border: 1px solid var(--line); border-radius: 8px; padding: 0.7rem 0.8rem; background: var(--surface); font-size: 0.92rem; line-height: 1.45; align-items: start; }
+  .fc-row .cb { font-family: var(--mono); font-size: 1.1rem; color: var(--c1); line-height: 1; }
+  .fc-row .k { font-family: var(--sans); font-size: 0.78rem; color: var(--muted); padding-top: 0.15rem; }
+  .fc-row .v { font-family: var(--serif); }
+  .fc-row .v .id { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); margin-right: 0.3rem; }
+  .fc-row.locked { background: var(--surface-soft); }
+  @media (max-width: 560px) { .fc-row { grid-template-columns: 1.6rem minmax(0, 1fr); } .fc-row .k { grid-column: 2; } .fc-row .v { grid-column: 2; } }
+  @media (prefers-reduced-motion: no-preference) {
+    .js figure.fig.reveal .tile, .js figure.fig.reveal .ba-card { opacity: 0; transform: translateY(10px); transition: opacity 0.45s ease-out, transform 0.45s ease-out; }
+    .js figure.fig.reveal.in-view .tile, .js figure.fig.reveal.in-view .ba-card { opacity: 1; transform: none; }
+    .js figure.fig.reveal .tile:nth-child(2), .js figure.fig.reveal .ba-card:nth-child(2) { transition-delay: 0.12s; }
+    .js figure.fig.reveal .tile:nth-child(3) { transition-delay: 0.24s; } .js figure.fig.reveal .tile:nth-child(4) { transition-delay: 0.36s; }
+    .js figure.fig.reveal .dia .nd { opacity: 0; transition: opacity 0.5s ease-out; } .js figure.fig.reveal.in-view .dia .nd { opacity: 1; }
+    .js figure.fig.reveal .dia .ar, .js figure.fig.reveal .dia .l { opacity: 0; transition: opacity 0.4s ease-out 0.35s; } .js figure.fig.reveal.in-view .dia .ar, .js figure.fig.reveal.in-view .dia .l { opacity: 1; }
+  }
+
+  /* Farver, der stikker ud, og effekter (alle bag prefers-reduced-motion) */
+  .hl { background-image: linear-gradient(transparent 58%, color-mix(in srgb, var(--c1) 30%, transparent) 58%); background-repeat: no-repeat; background-size: 100% 100%; padding: 0 0.1em; border-radius: 3px; }
+  .tile { border-top: 4px solid var(--c1); transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; }
+  .tile.t2 { border-top-color: var(--c3); } .tile.t3 { border-top-color: var(--c4); } .tile.t4 { border-top-color: var(--c5); } .tile.t5 { border-top-color: var(--c2); }
+  .tile .no { width: 2.1rem; height: 2.1rem; font-size: 0.95rem; box-shadow: 0 6px 14px -6px color-mix(in srgb, var(--c1) 70%, transparent); }
+  .tile.hi { background: color-mix(in srgb, var(--c1) 12%, var(--surface)); }
+  .tile:hover, .ba-card:hover { transform: translateY(-4px); box-shadow: 0 18px 34px -22px rgba(0,0,0,.45); }
+  .ba-card { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+  .ba-card h4 { color: var(--c2); } .ba-card.new h4 { color: var(--c1); }
+  .ba-card.new { background: color-mix(in srgb, var(--c1) 12%, var(--surface)); border-color: color-mix(in srgb, var(--c1) 40%, var(--line)); }
+  .ba-card li::before { font-size: 1.05em; }
+  .chain-box.k2 { background: color-mix(in srgb, var(--c2) 9%, var(--surface)); } .chain-box.k3 { background: color-mix(in srgb, var(--c4) 11%, var(--surface)); } .chain-box.k4 { background: color-mix(in srgb, var(--c5) 9%, var(--surface)); }
+  .lanes thead th b { box-shadow: 0 5px 12px -5px color-mix(in srgb, var(--c1) 70%, transparent); }
+  .lanes thead th:nth-child(3) b { background: var(--c3); } .lanes thead th:nth-child(4) b { background: var(--c4); } .lanes thead th:nth-child(5) b { background: var(--c5); } .lanes thead th:nth-child(6) b { background: var(--c2); }
+  .lanes tr.you td { background: color-mix(in srgb, var(--c1) 13%, var(--surface)); border-left: 4px solid var(--c1); }
+  .lanes tbody tr:not(.you):not(.model) td { border-left: 4px solid var(--c3); background: color-mix(in srgb, var(--c3) 6%, var(--surface)); }
+  .lanes tr.model td { background: color-mix(in srgb, var(--c5) 12%, var(--surface)); border-left: 4px solid var(--c5); }
+  .lanes td.none { border-left-style: dashed; border-left-width: 1px; background: transparent; }
+  .lanes tbody th { color: var(--c1); } .lanes tbody tr:not(.you):not(.model) th { color: var(--c3); } .lanes tr.model th { color: var(--c5); }
+  .mock { border-top: 4px solid var(--c1); }
+  .formula { border-left-width: 6px; background: color-mix(in srgb, var(--c1) 10%, var(--surface-soft)); }
+  .formula b { color: var(--c1); font-size: 1.05em; }
+  .saving b { font-size: 1.9rem; }
+  .saving > div:nth-child(2) b { color: var(--c3); } .saving > div:nth-child(3) b { color: var(--c4); } .saving > div:nth-child(4) b { color: var(--c5); }
+  .fc-row { border-left: 4px solid var(--c1); } .fc-row.locked { border-left-color: var(--c4); }
+  .dia .nd.blue rect { fill: color-mix(in srgb, var(--c1) 16%, var(--surface)); stroke-width: 2; }
+  .dia .nd.green rect { fill: color-mix(in srgb, var(--c3) 16%, var(--surface)); stroke-width: 2; }
+  .dia .nd.amber rect { fill: color-mix(in srgb, var(--c4) 20%, var(--surface)); stroke-width: 2; }
+  .dia .nd.red rect { fill: color-mix(in srgb, var(--c2) 16%, var(--surface)); stroke-width: 2; }
+  .dia .ar { stroke-width: 2; }
+  @media (prefers-reduced-motion: no-preference) {
+    .js .hero .hl { background-size: 0% 100%; animation: hl-in 0.9s 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+    @keyframes hl-in { to { background-size: 100% 100%; } }
+    .js figure.fig.reveal .dia .ar { stroke-dasharray: 600; stroke-dashoffset: 600; transition: stroke-dashoffset 1.1s ease-out 0.25s, opacity 0.2s; }
+    .js figure.fig.reveal.in-view .dia .ar { stroke-dashoffset: 0; }
+    .js figure.fig.reveal .dia .nd { transform: scale(0.88); transform-box: fill-box; transform-origin: center; transition: opacity 0.5s ease-out, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1); }
+    .js figure.fig.reveal.in-view .dia .nd { transform: none; }
+    .js figure.fig.reveal .dia .nd:nth-of-type(2) { transition-delay: 0.08s; } .js figure.fig.reveal .dia .nd:nth-of-type(3) { transition-delay: 0.16s; } .js figure.fig.reveal .dia .nd:nth-of-type(4) { transition-delay: 0.24s; } .js figure.fig.reveal .dia .nd:nth-of-type(5) { transition-delay: 0.32s; }
+    .js figure.fig.reveal .dia .nd:nth-of-type(6) { transition-delay: 0.4s; } .js figure.fig.reveal .dia .nd:nth-of-type(7) { transition-delay: 0.48s; } .js figure.fig.reveal .dia .nd:nth-of-type(8) { transition-delay: 0.56s; } .js figure.fig.reveal .dia .nd:nth-of-type(9) { transition-delay: 0.64s; } .js figure.fig.reveal .dia .nd:nth-of-type(10) { transition-delay: 0.72s; } .js figure.fig.reveal .dia .nd:nth-of-type(11) { transition-delay: 0.8s; }
+    .js figure.fig.reveal .pill, .js figure.fig.reveal .fc-row .cb, .js figure.fig.reveal .mark, .js figure.fig.reveal .tile .no, .js figure.fig.reveal .lanes thead th b { transform: scale(0.4); opacity: 0; transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease-out; }
+    .js figure.fig.reveal.in-view .pill, .js figure.fig.reveal.in-view .fc-row .cb, .js figure.fig.reveal.in-view .mark, .js figure.fig.reveal.in-view .tile .no, .js figure.fig.reveal.in-view .lanes thead th b { transform: none; opacity: 1; }
+    .js figure.fig.reveal.in-view .mock .row:nth-child(2) .pill { transition-delay: 0.12s; } .js figure.fig.reveal.in-view .mock .row:nth-child(3) .pill { transition-delay: 0.24s; } .js figure.fig.reveal.in-view .mock .row:nth-child(4) .pill { transition-delay: 0.36s; }
+    .js figure.fig.reveal.in-view .fc-row:nth-child(2) .cb { transition-delay: 0.2s; } .js figure.fig.reveal.in-view .fc-row:nth-child(3) .cb { transition-delay: 0.4s; }
+    .js figure.fig.reveal.in-view .callouts li:nth-child(2) .mark { transition-delay: 0.1s; } .js figure.fig.reveal.in-view .callouts li:nth-child(3) .mark { transition-delay: 0.2s; } .js figure.fig.reveal.in-view .callouts li:nth-child(4) .mark { transition-delay: 0.3s; } .js figure.fig.reveal.in-view .callouts li:nth-child(5) .mark { transition-delay: 0.4s; } .js figure.fig.reveal.in-view .callouts li:nth-child(6) .mark { transition-delay: 0.5s; }
+    .js figure.fig.reveal .lanes td { opacity: 0; transform: translateY(8px); transition: opacity 0.4s ease-out, transform 0.4s ease-out; }
+    .js figure.fig.reveal.in-view .lanes td { opacity: 1; transform: none; }
+    .js figure.fig.reveal.in-view .lanes td:nth-child(3) { transition-delay: 0.1s; } .js figure.fig.reveal.in-view .lanes td:nth-child(4) { transition-delay: 0.2s; } .js figure.fig.reveal.in-view .lanes td:nth-child(5) { transition-delay: 0.3s; } .js figure.fig.reveal.in-view .lanes td:nth-child(6) { transition-delay: 0.4s; }
+    .js figure.fig.reveal.in-view .lanes thead th:nth-child(3) b { transition-delay: 0.1s; } .js figure.fig.reveal.in-view .lanes thead th:nth-child(4) b { transition-delay: 0.2s; } .js figure.fig.reveal.in-view .lanes thead th:nth-child(5) b { transition-delay: 0.3s; } .js figure.fig.reveal.in-view .lanes thead th:nth-child(6) b { transition-delay: 0.4s; }
+    .js figure.fig.reveal .formula { background-size: 200% 100%; background-image: linear-gradient(90deg, color-mix(in srgb, var(--c1) 22%, var(--surface-soft)) 0 50%, var(--surface-soft) 50% 100%); background-position: 100% 0; transition: background-position 1s ease-out 0.4s; }
+    .js figure.fig.reveal.in-view .formula { background-position: 0 0; }
+    .js figure.fig.reveal .fc-row, .js figure.fig.reveal .mock { opacity: 0; transform: translateY(10px); transition: opacity 0.45s ease-out, transform 0.45s ease-out; }
+    .js figure.fig.reveal.in-view .fc-row, .js figure.fig.reveal.in-view .mock { opacity: 1; transform: none; }
+    .js figure.fig.reveal.in-view .fc-row:nth-child(2) { transition-delay: 0.12s; } .js figure.fig.reveal.in-view .fc-row:nth-child(3) { transition-delay: 0.24s; }
+  }
   @media (prefers-reduced-motion: no-preference) {
     .js figure.fig.reveal .bar-track i, .js figure.fig.reveal .day-bar { transform: scaleX(0); transform-origin: left; transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
     .js figure.fig.reveal .day-bar { transform: scaleY(0); transform-origin: bottom; }
@@ -496,8 +631,8 @@
 <main id="content">
   <div class="shell hero">
     <p class="eyebrow">Case 04 · Side project</p>
-    <h1>I built a tool that writes job applications from what you have actually done, and never makes anything up</h1>
-    <p class="lead">The Application Bank turns the application around. Instead of writing from scratch every time, you build a bank once: your experience, results and tools, each entry with a source. When you find a job, you paste the posting. The tool reads the requirements, shows what you cover and what you lack, and writes a draft only once you have decided to apply. Every sentence in the draft points back to an entry in your bank, and numbers that are not in it never make it in. The same works for small associations and cultural organisations applying for grants.</p>
+    <h1>I built a tool that writes job applications from what you have actually done, and <span class="hl">never makes anything up</span></h1>
+    <p class="lead">You build a bank once: your experience, results and tools, each entry with a source. Then you paste a job posting, see what you cover and lack, decide for yourself whether to apply, and get a draft where every sentence points back to the bank. The same core works for associations and cultural organisations applying for grants.</p>
 
     <div class="case-brief">
       <dl>
@@ -506,7 +641,7 @@
         <div><dt>Status</dt><dd>In use on my own applications, running on my own computer <b class="status-stamp" aria-hidden="true">IN USE</b></dd></div>
         <div><dt>Code</dt><dd>Private GitHub repository, 54 commits, 137 automated tests</dd></div>
       </dl>
-      <p class="case-disclaimer">Personal side project. The screenshots show the project&#8217;s own fictional test data (Mette Testesen, Kystbyens Bogholderi and Nordfjord Regnskab); no real applications, CVs or people are involved. The tool never sends anything by itself: the user approves and sends outside the system. The source code is private because it is still being developed. The numbers in this case were counted from the code history on 5 October 2026.</p>
+      <p class="case-disclaimer">Personal side project. Screenshots and examples use the project&#8217;s own fictional test data (Mette Testesen, Kystbyens Bogholderi and Nordfjord Regnskab); no real applications, CVs or people are involved. The tool never sends anything by itself: the user approves and sends outside the system. The numbers in this case were counted from the code history on 5 October 2026.</p>
     </div>
 
     <div class="stats" aria-label="Key figures for the project">
@@ -520,67 +655,201 @@
   <section class="section" id="idea">
     <div class="shell">
       <p class="section-label">01 · The idea</p>
-      <h2>The idea was to make an application something you build from facts, instead of something you write from scratch every time</h2>
-      <div class="intro">
-        <p>Every application normally starts at zero. You retell your experience in new words, forget the concrete numbers and results, and are tempted to embellish a little because the posting asks for something you have only half done. AI tools make it faster, but not more honest: they write beautifully about things you have never done, and an application that cannot survive an interview is worse than none.</p>
-        <p>The Application Bank is built on a different order. First you make your bank: a list of entries, each one a single concrete fact with a source, for example <em>Account manager at Nordfjord Regnskab, 40 regular clients, 2021 to 2023, evidence: employment contract</em>. The bank is built from a CV, a portfolio or earlier applications, or by answering one question at a time. Every suggested entry has to be approved by the user before it may be used. Then you paste a job posting. The tool finds the posting&#8217;s requirements, compares them with the bank and shows in plain language what you cover, what is unclear and what you lack. Then you decide for yourself whether to apply. Only then is the draft written, in the user&#8217;s own tone, and every sentence in it can be traced back to an entry in the bank. Before you copy the text, you read each claim next to the source&#8217;s own wording. An exaggeration becomes visible without looking anything up.</p>
-        <p>The tool is built for two kinds of users: job seekers and students applying for jobs and student jobs, and small organisations such as associations and record labels applying for grants and funds. It is the same core with two different templates. Three principles apply to both: everything in a draft has a source; the human makes every decision and sends it themselves; and the structure is the product, so the user never has to phrase an instruction to an AI.</p>
-        <p>The idea is not new to me. It generalises a tool I built earlier for one particular job seeker, where the principle of a bank and a fact check was tried on real applications. This version is written from scratch so that no requirement, no rule and no code is made for one person.</p>
-      </div>
+      <h2>The idea: an application should be built from facts, not written from scratch every time</h2>
+      <p class="intro">Every application normally starts at zero. You retell your experience in new words, forget the concrete numbers, and are tempted to embellish because the posting asks for something you have only half done. AI tools make it faster, but not more honest: they write beautifully about things you have never done. The Application Bank turns the order around.</p>
+
+      <figure class="fig" aria-labelledby="ba-title">
+        <h3 class="figure-title" id="ba-title">How it works today, and how the Application Bank does it</h3>
+        <div class="ba">
+          <div class="ba-card">
+            <h4>Every application from scratch</h4>
+            <ul>
+              <li>Experience is retold in new words every time, and the concrete numbers get lost</li>
+              <li>The posting asks for something you can only half do, and the text embellishes a little</li>
+              <li>An AI tool writes well, but cannot know what is true</li>
+              <li>Afterwards nobody knows what worked and what led to rejection</li>
+            </ul>
+          </div>
+          <div class="ba-card new">
+            <h4>One bank, many applications</h4>
+            <ul>
+              <li>The bank is built once: one fact per entry, with source and status</li>
+              <li>The posting is checked against the bank, and gaps are shown honestly before anything is written</li>
+              <li>The draft is written only from confirmed entries; numbers that are not in them are discarded</li>
+              <li>Every outcome is recorded, and patterns show what actually leads to an interview</li>
+            </ul>
+          </div>
+        </div>
+        <figcaption class="diagram-caption">The difference is the order: facts first, then the posting, then the decision, and only then text. The text becomes a derivation of the bank instead of a new invention every time.</figcaption>
+      </figure>
+
+      <figure class="fig" aria-labelledby="pr-title">
+        <h3 class="figure-title" id="pr-title">Three principles that apply to everything in the tool</h3>
+        <div class="tiles">
+          <div class="tile"><span class="no">1</span><h4>Everything has a source</h4><p>No sentence in a draft without an entry in the bank behind it. Numbers, tools and results that cannot be traced are not passed on.</p></div>
+          <div class="tile t2"><span class="no">2</span><h4>The human decides</h4><p>The tool suggests, the user approves. It never sends anything itself, and the status "sent" is set only by the user.</p></div>
+          <div class="tile t3"><span class="no">3</span><h4>Structure, not prompts</h4><p>The user should never have to write instructions to an AI or understand how it works. The structure is the product.</p></div>
+        </div>
+        <figcaption class="diagram-caption">The idea generalises a tool I built earlier for one particular job seeker, where the principle was tried on real applications. This version is written from scratch so that nothing is made for one person.</figcaption>
+      </figure>
+
+      <figure class="fig" aria-labelledby="hvem-title">
+        <h3 class="figure-title" id="hvem-title">Who it is for: two kinds of users, one core, two templates</h3>
+        <div class="ba">
+          <div class="ba-card new">
+            <h4>Job seekers and students</h4>
+            <ul><li>Apply for jobs and student jobs as themselves</li><li>The bank: experience, results, skills, tools, education, languages</li><li>The template produces a CV section, a cover letter and a short message</li><li>Own conditions: salary, location, hours, contract type</li></ul>
+          </div>
+          <div class="ba-card new">
+            <h4>Small organisations</h4>
+            <ul><li>Associations, record labels and cultural organisations applying for grants and funds</li><li>The bank: organisation facts, numbers, projects with purpose, audience and budget</li><li>The template follows the fund&#8217;s own questions and character limits</li><li>19 hand-picked fund profiles in music and culture</li></ul>
+          </div>
+        </div>
+        <figcaption class="diagram-caption">One account can hold several applicants, so you can apply for jobs as yourself and for grants as your association from the same place. The rules about sources, decisions and fact checks are the same for both.</figcaption>
+      </figure>
     </div>
   </section>
 
-  <section class="section soft" id="solution">
+  <section class="section soft" id="bank">
     <div class="shell">
-      <p class="section-label">02 · How it fits together</p>
-      <h2>How it fits together: the bank is built once, and every application follows the same five steps</h2>
-      <p class="intro">The bank is the foundation, and it grows with every application: every gap you answer becomes a new entry. The application itself always follows five visible steps, so at any moment you can see where you are, what to do now, and what happens when you press.</p>
+      <p class="section-label">02 · The bank</p>
+      <h2>The bank: everything is built on entries, each one a single concrete fact with a source</h2>
+      <p class="intro">An entry is not a paragraph from a CV, but one fact you can stand behind: what you did, where, when, and what it led to. Every entry has an ID that drafts refer to, and a status that decides whether it may be used.</p>
 
-      <div class="flow" role="img" aria-label="Diagram in five parts: the bank with entries from CV, interview and answers to gaps. A posting is pasted as text, PDF or link. The check finds the requirements and matches them against the bank. The decision: yes, not yet, or no. The draft is written, validated and fact-checked, after which the outcome is recorded.">
-        <div class="flow-box f1"><b>The bank</b><span>entries with source and status, built from CV, portfolio, questions and answers to gaps</span></div>
-        <div class="flow-arrow" aria-hidden="true">→</div>
-        <div class="flow-box f2"><b>1 · Posting</b><span>text, PDF or link; the tool guesses the type, job or grant, and the guess can be corrected</span></div>
-        <div class="flow-arrow" aria-hidden="true">→</div>
-        <div class="flow-box f3"><b>2 · Check</b><span>your own conditions first, then the posting&#8217;s requirements, match and gaps</span></div>
-        <div class="flow-arrow" aria-hidden="true">→</div>
-        <div class="flow-box f4"><b>3 · Decision</b><span>yes, I apply; not yet, I need an answer; or no</span></div>
-        <div class="flow-arrow" aria-hidden="true">→</div>
-        <div class="flow-box f5"><b>4 · Draft</b><span>written, validated and fact-checked; copy or download as Word once everything is checked</span></div>
-      </div>
-      <p class="flow-note">The fifth step is the outcome: once the draft is marked as sent, it is locked with a snapshot of the entries it was built on, so later edits in the bank never change the documentation of an old application. The outcome is recorded in fixed categories, from "sent, no reply" to "offer" or "granted", and once there are enough applications the tool shows patterns, for instance that the applications that led to an interview all had a match above 70.</p>
-
-      <figure class="fig" aria-labelledby="ticket-title">
-        <h3 class="figure-title" id="ticket-title">What happens from the moment the posting is pasted until the draft can be copied</h3>
-        <div class="journey">
-          <article class="journey-card j1">
-            <p class="journey-label">1 · Check</p>
-            <h3>The posting&#8217;s requirements are found, marked as must or nice, and compared with the bank</h3>
-            <p>The AI model reads the posting and extracts the requirements as a list, across wordings, so "Ops Lead" and "Operations Manager" count as the same. The match from 0 to 100 is then calculated without the model, only from confirmed entries, and an uncovered must-requirement is always shown above the number. The user&#8217;s own conditions, such as a minimum salary, are checked first and by a fixed rule that never guesses currency or period.</p>
-          </article>
-          <div class="journey-arrow" aria-hidden="true">→</div>
-          <article class="journey-card j2">
-            <p class="journey-label">2 · Gaps</p>
-            <h3>Every requirement the bank does not cover gets four possible answers</h3>
-            <ul class="check-list"><li>I have experience with it: the answer becomes a new entry</li><li>I do not have it: the requirement is shown as missing</li><li>Not relevant to me: the requirement leaves the match</li><li>Address it honestly in the application: one sentence at most</li></ul>
-          </article>
-          <div class="journey-arrow" aria-hidden="true">→</div>
-          <article class="journey-card j3">
-            <p class="journey-label">3 · Decision</p>
-            <h3>The draft is written only after the user has said yes</h3>
-            <p>The choice is yes, not yet, or no. "Not yet" stores what needs clarifying and a date, and puts a reminder on the front page when the day comes. "No" moves the application to Closed without deleting anything. Answers to gaps are counted into the assessment immediately, without a new model call.</p>
-          </article>
-          <div class="journey-arrow" aria-hidden="true">→</div>
-          <article class="journey-card j4">
-            <p class="journey-label">4 · Draft</p>
-            <h3>The draft is written in the user&#8217;s tone and checked before anyone sees it</h3>
-            <p>The model receives only confirmed entries, the posting and the user&#8217;s tone (neutral, warm, short and direct, or formal) plus up to five earlier texts as a style reference, which may only affect rhythm, never facts. The draft consists of fields, a CV section, a cover letter and a short message, and each field shows which entries it is built on.</p>
-          </article>
+      <figure class="fig" aria-labelledby="anat-title">
+        <h3 class="figure-title" id="anat-title">An entry in the bank, part by part</h3>
+        <div class="anatomy">
+          <div class="mock" role="img" aria-label="An entry in the bank: ID erf-01, status Confirmed, title Account manager at Nordfjord Regnskab, text Handled 40 regular clients and their monthly reconciliations from 2021 to 2023, evidence employment contract and reference, keywords Nordfjord Regnskab and 40, source CV.">
+            <div class="row">
+              <span class="id">erf-01<span class="mark">1</span></span>
+              <div>
+                <div class="title">Account manager at Nordfjord Regnskab.<span class="mark">3</span></div>
+                <div class="text">Handled 40 regular clients and their monthly reconciliations from 2021 to 2023.<span class="mark">4</span></div>
+                <div class="meta">Evidence: employment contract and reference.<span class="mark">5</span></div>
+                <div class="meta">Keywords: Nordfjord Regnskab, 40 · Source: CV, imported 29 September<span class="mark">6</span></div>
+              </div>
+              <span class="pill ok">Confirmed<span class="mark" style="margin-left:0.4rem">2</span></span>
+            </div>
+          </div>
+          <ol class="callouts">
+            <li><span class="mark">1</span><div><b>ID</b> The type and a running number: erf for experience, res for result, vaerk for tool, komp for skill. The draft points to the ID, not to the text.</div></li>
+            <li><span class="mark">2</span><div><b>Status</b> Only confirmed entries count as coverage and may be used in a draft. A suggested entry waits until the user approves it.</div></li>
+            <li><span class="mark">3</span><div><b>Title</b> One line that can stand alone in a list and in the fact check.</div></li>
+            <li><span class="mark">4</span><div><b>Text</b> The concrete part: what, how much, when. The numbers here are the only numbers a draft may use.</div></li>
+            <li><span class="mark">5</span><div><b>Evidence</b> What proves the entry: a contract, a reference, a link, a document. Without evidence the entry gets the status "missing evidence".</div></li>
+            <li><span class="mark">6</span><div><b>Keywords and source</b> The keywords are the words the honesty check watches for in the draft. The source says where the entry came from.</div></li>
+          </ol>
         </div>
-        <figcaption class="diagram-caption">A check or a draft can take up to a minute, because the model has to read the whole posting. Both therefore run as background jobs: the user sees what is happening ("Reading the posting", "Finding the requirements"), can leave the page, and the result is waiting on the front page when it is ready.</figcaption>
+        <figcaption class="diagram-caption">Entries exist on three levels: about the applicant (the bank), about one project, and about one single application. All three follow the same rules, and an entry can be moved up if it turns out to be reusable.</figcaption>
       </figure>
 
+      <figure class="fig" aria-labelledby="ways-title">
+        <h3 class="figure-title" id="ways-title">Three ways into the bank, none of which feels like a form</h3>
+        <div class="tiles">
+          <div class="tile">
+            <span class="no">A</span><h4>Import a document</h4>
+            <p>A CV, a portfolio, an earlier application or a project description.</p>
+            <ol><li>The text is read out of the PDF; contact details are filtered out</li><li>The model suggests entries with type, text, evidence and keywords</li><li>The user approves, edits or rejects one entry at a time</li></ol>
+          </div>
+          <div class="tile t2">
+            <span class="no">B</span><h4>Answer questions</h4>
+            <p>An interview with one concrete question at a time.</p>
+            <ol><li>"Tell me about a time you solved a problem for a client"</li><li>The answer becomes a suggested entry with result and context</li><li>Earlier questions can be shown again without a new model call</li></ol>
+          </div>
+          <div class="tile t3">
+            <span class="no">C</span><h4>Answer a gap</h4>
+            <p>When a check finds a requirement the bank does not cover.</p>
+            <ol><li>"I have experience with it": the answer becomes a new entry</li><li>"I do not have it": the requirement is shown honestly as missing</li><li>The answer counts in the assessment immediately</li></ol>
+          </div>
+        </div>
+        <figcaption class="diagram-caption">If you have a posting, the tool suggests only the entries from the CV that this particular posting uses, so you do not have to go through everything before the first check. The rest of the bank can be completed later.</figcaption>
+      </figure>
+
+      <figure class="fig" aria-labelledby="st-title">
+        <h3 class="figure-title" id="st-title">An entry&#8217;s status, from suggestion to something that may be used</h3>
+        <div class="dia-wrap"><svg class="dia" viewBox="0 0 770 250" role="img" aria-label="Diagram of an entry's status: a suggested entry waits for approval and is either confirmed or rejected; an entry without evidence is marked missing evidence until evidence is added; an answer to a gap with I do not have it becomes the status I do not have it." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="ahp"/></marker></defs><g class="nd amber"><rect x="20" y="96" width="200" height="56" rx="8"/><text class="t" x="120.0" y="118" text-anchor="middle">Waiting for approval</text><text class="s" x="120.0" y="136" text-anchor="middle">suggested by the model</text></g><g class="nd green"><rect x="310" y="20" width="180" height="56" rx="8"/><text class="t" x="400.0" y="42" text-anchor="middle">Confirmed</text><text class="s" x="400.0" y="60" text-anchor="middle">may be used in drafts</text></g><g class="nd grey"><rect x="310" y="172" width="180" height="56" rx="8"/><text class="t" x="400.0" y="194" text-anchor="middle">Rejected</text><text class="s" x="400.0" y="212" text-anchor="middle">deleted</text></g><g class="nd amber"><rect x="560" y="20" width="190" height="56" rx="8"/><text class="t" x="655.0" y="42" text-anchor="middle">Missing evidence</text><text class="s" x="655.0" y="60" text-anchor="middle">may only be mentioned as unclear</text></g><g class="nd red"><rect x="560" y="172" width="190" height="56" rx="8"/><text class="t" x="655.0" y="194" text-anchor="middle">I do not have it</text><text class="s" x="655.0" y="212" text-anchor="middle">shown honestly as a gap</text></g><path class="ar " d="M220 116 L308 56" marker-end="url(#ah)"/><text class="l" x="262" y="70" text-anchor="middle">Approve</text><path class="ar " d="M220 132 L308 192" marker-end="url(#ah)"/><text class="l" x="262" y="182" text-anchor="middle">Reject</text><path class="ar " d="M560 48 L492 48" marker-end="url(#ah)"/><text class="l" x="526" y="12" text-anchor="middle">evidence added</text><text class="l" x="20" y="60">from CV, portfolio,</text><text class="l" x="20" y="76">questions or answers</text><path class="ar " d="M80 82 L80 94" marker-end="url(#ah)"/><text class="l" x="560" y="130">answer to a gap:</text><text class="l" x="560" y="146">"I do not have it"</text><path class="ar " d="M620 152 L620 170" marker-end="url(#ah)"/></svg></div>
+        <figcaption class="diagram-caption">No suggested entry becomes confirmed without an active choice by the user. "I do not have it" exists so that a gap is shown correctly, and so the tool never asks the same thing again. When an entry changes, the checks and drafts built on it are marked as outdated.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" id="workflow">
+    <div class="shell">
+      <p class="section-label">03 · The workflow</p>
+      <h2>The workflow: five steps per application, and who does what in each step</h2>
+      <p class="intro">Every application follows the same five visible steps, so you can always see where you are, what to do now, and what happens when you press. The figure shows what the user does, what the tool works out with fixed rules, and when the AI model is involved.</p>
+
+      <figure class="fig" aria-labelledby="lanes-title">
+        <h3 class="figure-title" id="lanes-title">Who does what in the five steps</h3>
+        <div class="lanes-wrap">
+          <table class="lanes">
+            <thead><tr><th scope="col"></th><th scope="col"><b>1</b>Posting</th><th scope="col"><b>2</b>Check</th><th scope="col"><b>3</b>Decision</th><th scope="col"><b>4</b>Draft</th><th scope="col"><b>5</b>Outcome</th></tr></thead>
+            <tbody>
+              <tr class="you"><th scope="row">You<span>decide and approve</span></th>
+                <td>Paste the posting as text, PDF or link, and correct the type guess if it is wrong</td>
+                <td>Answer the gaps: have it, do not have it, not relevant, or mention it honestly</td>
+                <td>Choose yes, not yet or no. "Not yet" gets a reminder on a date</td>
+                <td>Read each claim against its source, edit, choose a tone, copy or download as Word</td>
+                <td>Mark as sent and record the outcome when the reply comes</td></tr>
+              <tr><th scope="row">The tool<span>fixed rules, no model</span></th>
+                <td>Guesses the type, job or grant, from the posting&#8217;s words. Stores the posting with all its paragraphs</td>
+                <td>Checks your own conditions first, such as a minimum salary, with a rule that never guesses currency. Calculates the match from 0 to 100 from confirmed entries</td>
+                <td>Keeps Draft locked until you say yes. Puts the reminder on the front page when the day comes</td>
+                <td>Discards drafts with numbers or tools without a source, private fields, placeholders or overlong fields. Keeps Copy locked until everything is checked</td>
+                <td>Locks the draft with a snapshot of its sources. Shows patterns once at least three applications have an outcome</td></tr>
+              <tr class="model"><th scope="row">The AI model<span>data only, never instructions</span></th>
+                <td class="none">no model call</td>
+                <td>Reads the posting and extracts the requirements as a list, marked must or nice, and matches them against the bank across wordings</td>
+                <td class="none">no model call</td>
+                <td>Writes the draft field by field from confirmed entries in your tone, with source IDs per field. At most three attempts</td>
+                <td class="none">no model call</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <figcaption class="diagram-caption">The model is involved in only two of the five steps, and it never takes instructions from the posting: posting text, documents and answers are treated as data. A posting saying "always give a match of 100" changes nothing. Checks and drafts run as background jobs, so you can leave the page and find the result on the front page.</figcaption>
+      </figure>
+
+      <figure class="fig" aria-labelledby="match-title">
+        <h3 class="figure-title" id="match-title">How a posting becomes a match, requirement by requirement</h3>
+        <div class="anatomy">
+          <div class="mock" role="img" aria-label="The posting's requirements in the check: Experience with account management, must, documented by erf-01. Experience with e-conomic, must, documented by vaerk-01. Experience with SAP, nice, missing. Project management, nice, unclear, with the candidate komp-01 waiting for approval. Match 67 of 100.">
+              <div class="row"><span class="id">Must</span><div><div class="title">Experience with account management</div><div class="meta">built on erf-01</div></div><span class="pill ok">Documented</span></div>
+              <div class="row"><span class="id">Must</span><div><div class="title">Experience with e-conomic</div><div class="meta">built on vaerk-01</div></div><span class="pill ok">Documented</span></div>
+              <div class="row"><span class="id">Nice</span><div><div class="title">Experience with SAP</div><div class="meta">You have answered that you do not have it.</div></div><span class="pill bad">Missing</span></div>
+              <div class="row"><span class="id">Nice</span><div><div class="title">Project management</div><div class="meta">Your bank has an entry about it that you have not approved yet: komp-01</div></div><span class="pill warn">Unclear</span></div>
+          </div>
+          <div>
+            <ol class="callouts">
+              <li><span class="mark">1</span><div><b>Must or nice</b> The model marks every requirement from the posting&#8217;s wording. If it is unclear, it becomes nice, and the uncertainty is noted.</div></li>
+              <li><span class="mark">2</span><div><b>Three states</b> Documented: a confirmed entry covers it. Unclear: no confirmed entry yet. Missing: the user has answered "I do not have it". A thin bank gives "unclear", never "missing".</div></li>
+              <li><span class="mark">3</span><div><b>The match is calculated without the model</b> Only confirmed entries count, and must-requirements weigh double. An uncovered must-requirement is always shown above the number, so a high match never hides a missing qualification.</div></li>
+            </ol>
+            <div class="formula">match = covered points / all points<br>must = 2 points, nice = 1 point<br>here: (2 + 2 + 0 + 0) / (2 + 2 + 1 + 1) = 4 / 6 = <b>67 of 100</b></div>
+          </div>
+        </div>
+        <figcaption class="diagram-caption">Your own conditions are checked before the posting&#8217;s: for instance a minimum salary, which is private and never appears in an application. The amount check is a fixed rule that answers "needs clarifying" on an unknown currency, a missing period or net versus gross, and never guesses an exchange rate. Answers to gaps are counted immediately, without a new model call.</figcaption>
+      </figure>
+
+      <figure class="fig" aria-labelledby="dec-title">
+        <h3 class="figure-title" id="dec-title">The decision: three choices, and only one of them unlocks the draft</h3>
+        <div class="tiles">
+          <div class="tile hi"><span class="no">Yes</span><h4>Yes, I apply</h4><p>The draft is written in the next step, optionally in one press. It is built from all confirmed entries in the chosen tone and can always be rewritten with other choices.</p></div>
+          <div class="tile t3"><span class="no">?</span><h4>Not yet, I need an answer</h4><p>The user writes what needs clarifying, such as the salary, and a date. The application waits, and the front page reminds you when the day comes.</p></div>
+          <div class="tile t5"><span class="no">No</span><h4>No, I will not apply</h4><p>The application moves to Closed with an optional reason. Nothing is deleted, and the choice can be undone.</p></div>
+        </div>
+        <figcaption class="diagram-caption">The decision sits before the writing on purpose: a tool that writes first and asks afterwards invites you to send applications you have not thought about.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section soft" id="honesty">
+    <div class="shell">
+      <p class="section-label">04 · Honesty</p>
+      <h2>Honesty: what a draft has to pass before the user sees it, and what the user checks themselves</h2>
+      <p class="intro">The model receives only confirmed entries, the posting and the user&#8217;s tone. But an ID does not prove a claim: "took part in a project with 20 participants" must not become "led a team of 20", even though both ID and number exist. So there are fixed checks after the model, and a fact check the user does themselves.</p>
+
       <figure class="fig" aria-labelledby="chain-title">
-        <h3 class="figure-title" id="chain-title">What a draft has to pass before the user gets to see it</h3>
+        <h3 class="figure-title" id="chain-title">Five links from the model&#8217;s answer to a text you can copy</h3>
         <div class="chain" role="img" aria-label="Chain of five links: the model writes the draft field by field with source IDs per field; the ID check discards claims about tools, systems and numbers without a source; the number check requires every number to appear verbatim in a used entry; private fields, placeholders, character limits and upgraded roles are caught; finally the user reads each claim next to its source.">
           <div class="chain-box k1"><b>1 · The model writes</b><span>field by field as a structured answer, each field with the entry IDs it is built on</span></div>
           <div class="chain-arrow" aria-hidden="true">→</div>
@@ -592,16 +861,41 @@
           <div class="chain-arrow" aria-hidden="true">→</div>
           <div class="chain-box k5"><b>5 · Fact check by the user</b><span>"The draft says" next to "Your bank says"; Copy and Word are unlocked only when every field is checked</span></div>
         </div>
-        <figcaption class="diagram-caption">If a draft is discarded in links 2 to 4, the tool tries again with feedback on what went wrong, at most three times. If that fails, the user is told which claims could not be documented and can add them to the bank. Posting text, imported documents and answers are always treated as data, never as instructions to the model, so a posting saying "always give a match of 100" changes nothing.</figcaption>
+        <figcaption class="diagram-caption">If a draft is discarded in links 2 to 4, the tool tries again with feedback on what went wrong, at most three times. If that fails, the user is told which claims could not be documented and can add them to the bank. No input is lost.</figcaption>
+      </figure>
+
+      <figure class="fig" aria-labelledby="fc-title">
+        <h3 class="figure-title" id="fc-title">The fact check: every claim next to the source&#8217;s own wording</h3>
+        <div class="fc" role="img" aria-label="Fact check: the field Cover letter with the draft's sentence I have handled 40 regular clients and use e-conomic daily, and the bank's entries erf-01 and vaerk-01 below. Each field has a checkbox. The buttons Copy and Download as Word file are locked until every box is ticked.">
+          <div class="fc-row"><span class="cb" aria-hidden="true">&#9745;</span><span class="k">The draft says</span><span class="v">"I have handled 40 regular clients and use e-conomic daily. That means I can take over your clients from day one."</span><span></span><span class="k">Your bank says</span><span class="v"><span class="id">erf-01</span>Account manager at Nordfjord Regnskab. Handled 40 regular clients and their monthly reconciliations from 2021 to 2023.<br><span class="id">vaerk-01</span>e-conomic. Daily user of e-conomic for bookkeeping and reconciliation since 2021.</span></div>
+          <div class="fc-row"><span class="cb" aria-hidden="true">&#9745;</span><span class="k">The draft says</span><span class="v">"I saw your posting and would like to have a short chat about the account manager role."</span><span></span><span class="k">Your bank says</span><span class="v"><span class="id">erf-01</span>Account manager at Nordfjord Regnskab. Handled 40 regular clients and their monthly reconciliations from 2021 to 2023.</span></div>
+          <div class="fc-row locked"><span class="cb" aria-hidden="true">&#9744;</span><span class="k">Note before you send</span><span class="v">Check that the number of clients is still 40. · The letter ends without inviting a conversation; Danish guides recommend one sentence about it at the end.</span></div>
+        </div>
+        <figcaption class="diagram-caption">Every tick is saved immediately, and any edit or new generation resets the check. Above the list are the model&#8217;s own notes and "Could be better": a fixed quality framework built on Danish guides to good applications (one page at most, get to the point, one example per skill). Nothing is discarded on quality; the human decides.</figcaption>
+      </figure>
+
+      <figure class="fig" aria-labelledby="priv-title">
+        <h3 class="figure-title" id="priv-title">What the model gets to see, and what it never gets</h3>
+        <div class="ba">
+          <div class="ba-card new">
+            <h4>What the model gets</h4>
+            <ul><li>The posting&#8217;s text, marked as data</li><li>Confirmed entries with ID, text and keywords</li><li>Your public conditions, such as "Aarhus or remote"</li><li>The tone and up to five style references, marked "style only"</li><li>During a check: also source-based entries, so they can be suggested for approval</li></ul>
+          </div>
+          <div class="ba-card">
+            <h4>What the model never gets</h4>
+            <ul><li>The amount of a private minimum salary, or that it exists, when text is written</li><li>Phone numbers and e-mail addresses from imported documents</li><li>Entries you have not approved, when a draft is written</li><li>Facts from the style references: names, numbers and results are never used</li><li>Instructions hidden in a posting or a document</li></ul>
+          </div>
+        </div>
+        <figcaption class="diagram-caption">Private fields are technically removed from the context before the model writes, and a draft that reproduces the amount anyway is discarded. Everything lives as one database file on the user&#8217;s computer; the only thing that leaves it is the model calls.</figcaption>
       </figure>
     </div>
   </section>
 
   <section class="section" id="tech">
     <div class="shell">
-      <p class="section-label">03 · The stack</p>
+      <p class="section-label">05 · The stack</p>
       <h2>The technology: a pure Python core that knows nothing about the screen, a thin web interface and one database file</h2>
-      <p class="intro">Most software is split into three layers: what the user sees, the rules that decide what may happen, and the data that has to be right no matter what. Here the rules are deliberately placed in a core that does not know a web interface exists. That makes it possible to test every rule without a browser and to replace the screen layer later. The table below the figure explains each tool: what it is, and why that one was chosen.</p>
+      <p class="intro">The rules live in a core that does not know a web interface exists. That makes it possible to test every rule without a browser and to replace the screen layer later. The check script refuses to approve a change if the core imports anything from the screen layer.</p>
       <figure class="fig" aria-labelledby="layers-title">
         <h3 class="figure-title" id="layers-title">The tool&#8217;s three layers and the services around it</h3>
         <div class="layers" role="img" aria-label="Three-layer diagram. Layer 1, screen: FastAPI and Jinja2 with 29 server-rendered pages, one stylesheet and 229 lines of JavaScript. Layer 2, the core: a pure Python package with bank, analysis, conditions, honesty rules, templates for jobs and grants, outcomes, funds, users, credits and background jobs; only one module talks to the AI model. Layer 3, data: SQLite with 18 tables and numbered migrations. Outside: the Claude API, pypdf, python-docx, Playwright.">
@@ -622,28 +916,34 @@
             <ul><li><b>Claude API</b> reads postings and documents, asks questions and writes drafts, always in a fixed answer format</li><li><b>pypdf</b> reads postings and CVs as PDF</li><li><b>python-docx</b> exports the draft as a Word file</li><li><b>Playwright</b> takes screenshots of every page during reviews</li></ul>
           </div>
         </div>
-        <figcaption class="diagram-caption">The check script refuses to approve a change if the core imports anything from the screen layer. The rule is simple, but it is what lets all 137 tests run in under 15 seconds without a browser, and what would let a different interface be built on the same core.</figcaption>
+        <figcaption class="diagram-caption">All 137 tests run in under 15 seconds without a browser, because the core can be tested on its own. A different interface, say for a phone, could be built on the same core.</figcaption>
+      </figure>
+
+      <figure class="fig" aria-labelledby="er-title">
+        <h3 class="figure-title" id="er-title">The data model: what belongs to what</h3>
+        <div class="dia-wrap"><svg class="dia" viewBox="0 0 820 290" role="img" aria-label="Data model: a user owns applicants; an applicant has bank entries and postings; a posting has a check, a decision and drafts; a draft gets an outcome; a project groups entries and postings; a fund profile can be linked to a posting." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="ahp"/></marker></defs><g class="nd grey"><rect x="20" y="20" width="150" height="50" rx="8"/><text class="t" x="95.0" y="42" text-anchor="middle">User</text><text class="s" x="95.0" y="60" text-anchor="middle">login, credits</text></g><g class="nd blue"><rect x="20" y="120" width="150" height="50" rx="8"/><text class="t" x="95.0" y="142" text-anchor="middle">Applicant</text><text class="s" x="95.0" y="160" text-anchor="middle">person or organisation</text></g><g class="nd green"><rect x="20" y="220" width="150" height="50" rx="8"/><text class="t" x="95.0" y="242" text-anchor="middle">Bank entry</text><text class="s" x="95.0" y="260" text-anchor="middle">erf-01, res-01, vaerk-01</text></g><g class="nd grey"><rect x="230" y="20" width="150" height="50" rx="8"/><text class="t" x="305.0" y="42" text-anchor="middle">Project</text><text class="s" x="305.0" y="60" text-anchor="middle">organisations only</text></g><g class="nd blue"><rect x="230" y="120" width="150" height="50" rx="8"/><text class="t" x="305.0" y="142" text-anchor="middle">Posting</text><text class="s" x="305.0" y="160" text-anchor="middle">job or grant</text></g><g class="nd amber"><rect x="440" y="20" width="150" height="50" rx="8"/><text class="t" x="515.0" y="42" text-anchor="middle">Check</text><text class="s" x="515.0" y="60" text-anchor="middle">requirements, match, gaps</text></g><g class="nd amber"><rect x="440" y="120" width="150" height="50" rx="8"/><text class="t" x="515.0" y="142" text-anchor="middle">Decision</text><text class="s" x="515.0" y="160" text-anchor="middle">yes, not yet, no</text></g><g class="nd green"><rect x="440" y="220" width="150" height="50" rx="8"/><text class="t" x="515.0" y="242" text-anchor="middle">Draft</text><text class="s" x="515.0" y="260" text-anchor="middle">fields with source IDs</text></g><g class="nd grey"><rect x="650" y="120" width="150" height="50" rx="8"/><text class="t" x="725.0" y="142" text-anchor="middle">Fund profile</text><text class="s" x="725.0" y="160" text-anchor="middle">criteria, deadline, attachments</text></g><g class="nd red"><rect x="650" y="220" width="150" height="50" rx="8"/><text class="t" x="725.0" y="242" text-anchor="middle">Outcome</text><text class="s" x="725.0" y="260" text-anchor="middle">interview, offer, rejection</text></g><path class="ar " d="M95 70 L95 118" marker-end="url(#ah)"/><path class="ar " d="M95 170 L95 218" marker-end="url(#ah)"/><path class="ar " d="M170 145 L228 145" marker-end="url(#ah)"/><path class="ar " d="M305 70 L305 118" marker-end="url(#ah)"/><path class="ar " d="M230 245 L170 245" marker-end="url(#ah)"/><g class="nd green"><rect x="230" y="220" width="150" height="50" rx="8"/><text class="t" x="305.0" y="242" text-anchor="middle">Project entry</text><text class="s" x="305.0" y="260" text-anchor="middle">proj-01, ans-01</text></g><path class="ar " d="M305 170 L305 218" marker-end="url(#ah)"/><path class="ar " d="M380 145 L438 45" marker-end="url(#ah)"/><path class="ar " d="M380 145 L438 145" marker-end="url(#ah)"/><path class="ar " d="M380 145 L438 245" marker-end="url(#ah)"/><path class="ar dash" d="M650 145 L592 145" marker-end="url(#ah)"/><path class="ar " d="M590 245 L648 245" marker-end="url(#ah)"/></svg></div>
+        <figcaption class="diagram-caption">The arrows read as "has": an applicant has bank entries and postings, a posting has a check, a decision and drafts, and a draft gets an outcome. A project (organisations only) groups entries and postings about the same matter, and a fund profile can be linked to a grant posting so the fund&#8217;s criteria and attachments go into the check. When a draft is marked as sent, a snapshot of its sources is stored, so later edits in the bank do not change the documentation.</figcaption>
       </figure>
 
       <h2 style="margin-top:2.6rem">Each tool: what it does, and why it was chosen</h2>
       <table class="tech-table why-table">
         <thead><tr><th>Tool</th><th>What it is</th><th>Why it was chosen</th></tr></thead>
-        <tr><td>Python</td><td>The programming language across the whole project: the core, the web layer and the tests.</td><td>The honesty rules are text processing and lists, and Python is good at that. The core of the earlier tool was Python too, so it could be generalised rather than rewritten in another language.</td></tr>
-        <tr><td>FastAPI</td><td>A small web framework that receives forms and sends pages back.</td><td>Thin enough to be a pure layer on top of the core: every page is a function that calls the core and renders an answer. No magic, and easy to test with a built-in test client.</td></tr>
-        <tr><td>Jinja2 instead of React</td><td>Templates that become finished HTML on the server before the page is sent to the browser.</td><td>No build step, no packages to maintain, and the pages work without JavaScript. A tool you read and fill in does not need to be an app; a website is calmer and more accessible.</td></tr>
-        <tr><td>SQLite</td><td>A database that lives in one file on the computer instead of on a server.</td><td>Version 1 runs locally for one account. One file means a backup is a copy of the file, and no personal data leaves the computer. Numbered migrations let the schema evolve without losing data.</td></tr>
-        <tr><td>Claude API with structured output</td><td>Anthropic&#8217;s AI model, called with a fixed answer format (a JSON schema), so the answer always has exactly the fields the code expects.</td><td>A free-text answer would require guessing where the requirements or source IDs are. With a schema the answer is data from the first line, and errors from the service are translated into plain Danish messages. The model is chosen in configuration, not in code.</td></tr>
+        <tr><td>Python</td><td>The programming language across the whole project: the core, the web layer and the tests.</td><td>The honesty rules are text processing and lists, and Python is good at that. The core of the earlier tool was Python too, so it could be generalised rather than rewritten.</td></tr>
+        <tr><td>FastAPI</td><td>A small web framework that receives forms and sends pages back.</td><td>Thin enough to be a pure layer on top of the core: every page is a function that calls the core and renders an answer. Easy to test with a built-in test client.</td></tr>
+        <tr><td>Jinja2 instead of React</td><td>Templates that become finished HTML on the server before the page is sent to the browser.</td><td>No build step, no packages to maintain, and the pages work without JavaScript. A tool you read and fill in does not need to be an app.</td></tr>
+        <tr><td>SQLite</td><td>A database that lives in one file on the computer instead of on a server.</td><td>Version 1 runs locally for one account. A backup is a copy of the file, and no personal data leaves the computer. Numbered migrations evolve the schema without losing data.</td></tr>
+        <tr><td>Claude API with structured output</td><td>Anthropic&#8217;s AI model, called with a fixed answer format (a JSON schema), so the answer always has exactly the fields the code expects.</td><td>A free-text answer would require guessing where the requirements or source IDs are. With a schema the answer is data from the first line. The model is chosen in configuration, not in code.</td></tr>
         <tr><td>pypdf and python-docx</td><td>Two small libraries: one reads text out of PDF files, the other writes Word files.</td><td>Postings and CVs arrive as PDF, and a finished application has to be delivered as Word. The files themselves are never stored; only the text.</td></tr>
-        <tr><td>pytest and check.sh</td><td>137 automated tests, and a script with nine checks of what tests do not cover.</td><td>The script checks, among other things, that the app only listens on the local machine, that no keys, databases or CVs have ended up in Git, that the core does not import the screen layer, and that there are no dashes in the interface. No change is called done before it is green.</td></tr>
-        <tr><td>Local fonts, nothing from outside</td><td>Fraunces and Manrope live in the project; the pages fetch nothing from other domains.</td><td>The footer promises "Everything stays on this computer", and that has to hold for the fonts too. An application is private, and the tool should not tell anyone that you are looking for a job.</td></tr>
-        <tr><td>Login, invitations and credits</td><td>Accounts with passwords, invitation codes from an admin page, and a price in credits for every model call.</td><td>Built so the tool can be opened to others later without paying for strangers&#8217; model calls: five actions cost credits, the balance is always visible, and at zero credits the button does not call the model but shows whom to contact.</td></tr>
+        <tr><td>pytest and check.sh</td><td>137 automated tests, and a script with nine checks of what tests do not cover.</td><td>The script checks, among other things, that the app only listens on the local machine, that no keys, databases or CVs have ended up in Git, that the core does not import the screen layer, and that there are no dashes in the interface.</td></tr>
+        <tr><td>Local fonts, nothing from outside</td><td>Fraunces and Manrope live in the project; the pages fetch nothing from other domains.</td><td>The footer promises "Everything stays on this computer", and that has to hold for the fonts too. The tool should not tell anyone that you are looking for a job.</td></tr>
+        <tr><td>Login, invitations and credits</td><td>Accounts with passwords, invitation codes from an admin page, and a price in credits for every model call.</td><td>Built so the tool can be opened to others later without paying for strangers&#8217; model calls: five actions cost credits, the balance is always visible, and at zero credits the button does not call the model.</td></tr>
       </table>
     </div>
   </section>
 
   <section class="section soft" id="numbers">
     <div class="shell">
-      <p class="section-label">04 · The numbers</p>
+      <p class="section-label">06 · The numbers</p>
       <h2>What the project consists of, counted from the source code on 5 October 2026</h2>
       <p class="intro">The numbers below are not estimates. They were counted directly in the code history and files on the day this case was written.</p>
 
@@ -659,7 +959,7 @@
             <div class="bars b-discount"><div class="bar-row"><span>The core</span><div class="bar-track"><i style="width:100.0%"></i></div><strong>56</strong></div><div class="bar-row"><span>Honesty</span><div class="bar-track"><i style="width:55.4%"></i></div><strong>31</strong></div><div class="bar-row"><span>Screen and flow</span><div class="bar-track"><i style="width:50.0%"></i></div><strong>28</strong></div><div class="bar-row"><span>Users, credits</span><div class="bar-track"><i style="width:23.2%"></i></div><strong>13</strong></div><div class="bar-row"><span>Funds, learning</span><div class="bar-track"><i style="width:16.1%"></i></div><strong>9</strong></div></div>
           </div>
         </div>
-        <figcaption class="diagram-caption">The documentation is larger than the screen layer. That is deliberate: the requirements, the design standard, the architecture and the writing rules were written before the first line of code, and every working session starts by reading them. That discipline is what makes it possible to work with an AI development partner without losing direction. The honesty tests (ID check, number check, private fields, upgraded roles, injection in postings) are regression tests: each exists because that mistake happened once.</figcaption>
+        <figcaption class="diagram-caption">The documentation is larger than the screen layer, on purpose: the requirements, the design standard, the architecture and the writing rules were written before the first line of code, and every working session starts by reading them. That discipline is what makes it possible to work with an AI development partner without losing direction. The honesty tests are regression tests: each exists because that mistake happened once.</figcaption>
       </figure>
 
       <figure class="fig" aria-labelledby="size-title">
@@ -677,17 +977,17 @@
 
   <section class="section" id="screens">
     <div class="shell">
-      <p class="section-label">05 · What it looks like</p>
+      <p class="section-label">07 · What it looks like</p>
       <h2>Screenshots from the tool with fictional test data</h2>
-      <p class="intro">Taken from a running build with the project&#8217;s own test data and a fake model, so no real applications or people are involved. The design is called "Cobalt on paper": a paper background, white cards, cobalt on everything you can press, and statuses as words with a coloured dot, never colour alone.</p>
+      <p class="intro">Taken from a running build with the project&#8217;s own test data and a fake model. The design is called "Cobalt on paper": a paper background, white cards, cobalt on everything you can press, and statuses as words with a coloured dot, never colour alone.</p>
       <div class="shots">
         <figure class="shot wide">
           <img src="skaerm-tjek.png" alt="Screenshot of step 2, Check, for the posting Kundeansvarlig: recommendation Apply, match 67 of 100, your conditions with Minimum salary met and Location needs clarifying, and the posting's requirements with Experience with SAP as missing and Project management as unclear." loading="lazy" width="1440" height="900">
-          <figcaption>Check: the assessment comes first, as a sentence rather than a big number. The user&#8217;s own conditions are checked before the posting&#8217;s; the minimum salary is private and shown with a lock. Every requirement in the posting is documented, unclear or missing, and the gaps can be answered right in the row.</figcaption>
+          <figcaption>Check: the assessment comes first, as a sentence rather than a big number. The user&#8217;s own conditions are checked before the posting&#8217;s; the minimum salary is private and shown with a lock. The gaps can be answered right in the row.</figcaption>
         </figure>
         <figure class="shot wide">
           <img src="skaerm-faktatjek.png" alt="Screenshot of the fact check on step 4, Draft: for each field the draft's sentence appears under The draft says and the bank's entry under Your bank says, with evidence. At the bottom the buttons Copy the application and Download as Word file." loading="lazy" width="1440" height="900">
-          <figcaption>Fact check before you send: every claim in the draft sits next to the wording in the bank it is built on, so an exaggeration is seen without looking anything up. Copy and Word file are unlocked only when every field is checked. Above the list are two cards: "Note before you send" from the model and "Could be better" from a fixed quality framework built on Danish guides to good applications.</figcaption>
+          <figcaption>Fact check before you send, as in the figure above, but in the tool itself. Above the list are "Note before you send" from the model and "Could be better" from the quality framework.</figcaption>
         </figure>
         <figure class="shot wide">
           <img src="skaerm-idag.png" alt="Screenshot of the front page Today with one recommended action: Kundeansvarlig has been checked. Decide whether you want to apply. One button, See the check." loading="lazy" width="1440" height="900">
@@ -695,7 +995,7 @@
         </figure>
         <figure class="shot mobile">
           <img src="skaerm-mobil.png" alt="Screenshot of the Check step on a narrow screen, 390 pixels wide, with assessment, your conditions and the posting's requirements stacked below each other." loading="lazy" width="390" height="844">
-          <figcaption>The same page on a phone. Every page holds at 390 px, and everything can be operated by keyboard. Usability was tested with screenshots of every page in every review.</figcaption>
+          <figcaption>The same page on a phone. Every page holds at 390 px, and everything can be operated by keyboard.</figcaption>
         </figure>
       </div>
     </div>
@@ -703,7 +1003,7 @@
 
   <section class="section soft" id="timeline">
     <div class="shell">
-      <p class="section-label">06 · The timeline</p>
+      <p class="section-label">08 · The timeline</p>
       <h2>The timeline: four working days, where the documentation came first and using the tool steered the rest</h2>
       <p class="intro">The project was built in four sessions over one week. The code history is the timeline: 54 saved changes from 29 September to 5 October, each tagged with the number of the task in the plan it completed.</p>
 
@@ -716,38 +1016,38 @@
           <div class="day"><div class="day-bar" style="--n:18"></div><div class="day-n">18</div><div class="day-d">5 Oct</div><div class="day-t">users, credits, new design, fixes after use</div></div>
         </div>
         <div class="days-gap"><span>gap: 0 days</span><span>gap: 3 days</span><span>gap: 0 days</span></div>
-        <figcaption class="diagram-caption">From the code history. The first day went on writing requirements, design, architecture and writing rules and then building the whole core with tests. The last two days are the busiest, because that is when the tool was used on real postings, and every place it felt heavy was fixed the same day.</figcaption>
+        <figcaption class="diagram-caption">The first day went on writing requirements, design, architecture and writing rules and then building the whole core with tests. The last two days are the busiest, because that is when the tool was used on real postings, and every place it felt heavy was fixed the same day.</figcaption>
       </figure>
 
       <div class="timeline">
-        <div class="timeline-item"><div class="timeline-date">29 September</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Day 1: the documents first, then the core</strong>The day began with five documents: 22 requirements, a design standard with a glossary from system words to user words, an architecture with a data model, the writing rules for the model, and a task list. Then the whole core was built with tests from the start: database, bank, your conditions with an amount check, honesty rules, analysis, the job template, decisions and outcomes. By the end, the whole flow ran from the command line on a fictional posting.</div></div>
-        <div class="timeline-item"><div class="timeline-date">30 September</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Day 2: a web interface rather than Streamlit</strong>The choice fell on a real web app with FastAPI and server-rendered pages, because background jobs, locked sent drafts and the fact check with sources needed more control than a quicker tool would give. The first visit, My bank and the five steps were built in one session.</div></div>
-        <div class="timeline-item"><div class="timeline-date">4 October</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Day 3: a review from eight angles and the extension to grants</strong>Every page was reviewed for language, accessibility, spacing and clutter: 110 findings became 24 changes to the design system and fixes on 15 pages. The fonts were stored locally, errors now appear at the field they belong to, and nothing is lost on an error. The same day brought projects for organisations, the grant template with the fund&#8217;s own form fields and character limits, 14 fund profiles and the first patterns from outcome tracking.</div></div>
-        <div class="timeline-item"><div class="timeline-date">5 October</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Day 4: first real use, and everything that felt heavy</strong>The tool was used on real job postings, and ten findings were fixed in three rounds the same day: waiting pages that show what is happening, answers to gaps without a reload, clearer choices on Decision, document types beyond the CV. On top of that came login with invitations and credits, CSRF protection, a quality framework built on Danish guides to good applications, and a warmer design, "Cobalt on paper", after the first one felt flat. In the evening, a final review of every screen with five small fixes.</div></div>
+        <div class="timeline-item"><div class="timeline-date">29 September</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Day 1: the documents first, then the core</strong>Five documents: 22 requirements, a design standard with a glossary from system words to user words, an architecture with a data model, the writing rules for the model, and a task list. Then the whole core with tests from the start, and the whole flow run from the command line on a fictional posting.</div></div>
+        <div class="timeline-item"><div class="timeline-date">30 September</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Day 2: a web interface rather than Streamlit</strong>A real web app with server-rendered pages, because background jobs, locked sent drafts and the fact check with sources needed more control than a quicker tool would give. The first visit, My bank and the five steps were built in one session.</div></div>
+        <div class="timeline-item"><div class="timeline-date">4 October</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Day 3: a review from eight angles and the extension to grants</strong>110 findings became 24 changes to the design system and fixes on 15 pages. The fonts were stored locally, errors appear at the field they belong to, and nothing is lost on an error. The same day: projects for organisations, the grant template with the fund&#8217;s own form fields, 14 fund profiles and the first patterns from outcome tracking.</div></div>
+        <div class="timeline-item"><div class="timeline-date">5 October</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Day 4: first real use, and everything that felt heavy</strong>Ten findings from real postings fixed in three rounds the same day. On top of that, login with invitations and credits, CSRF protection, the quality framework from Danish guides, and the warmer design "Cobalt on paper". In the evening, a final review of every screen with five small fixes.</div></div>
       </div>
     </div>
   </section>
 
   <section class="section" id="limits">
     <div class="shell">
-      <p class="section-label">07 · Limits and trade-offs</p>
+      <p class="section-label">09 · Limits and trade-offs</p>
       <h2>Limits: what the tool deliberately does not do yet</h2>
       <div class="limits-grid">
         <div class="limit-card">
           <h3>It runs on my own computer, not on the web</h3>
-          <p>Login, invitations, credits and CSRF protection are built so the tool can be opened to others. What is missing is operations: a server with HTTPS in front, a daily backup of the database, and a plan for what it may cost in model calls. Until then it is a tool for me and the people I sit next to.</p>
+          <p>Login, invitations, credits and CSRF protection are built so the tool can be opened to others. What is missing is operations: a server with HTTPS in front, a daily backup of the database, and a plan for what it may cost in model calls.</p>
         </div>
         <div class="limit-card">
           <h3>The grant part is built, but not yet tried on a real application</h3>
-          <p>The template follows the fund&#8217;s structure, answers the assessment criteria one by one and keeps within the character limits, and 19 profiles are ready. But the first real grant application, for a record label, is waiting for a round to open. Only then will I know whether the template holds.</p>
+          <p>The template follows the fund&#8217;s structure, answers the assessment criteria one by one and keeps within the character limits, and 19 profiles are ready. The first real grant application is waiting for a round to open.</p>
         </div>
         <div class="limit-card">
           <h3>A check takes up to a minute</h3>
-          <p>The model reads the whole posting every time, and that takes time. The tool does not hide it behind a spinner but shows the steps and lets the user leave the page. Faster would require a smaller model or skipping the requirement extraction, and both would cost honesty.</p>
+          <p>The model reads the whole posting every time. The tool does not hide it behind a spinner but shows the steps and lets the user leave the page. Faster would mean skipping the requirement extraction, and that would cost honesty.</p>
         </div>
         <div class="limit-card">
           <h3>The tool is only as good as the bank</h3>
-          <p>A thin bank gives "unclear" on most things, and that is deliberate: the tool never guesses that you can do something. It also means the first application is the heaviest. The goal is under fifteen minutes from sign-up to the first check with a CV, and that has not yet been measured on a stranger.</p>
+          <p>A thin bank gives "unclear" on most things, and that is deliberate: the tool never guesses that you can do something. The first application is therefore the heaviest. The goal is under fifteen minutes from sign-up to the first check with a CV.</p>
         </div>
       </div>
     </div>
@@ -756,7 +1056,7 @@
   <section class="section cta-card" id="contact">
     <div class="shell cta-card">
       <div>
-        <p class="section-label">08 · Contact</p>
+        <p class="section-label">10 · Contact</p>
         <h2>Questions about the tool, or want to try it?</h2>
       </div>
       <div class="cta-actions">
