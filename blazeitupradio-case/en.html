@@ -464,7 +464,7 @@
   <section class="section" id="brief">
     <div class="shell">
       <p class="section-label">01 · The brief</p>
-      <h2>One digital home for a music scene that already exists in the real world</h2>
+      <h2>The brief was to build one digital meeting place for a music scene that already exists</h2>
       <div class="intro">
         <p>Blaze It Up Radio Africa is a radio station, and 9thwunder is the brand behind it: talent shows, concerts, a magazine and a fan club, run from Lagos with an audience in Nigeria and in the American diaspora. It already exists in the real world. The host already receives audition videos from artists, runs competitions where the crowd votes at the show itself, and sells tickets to the concerts. But all of it ran on loose channels such as WhatsApp, Instagram and an older website, with no single place where fans and artists could meet between two events.</p>
         <p>The brief was to build that place without replacing the physical side: an app that makes an event bigger before, during and after. Fans listen to the radio, discover artists, watch and vote on auditions, buy a ticket and can join Club 9thwunder, a members' club where part of the fee goes directly to one artist the member chooses. Artists submit an audition, get a profile and followers, and a path to the next opportunity. The organiser approves auditions, opens and closes votes, scans tickets at the door and reads the results.</p>
@@ -476,7 +476,7 @@
   <section class="section soft" id="solution">
     <div class="shell">
       <p class="section-label">02 · How it fits together</p>
-      <h2>Permissions in the database, money in a ledger</h2>
+      <h2>How the app fits together: the database decides who may do what, and the ledger keeps track of the money</h2>
       <p class="intro">The app is built as one program (a modular monolith) on top of one database. Who may see and change what is decided down in the database with Row Level Security, that is, permissions per row, and it is tested automatically with pgTAP. Something being hidden on screen never counts as security; the database says no regardless.</p>
 
       <div class="flow" role="img" aria-label="Diagram: the phone runs the app as an installable PWA. Next.js handles server actions and sets a fresh CSP nonce per request. Supabase Postgres enforces permissions with Row Level Security across 105 migrations. Stripe and Paystack send webhooks that are verified and written to a ledger before a ticket or membership is issued. The admin area handles moderation, results and door scanning.">
@@ -493,30 +493,30 @@
       <p class="flow-note">Payments follow one rule: the ledger is the truth. The ledger is the app's own list of every single payment, and nothing is issued until a payment is in it. When Stripe or Paystack reports a payment (a so-called webhook), the app checks the sender's signature, the order reference, amount, currency and product before writing anything into the ledger, and the same message can never issue two tickets. Real money cannot move at all until a human has switched payments on with a manual switch; until then every purchase is simulated and clearly labelled as a test.</p>
 
       <figure class="fig" aria-labelledby="ticket-title">
-        <h3 class="figure-title" id="ticket-title">One ticket through the system</h3>
+        <h3 class="figure-title" id="ticket-title">What happens from the moment a fan buys a ticket until it is scanned at the door</h3>
         <div class="journey">
           <article class="journey-card j1">
             <p class="journey-label">1 · Purchase</p>
-            <h3>Stripe Checkout in dollars, Paystack in naira</h3>
-            <p>The seat is reserved for 15 minutes while the payment completes. A retried request never opens a second payment for the same order.</p>
+            <h3>The fan pays by card through Stripe or Paystack</h3>
+            <p>The fan picks a ticket in the app and is sent on to the payment page at Stripe when paying in dollars, or at Paystack when paying in naira. While the seat is being paid for, the app keeps it reserved for 15 minutes, so two people cannot buy the same seat. If the fan taps "buy" twice because the network was slow, still only one payment is created.</p>
           </article>
           <div class="journey-arrow" aria-hidden="true">→</div>
           <article class="journey-card j2">
             <p class="journey-label">2 · Message from the payment provider</p>
-            <h3>Stripe or Paystack reports back, the app checks</h3>
-            <ul class="check-list"><li>Signature verified</li><li>Reference matches the order</li><li>Amount and currency agree</li><li>The product is the right one</li><li>Each event settles only once</li></ul>
+            <h3>The payment provider reports back, and the app checks the message</h3>
+            <ul class="check-list"><li>The message is genuine: it is signed by the provider</li><li>The message belongs to the right order</li><li>Amount and currency are what the fan was meant to pay</li><li>It is the right ticket that has been paid for</li><li>The same message can only be used once</li></ul>
           </article>
           <div class="journey-arrow" aria-hidden="true">→</div>
           <article class="journey-card j3">
             <p class="journey-label">3 · Ledger</p>
-            <h3>The payment is booked before anything is issued</h3>
-            <p>The ledger is the truth. If the tier sold out in the meantime, a refund request is created instead of a ticket.</p>
+            <h3>The payment is written into the ledger before anything is issued</h3>
+            <p>Only once the message has passed every check is the payment written into the app's ledger, the one list the app trusts. If the seats sold out in the meantime, the fan does not get a ticket that does not exist; instead a request to pay the money back is created.</p>
           </article>
           <div class="journey-arrow" aria-hidden="true">→</div>
           <article class="journey-card j4">
             <p class="journey-label">4 · Ticket</p>
-            <h3>QR code under "my tickets", scanned at the door</h3>
-            <p>The ticket outlives the account being deleted. A refund revokes it again; proven in the database tests and rehearsed in production on 14 September.</p>
+            <h3>The ticket sits in the app as a QR code and is scanned at the door</h3>
+            <p>The ticket appears under "my tickets" as a QR code that the organiser scans at the entrance. It does not disappear even if the fan deletes their account. If the money is paid back, the ticket is revoked so it can no longer be scanned. This is proven in the database tests and was rehearsed with a real payment in production on 14 September.</p>
           </article>
         </div>
         <figcaption class="diagram-caption">The same rules apply to memberships that renew themselves every month. Until a human has switched real payments on, every purchase is simulated and labelled as a test.</figcaption>
@@ -527,8 +527,8 @@
   <section class="section" id="tech">
     <div class="shell">
       <p class="section-label">03 · The stack</p>
-      <h2>Three layers, and why it is built this way</h2>
-      <p class="intro">Most software is split into three layers: what the user sees, the rules that decide what may happen, and the data that has to be right no matter what. Here are the layers, the providers the app talks to, and the reason for each choice.</p>
+      <h2>The technology: the app consists of three layers, and every choice has a reason</h2>
+      <p class="intro">Most software is split into three layers: what the user sees on screen, the rules that decide what may happen, and the data that has to be right no matter what. The figure shows the three layers in this app and the external services it talks to. The table below explains each tool: what it is, and why that one was chosen.</p>
       <figure class="fig" aria-labelledby="layers-title">
         <h3 class="figure-title" id="layers-title">The app's three layers and the providers around it</h3>
         <div class="layers" role="img" aria-label="Three-layer diagram. Layer 1, presentation: React and TypeScript, Tailwind CSS and PWA. Layer 2, application: Next.js server with actions, webhooks and sign-in checks. Layer 3, data: Postgres with Row Level Security, Supabase Auth and Storage. Beside them: the providers Stripe, Paystack, Twilio, the station's stream and Vercel.">
@@ -545,13 +545,13 @@
             <ul><li><b>Postgres</b> relational database with 105 numbered changes</li><li><b>Row Level Security</b> permissions per row, tested with pgTAP</li><li><b>Supabase Auth and Storage</b> accounts, passwords, uploaded auditions</li></ul>
           </div>
           <div class="layer ext">
-            <div class="layer-head"><b>Outside the house</b><span>providers the app talks to</span></div>
-            <ul><li><b>Vercel</b> runs the app</li><li><b>Supabase</b> runs the database</li><li><b>Stripe</b> payments in dollars and subscriptions</li><li><b>Paystack</b> payments in naira</li><li><b>Twilio</b> SMS codes for sign-in</li><li><b>Radio stream</b> the station's own feed</li></ul>
+            <div class="layer-head"><b>External services</b><span>providers the app talks to</span></div>
+            <ul><li><b>Vercel</b> the cloud service that runs the app itself</li><li><b>Supabase</b> the cloud service that runs the database</li><li><b>Stripe</b> takes payments in dollars and subscriptions</li><li><b>Paystack</b> takes payments in naira</li><li><b>Twilio</b> sends SMS codes at sign-in</li><li><b>Radio stream</b> the station's own audio feed, which the app plays</li></ul>
           </div>
         </div>
-        <figcaption class="diagram-caption">The layers only talk downwards: the screen asks the server, the server asks the database. An outside provider can never write straight into the database; its messages pass through layer 2, where they are checked first.</figcaption>
+        <figcaption class="diagram-caption">The layers only talk downwards: the screen asks the server, and the server asks the database. An external service can never write straight into the database. Its messages, for instance "the payment went through" from Stripe, always pass through layer 2, where they are checked before anything happens.</figcaption>
       </figure>
-      <h2 style="margin-top:2.6rem">What we use, and why</h2>
+      <h2 style="margin-top:2.6rem">Each tool: what it does, and why it was chosen</h2>
       <table class="tech-table why-table">
         <thead><tr><th>Tool</th><th>What it is</th><th>Why it was chosen</th></tr></thead>
         <tr><td>TypeScript</td><td>The programming language across the whole app; JavaScript with types, so mistakes are caught before the code runs.</td><td>One language for both screen and server, and the types make it safer to let AI agents write and change large amounts of code.</td></tr>
@@ -568,7 +568,7 @@
       </table>
 
       <figure class="fig" aria-labelledby="coverage-title">
-        <h3 class="figure-title" id="coverage-title">What the 67 database tests cover</h3>
+        <h3 class="figure-title" id="coverage-title">What the 67 database tests check, by area</h3>
         <div class="coverage" role="img" aria-label="Bar chart of 67 pgTAP files across five areas: payments, tickets and membership 21 files; accounts, roles and abuse 16; voting and auditions 10; club and door scanning 10; artists, events and media 10.">
           <div class="coverage-row"><b>Payments, tickets and membership<span>reservations, refunds, webhook replays, ledger</span></b><div class="coverage-track"><span style="width:100%"></span></div><strong>21</strong></div>
           <div class="coverage-row"><b>Accounts, roles and abuse<span>audited role changes, rate limiting, bans, deletion</span></b><div class="coverage-track"><span style="width:76.2%"></span></div><strong>16</strong></div>
@@ -605,47 +605,47 @@
           <figcaption>Club 9thwunder: the membership that validates one artist at a time. The page lists the benefits and sends you to sign in before anything can be bought.</figcaption>
         </figure>
       </div>
-      <h2 style="margin-top:2.6rem">Behind the scenes: admin</h2>
-      <p class="intro">The admin area is built for one organiser on a phone, not an analyst at a desk. It shows only what needs a decision, and every action that touches money or publication explains itself before it runs. Screenshots from it are deliberately left out, because they show the pilot's account counts and test payments.</p>
+      <h2 style="margin-top:2.6rem">The organiser's side of the app: admin</h2>
+      <p class="intro">Admin is the part of the app only the organiser can see. It is built for one person with a phone in hand in the middle of an event, not for an analyst at a desk. So it shows only what needs a decision right now, and every action that touches money or anything public explains itself before it runs. Screenshots from admin are deliberately left out, because they show the pilot's account counts and test payments.</p>
       <ul class="admin-list">
-        <li><b>Waiting on you</b>The dashboard opens with three cards: auditions to approve or reject, artist applications and payment disputes. If a number cannot be read, it says "couldn't read this just now" instead of showing a zero.</li>
-        <li><b>Events and money kept apart</b>Each event has its own numbers. Naira and dollars are always shown separately and never added together, and test payments sit in their own clearly labelled rows.</li>
-        <li><b>Switches with consequences</b>One page with every switch: all payments, ticket sales, donations, festival mode, member passes, video on live sessions. The money switches ask you to type a word first, and every change is saved with the name of whoever pressed it.</li>
-        <li><b>Stats measured on real phones</b>The app's opening time is measured on users' own phones, the first time the app loads, on the connections they actually have. The page shows the median and the "slowest 1 in 20" and says plainly that signed-out visitors are not counted.</li>
-        <li><b>Door scanning without signal</b>Tickets and member passes are scanned at the door with a code that needs the network only once. After that the scanner works offline, and the list reconciles when the signal is back.</li>
-        <li><b>Failures as a page, not an email</b>Server errors are collected on an admin page with code and message, so a production failure can be read by whoever runs the app, without access to logs.</li>
+        <li><b>What is waiting on the organiser comes first</b>The admin front page opens with three cards: auditions to approve or reject, new applications from artists who want a profile, and any payment disputes. If the app cannot fetch a number right now, it says "couldn't read this just now" instead of showing a zero, so the organiser never believes the queue is empty when it is not.</li>
+        <li><b>Each event has its own numbers, and currencies are never mixed</b>Ticket sales are shown per event, so the organiser can see how each concert is doing. Naira and dollars are always shown separately and never added into one number, because the exchange rate moves. Test payments sit in their own rows and are clearly labelled, so they are never mistaken for real money.</li>
+        <li><b>Switches that can turn off payments and features instantly</b>One page gathers every switch: all payments, ticket sales, donations, a festival mode that hides everything unnecessary on a concert night, member passes and video during live shows. A change takes effect immediately, even on phones that already have the app open. The money switches ask you to type a specific word first, so nobody presses one by accident, and every change is saved with the name of whoever pressed it.</li>
+        <li><b>Statistics measured on users' own phones</b>How fast the app opens is not measured in a test environment but on users' own phones, the first time the app loads, on the mobile connections they actually have in Nigeria. The page shows the typical opening time and the slowest one in twenty, so the organiser can see if the app has become heavier. It also says plainly that visitors who are not signed in are not counted.</li>
+        <li><b>Ticket scanning at the door, even without mobile signal</b>At the entrance the organiser opens the scanner with a code that needs the network only once. After that the scanner works without a connection, because the guest list is stored on the phone. What has been scanned is sent up when the signal returns, so a concert in a hall with no coverage does not grind to a halt at the door.</li>
+        <li><b>Failures in operation are collected on one page</b>When something goes wrong on the server, the error is collected on a page in admin with an error code and an explanatory message. Whoever runs the app can see what happened without needing access to technical log files or calling a developer.</li>
       </ul>
     </div>
   </section>
   <section class="section" id="process">
     <div class="shell">
       <p class="section-label">05 · The way of working</p>
-      <h2>Two AI agents as developers, under written rules</h2>
+      <h2>The way of working: two AI agents wrote the code following rules written down in advance</h2>
       <div class="intro">
         <p>The code was written by two AI tools, Claude Code and Codex, which took turns building and reviewing each other's work. My role was to make the product decisions, approve each step and do everything that touches real operations: put database changes into production, check that they work, and take the decisions only a human may take, such as switching real payments on.</p>
         <p>It worked because the rules were written down next to the code. Documentation is part of the product: a change is not finished until the task list, the handover note, the changelog and the decision log are updated. The numbers show it. The decision log holds more than 240 written decisions about why something is built the way it is, and the three logbooks together run to over a megabyte of text.</p>
       </div>
       <div class="rules">
         <div class="rule-card">
-          <h3>Read before you write</h3>
+          <h3>The agent reads the documentation before changing anything</h3>
           <p>Before a code change the agent reads the documents on the product, the scope, the architecture, security and earlier decisions. Nobody may swap a technology or provider without a concrete problem, written alternatives and approval from a human.</p>
         </div>
         <div class="rule-card">
-          <h3>Reviews found real bugs</h3>
-          <p>The reviews between the two agents found, among other things, a race condition: two administrators approving at the same time could overwrite each other. They also found an approval that could accidentally strip an admin of their rights. Both were fixed and proven with two genuinely concurrent database connections, not just explained away.</p>
+          <h3>The two agents reviewed each other's work and found real bugs</h3>
+          <p>Once one agent had built something, the other reviewed it before it was approved. The reviews found, among other things, a race condition, that is, a bug that only appears when two things happen at exactly the same time: two administrators approving an audition simultaneously could overwrite each other. They also found an approval that could accidentally strip an administrator of their rights. Both bugs were fixed, and the fix was proven by running two genuinely concurrent database connections against each other, not just by explaining that it probably worked.</p>
         </div>
         <div class="rule-card">
-          <h3>Numbers a machine recomputes</h3>
+          <h3>Every number is recomputed automatically, so nobody can misremember</h3>
           <p>Until 24 August every check ran only when somebody remembered, on one laptop. The automated checks were introduced after the changelog had claimed 85 test files where there were 83. Now every number is recomputed every time code is pushed, and this case uses only numbers from the latest green run.</p>
         </div>
         <div class="rule-card">
-          <h3>Failures in the field, not in theory</h3>
+          <h3>Failures were examined with real users before they were fixed</h3>
           <p>When a tester in Nigeria could not receive SMS codes, the incident was first examined in production without changing anything, documented with timestamps and error codes, and only then fixed in the app's error copy and phone-number handling. No guessed fixes were switched on.</p>
         </div>
       </div>
 
       <figure class="fig" aria-labelledby="ci-title">
-        <h3 class="figure-title" id="ci-title">Every time code is pushed: three check lanes in 6 minutes 41 seconds</h3>
+        <h3 class="figure-title" id="ci-title">Three automated check lanes run every time code is pushed</h3>
         <div class="lanes" role="img" aria-label="Timeline of CI run 146: the app job takes 3 minutes 52 seconds with lint, types, 1,587 tests and build; the database job 1 minute 47 seconds with Postgres start, 105 migrations and 1,126 pgTAP assertions; the browser job 6 minutes 41 seconds with the Supabase stack, build, accessibility check, performance check and scanner fallback.">
           <div class="lane-axis" aria-hidden="true"><div></div><div><span style="left:0">0:00</span><span style="left:29.9%">2:00</span><span style="left:59.9%">4:00</span><span style="left:100%">6:41</span></div></div>
           <div class="lane"><div class="lane-label"><b>app</b><span>3 min 52 s</span></div><div class="lane-track"><span class="lane-seg setup" style="left:0.0%;width:6.2%" title="setup">setup</span><span class="lane-seg run narrow" style="left:6.2%;width:4.0%" title="lint">lint</span><span class="lane-seg run narrow" style="left:10.2%;width:2.7%" title="types">types</span><span class="lane-seg test" style="left:13.0%;width:36.4%" title="1,587 unit tests">1,587 unit tests</span><span class="lane-seg run" style="left:49.4%;width:7.2%" title="build">build</span><span class="lane-seg run narrow" style="left:56.6%;width:1.2%" title=""></span></div></div>
@@ -661,24 +661,24 @@
   <section class="section soft" id="timeline">
     <div class="shell">
       <p class="section-label">06 · The timeline</p>
-      <h2>Five weeks, with git history as the timeline</h2>
+      <h2>The timeline: five weeks from the first line of code to a closed pilot</h2>
       <p class="intro">From the first line of code to a closed pilot in 30 working days. The dates come from the code's history and the decision log.</p>
 
       <figure class="fig" aria-labelledby="commits-title">
-        <h3 class="figure-title" id="commits-title">428 commits across 37 calendar days</h3>
+        <h3 class="figure-title" id="commits-title">Number of saved code changes per day, 428 in total over 37 days</h3>
         <div class="commit-strip" role="img" aria-label="Bar chart of commits per day from 9 August to 14 September 2026. Three peaks: 9 August with 46, 12 August with 45 and 27 August with 37. Seven days without commits, most of them in September."><span class="commit-bar wknd peak" style="--n:46" title="9 Aug: 46 commits"></span><span class="commit-bar" style="--n:13" title="10 Aug: 13 commits"></span><span class="commit-bar" style="--n:23" title="11 Aug: 23 commits"></span><span class="commit-bar peak" style="--n:45" title="12 Aug: 45 commits"></span><span class="commit-bar" style="--n:34" title="13 Aug: 34 commits"></span><span class="commit-bar" style="--n:32" title="14 Aug: 32 commits"></span><span class="commit-bar wknd" style="--n:7" title="15 Aug: 7 commits"></span><span class="commit-bar wknd" style="--n:5" title="16 Aug: 5 commits"></span><span class="commit-bar" style="--n:13" title="17 Aug: 13 commits"></span><span class="commit-bar" style="--n:10" title="18 Aug: 10 commits"></span><span class="commit-bar" style="--n:3" title="19 Aug: 3 commits"></span><span class="commit-bar" style="--n:3" title="20 Aug: 3 commits"></span><span class="commit-bar zero" style="--n:0" title="21 Aug: 0 commits"></span><span class="commit-bar wknd zero" style="--n:0" title="22 Aug: 0 commits"></span><span class="commit-bar wknd" style="--n:6" title="23 Aug: 6 commits"></span><span class="commit-bar" style="--n:10" title="24 Aug: 10 commits"></span><span class="commit-bar" style="--n:1" title="25 Aug: 1 commit"></span><span class="commit-bar" style="--n:2" title="26 Aug: 2 commits"></span><span class="commit-bar peak" style="--n:37" title="27 Aug: 37 commits"></span><span class="commit-bar" style="--n:19" title="28 Aug: 19 commits"></span><span class="commit-bar wknd" style="--n:12" title="29 Aug: 12 commits"></span><span class="commit-bar wknd zero" style="--n:0" title="30 Aug: 0 commits"></span><span class="commit-bar" style="--n:1" title="31 Aug: 1 commit"></span><span class="commit-bar" style="--n:15" title="1 Sep: 15 commits"></span><span class="commit-bar" style="--n:28" title="2 Sep: 28 commits"></span><span class="commit-bar" style="--n:6" title="3 Sep: 6 commits"></span><span class="commit-bar" style="--n:2" title="4 Sep: 2 commits"></span><span class="commit-bar wknd" style="--n:1" title="5 Sep: 1 commit"></span><span class="commit-bar wknd" style="--n:15" title="6 Sep: 15 commits"></span><span class="commit-bar" style="--n:17" title="7 Sep: 17 commits"></span><span class="commit-bar zero" style="--n:0" title="8 Sep: 0 commits"></span><span class="commit-bar" style="--n:14" title="9 Sep: 14 commits"></span><span class="commit-bar zero" style="--n:0" title="10 Sep: 0 commits"></span><span class="commit-bar" style="--n:1" title="11 Sep: 1 commit"></span><span class="commit-bar wknd zero" style="--n:0" title="12 Sep: 0 commits"></span><span class="commit-bar wknd zero" style="--n:0" title="13 Sep: 0 commits"></span><span class="commit-bar" style="--n:7" title="14 Sep: 7 commits"></span></div>
         <div class="commit-axis" aria-hidden="true"><span style="grid-column:1">9 Aug</span><span style="grid-column:8">16 Aug</span><span style="grid-column:15">23 Aug</span><span style="grid-column:22">30 Aug</span><span style="grid-column:29">6 Sep</span><span style="grid-column:35 / span 3; text-align:right">14 Sep</span></div>
         <p class="commit-readout" data-idle="Hover over or tap a bar for the date and count." aria-live="polite">Hover over or tap a bar for the date and count.</p>
         <div class="commit-peaks"><span><i class="peak"></i><b>46</b> 9 Aug, the foundation</span><span><i class="peak"></i><b>45</b> 12 Aug, first deployment and tickets</span><span><i class="peak"></i><b>37</b> 27 Aug, fixes after a big review</span><span><i class="wknd"></i>weekend</span><span><i class="zero"></i><b>7</b> days without commits</span></div>
-        <figcaption class="diagram-caption">From the code's history; blue bars are the three busiest days, lighter bars are weekends, grey bars are days without changes. The pace drops deliberately in September as work shifts from code to operations, documentation and testing with real people.</figcaption>
+        <figcaption class="diagram-caption">Each bar is one day, and its height is the number of saved code changes that day. Blue bars are the three busiest days, lighter bars are weekends, and grey bars are days without changes. The pace drops deliberately in September, because the work shifts from writing code to running the app, documenting and testing with real people.</figcaption>
       </figure>
       <div class="timeline">
-        <div class="timeline-item"><div class="timeline-date">9 Aug</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Foundation in one day</strong>46 commits: app and database set up, real sign-in, artist profiles with follow, events and installation on the home screen. Eight screens reviewed and approved the same day.</div></div>
-        <div class="timeline-item"><div class="timeline-date">10 Aug</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>New priorities after talking to the partner</strong>Auditions, voting, live participation and the members' club moved into the core; a broad social network was put on hold. Written down as a formal decision, so the AI agents built towards the new direction.</div></div>
-        <div class="timeline-item"><div class="timeline-date">24 Aug</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Automated checks on every change</strong>Code quality, types, tests, build and database tests against a fresh database, every time code is pushed. The database tool was pinned to one specific version after an automatic update had changed the database's permissions mid-project.</div></div>
-        <div class="timeline-item"><div class="timeline-date">2 Sep</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Two payment routes</strong>Paystack for naira, Stripe for dollars, memberships that renew themselves. Once a human switches real payments on, all simulation stops: a currency without a ready provider sells nothing instead of pretending.</div></div>
-        <div class="timeline-item"><div class="timeline-date">7–9 Sep</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Operations before launch</strong>Complete results for the organiser, sign-in with a one-time code by email, Nigerian phone numbers written one fixed way, and the first incident from a real tester in Nigeria who could not receive SMS codes.</div></div>
-        <div class="timeline-item"><div class="timeline-date">14 Sep</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Refund rehearsed in production</strong>A one-dollar test ticket bought through Stripe and refunded again; ticket status, receipt page and "my tickets" all followed. The rehearsal revealed that the production database lacked permissions the local copy had by default. Fixed with one database change and twelve new database tests.</div></div>
+        <div class="timeline-item"><div class="timeline-date">9 Aug</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Day 1: the foundation is built in one day</strong>On the first day the app and database were set up and the basics fell into place: real sign-in, artist profiles with the option to follow an artist, events and installation on the phone's home screen. That came to 46 saved changes. Eight screens were reviewed from screenshots and approved the same evening.</div></div>
+        <div class="timeline-item"><div class="timeline-date">10 Aug</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>New priorities after a conversation with the partner</strong>After a conversation with the station's host, the order was changed. Auditions, voting, participation during live shows and the members' club moved in as the most important parts, because that is where the scene already has activity. A broad social network with a feed and messages was put on hold. The change was written down as a formal decision, so the AI agents built towards the new direction from the next day.</div></div>
+        <div class="timeline-item"><div class="timeline-date">24 Aug</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Automated checks introduced on every change</strong>From this day all code was checked automatically in the cloud every time it was pushed: code quality, types, tests, build and database tests against a fresh database. The same week the database tool was pinned to one specific version, after an automatic update had changed the database's permissions mid-project without anyone asking for it.</div></div>
+        <div class="timeline-item"><div class="timeline-date">2 Sep</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Two payment routes: naira and dollars</strong>Payments were split into two routes: Paystack for naira and Stripe for dollars, plus memberships that renew themselves every month. At the same time the rule was set that the day a human switches real payments on, all simulation stops. A currency that does not yet have a ready provider then sells nothing instead of pretending.</div></div>
+        <div class="timeline-item"><div class="timeline-date">7–9 Sep</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Getting ready for operation before the launch</strong>Three days on what it takes before real people can use the app: complete results for the organiser, sign-in with a one-time code sent by email, Nigerian phone numbers written one fixed way however the user types them, and the first incident from a real tester in Nigeria who could not receive SMS codes.</div></div>
+        <div class="timeline-item"><div class="timeline-date">14 Sep</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>A refund is rehearsed with real money in production</strong>To be sure money can go both ways, a one-dollar test ticket was bought through Stripe and paid back again. Ticket status, receipt page and "my tickets" all followed correctly. The rehearsal revealed that the production database lacked some permissions the local copy had by default. That was fixed with one database change and twelve new database tests that make sure it cannot happen again.</div></div>
       </div>
     </div>
   </section>
@@ -686,22 +686,22 @@
   <section class="section" id="limits">
     <div class="shell">
       <p class="section-label">07 · Limits and trade-offs</p>
-      <h2>What the platform deliberately is not yet</h2>
+      <h2>Limits: what the app deliberately cannot do yet</h2>
       <div class="limits-grid">
         <div class="limit-card">
-          <h3>Not launched publicly</h3>
-          <p>The app runs in a closed pilot with testers. That is why there are no user counts, vote counts or revenue here, and why the screenshots show only the public part. Admin is described in text, not shown.</p>
+          <h3>The app has not launched publicly yet</h3>
+          <p>The app is online, but only invited testers use it while the last parts are made ready. That is why there are no user counts, vote counts or revenue in this case, and why the screenshots show only the public part. The organiser's admin is described in text, not shown.</p>
         </div>
         <div class="limit-card">
-          <h3>No real money without approval</h3>
+          <h3>Real payments require a human approval</h3>
           <p>Tickets and memberships are built against Stripe and Paystack, but real payments require a human to switch them on. Donations and memberships in naira are not built yet. Payouts to artists are manual and reviewed, never automatic.</p>
         </div>
         <div class="limit-card">
-          <h3>No livestream provider</h3>
+          <h3>No live-video provider has been chosen yet</h3>
           <p>Participation during a live show (vote, request a song, follow the current performer) is built, but the video stream itself awaits a choice of provider, Mux, Cloudflare Stream or Amazon IVS, after a rehearsal on a real mobile network in Nigeria.</p>
         </div>
         <div class="limit-card">
-          <h3>Community deferred</h3>
+          <h3>A social network is deferred on purpose</h3>
           <p>A broad social feed with posts, comments and messages was deliberately left out of the first version. The core is the chain from audition to vote to concert to support, not yet another social network.</p>
         </div>
       </div>
