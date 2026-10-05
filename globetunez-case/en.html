@@ -1,0 +1,726 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jonathan Fribert | Case: GlobeTunez</title>
+<meta name="description" content="Project case about GlobeTunez, an installable web app with radio, artist profiles, talent shows, tickets and a members' club for Blaze It Up Radio Africa and 9thwunder. Built by Jonathan Fribert with AI agents as development partners and documented with numbers from git and CI.">
+<meta name="theme-color" content="#F8F3EC" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#19130F" media="(prefers-color-scheme: dark)">
+<meta property="og:title" content="Jonathan Fribert | Case: GlobeTunez">
+<meta property="og:description" content="A music platform with radio, talent shows and tickets for a Nigerian music scene, built in 30 working days with AI agents as development partners.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jonathanfribert.github.io/globetunez-case/en.html">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="da_DK">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://jonathanfribert.github.io/globetunez-case/en.html">
+<link rel="alternate" hreflang="da" href="https://jonathanfribert.github.io/globetunez-case/">
+<link rel="alternate" hreflang="en" href="https://jonathanfribert.github.io/globetunez-case/en.html">
+<link rel="alternate" hreflang="x-default" href="https://jonathanfribert.github.io/globetunez-case/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%238C3D15%22/><text x=%2232%22 y=%2243%22 text-anchor=%22middle%22 font-family=%22Menlo,monospace%22 font-size=%2228%22 font-weight=%22700%22 fill=%22white%22>JF</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,700;1,6..72,500&amp;family=IBM+Plex+Mono:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ground: #F8F3EC; --surface: #FFFFFF; --surface-soft: #F0E8DD;
+    --line: #E2D8CA; --ink: #1F1915; --muted: #645A51;
+    --accent: #8C3D15; --accent-strong: #6B2D0E; --accent-soft: #F6E7DC;
+    --red: #A6301F; --red-soft: #F5E8E3; --amber: #9A6708;
+    --green: #2F6B44; --green-soft: #E7F0EA;
+    --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+
+    --dark-ground: #19130F; --dark-surface: #221B16; --dark-surface-soft: #2A221C;
+    --dark-line: #3F342C; --dark-ink: #EFE6DC; --dark-muted: #A99C8F;
+    --dark-accent: #E8A27C; --dark-accent-strong: #F2BE9F; --dark-accent-soft: #33221A;
+    --dark-red: #E08B7A; --dark-red-soft: #35211C; --dark-amber: #D9AC5E;
+    --dark-green: #8CC2A0; --dark-green-soft: #1D2B20;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: var(--dark-ground); --surface: var(--dark-surface); --surface-soft: var(--dark-surface-soft);
+      --line: var(--dark-line); --ink: var(--dark-ink); --muted: var(--dark-muted);
+      --accent: var(--dark-accent); --accent-strong: var(--dark-accent-strong); --accent-soft: var(--dark-accent-soft);
+      --red: var(--dark-red); --red-soft: var(--dark-red-soft); --amber: var(--dark-amber);
+      --green: var(--dark-green); --green-soft: var(--dark-green-soft);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: var(--dark-ground); --surface: var(--dark-surface); --surface-soft: var(--dark-surface-soft);
+    --line: var(--dark-line); --ink: var(--dark-ink); --muted: var(--dark-muted);
+    --accent: var(--dark-accent); --accent-strong: var(--dark-accent-strong); --accent-soft: var(--dark-accent-soft);
+    --red: var(--dark-red); --red-soft: var(--dark-red-soft); --amber: var(--dark-amber);
+    --green: var(--dark-green); --green-soft: var(--dark-green-soft);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0; background: var(--ground); color: var(--ink);
+    font-family: var(--sans); font-size: 1.0625rem; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+  ::selection { background: var(--accent-soft); }
+  img { max-width: 100%; display: block; }
+  .shell { width: min(62rem, calc(100% - 3rem)); margin-inline: auto; }
+  .skip-link {
+    position: absolute; top: -3rem; left: 1rem; z-index: 100; padding: 0.7rem 1.1rem;
+    background: var(--ink); color: var(--ground); border-radius: 4px; font-weight: 700;
+    transition: top 0.15s ease;
+  }
+  .skip-link:focus { top: 1rem; }
+
+  header.masthead-bar {
+    position: sticky; top: 0; z-index: 40; background: color-mix(in srgb, var(--ground) 92%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .masthead-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.9rem 0; }
+  .masthead-link { text-decoration: none; font-family: var(--mono); font-weight: 700; font-size: 0.9rem; letter-spacing: 0.02em; }
+  .masthead-link:hover { color: var(--accent); }
+  .head-actions { display: flex; align-items: center; gap: 0.6rem; }
+  .language-switch {
+    display: inline-flex; align-items: center; min-height: 2.5rem; padding: 0 0.2rem;
+    color: var(--muted); font-family: var(--mono); font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 0.06em; text-decoration: none;
+  }
+  .language-switch:hover { color: var(--accent); }
+  .theme-toggle {
+    display: inline-flex; width: 2.5rem; height: 2.5rem; align-items: center; justify-content: center;
+    border: 1px solid var(--line); border-radius: 4px; background: var(--surface); color: var(--muted); cursor: pointer;
+  }
+  .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+  .theme-toggle .icon-sun { display: none; }
+  :root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+  :root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .theme-toggle .icon-moon { display: none; }
+    :root:not([data-theme="light"]) .theme-toggle .icon-sun { display: block; }
+  }
+  html:not(.js) .theme-toggle { display: none; }
+
+  .hero { padding: clamp(2.4rem, 6vw, 4.2rem) 0 clamp(2rem, 5vw, 3rem); }
+  .eyebrow { margin: 0 0 0.7rem; color: var(--accent); font-family: var(--mono); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+  h1 { margin: 0 0 1rem; font-family: var(--serif); font-weight: 700; font-size: clamp(2.2rem, 5vw, 3.4rem); line-height: 1.08; text-wrap: balance; }
+  .lead { margin: 0; max-width: 42rem; color: var(--muted); font-size: clamp(1.08rem, 1.6vw, 1.25rem); line-height: 1.65; text-wrap: pretty; }
+
+  .case-brief {
+    margin-top: 2.2rem; display: grid; grid-template-columns: 1fr; gap: 1rem;
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 1.3rem 0;
+  }
+  .case-brief dl { margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: 1rem 1.5rem; }
+  .case-brief dt { margin: 0 0 0.2rem; color: var(--muted); font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+  .case-brief dd { margin: 0; font-weight: 600; }
+  .status-stamp {
+    display: inline-block; margin-left: 0.6rem; border: 2px solid var(--amber); border-radius: 4px;
+    padding: 0.05rem 0.45rem; color: var(--amber); font-family: var(--mono); font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.06em; transform: rotate(-2deg); vertical-align: middle;
+  }
+  .case-disclaimer { margin: 0.6rem 0 0; color: var(--muted); font-size: 0.92rem; line-height: 1.6; }
+
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: 0; margin-top: 1.6rem; }
+  .stat { padding: 0.9rem 1.2rem 0.9rem 0; }
+  .stat + .stat { border-left: 1px solid var(--line); padding-left: 1.2rem; }
+  .stat-value { color: var(--accent); font-family: var(--mono); font-size: clamp(1.35rem, 2.1vw, 1.8rem); font-weight: 700; }
+  .stat-label { margin-top: 0.3rem; color: var(--muted); font-size: 0.86rem; line-height: 1.45; }
+
+  section.section { padding: clamp(3rem, 6vw, 4.6rem) 0; border-top: 1px solid var(--line); }
+  section.section.soft { background: color-mix(in srgb, var(--surface-soft) 55%, transparent); }
+  .section-label { margin: 0 0 0.7rem; color: var(--accent); font-family: var(--mono); font-size: 0.76rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; }
+  h2 { margin: 0 0 1rem; font-family: var(--serif); font-weight: 700; font-size: clamp(1.5rem, 3vw, 2.05rem); line-height: 1.18; text-wrap: balance; }
+  .intro { max-width: 44rem; margin: 0 0 1.6rem; color: var(--muted); font-size: 1.08rem; line-height: 1.65; text-wrap: pretty; }
+  .intro p { margin: 0 0 1rem; }
+  .intro p:last-child { margin-bottom: 0; }
+  .prose p { max-width: 42rem; margin: 0 0 1rem; line-height: 1.7; }
+  .prose p:last-child { margin-bottom: 0; }
+
+  .flow { display: flex; flex-wrap: wrap; align-items: stretch; gap: 0; margin: 2rem 0 0; }
+  .flow-box {
+    flex: 1 1 9rem; min-width: 9rem; border: 1px solid var(--line); border-radius: 10px;
+    background: var(--surface); padding: 0.9rem 1rem; display: flex; flex-direction: column; justify-content: center;
+  }
+  .flow-box b { display: block; font-family: var(--mono); font-size: 0.86rem; }
+  .flow-box span { display: block; margin-top: 0.25rem; color: var(--muted); font-size: 0.82rem; line-height: 1.4; }
+  .flow-box.accent { border-color: var(--accent); background: var(--accent-soft); }
+  .flow-arrow { flex: 0 0 auto; display: flex; align-items: center; justify-content: center; width: 2rem; color: var(--accent); font-weight: 700; }
+  @media (max-width: 640px) {
+    .flow { flex-direction: column; }
+    .flow-arrow { width: auto; height: 1.6rem; transform: rotate(90deg); }
+  }
+  .flow-note { max-width: 44rem; margin-top: 1rem; color: var(--muted); font-size: 0.9rem; }
+
+  .tech-table { width: 100%; margin-top: 1.6rem; border-collapse: collapse; font-size: 0.96rem; }
+  .tech-table th { text-align: left; padding: 0.55rem 1rem 0.55rem 0; color: var(--muted); font-family: var(--mono); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--line); }
+  .tech-table td { padding: 0.7rem 1rem 0.7rem 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .tech-table td:first-child { font-weight: 700; white-space: nowrap; }
+  .tech-table tr:last-child td { border-bottom: 0; }
+
+  .rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.4rem; margin-top: 1.6rem; }
+  .rule-card { border-left: 3px solid var(--accent); padding: 0.2rem 0 0.2rem 1rem; }
+  .rule-card h3 { margin: 0 0 0.4rem; font-family: var(--serif); font-size: 1.15rem; }
+  .rule-card p { margin: 0; color: var(--muted); font-size: 0.94rem; line-height: 1.55; }
+
+  .timeline { margin-top: 1.8rem; display: grid; gap: 0; position: relative; }
+  .timeline::before { content: ""; position: absolute; top: 0.5rem; bottom: 0.5rem; left: 5.2rem; width: 1px; background: var(--line); }
+  .timeline-item { display: grid; grid-template-columns: 4.6rem 1.6rem 1fr; gap: 0.8rem; padding: 0.75rem 0; align-items: start; }
+  .timeline-date { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); padding-top: 0.15rem; }
+  .timeline-dot { position: relative; width: 1.6rem; display: flex; justify-content: center; }
+  .timeline-dot::after { content: ""; width: 0.6rem; height: 0.6rem; border-radius: 50%; background: var(--accent); margin-top: 0.35rem; }
+  .timeline-copy { font-size: 0.98rem; line-height: 1.55; }
+  .timeline-copy strong { display: block; font-family: var(--serif); font-size: 1.08rem; margin-bottom: 0.1rem; }
+
+  .limits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.4rem; margin-top: 1.6rem; }
+  .limit-card { border-top: 2px solid var(--line); padding: 1rem 0 0; }
+  .limit-card h3 { margin: 0 0 0.4rem; font-family: var(--serif); font-size: 1.15rem; }
+  .limit-card p { margin: 0; color: var(--muted); font-size: 0.94rem; line-height: 1.55; }
+
+  .cta-card { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.6rem; }
+  .cta-card h2 { max-width: 20rem; }
+  .cta-actions { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+  .button {
+    display: inline-flex; align-items: center; gap: 0.4rem; border-radius: 999px; padding: 0.7rem 1.3rem;
+    font-weight: 700; font-size: 0.96rem; text-decoration: none; border: 1px solid var(--accent);
+    background: var(--accent); color: var(--ground);
+  }
+  .button:hover { background: var(--accent-strong); border-color: var(--accent-strong); }
+  .button.secondary { background: transparent; color: var(--ink); border-color: var(--line); }
+  .button.secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+  footer { padding: 2rem 0 3rem; border-top: 1px solid var(--line); }
+  .foot-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; color: var(--muted); font-size: 0.88rem; }
+  .foot-row a { text-decoration: underline; text-underline-offset: 2px; }
+
+  @media (max-width: 640px) {
+    .case-brief dl { grid-template-columns: 1fr 1fr; }
+    .stat + .stat { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); padding-top: 0.9rem; margin-top: 0.9rem; }
+    .stats { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* Figurer: samme sprog som de andre cases (bånd, rejsekort, søjler). */
+  figure.fig { margin: 2.2rem 0 0; }
+  .figure-title { margin: 0 0 1rem; padding-bottom: 0.55rem; border-bottom: 1px solid var(--line); font-family: var(--serif); font-size: 1.35rem; line-height: 1.2; }
+  .diagram-caption { margin: 1rem 0 0; max-width: 44rem; color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+
+  .journey { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; gap: 0.9rem; align-items: start; }
+  .journey-arrow { display: grid; place-items: center; padding-top: 1.1rem; color: var(--accent); font-family: var(--mono); font-size: 1.4rem; font-weight: 700; }
+  .journey-card { border-top: 2px solid var(--line); padding: 0.9rem 0 0; min-width: 0; }
+  .journey-card.accent { border-top-color: var(--accent); }
+  .journey-label { margin: 0 0 0.5rem; color: var(--accent); font-family: var(--mono); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+  .journey-card h3 { margin: 0 0 0.4rem; font-family: var(--serif); font-size: 1.12rem; line-height: 1.25; }
+  .journey-card p { margin: 0; color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
+  .check-list { margin: 0.3rem 0 0; padding: 0; list-style: none; color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+  .check-list li { padding-left: 1.3rem; position: relative; }
+  .check-list li::before { content: "✓"; position: absolute; left: 0; color: var(--green); font-family: var(--mono); font-weight: 700; }
+
+  .coverage { display: grid; gap: 0.55rem; }
+  .coverage-row { display: grid; grid-template-columns: 15rem minmax(0, 1fr) 3rem; gap: 1rem; align-items: center; }
+  .coverage-row b { font-size: 0.94rem; font-weight: 600; }
+  .coverage-row b span { display: block; color: var(--muted); font-size: 0.8rem; font-weight: 400; }
+  .coverage-track { height: 1.3rem; border-radius: 3px; background: var(--surface-soft); overflow: hidden; }
+  .coverage-track span { display: block; height: 100%; background: var(--accent); border-radius: 3px; }
+  .coverage-row strong { text-align: right; font-family: var(--mono); font-size: 1rem; color: var(--accent); }
+
+  .lanes { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 0.6rem 0; }
+  .lane { display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: 1.2rem; align-items: center; padding: 0.55rem 0; }
+  .lane-label b { display: block; font-family: var(--mono); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; }
+  .lane-label span { display: block; color: var(--muted); font-size: 0.82rem; }
+  .lane-track { position: relative; height: 2rem; border-radius: 4px; background: var(--surface-soft); }
+  .lane-seg { position: absolute; top: 0; height: 100%; display: flex; align-items: center; overflow: hidden; white-space: nowrap; padding: 0 0.45rem; border-right: 2px solid var(--ground); box-sizing: border-box; color: var(--ground); font-family: var(--mono); font-size: 0.72rem; font-weight: 700; background: var(--muted); }
+  .lane-seg.run { background: var(--accent); }
+  .lane-seg.test { background: var(--green); }
+  .lane-seg.narrow { font-size: 0; padding: 0; }
+  .lane-axis { display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: 1.2rem; padding-bottom: 0.3rem; }
+  .lane-axis div:last-child { position: relative; height: 1.1rem; color: var(--muted); font-family: var(--mono); font-size: 0.74rem; font-weight: 700; }
+  .lane-axis div:last-child span { position: absolute; transform: translateX(-50%); }
+  .lane-axis div:last-child span:first-child { transform: none; }
+  .lane-axis div:last-child span:last-child { transform: translateX(-100%); }
+  .lane-legend { display: flex; flex-wrap: wrap; gap: 1.2rem; margin-top: 0.9rem; color: var(--muted); font-size: 0.82rem; }
+  .lane-legend i { display: inline-block; width: 0.8rem; height: 0.8rem; margin-right: 0.4rem; border-radius: 2px; background: var(--muted); vertical-align: -0.05rem; }
+  .lane-legend i.run { background: var(--accent); }
+  .lane-legend i.test { background: var(--green); }
+
+  .commit-strip { display: grid; grid-template-columns: repeat(37, minmax(0, 1fr)); gap: 2px; align-items: end; height: 8rem; border-bottom: 1px solid var(--line); }
+  .commit-bar { display: block; height: calc(var(--n) / 46 * 100%); min-height: 2px; background: var(--accent); border-radius: 2px 2px 0 0; }
+  .commit-bar.wknd { background: color-mix(in srgb, var(--accent) 55%, var(--surface-soft)); }
+  .commit-bar.zero { background: var(--line); }
+  .commit-axis { display: grid; grid-template-columns: repeat(37, minmax(0, 1fr)); margin-top: 0.4rem; color: var(--muted); font-family: var(--mono); font-size: 0.72rem; font-weight: 700; }
+  .commit-axis span { white-space: nowrap; }
+  .commit-peaks { display: flex; flex-wrap: wrap; gap: 1.2rem; margin-top: 0.9rem; color: var(--muted); font-size: 0.86rem; }
+  .commit-peaks b { color: var(--accent); font-family: var(--mono); }
+
+  @media (max-width: 760px) {
+    .journey { grid-template-columns: minmax(0, 1fr); }
+    .journey-arrow { padding: 0; transform: rotate(90deg); }
+    .coverage-row { grid-template-columns: minmax(0, 1fr) 3rem; }
+    .coverage-row b { grid-column: 1 / -1; }
+    .lane, .lane-axis { grid-template-columns: minmax(0, 1fr); gap: 0.3rem; }
+    .lane-axis div:first-child { display: none; }
+    .lane-seg { font-size: 0; padding: 0; }
+    .commit-strip { height: 6rem; }
+    .commit-axis { font-size: 0.66rem; }
+  }
+
+  /* Effekter: alt gated bag prefers-reduced-motion, og uden JavaScript
+     (html uden .js) vises siden faerdig med det samme. */
+  .read-progress { position: absolute; left: 0; bottom: -1px; height: 2px; width: 0; background: var(--accent); }
+  html:not(.js) .read-progress { display: none; }
+  #brief .intro p:first-child::first-letter {
+    float: left; margin: 0.08em 0.12em 0 0; font-family: var(--serif); font-weight: 700;
+    font-size: 3.6em; line-height: 0.82; color: var(--accent);
+  }
+  main { counter-reset: fig; }
+  figure.fig { counter-increment: fig; }
+  figure.fig .diagram-caption::before { content: "Figure " counter(fig) " · "; color: var(--accent); font-family: var(--mono); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; }
+  .commit-readout { margin: 0.5rem 0 0; min-height: 1.4rem; color: var(--muted); font-family: var(--mono); font-size: 0.8rem; }
+  .commit-readout b { color: var(--accent); }
+  .commit-bar.active { background: var(--ink); }
+  .commit-strip { cursor: crosshair; touch-action: pan-y; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    @view-transition { navigation: auto; }
+    .status-stamp { animation: stamp 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s both; }
+    @keyframes stamp { from { opacity: 0; transform: rotate(-9deg) scale(1.7); } 60% { opacity: 1; } to { opacity: 1; transform: rotate(-2deg) scale(1); } }
+    .js figure.fig.reveal .coverage-track span { transform: scaleX(0); transform-origin: left; transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1); }
+    .js figure.fig.reveal.in-view .coverage-track span { transform: none; }
+    .js figure.fig.reveal .coverage-row:nth-child(2) .coverage-track span { transition-delay: 0.08s; }
+    .js figure.fig.reveal .coverage-row:nth-child(3) .coverage-track span { transition-delay: 0.16s; }
+    .js figure.fig.reveal .coverage-row:nth-child(4) .coverage-track span { transition-delay: 0.24s; }
+    .js figure.fig.reveal .coverage-row:nth-child(5) .coverage-track span { transition-delay: 0.32s; }
+    .js figure.fig.reveal .lane-track { clip-path: inset(0 100% 0 0); transition: clip-path 0.9s cubic-bezier(0.22, 1, 0.36, 1); }
+    .js figure.fig.reveal.in-view .lane-track { clip-path: inset(0); }
+    .js figure.fig.reveal .lane:nth-child(3) .lane-track { transition-delay: 0.1s; }
+    .js figure.fig.reveal .lane:nth-child(4) .lane-track { transition-delay: 0.2s; }
+    .js figure.fig.reveal .commit-bar { transform: scaleY(0); transform-origin: bottom; transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1); transition-delay: calc(var(--i) * 18ms); }
+    .js figure.fig.reveal.in-view .commit-bar { transform: none; }
+    .js figure.fig.reveal .journey-card { opacity: 0; transform: translateY(12px); transition: opacity 0.5s ease-out, transform 0.5s ease-out; }
+    .js figure.fig.reveal.in-view .journey-card { opacity: 1; transform: none; }
+    .js figure.fig.reveal .journey-card:nth-of-type(2) { transition-delay: 0.12s; }
+    .js figure.fig.reveal .journey-card:nth-of-type(3) { transition-delay: 0.24s; }
+    .js figure.fig.reveal .journey-card:nth-of-type(4) { transition-delay: 0.36s; }
+  }
+
+  .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1.4rem; margin-top: 1.8rem; align-items: start; }
+  .shot { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--surface); }
+  .shot img { width: 100%; height: auto; }
+  .shot figcaption { padding: 0.7rem 0.9rem; color: var(--muted); font-size: 0.85rem; line-height: 1.5; border-top: 1px solid var(--line); }
+  .shot.wide { grid-column: 1 / -1; }
+  .shot.mobile { max-width: 15rem; }
+  .admin-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.2rem 1.6rem; margin: 1.6rem 0 0; padding: 0; list-style: none; }
+  .admin-list li { border-top: 2px solid var(--line); padding-top: 0.8rem; font-size: 0.94rem; line-height: 1.55; color: var(--muted); }
+  .admin-list b { display: block; color: var(--ink); font-family: var(--serif); font-size: 1.1rem; margin-bottom: 0.25rem; }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+
+<header class="masthead-bar">
+  <div class="read-progress" aria-hidden="true"></div>
+  <div class="shell masthead-row">
+    <a class="masthead-link" href="https://jonathanfribert.github.io/en.html">← Jonathan Fribert</a>
+    <div class="head-actions">
+      <a class="language-switch" href="index.html" lang="da" hreflang="da" aria-label="Læs denne side på dansk">DA</a>
+      <button class="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false">
+        <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="content">
+  <div class="shell hero">
+    <p class="eyebrow">Case 03 · Partner project</p>
+    <h1>I built a music platform with radio, talent shows and tickets for a Nigerian music scene</h1>
+    <p class="lead">GlobeTunez is an installable web app for Blaze It Up Radio Africa and 9thwunder: live radio, artist profiles, auditions with voting, events with ticket sales and a members' club. Built mobile-first for low-end Android phones and unstable networks, with two AI agents as development partners working under written rules.</p>
+
+    <div class="case-brief">
+      <dl>
+        <div><dt>Role</dt><dd>Developer and product owner, in partnership with the station's host</dd></div>
+        <div><dt>Period</dt><dd>9 August – 14 September 2026, 30 working days</dd></div>
+        <div><dt>Status</dt><dd>Closed pilot <b class="status-stamp" aria-hidden="true">PILOT</b></dd></div>
+        <div><dt>Code</dt><dd>Private repo, 428 commits, CI green on the latest commit</dd></div>
+      </dl>
+      <p class="case-disclaimer">Partner project with Blaze It Up Radio Africa and 9thwunder. This case covers only the technology and the way of working. It contains no user, revenue or partner figures, because the platform has not launched publicly yet. All numbers come from git history, source code and CI runs as of 14 September 2026.</p>
+    </div>
+
+    <div class="stats" aria-label="Key figures for the project">
+      <div class="stat"><div class="stat-value">30</div><div class="stat-label">working days with commits, from 9 August to 14 September</div></div>
+      <div class="stat"><div class="stat-value">428</div><div class="stat-label">commits; 67,970 lines of TypeScript in 498 files</div></div>
+      <div class="stat"><div class="stat-value">1,587</div><div class="stat-label">unit tests, plus 1,126 SQL tests of the database's permissions</div></div>
+      <div class="stat"><div class="stat-value">105</div><div class="stat-label">versioned database migrations</div></div>
+    </div>
+  </div>
+
+  <section class="section" id="brief">
+    <div class="shell">
+      <p class="section-label">01 · The brief</p>
+      <h2>One digital home for a music scene that already exists in the real world</h2>
+      <div class="intro">
+        <p>Blaze It Up Radio Africa and 9thwunder are an existing grassroots scene in Nigeria: a radio station, talent shows with audience voting, physical concerts and a magazine. The host already receives plenty of audition videos from artists and runs competitions where the crowd votes at the event itself. All of it ran on loose channels, with no single place where fans and artists could meet between events.</p>
+        <p>The brief was to build that place without replacing the physical side: an app that extends an event before, during and after. Fans listen to the radio, discover artists, watch and vote on auditions, buy tickets and can join the club. Artists submit auditions, get a profile, followers and a path to the next opportunity. The organiser moderates, opens and closes votes, scans tickets at the door and reads the results.</p>
+        <p>The constraints were hard from day one: many users have low-end Android phones, expensive data and unstable connections. So the app is an installable PWA with no app store, one webfont, unmistakable actions such as LISTEN LIVE, VOTE and BUY TICKET, and a rule that every network action needs a loading state, a success state and a safe failure state with a retry.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section soft" id="solution">
+    <div class="shell">
+      <p class="section-label">02 · How it fits together</p>
+      <h2>Permissions in the database, money in a ledger</h2>
+      <p class="intro">A modular monolith: one Next.js app against one Postgres database, where access control lives as Row Level Security inside the database itself and is tested with pgTAP. The frontend never hides anything as a security measure; the database decides.</p>
+
+      <div class="flow" role="img" aria-label="Diagram: the phone runs the app as an installable PWA. Next.js handles server actions and sets a fresh CSP nonce per request. Supabase Postgres enforces permissions with Row Level Security across 105 migrations. Stripe and Paystack send webhooks that are verified and written to a ledger before a ticket or membership is issued. The admin area handles moderation, results and door scanning.">
+        <div class="flow-box"><b>Phone</b><span>installable PWA, offline page, service worker</span></div>
+        <div class="flow-arrow" aria-hidden="true">→</div>
+        <div class="flow-box"><b>Next.js 16</b><span>server actions, CSP nonce per request</span></div>
+        <div class="flow-arrow" aria-hidden="true">→</div>
+        <div class="flow-box accent"><b>Supabase Postgres</b><span>Row Level Security, 105 migrations</span></div>
+        <div class="flow-arrow" aria-hidden="true">→</div>
+        <div class="flow-box accent"><b>Ledger</b><span>Stripe/Paystack webhooks → ticket or membership</span></div>
+        <div class="flow-arrow" aria-hidden="true">→</div>
+        <div class="flow-box"><b>Admin</b><span>moderation, results, door scanning</span></div>
+      </div>
+      <p class="flow-note">Payments follow one rule: the ledger is the truth. A webhook from Stripe or Paystack is verified by signature, reference, amount, currency and product before the app issues anything, and the same event can never issue twice. Real money cannot flow at all until a human opens a manual gate; until then every purchase is simulated and labelled as such.</p>
+
+      <figure class="fig" aria-labelledby="ticket-title">
+        <h3 class="figure-title" id="ticket-title">One ticket through the system</h3>
+        <div class="journey">
+          <article class="journey-card">
+            <p class="journey-label">1 · Purchase</p>
+            <h3>Stripe Checkout in dollars, Paystack in naira</h3>
+            <p>The seat is reserved for 15 minutes while the payment completes. A retried request never opens a second payment for the same order.</p>
+          </article>
+          <div class="journey-arrow" aria-hidden="true">→</div>
+          <article class="journey-card accent">
+            <p class="journey-label">2 · Webhook</p>
+            <h3>The provider reports back, the app checks</h3>
+            <ul class="check-list"><li>Signature verified</li><li>Reference matches the order</li><li>Amount and currency agree</li><li>The product is the right one</li><li>Each event settles only once</li></ul>
+          </article>
+          <div class="journey-arrow" aria-hidden="true">→</div>
+          <article class="journey-card accent">
+            <p class="journey-label">3 · Ledger</p>
+            <h3>The payment is booked before anything is issued</h3>
+            <p>The ledger is the truth. If the tier sold out in the meantime, a refund request is created instead of a ticket.</p>
+          </article>
+          <div class="journey-arrow" aria-hidden="true">→</div>
+          <article class="journey-card">
+            <p class="journey-label">4 · Ticket</p>
+            <h3>QR code under "my tickets", scanned at the door</h3>
+            <p>The ticket outlives the account being deleted. A refund revokes it again; proven in the database tests and rehearsed in production on 14 September.</p>
+          </article>
+        </div>
+        <figcaption class="diagram-caption">The same rules apply to memberships that renew themselves. Until the manual gate is opened, every purchase is simulated and labelled as such.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" id="tech">
+    <div class="shell">
+      <p class="section-label">03 · The stack</p>
+      <h2>Tech and operations</h2>
+      <table class="tech-table">
+        <tr><th>Part</th><th>Tool</th></tr>
+        <tr><td>Frontend</td><td>Next.js 16 (App Router), React 19, TypeScript 5.9, Tailwind CSS 4; delivered as a PWA with a service worker and an offline page</td></tr>
+        <tr><td>Data</td><td>Supabase: Postgres with Row Level Security, Auth, Storage. The schema exists only as 105 versioned migrations, never hand-edited</td></tr>
+        <tr><td>Payments</td><td>Stripe Checkout for tickets in USD and auto-renewing memberships; Paystack for tickets in naira. All behind a manual gate, donations not built</td></tr>
+        <tr><td>Radio</td><td>The station's existing stream plays inside the app; "recently played" comes from the station's own API, nothing is made up</td></tr>
+        <tr><td>Tests</td><td>1,587 unit tests (Vitest, Testing Library), 1,126 pgTAP assertions in 67 SQL files, Playwright runs for accessibility, performance and critical user journeys</td></tr>
+        <tr><td>CI</td><td>GitHub Actions with three jobs on every push: app (lint, types, tests, build), database (migrations and pgTAP in a fresh Postgres) and critical browser flows. 146 runs</td></tr>
+        <tr><td>Hosting</td><td>Vercel and hosted Supabase in production; a local Supabase stack in Docker for development and tests. Live video: no provider chosen yet</td></tr>
+      </table>
+
+      <figure class="fig" aria-labelledby="coverage-title">
+        <h3 class="figure-title" id="coverage-title">What the 67 database test files cover</h3>
+        <div class="coverage" role="img" aria-label="Bar chart of 67 pgTAP files across five areas: payments, tickets and membership 21 files; accounts, roles and abuse 16; voting and auditions 10; club and door scanning 10; artists, events and media 10.">
+          <div class="coverage-row"><b>Payments, tickets and membership<span>reservations, refunds, webhook replays, ledger</span></b><div class="coverage-track"><span style="width:100%"></span></div><strong>21</strong></div>
+          <div class="coverage-row"><b>Accounts, roles and abuse<span>audited role changes, rate limiting, bans, deletion</span></b><div class="coverage-track"><span style="width:76.2%"></span></div><strong>16</strong></div>
+          <div class="coverage-row"><b>Voting and auditions<span>ballot stuffing, results, publication, rejection reasons</span></b><div class="coverage-track"><span style="width:47.6%"></span></div><strong>10</strong></div>
+          <div class="coverage-row"><b>Club and door scanning<span>member passes, redemption, guest list, scanning at the door</span></b><div class="coverage-track"><span style="width:47.6%"></span></div><strong>10</strong></div>
+          <div class="coverage-row"><b>Artists, events and media<span>applications, follows, images, live sessions</span></b><div class="coverage-track"><span style="width:47.6%"></span></div><strong>10</strong></div>
+        </div>
+        <figcaption class="diagram-caption">Grouped by file name in <code>supabase/tests/</code>. 58 of the 67 files switch database role along the way (anonymous, signed in, service) and try to read or write what that role must not. 1,126 assertions in total, all green in CI run 146.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+
+  <section class="section soft" id="screens">
+    <div class="shell">
+      <p class="section-label">04 · What it looks like</p>
+      <h2>Screenshots from the running app</h2>
+      <p class="intro">Taken from the production site on 5 October 2026. This is the public part anyone can see; the events and competitions are the ones that were actually in the database that day.</p>
+      <div class="shots">
+        <figure class="shot wide">
+          <img src="skaerm-forside.png" alt="Screenshot of the home page on desktop: a green hero with the heading 'Where Africa's next sound gets heard', a LIVE bar with a LISTEN button for Blaze It Up Radio Africa, a yellow banner saying 'Auditions are open' with SUBMIT AUDITION, and a Coming up list with two events." loading="lazy" width="1440" height="700">
+          <figcaption>Home: the radio first with one unmistakable LISTEN button, then the open audition with SUBMIT AUDITION and the upcoming events. Every important action is in capitals and never hidden behind a hover.</figcaption>
+        </figure>
+        <figure class="shot mobile">
+          <img src="skaerm-velkomst.png" alt="Screenshot of the welcome screen on mobile: 'This is GlobeTunez x Blaze It Up Radio' with four points about radio, tickets, live shows and the club pass, a 'Made in Naija' stamp and a large NEXT button." loading="lazy" width="780" height="1688">
+          <figcaption>The welcome on first visit: three short screens that can be skipped. An admin can switch them off with one toggle, for instance on a festival night.</figcaption>
+        </figure>
+        <figure class="shot mobile">
+          <img src="skaerm-mobil.png" alt="Screenshot of the home page on mobile with the LIVE bar, SUBMIT AUDITION and a fixed bottom navigation with Home, Radio, Live, Events, Artists and Me." loading="lazy" width="780" height="1688">
+          <figcaption>The mobile view the app is built for: fixed bottom navigation, one webfont and text that reads on a cheap Android screen in sunlight.</figcaption>
+        </figure>
+        <figure class="shot wide">
+          <img src="skaerm-klub.png" alt="Screenshot of the Club 9thwunder page: the club's logo, the 'Join Club 9thwunder' card with Sign in to join, and a list of member benefits." loading="lazy" width="1440" height="900">
+          <figcaption>Club 9thwunder: the membership that validates one artist at a time. The page lists the benefits and sends you to sign in before anything can be bought.</figcaption>
+        </figure>
+      </div>
+      <h2 style="margin-top:2.6rem">Behind the scenes: admin</h2>
+      <p class="intro">The admin area is built for one organiser on a phone, not an analyst at a desk. It shows only what needs a decision, and every action that touches money or publication explains itself before it runs. Screenshots from it are deliberately left out, because they show the pilot's account counts and test payments.</p>
+      <ul class="admin-list">
+        <li><b>Waiting on you</b>The dashboard opens with three cards: auditions to approve or reject, artist applications and payment disputes. If a number cannot be read, it says "couldn't read this just now" instead of showing a zero.</li>
+        <li><b>Events and money kept apart</b>Each event has its own numbers. Naira and dollars are always shown separately and never added together, and test payments sit in their own clearly labelled rows.</li>
+        <li><b>Switches with consequences</b>One page with every switch: all payments, ticket sales, donations, festival mode, member passes, video on live sessions. The money switches ask you to type a word first, and every change is recorded with who made it.</li>
+        <li><b>Stats measured on real phones</b>The app's opening time is measured on users' own phones, the first time the app loads, on the connections they actually have. The page shows the median and the "slowest 1 in 20" and says plainly that signed-out visitors are not counted.</li>
+        <li><b>Door scanning without signal</b>Tickets and member passes are scanned at the door with a code that needs the network only once. After that the scanner works offline, and the list reconciles when the signal is back.</li>
+        <li><b>Failures as a page, not an email</b>Server errors are collected on an admin page with code and message, so a production failure can be read by whoever runs the app, without access to logs.</li>
+      </ul>
+    </div>
+  </section>
+  <section class="section" id="process">
+    <div class="shell">
+      <p class="section-label">05 · The way of working</p>
+      <h2>Two AI agents as developers, under written rules</h2>
+      <div class="intro">
+        <p>The code was written by Claude Code and Codex, which took turns implementing and reviewing each other's work. My role was product decisions, approvals and everything that touches production: applying migrations, verifying in the hosted database and taking the human gates the agents are not allowed to open themselves.</p>
+        <p>It worked because the rules were written down in the repository. Documentation is part of the product: a change without an updated TODO, handover, changelog and decision log is not finished. The numbers show it. The decision log holds more than 240 numbered architecture decisions, and the changelog, decision log and handover together run to over a megabyte of text.</p>
+      </div>
+      <div class="rules">
+        <div class="rule-card">
+          <h3>Read before you write</h3>
+          <p>Before a code change the agent reads the product, scope, architecture, security and decision documents. Nobody may swap the framework, database, payment or streaming provider without a concrete problem, alternatives and human approval.</p>
+        </div>
+        <div class="rule-card">
+          <h3>Reviews found real bugs</h3>
+          <p>The review rounds between the two agents found, among other things, a race condition where two concurrent approvals could overwrite each other, and an approval that could demote an admin. Both were fixed and proven with two genuinely concurrent database connections, not just reasoned about.</p>
+        </div>
+        <div class="rule-card">
+          <h3>Numbers a machine recomputes</h3>
+          <p>Until 24 August every check ran only when somebody remembered, on one laptop. CI was introduced after the changelog had claimed 85 test files where there were 83. Now every number is recomputed on every push, and this case uses only numbers from the latest green run.</p>
+        </div>
+        <div class="rule-card">
+          <h3>Failures in the field, not in theory</h3>
+          <p>When a tester in Nigeria could not receive SMS codes, the incident was diagnosed read-only in production, documented with timestamps and error codes, and only then fixed in the app's error copy and phone-number handling. No guessed fixes were switched on.</p>
+        </div>
+      </div>
+
+      <figure class="fig" aria-labelledby="ci-title">
+        <h3 class="figure-title" id="ci-title">One push, three check lanes, 6 minutes 41 seconds</h3>
+        <div class="lanes" role="img" aria-label="Timeline of CI run 146: the app job takes 3 minutes 52 seconds with lint, types, 1,587 tests and build; the database job 1 minute 47 seconds with Postgres start, 105 migrations and 1,126 pgTAP assertions; the browser job 6 minutes 41 seconds with the Supabase stack, build, accessibility check, performance check and scanner fallback.">
+          <div class="lane-axis" aria-hidden="true"><div></div><div><span style="left:0">0:00</span><span style="left:29.9%">2:00</span><span style="left:59.9%">4:00</span><span style="left:100%">6:41</span></div></div>
+          <div class="lane"><div class="lane-label"><b>app</b><span>3 min 52 s</span></div><div class="lane-track"><span class="lane-seg setup" style="left:0.0%;width:6.2%" title="setup">setup</span><span class="lane-seg run narrow" style="left:6.2%;width:4.0%" title="lint">lint</span><span class="lane-seg run narrow" style="left:10.2%;width:2.7%" title="types">types</span><span class="lane-seg test" style="left:13.0%;width:36.4%" title="1,587 unit tests">1,587 unit tests</span><span class="lane-seg run" style="left:49.4%;width:7.2%" title="build">build</span><span class="lane-seg run narrow" style="left:56.6%;width:1.2%" title=""></span></div></div>
+          <div class="lane"><div class="lane-label"><b>database</b><span>1 min 47 s</span></div><div class="lane-track"><span class="lane-seg setup narrow" style="left:0.0%;width:2.5%" title="setup">setup</span><span class="lane-seg run" style="left:2.5%;width:21.7%" title="Postgres + 105 migrations">Postgres + 105 migrations</span><span class="lane-seg test narrow" style="left:24.2%;width:1.7%" title="1,126 pgTAP">1,126 pgTAP</span><span class="lane-seg setup narrow" style="left:25.9%;width:0.7%" title=""></span></div></div>
+          <div class="lane"><div class="lane-label"><b>critical browser flows</b><span>6 min 41 s</span></div><div class="lane-track"><span class="lane-seg setup" style="left:0.0%;width:19.5%" title="setup, Chromium">setup, Chromium</span><span class="lane-seg run" style="left:19.5%;width:33.7%" title="Supabase stack">Supabase stack</span><span class="lane-seg run" style="left:53.1%;width:21.4%" title="build + test data">build + test data</span><span class="lane-seg test" style="left:74.6%;width:11.2%" title="accessibility">accessibility</span><span class="lane-seg test" style="left:85.8%;width:11.2%" title="performance">performance</span><span class="lane-seg test narrow" style="left:97.0%;width:3.0%" title="scan">scan</span></div></div>
+        </div>
+        <div class="lane-legend" aria-hidden="true"><span><i></i>Setup</span><span><i class="run"></i>Build and prepare</span><span><i class="test"></i>Tests</span></div>
+        <figcaption class="diagram-caption">Measured on CI run 146, commit <code>fbb90fc</code>, 14 September 2026. The three jobs run in parallel, so a push is fully checked when the slowest one finishes. Durations are GitHub Actions' own per-step timestamps.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section soft" id="timeline">
+    <div class="shell">
+      <p class="section-label">06 · The timeline</p>
+      <h2>Five weeks, with git history as the timeline</h2>
+      <p class="intro">From first commit to pilot in 30 working days. The dates come from git history and the decision log.</p>
+
+      <figure class="fig" aria-labelledby="commits-title">
+        <h3 class="figure-title" id="commits-title">428 commits across 37 calendar days</h3>
+        <div class="commit-strip" role="img" aria-label="Bar chart of commits per day from 9 August to 14 September 2026. Three peaks: 9 August with 46, 12 August with 45 and 27 August with 37. Seven days without commits, most of them in September."><span class="commit-bar wknd" style="--n:46" title="9 Aug: 46 commits"></span><span class="commit-bar" style="--n:13" title="10 Aug: 13 commits"></span><span class="commit-bar" style="--n:23" title="11 Aug: 23 commits"></span><span class="commit-bar" style="--n:45" title="12 Aug: 45 commits"></span><span class="commit-bar" style="--n:34" title="13 Aug: 34 commits"></span><span class="commit-bar" style="--n:32" title="14 Aug: 32 commits"></span><span class="commit-bar wknd" style="--n:7" title="15 Aug: 7 commits"></span><span class="commit-bar wknd" style="--n:5" title="16 Aug: 5 commits"></span><span class="commit-bar" style="--n:13" title="17 Aug: 13 commits"></span><span class="commit-bar" style="--n:10" title="18 Aug: 10 commits"></span><span class="commit-bar" style="--n:3" title="19 Aug: 3 commits"></span><span class="commit-bar" style="--n:3" title="20 Aug: 3 commits"></span><span class="commit-bar zero" style="--n:0" title="21 Aug: 0 commits"></span><span class="commit-bar wknd zero" style="--n:0" title="22 Aug: 0 commits"></span><span class="commit-bar wknd" style="--n:6" title="23 Aug: 6 commits"></span><span class="commit-bar" style="--n:10" title="24 Aug: 10 commits"></span><span class="commit-bar" style="--n:1" title="25 Aug: 1 commit"></span><span class="commit-bar" style="--n:2" title="26 Aug: 2 commits"></span><span class="commit-bar" style="--n:37" title="27 Aug: 37 commits"></span><span class="commit-bar" style="--n:19" title="28 Aug: 19 commits"></span><span class="commit-bar wknd" style="--n:12" title="29 Aug: 12 commits"></span><span class="commit-bar wknd zero" style="--n:0" title="30 Aug: 0 commits"></span><span class="commit-bar" style="--n:1" title="31 Aug: 1 commit"></span><span class="commit-bar" style="--n:15" title="1 Sep: 15 commits"></span><span class="commit-bar" style="--n:28" title="2 Sep: 28 commits"></span><span class="commit-bar" style="--n:6" title="3 Sep: 6 commits"></span><span class="commit-bar" style="--n:2" title="4 Sep: 2 commits"></span><span class="commit-bar wknd" style="--n:1" title="5 Sep: 1 commit"></span><span class="commit-bar wknd" style="--n:15" title="6 Sep: 15 commits"></span><span class="commit-bar" style="--n:17" title="7 Sep: 17 commits"></span><span class="commit-bar zero" style="--n:0" title="8 Sep: 0 commits"></span><span class="commit-bar" style="--n:14" title="9 Sep: 14 commits"></span><span class="commit-bar zero" style="--n:0" title="10 Sep: 0 commits"></span><span class="commit-bar" style="--n:1" title="11 Sep: 1 commit"></span><span class="commit-bar wknd zero" style="--n:0" title="12 Sep: 0 commits"></span><span class="commit-bar wknd zero" style="--n:0" title="13 Sep: 0 commits"></span><span class="commit-bar" style="--n:7" title="14 Sep: 7 commits"></span></div>
+        <div class="commit-axis" aria-hidden="true"><span style="grid-column:1">9 Aug</span><span style="grid-column:8">16 Aug</span><span style="grid-column:15">23 Aug</span><span style="grid-column:22">30 Aug</span><span style="grid-column:29">6 Sep</span><span style="grid-column:35 / span 3; text-align:right">14 Sep</span></div>
+        <p class="commit-readout" data-idle="Hover over or tap a bar for the date and count." aria-live="polite">Hover over or tap a bar for the date and count.</p>
+        <div class="commit-peaks"><span><b>46</b> 9 Aug, the foundation</span><span><b>45</b> 12 Aug, first deploy and tickets</span><span><b>37</b> 27 Aug, fixes after a big review</span><span><b>7</b> days without commits</span></div>
+        <figcaption class="diagram-caption">From <code>git log</code> in the app repository; lighter bars are weekends, grey bars are days without commits. The pace drops deliberately in September as work shifts from code to operations, documentation and testing with real people.</figcaption>
+      </figure>
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-date">9 Aug</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Foundation in one day</strong>46 commits: Next.js and Supabase set up, real sign-in, artist profiles with follow, events and PWA installation. Eight screens reviewed and approved the same day.</div></div>
+        <div class="timeline-item"><div class="timeline-date">10 Aug</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>New priorities after talking to the partner</strong>Auditions, voting, live participation and the members' club moved into the core; the broad community track was put on hold. Written down as decision ADR-014, so the agents built towards the new direction.</div></div>
+        <div class="timeline-item"><div class="timeline-date">24 Aug</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>CI on every push</strong>Lint, types, unit tests, build and pgTAP against a fresh Postgres in GitHub Actions. The Supabase CLI was pinned to one version after an automatic update had changed the database's permissions under the project.</div></div>
+        <div class="timeline-item"><div class="timeline-date">2 Sep</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Payment rails</strong>Paystack for naira, Stripe for dollars, memberships that renew themselves. Once the manual gate opens, simulation ends completely: a rail without a ready provider sells nothing instead of pretending.</div></div>
+        <div class="timeline-item"><div class="timeline-date">7–9 Sep</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Operations before launch</strong>Complete results aggregation for admins, sign-in with a one-time code by email, Nigerian phone numbers normalised to one format, and the first incident from a real tester in Nigeria who could not receive SMS codes.</div></div>
+        <div class="timeline-item"><div class="timeline-date">14 Sep</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Refund rehearsed in production</strong>A one-dollar test ticket bought through Stripe Checkout and refunded through the API; the status route, return page and "my tickets" all followed. The rehearsal revealed that the hosted database lacked permissions the local one had by default. Fixed with a migration and twelve new database tests.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="limits">
+    <div class="shell">
+      <p class="section-label">07 · Limits and trade-offs</p>
+      <h2>What the platform deliberately is not yet</h2>
+      <div class="limits-grid">
+        <div class="limit-card">
+          <h3>Not launched publicly</h3>
+          <p>The app runs in a closed pilot with testers. That is why there are no user counts, vote counts or revenue here, and why the screenshots show only the public part. Admin is described in text, not shown.</p>
+        </div>
+        <div class="limit-card">
+          <h3>No real money without approval</h3>
+          <p>Tickets and memberships are built against Stripe and Paystack but sit behind a manual gate. Donations and memberships in naira are not built. Payouts to artists are manual and reviewed, never automatic.</p>
+        </div>
+        <div class="limit-card">
+          <h3>No livestream provider</h3>
+          <p>Live participation (vote, request a song, follow the current performer) is built, but the video itself awaits a choice between Mux, Cloudflare Stream and Amazon IVS after a rehearsal on a real network in Nigeria.</p>
+        </div>
+        <div class="limit-card">
+          <h3>Community deferred</h3>
+          <p>A broad social feed with posts, comments and messages was deliberately left out of the first version. The core is the chain from audition to vote to event to support, not yet another social network.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section cta-card" id="contact">
+    <div class="shell cta-card">
+      <div>
+        <p class="section-label">08 · Contact</p>
+        <h2>Questions about the platform?</h2>
+      </div>
+      <div class="cta-actions">
+        <a class="button" href="mailto:fribert6@gmail.com">Write to me</a>
+        <a class="button secondary" href="https://jonathanfribert.github.io/en.html">See other projects</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="shell foot-row">
+    <span>Jonathan Fribert · <a href="mailto:fribert6@gmail.com">fribert6@gmail.com</a> · <a href="https://github.com/JonathanFribert">github.com/JonathanFribert</a></span>
+    <span>Set in Newsreader and IBM Plex Mono</span>
+  </div>
+</footer>
+
+<script>
+  document.documentElement.classList.remove('no-js');
+  document.documentElement.classList.add('js');
+  (function () {
+    var themeToggle = document.querySelector('.theme-toggle');
+    if (!themeToggle) return;
+    var systemDark = window.matchMedia('(prefers-color-scheme: dark)');
+    var syncAria = function () {
+      var forced = document.documentElement.getAttribute('data-theme');
+      var isDark = forced ? forced === 'dark' : systemDark.matches;
+      themeToggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+      themeToggle.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
+    };
+    themeToggle.addEventListener('click', function () {
+      var root = document.documentElement;
+      var current = root.getAttribute('data-theme') || (systemDark.matches ? 'dark' : 'light');
+      var next = current === 'dark' ? 'light' : 'dark';
+      if ((next === 'dark') === systemDark.matches) {
+        root.removeAttribute('data-theme');
+        try { localStorage.removeItem('globetunez-case-theme'); } catch (e) {}
+      } else {
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('globetunez-case-theme', next); } catch (e) {}
+      }
+      syncAria();
+    });
+    try {
+      var saved = localStorage.getItem('globetunez-case-theme');
+      if (saved) document.documentElement.setAttribute('data-theme', saved);
+    } catch (e) {}
+    syncAria();
+  })();
+
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* Laesefremdrift i topbjaelken. */
+    var progress = document.querySelector('.read-progress');
+    if (progress) {
+      var ticking = false;
+      var paint = function () {
+        var doc = document.documentElement;
+        var max = doc.scrollHeight - window.innerHeight;
+        progress.style.width = (max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0) + '%';
+        ticking = false;
+      };
+      window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(paint); } }, { passive: true });
+      window.addEventListener('resize', paint);
+      paint();
+    }
+
+    /* Aflaesning paa commit-soejlerne: hover, tryk eller tastatur. */
+    var strip = document.querySelector('.commit-strip');
+    var readout = document.querySelector('.commit-readout');
+    if (strip && readout) {
+      var bars = Array.prototype.slice.call(strip.querySelectorAll('.commit-bar'));
+      var idle = readout.getAttribute('data-idle');
+      var current = null;
+      var show = function (bar) {
+        if (current) current.classList.remove('active');
+        current = bar;
+        if (!bar) { readout.textContent = idle; return; }
+        bar.classList.add('active');
+        var t = bar.getAttribute('title') || '';
+        var i = t.indexOf(':');
+        readout.innerHTML = '<b>' + t.slice(0, i) + '</b>' + t.slice(i);
+      };
+      var pick = function (ev) {
+        var p = ev.touches ? ev.touches[0] : ev;
+        var el = document.elementFromPoint(p.clientX, p.clientY);
+        if (el && el.classList.contains('commit-bar')) show(el);
+      };
+      strip.addEventListener('pointermove', pick);
+      strip.addEventListener('pointerdown', pick);
+      strip.addEventListener('pointerleave', function () { show(null); });
+      bars.forEach(function (b, i) {
+        b.setAttribute('tabindex', '0');
+        b.style.setProperty('--i', i);
+        b.addEventListener('focus', function () { show(b); });
+        b.addEventListener('blur', function () { show(null); });
+      });
+      show(null);
+    }
+
+    if (reduced) return;
+
+    /* Figurerne tegner sig selv, naar de kommer i syne. */
+    var figs = Array.prototype.slice.call(document.querySelectorAll('figure.fig'));
+    if ('IntersectionObserver' in window && figs.length) {
+      figs.forEach(function (f) { f.classList.add('reveal'); });
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); } });
+      }, { threshold: 0.25 });
+      figs.forEach(function (f) { io.observe(f); });
+    }
+
+    /* Noegletallene i hero taeller op; tusindtalsseparator bevares. */
+    var statsBox = document.querySelector('.stats');
+    if ('IntersectionObserver' in window && statsBox) {
+      var sep = document.documentElement.lang === 'da' ? '.' : ',';
+      var counters = Array.prototype.slice.call(statsBox.querySelectorAll('.stat-value')).map(function (el) {
+        var raw = el.textContent.trim();
+        var m = raw.match(/^([\d.,]+)(.*)$/);
+        if (!m) return null;
+        return { el: el, target: parseInt(m[1].replace(/[.,]/g, ''), 10), suffix: m[2] };
+      }).filter(Boolean);
+      var fmt = function (n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, sep); };
+      var so = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          so.unobserve(entry.target);
+          var start = null, duration = 900;
+          var step = function (ts) {
+            if (start === null) start = ts;
+            var t = Math.min(1, (ts - start) / duration);
+            var eased = 1 - Math.pow(1 - t, 3);
+            counters.forEach(function (c) { c.el.textContent = fmt(Math.round(c.target * eased)) + c.suffix; });
+            if (t < 1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+        });
+      }, { threshold: 0.3 });
+      so.observe(statsBox);
+    }
+  })();
+</script>
+</body>
+</html>

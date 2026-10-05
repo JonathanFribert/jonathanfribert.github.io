@@ -1,0 +1,726 @@
+<!doctype html>
+<html lang="da" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jonathan Fribert | Case: GlobeTunez</title>
+<meta name="description" content="Projektcase om GlobeTunez, en installerbar web-app med radio, kunstnerprofiler, talentshows, billetter og medlemsklub for Blaze It Up Radio Africa og 9thwunder. Bygget af Jonathan Fribert med AI-agenter som udviklingspartnere og dokumenteret med tal fra git og CI.">
+<meta name="theme-color" content="#F8F3EC" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#19130F" media="(prefers-color-scheme: dark)">
+<meta property="og:title" content="Jonathan Fribert | Case: GlobeTunez">
+<meta property="og:description" content="En musikplatform med radio, talentshows og billetter til et nigeriansk musikmiljø, bygget på 30 arbejdsdage med AI-agenter som udviklingspartnere.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jonathanfribert.github.io/globetunez-case/">
+<meta property="og:locale" content="da_DK">
+<meta property="og:locale:alternate" content="en_GB">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://jonathanfribert.github.io/globetunez-case/">
+<link rel="alternate" hreflang="da" href="https://jonathanfribert.github.io/globetunez-case/">
+<link rel="alternate" hreflang="en" href="https://jonathanfribert.github.io/globetunez-case/en.html">
+<link rel="alternate" hreflang="x-default" href="https://jonathanfribert.github.io/globetunez-case/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%238C3D15%22/><text x=%2232%22 y=%2243%22 text-anchor=%22middle%22 font-family=%22Menlo,monospace%22 font-size=%2228%22 font-weight=%22700%22 fill=%22white%22>JF</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,700;1,6..72,500&amp;family=IBM+Plex+Mono:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ground: #F8F3EC; --surface: #FFFFFF; --surface-soft: #F0E8DD;
+    --line: #E2D8CA; --ink: #1F1915; --muted: #645A51;
+    --accent: #8C3D15; --accent-strong: #6B2D0E; --accent-soft: #F6E7DC;
+    --red: #A6301F; --red-soft: #F5E8E3; --amber: #9A6708;
+    --green: #2F6B44; --green-soft: #E7F0EA;
+    --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+
+    --dark-ground: #19130F; --dark-surface: #221B16; --dark-surface-soft: #2A221C;
+    --dark-line: #3F342C; --dark-ink: #EFE6DC; --dark-muted: #A99C8F;
+    --dark-accent: #E8A27C; --dark-accent-strong: #F2BE9F; --dark-accent-soft: #33221A;
+    --dark-red: #E08B7A; --dark-red-soft: #35211C; --dark-amber: #D9AC5E;
+    --dark-green: #8CC2A0; --dark-green-soft: #1D2B20;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: var(--dark-ground); --surface: var(--dark-surface); --surface-soft: var(--dark-surface-soft);
+      --line: var(--dark-line); --ink: var(--dark-ink); --muted: var(--dark-muted);
+      --accent: var(--dark-accent); --accent-strong: var(--dark-accent-strong); --accent-soft: var(--dark-accent-soft);
+      --red: var(--dark-red); --red-soft: var(--dark-red-soft); --amber: var(--dark-amber);
+      --green: var(--dark-green); --green-soft: var(--dark-green-soft);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: var(--dark-ground); --surface: var(--dark-surface); --surface-soft: var(--dark-surface-soft);
+    --line: var(--dark-line); --ink: var(--dark-ink); --muted: var(--dark-muted);
+    --accent: var(--dark-accent); --accent-strong: var(--dark-accent-strong); --accent-soft: var(--dark-accent-soft);
+    --red: var(--dark-red); --red-soft: var(--dark-red-soft); --amber: var(--dark-amber);
+    --green: var(--dark-green); --green-soft: var(--dark-green-soft);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0; background: var(--ground); color: var(--ink);
+    font-family: var(--sans); font-size: 1.0625rem; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+  ::selection { background: var(--accent-soft); }
+  img { max-width: 100%; display: block; }
+  .shell { width: min(62rem, calc(100% - 3rem)); margin-inline: auto; }
+  .skip-link {
+    position: absolute; top: -3rem; left: 1rem; z-index: 100; padding: 0.7rem 1.1rem;
+    background: var(--ink); color: var(--ground); border-radius: 4px; font-weight: 700;
+    transition: top 0.15s ease;
+  }
+  .skip-link:focus { top: 1rem; }
+
+  header.masthead-bar {
+    position: sticky; top: 0; z-index: 40; background: color-mix(in srgb, var(--ground) 92%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  .masthead-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.9rem 0; }
+  .masthead-link { text-decoration: none; font-family: var(--mono); font-weight: 700; font-size: 0.9rem; letter-spacing: 0.02em; }
+  .masthead-link:hover { color: var(--accent); }
+  .head-actions { display: flex; align-items: center; gap: 0.6rem; }
+  .language-switch {
+    display: inline-flex; align-items: center; min-height: 2.5rem; padding: 0 0.2rem;
+    color: var(--muted); font-family: var(--mono); font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 0.06em; text-decoration: none;
+  }
+  .language-switch:hover { color: var(--accent); }
+  .theme-toggle {
+    display: inline-flex; width: 2.5rem; height: 2.5rem; align-items: center; justify-content: center;
+    border: 1px solid var(--line); border-radius: 4px; background: var(--surface); color: var(--muted); cursor: pointer;
+  }
+  .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+  .theme-toggle .icon-sun { display: none; }
+  :root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+  :root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .theme-toggle .icon-moon { display: none; }
+    :root:not([data-theme="light"]) .theme-toggle .icon-sun { display: block; }
+  }
+  html:not(.js) .theme-toggle { display: none; }
+
+  .hero { padding: clamp(2.4rem, 6vw, 4.2rem) 0 clamp(2rem, 5vw, 3rem); }
+  .eyebrow { margin: 0 0 0.7rem; color: var(--accent); font-family: var(--mono); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+  h1 { margin: 0 0 1rem; font-family: var(--serif); font-weight: 700; font-size: clamp(2.2rem, 5vw, 3.4rem); line-height: 1.08; text-wrap: balance; }
+  .lead { margin: 0; max-width: 42rem; color: var(--muted); font-size: clamp(1.08rem, 1.6vw, 1.25rem); line-height: 1.65; text-wrap: pretty; }
+
+  .case-brief {
+    margin-top: 2.2rem; display: grid; grid-template-columns: 1fr; gap: 1rem;
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 1.3rem 0;
+  }
+  .case-brief dl { margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: 1rem 1.5rem; }
+  .case-brief dt { margin: 0 0 0.2rem; color: var(--muted); font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+  .case-brief dd { margin: 0; font-weight: 600; }
+  .status-stamp {
+    display: inline-block; margin-left: 0.6rem; border: 2px solid var(--amber); border-radius: 4px;
+    padding: 0.05rem 0.45rem; color: var(--amber); font-family: var(--mono); font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.06em; transform: rotate(-2deg); vertical-align: middle;
+  }
+  .case-disclaimer { margin: 0.6rem 0 0; color: var(--muted); font-size: 0.92rem; line-height: 1.6; }
+
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: 0; margin-top: 1.6rem; }
+  .stat { padding: 0.9rem 1.2rem 0.9rem 0; }
+  .stat + .stat { border-left: 1px solid var(--line); padding-left: 1.2rem; }
+  .stat-value { color: var(--accent); font-family: var(--mono); font-size: clamp(1.35rem, 2.1vw, 1.8rem); font-weight: 700; }
+  .stat-label { margin-top: 0.3rem; color: var(--muted); font-size: 0.86rem; line-height: 1.45; }
+
+  section.section { padding: clamp(3rem, 6vw, 4.6rem) 0; border-top: 1px solid var(--line); }
+  section.section.soft { background: color-mix(in srgb, var(--surface-soft) 55%, transparent); }
+  .section-label { margin: 0 0 0.7rem; color: var(--accent); font-family: var(--mono); font-size: 0.76rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; }
+  h2 { margin: 0 0 1rem; font-family: var(--serif); font-weight: 700; font-size: clamp(1.5rem, 3vw, 2.05rem); line-height: 1.18; text-wrap: balance; }
+  .intro { max-width: 44rem; margin: 0 0 1.6rem; color: var(--muted); font-size: 1.08rem; line-height: 1.65; text-wrap: pretty; }
+  .intro p { margin: 0 0 1rem; }
+  .intro p:last-child { margin-bottom: 0; }
+  .prose p { max-width: 42rem; margin: 0 0 1rem; line-height: 1.7; }
+  .prose p:last-child { margin-bottom: 0; }
+
+  .flow { display: flex; flex-wrap: wrap; align-items: stretch; gap: 0; margin: 2rem 0 0; }
+  .flow-box {
+    flex: 1 1 9rem; min-width: 9rem; border: 1px solid var(--line); border-radius: 10px;
+    background: var(--surface); padding: 0.9rem 1rem; display: flex; flex-direction: column; justify-content: center;
+  }
+  .flow-box b { display: block; font-family: var(--mono); font-size: 0.86rem; }
+  .flow-box span { display: block; margin-top: 0.25rem; color: var(--muted); font-size: 0.82rem; line-height: 1.4; }
+  .flow-box.accent { border-color: var(--accent); background: var(--accent-soft); }
+  .flow-arrow { flex: 0 0 auto; display: flex; align-items: center; justify-content: center; width: 2rem; color: var(--accent); font-weight: 700; }
+  @media (max-width: 640px) {
+    .flow { flex-direction: column; }
+    .flow-arrow { width: auto; height: 1.6rem; transform: rotate(90deg); }
+  }
+  .flow-note { max-width: 44rem; margin-top: 1rem; color: var(--muted); font-size: 0.9rem; }
+
+  .tech-table { width: 100%; margin-top: 1.6rem; border-collapse: collapse; font-size: 0.96rem; }
+  .tech-table th { text-align: left; padding: 0.55rem 1rem 0.55rem 0; color: var(--muted); font-family: var(--mono); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--line); }
+  .tech-table td { padding: 0.7rem 1rem 0.7rem 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .tech-table td:first-child { font-weight: 700; white-space: nowrap; }
+  .tech-table tr:last-child td { border-bottom: 0; }
+
+  .rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.4rem; margin-top: 1.6rem; }
+  .rule-card { border-left: 3px solid var(--accent); padding: 0.2rem 0 0.2rem 1rem; }
+  .rule-card h3 { margin: 0 0 0.4rem; font-family: var(--serif); font-size: 1.15rem; }
+  .rule-card p { margin: 0; color: var(--muted); font-size: 0.94rem; line-height: 1.55; }
+
+  .timeline { margin-top: 1.8rem; display: grid; gap: 0; position: relative; }
+  .timeline::before { content: ""; position: absolute; top: 0.5rem; bottom: 0.5rem; left: 5.2rem; width: 1px; background: var(--line); }
+  .timeline-item { display: grid; grid-template-columns: 4.6rem 1.6rem 1fr; gap: 0.8rem; padding: 0.75rem 0; align-items: start; }
+  .timeline-date { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); padding-top: 0.15rem; }
+  .timeline-dot { position: relative; width: 1.6rem; display: flex; justify-content: center; }
+  .timeline-dot::after { content: ""; width: 0.6rem; height: 0.6rem; border-radius: 50%; background: var(--accent); margin-top: 0.35rem; }
+  .timeline-copy { font-size: 0.98rem; line-height: 1.55; }
+  .timeline-copy strong { display: block; font-family: var(--serif); font-size: 1.08rem; margin-bottom: 0.1rem; }
+
+  .limits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.4rem; margin-top: 1.6rem; }
+  .limit-card { border-top: 2px solid var(--line); padding: 1rem 0 0; }
+  .limit-card h3 { margin: 0 0 0.4rem; font-family: var(--serif); font-size: 1.15rem; }
+  .limit-card p { margin: 0; color: var(--muted); font-size: 0.94rem; line-height: 1.55; }
+
+  .cta-card { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.6rem; }
+  .cta-card h2 { max-width: 20rem; }
+  .cta-actions { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+  .button {
+    display: inline-flex; align-items: center; gap: 0.4rem; border-radius: 999px; padding: 0.7rem 1.3rem;
+    font-weight: 700; font-size: 0.96rem; text-decoration: none; border: 1px solid var(--accent);
+    background: var(--accent); color: var(--ground);
+  }
+  .button:hover { background: var(--accent-strong); border-color: var(--accent-strong); }
+  .button.secondary { background: transparent; color: var(--ink); border-color: var(--line); }
+  .button.secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+  footer { padding: 2rem 0 3rem; border-top: 1px solid var(--line); }
+  .foot-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; color: var(--muted); font-size: 0.88rem; }
+  .foot-row a { text-decoration: underline; text-underline-offset: 2px; }
+
+  @media (max-width: 640px) {
+    .case-brief dl { grid-template-columns: 1fr 1fr; }
+    .stat + .stat { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); padding-top: 0.9rem; margin-top: 0.9rem; }
+    .stats { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* Figurer: samme sprog som de andre cases (bånd, rejsekort, søjler). */
+  figure.fig { margin: 2.2rem 0 0; }
+  .figure-title { margin: 0 0 1rem; padding-bottom: 0.55rem; border-bottom: 1px solid var(--line); font-family: var(--serif); font-size: 1.35rem; line-height: 1.2; }
+  .diagram-caption { margin: 1rem 0 0; max-width: 44rem; color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+
+  .journey { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; gap: 0.9rem; align-items: start; }
+  .journey-arrow { display: grid; place-items: center; padding-top: 1.1rem; color: var(--accent); font-family: var(--mono); font-size: 1.4rem; font-weight: 700; }
+  .journey-card { border-top: 2px solid var(--line); padding: 0.9rem 0 0; min-width: 0; }
+  .journey-card.accent { border-top-color: var(--accent); }
+  .journey-label { margin: 0 0 0.5rem; color: var(--accent); font-family: var(--mono); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+  .journey-card h3 { margin: 0 0 0.4rem; font-family: var(--serif); font-size: 1.12rem; line-height: 1.25; }
+  .journey-card p { margin: 0; color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
+  .check-list { margin: 0.3rem 0 0; padding: 0; list-style: none; color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+  .check-list li { padding-left: 1.3rem; position: relative; }
+  .check-list li::before { content: "✓"; position: absolute; left: 0; color: var(--green); font-family: var(--mono); font-weight: 700; }
+
+  .coverage { display: grid; gap: 0.55rem; }
+  .coverage-row { display: grid; grid-template-columns: 15rem minmax(0, 1fr) 3rem; gap: 1rem; align-items: center; }
+  .coverage-row b { font-size: 0.94rem; font-weight: 600; }
+  .coverage-row b span { display: block; color: var(--muted); font-size: 0.8rem; font-weight: 400; }
+  .coverage-track { height: 1.3rem; border-radius: 3px; background: var(--surface-soft); overflow: hidden; }
+  .coverage-track span { display: block; height: 100%; background: var(--accent); border-radius: 3px; }
+  .coverage-row strong { text-align: right; font-family: var(--mono); font-size: 1rem; color: var(--accent); }
+
+  .lanes { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 0.6rem 0; }
+  .lane { display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: 1.2rem; align-items: center; padding: 0.55rem 0; }
+  .lane-label b { display: block; font-family: var(--mono); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; }
+  .lane-label span { display: block; color: var(--muted); font-size: 0.82rem; }
+  .lane-track { position: relative; height: 2rem; border-radius: 4px; background: var(--surface-soft); }
+  .lane-seg { position: absolute; top: 0; height: 100%; display: flex; align-items: center; overflow: hidden; white-space: nowrap; padding: 0 0.45rem; border-right: 2px solid var(--ground); box-sizing: border-box; color: var(--ground); font-family: var(--mono); font-size: 0.72rem; font-weight: 700; background: var(--muted); }
+  .lane-seg.run { background: var(--accent); }
+  .lane-seg.test { background: var(--green); }
+  .lane-seg.narrow { font-size: 0; padding: 0; }
+  .lane-axis { display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: 1.2rem; padding-bottom: 0.3rem; }
+  .lane-axis div:last-child { position: relative; height: 1.1rem; color: var(--muted); font-family: var(--mono); font-size: 0.74rem; font-weight: 700; }
+  .lane-axis div:last-child span { position: absolute; transform: translateX(-50%); }
+  .lane-axis div:last-child span:first-child { transform: none; }
+  .lane-axis div:last-child span:last-child { transform: translateX(-100%); }
+  .lane-legend { display: flex; flex-wrap: wrap; gap: 1.2rem; margin-top: 0.9rem; color: var(--muted); font-size: 0.82rem; }
+  .lane-legend i { display: inline-block; width: 0.8rem; height: 0.8rem; margin-right: 0.4rem; border-radius: 2px; background: var(--muted); vertical-align: -0.05rem; }
+  .lane-legend i.run { background: var(--accent); }
+  .lane-legend i.test { background: var(--green); }
+
+  .commit-strip { display: grid; grid-template-columns: repeat(37, minmax(0, 1fr)); gap: 2px; align-items: end; height: 8rem; border-bottom: 1px solid var(--line); }
+  .commit-bar { display: block; height: calc(var(--n) / 46 * 100%); min-height: 2px; background: var(--accent); border-radius: 2px 2px 0 0; }
+  .commit-bar.wknd { background: color-mix(in srgb, var(--accent) 55%, var(--surface-soft)); }
+  .commit-bar.zero { background: var(--line); }
+  .commit-axis { display: grid; grid-template-columns: repeat(37, minmax(0, 1fr)); margin-top: 0.4rem; color: var(--muted); font-family: var(--mono); font-size: 0.72rem; font-weight: 700; }
+  .commit-axis span { white-space: nowrap; }
+  .commit-peaks { display: flex; flex-wrap: wrap; gap: 1.2rem; margin-top: 0.9rem; color: var(--muted); font-size: 0.86rem; }
+  .commit-peaks b { color: var(--accent); font-family: var(--mono); }
+
+  @media (max-width: 760px) {
+    .journey { grid-template-columns: minmax(0, 1fr); }
+    .journey-arrow { padding: 0; transform: rotate(90deg); }
+    .coverage-row { grid-template-columns: minmax(0, 1fr) 3rem; }
+    .coverage-row b { grid-column: 1 / -1; }
+    .lane, .lane-axis { grid-template-columns: minmax(0, 1fr); gap: 0.3rem; }
+    .lane-axis div:first-child { display: none; }
+    .lane-seg { font-size: 0; padding: 0; }
+    .commit-strip { height: 6rem; }
+    .commit-axis { font-size: 0.66rem; }
+  }
+
+  /* Effekter: alt gated bag prefers-reduced-motion, og uden JavaScript
+     (html uden .js) vises siden faerdig med det samme. */
+  .read-progress { position: absolute; left: 0; bottom: -1px; height: 2px; width: 0; background: var(--accent); }
+  html:not(.js) .read-progress { display: none; }
+  #opgaven .intro p:first-child::first-letter {
+    float: left; margin: 0.08em 0.12em 0 0; font-family: var(--serif); font-weight: 700;
+    font-size: 3.6em; line-height: 0.82; color: var(--accent);
+  }
+  main { counter-reset: fig; }
+  figure.fig { counter-increment: fig; }
+  figure.fig .diagram-caption::before { content: "Figur " counter(fig) " · "; color: var(--accent); font-family: var(--mono); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; }
+  .commit-readout { margin: 0.5rem 0 0; min-height: 1.4rem; color: var(--muted); font-family: var(--mono); font-size: 0.8rem; }
+  .commit-readout b { color: var(--accent); }
+  .commit-bar.active { background: var(--ink); }
+  .commit-strip { cursor: crosshair; touch-action: pan-y; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    @view-transition { navigation: auto; }
+    .status-stamp { animation: stamp 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s both; }
+    @keyframes stamp { from { opacity: 0; transform: rotate(-9deg) scale(1.7); } 60% { opacity: 1; } to { opacity: 1; transform: rotate(-2deg) scale(1); } }
+    .js figure.fig.reveal .coverage-track span { transform: scaleX(0); transform-origin: left; transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1); }
+    .js figure.fig.reveal.in-view .coverage-track span { transform: none; }
+    .js figure.fig.reveal .coverage-row:nth-child(2) .coverage-track span { transition-delay: 0.08s; }
+    .js figure.fig.reveal .coverage-row:nth-child(3) .coverage-track span { transition-delay: 0.16s; }
+    .js figure.fig.reveal .coverage-row:nth-child(4) .coverage-track span { transition-delay: 0.24s; }
+    .js figure.fig.reveal .coverage-row:nth-child(5) .coverage-track span { transition-delay: 0.32s; }
+    .js figure.fig.reveal .lane-track { clip-path: inset(0 100% 0 0); transition: clip-path 0.9s cubic-bezier(0.22, 1, 0.36, 1); }
+    .js figure.fig.reveal.in-view .lane-track { clip-path: inset(0); }
+    .js figure.fig.reveal .lane:nth-child(3) .lane-track { transition-delay: 0.1s; }
+    .js figure.fig.reveal .lane:nth-child(4) .lane-track { transition-delay: 0.2s; }
+    .js figure.fig.reveal .commit-bar { transform: scaleY(0); transform-origin: bottom; transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1); transition-delay: calc(var(--i) * 18ms); }
+    .js figure.fig.reveal.in-view .commit-bar { transform: none; }
+    .js figure.fig.reveal .journey-card { opacity: 0; transform: translateY(12px); transition: opacity 0.5s ease-out, transform 0.5s ease-out; }
+    .js figure.fig.reveal.in-view .journey-card { opacity: 1; transform: none; }
+    .js figure.fig.reveal .journey-card:nth-of-type(2) { transition-delay: 0.12s; }
+    .js figure.fig.reveal .journey-card:nth-of-type(3) { transition-delay: 0.24s; }
+    .js figure.fig.reveal .journey-card:nth-of-type(4) { transition-delay: 0.36s; }
+  }
+
+  .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1.4rem; margin-top: 1.8rem; align-items: start; }
+  .shot { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--surface); }
+  .shot img { width: 100%; height: auto; }
+  .shot figcaption { padding: 0.7rem 0.9rem; color: var(--muted); font-size: 0.85rem; line-height: 1.5; border-top: 1px solid var(--line); }
+  .shot.wide { grid-column: 1 / -1; }
+  .shot.mobile { max-width: 15rem; }
+  .admin-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.2rem 1.6rem; margin: 1.6rem 0 0; padding: 0; list-style: none; }
+  .admin-list li { border-top: 2px solid var(--line); padding-top: 0.8rem; font-size: 0.94rem; line-height: 1.55; color: var(--muted); }
+  .admin-list b { display: block; color: var(--ink); font-family: var(--serif); font-size: 1.1rem; margin-bottom: 0.25rem; }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#indhold">Gå til indhold</a>
+
+<header class="masthead-bar">
+  <div class="read-progress" aria-hidden="true"></div>
+  <div class="shell masthead-row">
+    <a class="masthead-link" href="https://jonathanfribert.github.io/">← Jonathan Fribert</a>
+    <div class="head-actions">
+      <a class="language-switch" href="en.html" lang="en" hreflang="en" aria-label="Read this page in English">EN</a>
+      <button class="theme-toggle" type="button" aria-label="Skift til mørkt tema" aria-pressed="false">
+        <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="indhold">
+  <div class="shell hero">
+    <p class="eyebrow">Case 03 · Partnerprojekt</p>
+    <h1>Jeg byggede en musikplatform med radio, talentshows og billetter til et nigeriansk musikmiljø</h1>
+    <p class="lead">GlobeTunez er en installerbar web-app for Blaze It Up Radio Africa og 9thwunder: live radio, kunstnerprofiler, auditions med afstemning, events med billetsalg og en medlemsklub. Bygget mobile-first til billige Android-telefoner og ustabile netværk, med to AI-agenter som udviklingspartnere under skrevne regler.</p>
+
+    <div class="case-brief">
+      <dl>
+        <div><dt>Rolle</dt><dd>Udvikler og produktansvarlig, i partnerskab med radioens vært</dd></div>
+        <div><dt>Periode</dt><dd>9. august – 14. september 2026, 30 arbejdsdage</dd></div>
+        <div><dt>Status</dt><dd>Lukket pilot <b class="status-stamp" aria-hidden="true">PILOT</b></dd></div>
+        <div><dt>Kode</dt><dd>Privat repo, 428 commits, CI grøn på seneste commit</dd></div>
+      </dl>
+      <p class="case-disclaimer">Partnerprojekt med Blaze It Up Radio Africa og 9thwunder. Casen beskriver kun teknik og arbejdsform. Den indeholder ingen bruger-, omsætnings- eller partnertal, fordi platformen endnu ikke er lanceret offentligt. Alle tal er fra git-historik, kildekode og CI-kørsler pr. 14. september 2026.</p>
+    </div>
+
+    <div class="stats" aria-label="Nøgletal for projektet">
+      <div class="stat"><div class="stat-value">30</div><div class="stat-label">arbejdsdage med commits, fra 9. august til 14. september</div></div>
+      <div class="stat"><div class="stat-value">428</div><div class="stat-label">commits; 67.970 linjer TypeScript i 498 filer</div></div>
+      <div class="stat"><div class="stat-value">1.587</div><div class="stat-label">unit tests, plus 1.126 SQL-tests af databasens rettigheder</div></div>
+      <div class="stat"><div class="stat-value">105</div><div class="stat-label">versionerede databasemigrationer</div></div>
+    </div>
+  </div>
+
+  <section class="section" id="opgaven">
+    <div class="shell">
+      <p class="section-label">01 · Opgaven</p>
+      <h2>Ét digitalt hjem for et musikmiljø, der allerede findes i virkeligheden</h2>
+      <div class="intro">
+        <p>Blaze It Up Radio Africa og 9thwunder er et eksisterende græsrodsmiljø i Nigeria: en radiostation, talentshows med afstemning, fysiske koncerter og et magasin. Værten modtager allerede mange audition-videoer fra kunstnere og afholder konkurrencer, hvor publikum stemmer ved selve arrangementet. Det hele kørte på løse kanaler, uden ét sted hvor fans og kunstnere kunne mødes mellem events.</p>
+        <p>Opgaven blev at bygge det sted uden at erstatte det fysiske: en app, der forlænger et event før, under og efter. Fans lytter til radioen, opdager kunstnere, ser og stemmer på auditions, køber billetter og kan melde sig ind i klubben. Kunstnere indsender auditions, får en profil, følgere og adgang til næste mulighed. Arrangøren moderer, åbner og lukker afstemninger, scanner billetter ved døren og ser resultater.</p>
+        <p>Rammerne var hårde fra start: mange brugere har billige Android-telefoner, dyr data og ustabilt netværk. Derfor er appen en installerbar PWA uden app-butik, med én webfont, tydelige handlinger som LISTEN LIVE, VOTE og BUY TICKET, og en regel om at hver netværkshandling skal have en tilstand for indlæsning, succes og sikker fejl med mulighed for at prøve igen.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section soft" id="loesningen">
+    <div class="shell">
+      <p class="section-label">02 · Sådan hænger det sammen</p>
+      <h2>Rettigheder i databasen, penge i en hovedbog</h2>
+      <p class="intro">En modulær monolit: én Next.js-app mod én Postgres-database, hvor adgangskontrol ligger som Row Level Security i selve databasen og testes med pgTAP. Frontend skjuler aldrig noget som sikkerhed; det afgør databasen.</p>
+
+      <div class="flow" role="img" aria-label="Diagram: Telefonen kører appen som installerbar PWA. Next.js håndterer server actions og sætter en ny CSP-nonce pr. forespørgsel. Supabase Postgres håndhæver rettigheder med Row Level Security over 105 migrationer. Stripe og Paystack sender webhooks, der verificeres og skrives til en hovedbog, før en billet eller et medlemskab udstedes. Admin-delen håndterer moderation, resultater og dørscanning.">
+        <div class="flow-box"><b>Telefon</b><span>installerbar PWA, offline-side, service worker</span></div>
+        <div class="flow-arrow" aria-hidden="true">→</div>
+        <div class="flow-box"><b>Next.js 16</b><span>server actions, CSP-nonce pr. forespørgsel</span></div>
+        <div class="flow-arrow" aria-hidden="true">→</div>
+        <div class="flow-box accent"><b>Supabase Postgres</b><span>Row Level Security, 105 migrationer</span></div>
+        <div class="flow-arrow" aria-hidden="true">→</div>
+        <div class="flow-box accent"><b>Hovedbog</b><span>Stripe/Paystack-webhooks → billet eller medlemskab</span></div>
+        <div class="flow-arrow" aria-hidden="true">→</div>
+        <div class="flow-box"><b>Admin</b><span>moderation, resultater, dørscanning</span></div>
+      </div>
+      <p class="flow-note">Betalinger følger én regel: hovedbogen er sandheden. En webhook fra Stripe eller Paystack verificeres med signatur, reference, beløb, valuta og produkt, før appen udsteder noget, og den samme hændelse kan ikke udstede to gange. Rigtige penge kan slet ikke flyde, før en manuel låge er åbnet af et menneske; indtil da er alle køb simulerede og mærket som sådan.</p>
+
+      <figure class="fig" aria-labelledby="ticket-title">
+        <h3 class="figure-title" id="ticket-title">Én billet gennem systemet</h3>
+        <div class="journey">
+          <article class="journey-card">
+            <p class="journey-label">1 · Køb</p>
+            <h3>Stripe Checkout i dollars, Paystack i naira</h3>
+            <p>Pladsen reserveres i 15 minutter, mens betalingen gennemføres. En gentaget forespørgsel åbner aldrig en ny betaling for den samme ordre.</p>
+          </article>
+          <div class="journey-arrow" aria-hidden="true">→</div>
+          <article class="journey-card accent">
+            <p class="journey-label">2 · Webhook</p>
+            <h3>Leverandøren melder tilbage, appen kontrollerer</h3>
+            <ul class="check-list"><li>Signatur verificeret</li><li>Reference matcher ordren</li><li>Beløb og valuta stemmer</li><li>Produktet er det rigtige</li><li>Samme hændelse kun én gang</li></ul>
+          </article>
+          <div class="journey-arrow" aria-hidden="true">→</div>
+          <article class="journey-card accent">
+            <p class="journey-label">3 · Hovedbog</p>
+            <h3>Betalingen bogføres, før noget udstedes</h3>
+            <p>Hovedbogen er sandheden. Er pladsen i mellemtiden udsolgt, oprettes en refusionsanmodning i stedet for en billet.</p>
+          </article>
+          <div class="journey-arrow" aria-hidden="true">→</div>
+          <article class="journey-card">
+            <p class="journey-label">4 · Billet</p>
+            <h3>QR-kode i "mine billetter", scannet ved døren</h3>
+            <p>Billetten overlever, at kontoen slettes. En refusion trækker den tilbage igen; det er bevist i databasetestene og øvet i produktion den 14. september.</p>
+          </article>
+        </div>
+        <figcaption class="diagram-caption">Samme regler gælder for medlemskaber, der fornyer sig selv. Indtil den manuelle låge er åbnet, er alle køb simulerede og mærket som sådan.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" id="teknik">
+    <div class="shell">
+      <p class="section-label">03 · Teknikken</p>
+      <h2>Stack og drift</h2>
+      <table class="tech-table">
+        <tr><th>Del</th><th>Værktøj</th></tr>
+        <tr><td>Frontend</td><td>Next.js 16 (App Router), React 19, TypeScript 5.9, Tailwind CSS 4; leveret som PWA med service worker og offline-side</td></tr>
+        <tr><td>Data</td><td>Supabase: Postgres med Row Level Security, Auth, Storage. Skemaet findes kun som 105 versionerede migrationer, aldrig håndredigeret</td></tr>
+        <tr><td>Betaling</td><td>Stripe Checkout til billetter i USD og automatisk fornyede medlemskaber; Paystack til billetter i naira. Alt bag en manuel låge, donationer ikke bygget</td></tr>
+        <tr><td>Radio</td><td>Stationens eksisterende stream afspilles i appen; "senest spillet" hentes fra radioens egen API, intet opdigtes</td></tr>
+        <tr><td>Test</td><td>1.587 unit tests (Vitest, Testing Library), 1.126 pgTAP-assertions i 67 SQL-filer, Playwright-kørsler for tilgængelighed, ydelse og kritiske brugerrejser</td></tr>
+        <tr><td>CI</td><td>GitHub Actions med tre jobs på hvert push: app (lint, typer, tests, build), database (migrationer og pgTAP i en frisk Postgres) og kritiske browserforløb. 146 kørsler</td></tr>
+        <tr><td>Hosting</td><td>Vercel og hostet Supabase i produktion; lokal Supabase-stack i Docker til udvikling og test. Live video: ingen leverandør valgt endnu</td></tr>
+      </table>
+
+      <figure class="fig" aria-labelledby="coverage-title">
+        <h3 class="figure-title" id="coverage-title">Hvad de 67 databasetestfiler dækker</h3>
+        <div class="coverage" role="img" aria-label="Søjlediagram over 67 pgTAP-filer fordelt på fem områder: betaling, billetter og medlemskab 21 filer; konti, roller og misbrug 16; afstemning og auditions 10; klub og dørscanning 10; kunstnere, events og medier 10.">
+          <div class="coverage-row"><b>Betaling, billetter og medlemskab<span>reservationer, refusion, webhook-gentagelser, hovedbog</span></b><div class="coverage-track"><span style="width:100%"></span></div><strong>21</strong></div>
+          <div class="coverage-row"><b>Konti, roller og misbrug<span>rolleændringer med audit, rate limiting, udelukkelser, sletning</span></b><div class="coverage-track"><span style="width:76.2%"></span></div><strong>16</strong></div>
+          <div class="coverage-row"><b>Afstemning og auditions<span>stemmefusk, resultater, offentliggørelse, afvisningsårsager</span></b><div class="coverage-track"><span style="width:47.6%"></span></div><strong>10</strong></div>
+          <div class="coverage-row"><b>Klub og dørscanning<span>medlemspas, indløsning, gæsteliste, scanning ved døren</span></b><div class="coverage-track"><span style="width:47.6%"></span></div><strong>10</strong></div>
+          <div class="coverage-row"><b>Kunstnere, events og medier<span>ansøgninger, følgere, billeder, live-sessioner</span></b><div class="coverage-track"><span style="width:47.6%"></span></div><strong>10</strong></div>
+        </div>
+        <figcaption class="diagram-caption">Grupperet efter filnavn i <code>supabase/tests/</code>. 58 af de 67 filer skifter databaserolle undervejs (anonym, logget ind, service) og prøver at læse eller skrive det, rollen ikke må. Tilsammen 1.126 assertions, alle grønne i CI-kørsel 146.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+
+  <section class="section soft" id="udseende">
+    <div class="shell">
+      <p class="section-label">04 · Sådan ser det ud</p>
+      <h2>Skærmbilleder fra den kørende app</h2>
+      <p class="intro">Taget fra produktionssitet den 5. oktober 2026. Det er den offentlige del, som alle kan se; events og konkurrencer er dem, der faktisk lå i databasen den dag.</p>
+      <div class="shots">
+        <figure class="shot wide">
+          <img src="skaerm-forside.png" alt="Skærmbillede af forsiden på desktop: grøn hero med overskriften 'Where Africa's next sound gets heard', en LIVE-bjælke med LISTEN-knap til Blaze It Up Radio Africa, en gul banner med 'Auditions are open' og SUBMIT AUDITION, og listen Coming up med to events." loading="lazy" width="1440" height="700">
+          <figcaption>Forsiden: radioen øverst med én tydelig LISTEN-knap, dernæst den åbne audition med SUBMIT AUDITION og de kommende events. Alle vigtige handlinger står med store bogstaver og uden hover.</figcaption>
+        </figure>
+        <figure class="shot mobile">
+          <img src="skaerm-velkomst.png" alt="Skærmbillede af velkomstskærmen på mobil: 'This is GlobeTunez x Blaze It Up Radio' med fire punkter om radio, billetter, live shows og klubpas, stemplet 'Made in Naija' og en stor NEXT-knap." loading="lazy" width="780" height="1688">
+          <figcaption>Velkomsten ved første besøg: tre korte skærme, der kan springes over. Admin kan slukke dem med én kontakt, for eksempel på en festivalaften.</figcaption>
+        </figure>
+        <figure class="shot mobile">
+          <img src="skaerm-mobil.png" alt="Skærmbillede af forsiden på mobil med LIVE-bjælke, SUBMIT AUDITION og fast bundnavigation med Home, Radio, Live, Events, Artists og Me." loading="lazy" width="780" height="1688">
+          <figcaption>Mobilvisningen, som appen er bygget til: fast bundnavigation, én webfont og tekst der kan læses på en billig Android-skærm i sollys.</figcaption>
+        </figure>
+        <figure class="shot wide">
+          <img src="skaerm-klub.png" alt="Skærmbillede af siden Club 9thwunder: klubbens logo, kortet 'Join Club 9thwunder' med Sign in to join, og en liste over medlemsfordele." loading="lazy" width="1440" height="900">
+          <figcaption>Club 9thwunder: medlemskabet, der validerer én kunstner ad gangen. Siden lister fordelene og sender ind til login, før der kan tegnes noget.</figcaption>
+        </figure>
+      </div>
+      <h2 style="margin-top:2.6rem">Bag kulissen: admin</h2>
+      <p class="intro">Admin-delen er bygget til én arrangør på en telefon, ikke til en analytiker ved et skrivebord. Den viser kun det, der kræver en beslutning, og hver handling, der rører penge eller offentliggørelse, forklarer sig selv, før den udføres. Skærmbilleder herfra er med vilje udeladt, fordi de viser pilotens kontotal og testbetalinger.</p>
+      <ul class="admin-list">
+        <li><b>Venter på dig</b>Dashboardet åbner med tre kort: auditions der skal godkendes eller afvises, kunstneransøgninger og betalingstvister. Kan et tal ikke læses, står der "kunne ikke læses lige nu" i stedet for et nul.</li>
+        <li><b>Events og penge adskilt</b>Hvert event har sine egne tal. Naira og dollars vises altid hver for sig og lægges aldrig sammen, og testbetalinger står i egne rækker med tydelig mærkning.</li>
+        <li><b>Kontakter med konsekvens</b>Én side med alle afbrydere: alle betalinger, billetsalg, donationer, festival-tilstand, medlemspas, video i live-sessioner. Pengeafbryderne kræver, at man skriver et ord først, og hver ændring logges med hvem der gjorde det.</li>
+        <li><b>Stats målt på rigtige telefoner</b>Appens åbningstid måles hos brugerne selv, første gang appen indlæses, på de forbindelser de faktisk har. Siden viser median og "langsomste 1 ud af 20" og siger ærligt, at udloggede besøgende ikke tælles.</li>
+        <li><b>Dørscanning uden signal</b>Billetter og medlemspas scannes ved døren med en kode, der kun kræver netværk én gang. Derefter virker scanneren offline, og listen afstemmes, når signalet er tilbage.</li>
+        <li><b>Fejl som en side, ikke en mail</b>Serverfejl samles på en admin-side med kode og tekst, så en fejl i produktion kan læses af den, der driver appen, uden adgang til logs.</li>
+      </ul>
+    </div>
+  </section>
+  <section class="section" id="arbejdsform">
+    <div class="shell">
+      <p class="section-label">05 · Arbejdsformen</p>
+      <h2>To AI-agenter som udviklere, under skrevne regler</h2>
+      <div class="intro">
+        <p>Koden er skrevet af Claude Code og Codex, som skiftevis implementerede og gennemgik hinandens arbejde. Min rolle var produktbeslutninger, godkendelser og alt der rører produktion: anvende migrationer, verificere i den hostede database og tage de menneskelige låger, som agenterne ikke må åbne selv.</p>
+        <p>Det fungerede, fordi reglerne stod på skrift i repoet. Dokumentationen er en del af produktet: en ændring uden opdateret TODO, handover, changelog og beslutningslog er ikke færdig. Det er tydeligt i tallene. Beslutningsloggen rummer over 240 nummererede arkitekturbeslutninger, og changelog, beslutningslog og handover fylder tilsammen over en megabyte tekst.</p>
+      </div>
+      <div class="rules">
+        <div class="rule-card">
+          <h3>Læs før du skriver</h3>
+          <p>Før en kodeændring læser agenten produkt-, scope-, arkitektur-, sikkerheds- og beslutningsdokumenterne. Ingen må udskifte framework, database, betalings- eller streamingleverandør uden et konkret problem, alternativer og menneskelig godkendelse.</p>
+        </div>
+        <div class="rule-card">
+          <h3>Gennemsyn fandt rigtige fejl</h3>
+          <p>Reviewrunderne mellem de to agenter fandt blandt andet et race condition, hvor to samtidige godkendelser kunne overskrive hinanden, og en godkendelse, der kunne degradere en admin. Begge blev rettet og bevist med to reelt samtidige databaseforbindelser, ikke kun resonneret om.</p>
+        </div>
+        <div class="rule-card">
+          <h3>Tal, en maskine genudregner</h3>
+          <p>Indtil 24. august kørte alle tests kun, når nogen huskede det, på én laptop. CI blev indført, efter at changelogen havde påstået 85 testfiler, hvor der var 83. Nu genudregnes hvert tal på hvert push, og denne case bruger kun tal fra den seneste grønne kørsel.</p>
+        </div>
+        <div class="rule-card">
+          <h3>Fejl i marken, ikke i teorien</h3>
+          <p>Da en tester i Nigeria ikke kunne modtage sms-koder, blev hændelsen diagnosticeret read-only i produktion, dokumenteret med tidsstempler og fejlkoder, og først derefter rettet i appens fejltekster og telefonnummer-håndtering. Ingen gættede løsninger blev slået til.</p>
+        </div>
+      </div>
+
+      <figure class="fig" aria-labelledby="ci-title">
+        <h3 class="figure-title" id="ci-title">Ét push, tre kontrolbaner, 6 minutter og 41 sekunder</h3>
+        <div class="lanes" role="img" aria-label="Tidslinje for CI-kørsel 146: app-jobbet tager 3 minutter 52 sekunder med lint, typer, 1.587 tests og build; database-jobbet 1 minut 47 sekunder med Postgres-start, 105 migrationer og 1.126 pgTAP-assertions; browser-jobbet 6 minutter 41 sekunder med Supabase-stack, build, tilgængelighedstjek, ydelsestjek og scanner-fallback.">
+          <div class="lane-axis" aria-hidden="true"><div></div><div><span style="left:0">0:00</span><span style="left:29.9%">2:00</span><span style="left:59.9%">4:00</span><span style="left:100%">6:41</span></div></div>
+          <div class="lane"><div class="lane-label"><b>app</b><span>3 min 52 s</span></div><div class="lane-track"><span class="lane-seg setup" style="left:0.0%;width:6.2%" title="opsætning">opsætning</span><span class="lane-seg run narrow" style="left:6.2%;width:4.0%" title="lint">lint</span><span class="lane-seg run narrow" style="left:10.2%;width:2.7%" title="typer">typer</span><span class="lane-seg test" style="left:13.0%;width:36.4%" title="1.587 unit tests">1.587 unit tests</span><span class="lane-seg run" style="left:49.4%;width:7.2%" title="build">build</span><span class="lane-seg run narrow" style="left:56.6%;width:1.2%" title=""></span></div></div>
+          <div class="lane"><div class="lane-label"><b>database</b><span>1 min 47 s</span></div><div class="lane-track"><span class="lane-seg setup narrow" style="left:0.0%;width:2.5%" title="opsætning">opsætning</span><span class="lane-seg run" style="left:2.5%;width:21.7%" title="Postgres + 105 migrationer">Postgres + 105 migrationer</span><span class="lane-seg test narrow" style="left:24.2%;width:1.7%" title="1.126 pgTAP">1.126 pgTAP</span><span class="lane-seg setup narrow" style="left:25.9%;width:0.7%" title=""></span></div></div>
+          <div class="lane"><div class="lane-label"><b>kritiske browserforløb</b><span>6 min 41 s</span></div><div class="lane-track"><span class="lane-seg setup" style="left:0.0%;width:19.5%" title="opsætning, Chromium">opsætning, Chromium</span><span class="lane-seg run" style="left:19.5%;width:33.7%" title="Supabase-stack">Supabase-stack</span><span class="lane-seg run" style="left:53.1%;width:21.4%" title="build + testdata">build + testdata</span><span class="lane-seg test" style="left:74.6%;width:11.2%" title="tilgængelighed">tilgængelighed</span><span class="lane-seg test" style="left:85.8%;width:11.2%" title="ydelse">ydelse</span><span class="lane-seg test narrow" style="left:97.0%;width:3.0%" title="scan">scan</span></div></div>
+        </div>
+        <div class="lane-legend" aria-hidden="true"><span><i></i>Opsætning</span><span><i class="run"></i>Byg og klargør</span><span><i class="test"></i>Tests</span></div>
+        <figcaption class="diagram-caption">Målt på CI-kørsel 146, commit <code>fbb90fc</code>, 14. september 2026. De tre jobs kører parallelt, så et push er færdigkontrolleret, når det langsomste er i mål. Varighederne er GitHub Actions' egne tidsstempler pr. trin.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section soft" id="forloeb">
+    <div class="shell">
+      <p class="section-label">06 · Forløbet</p>
+      <h2>Fem uger med git-historikken som tidslinje</h2>
+      <p class="intro">Fra første commit til pilot på 30 arbejdsdage. Datoerne er fra git-historikken og beslutningsloggen.</p>
+
+      <figure class="fig" aria-labelledby="commits-title">
+        <h3 class="figure-title" id="commits-title">428 commits på 37 kalenderdage</h3>
+        <div class="commit-strip" role="img" aria-label="Søjlediagram over commits pr. dag fra 9. august til 14. september 2026. Tre toppe: 9. august med 46, 12. august med 45 og 27. august med 37. Syv dage uden commits, de fleste i september."><span class="commit-bar wknd" style="--n:46" title="9. aug.: 46 commits"></span><span class="commit-bar" style="--n:13" title="10. aug.: 13 commits"></span><span class="commit-bar" style="--n:23" title="11. aug.: 23 commits"></span><span class="commit-bar" style="--n:45" title="12. aug.: 45 commits"></span><span class="commit-bar" style="--n:34" title="13. aug.: 34 commits"></span><span class="commit-bar" style="--n:32" title="14. aug.: 32 commits"></span><span class="commit-bar wknd" style="--n:7" title="15. aug.: 7 commits"></span><span class="commit-bar wknd" style="--n:5" title="16. aug.: 5 commits"></span><span class="commit-bar" style="--n:13" title="17. aug.: 13 commits"></span><span class="commit-bar" style="--n:10" title="18. aug.: 10 commits"></span><span class="commit-bar" style="--n:3" title="19. aug.: 3 commits"></span><span class="commit-bar" style="--n:3" title="20. aug.: 3 commits"></span><span class="commit-bar zero" style="--n:0" title="21. aug.: 0 commits"></span><span class="commit-bar wknd zero" style="--n:0" title="22. aug.: 0 commits"></span><span class="commit-bar wknd" style="--n:6" title="23. aug.: 6 commits"></span><span class="commit-bar" style="--n:10" title="24. aug.: 10 commits"></span><span class="commit-bar" style="--n:1" title="25. aug.: 1 commit"></span><span class="commit-bar" style="--n:2" title="26. aug.: 2 commits"></span><span class="commit-bar" style="--n:37" title="27. aug.: 37 commits"></span><span class="commit-bar" style="--n:19" title="28. aug.: 19 commits"></span><span class="commit-bar wknd" style="--n:12" title="29. aug.: 12 commits"></span><span class="commit-bar wknd zero" style="--n:0" title="30. aug.: 0 commits"></span><span class="commit-bar" style="--n:1" title="31. aug.: 1 commit"></span><span class="commit-bar" style="--n:15" title="1. sep.: 15 commits"></span><span class="commit-bar" style="--n:28" title="2. sep.: 28 commits"></span><span class="commit-bar" style="--n:6" title="3. sep.: 6 commits"></span><span class="commit-bar" style="--n:2" title="4. sep.: 2 commits"></span><span class="commit-bar wknd" style="--n:1" title="5. sep.: 1 commit"></span><span class="commit-bar wknd" style="--n:15" title="6. sep.: 15 commits"></span><span class="commit-bar" style="--n:17" title="7. sep.: 17 commits"></span><span class="commit-bar zero" style="--n:0" title="8. sep.: 0 commits"></span><span class="commit-bar" style="--n:14" title="9. sep.: 14 commits"></span><span class="commit-bar zero" style="--n:0" title="10. sep.: 0 commits"></span><span class="commit-bar" style="--n:1" title="11. sep.: 1 commit"></span><span class="commit-bar wknd zero" style="--n:0" title="12. sep.: 0 commits"></span><span class="commit-bar wknd zero" style="--n:0" title="13. sep.: 0 commits"></span><span class="commit-bar" style="--n:7" title="14. sep.: 7 commits"></span></div>
+        <div class="commit-axis" aria-hidden="true"><span style="grid-column:1">9. aug.</span><span style="grid-column:8">16. aug.</span><span style="grid-column:15">23. aug.</span><span style="grid-column:22">30. aug.</span><span style="grid-column:29">6. sep.</span><span style="grid-column:35 / span 3; text-align:right">14. sep.</span></div>
+        <p class="commit-readout" data-idle="Hold musen over eller tryk på en søjle for dato og antal." aria-live="polite">Hold musen over eller tryk på en søjle for dato og antal.</p>
+        <div class="commit-peaks"><span><b>46</b> 9. aug., fundamentet</span><span><b>45</b> 12. aug., første deploy og billetter</span><span><b>37</b> 27. aug., rettelser efter stort review</span><span><b>7</b> dage uden commits</span></div>
+        <figcaption class="diagram-caption">Fra <code>git log</code> i app-repoet; lyse søjler er weekend, grå er dage uden commits. Tempoet falder bevidst i september: der flyttes arbejde fra kode til drift, dokumentation og test med rigtige mennesker.</figcaption>
+      </figure>
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-date">9. aug.</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Fundament på én dag</strong>46 commits: Next.js og Supabase sat op, rigtig login, kunstnerprofiler med følg-funktion, events og PWA-installation. Otte skærme gennemgået og godkendt samme dag.</div></div>
+        <div class="timeline-item"><div class="timeline-date">10. aug.</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Ny prioritering efter samtale med partneren</strong>Auditions, afstemning, live-deltagelse og medlemsklub rykkede ind i kernen; det brede community-spor blev lagt på is. Nedskrevet som beslutning ADR-014, så agenterne byggede efter den nye retning.</div></div>
+        <div class="timeline-item"><div class="timeline-date">24. aug.</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>CI på hvert push</strong>Lint, typer, unit tests, build og pgTAP mod en frisk Postgres i GitHub Actions. Supabase-CLI'en blev låst til én version, efter at en automatisk opdatering havde ændret databasens rettigheder under projektet.</div></div>
+        <div class="timeline-item"><div class="timeline-date">2. sep.</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Betalingsskinner</strong>Paystack til naira, Stripe til dollars, medlemskaber der fornyer sig selv. Når den manuelle låge åbnes, slutter simuleringen helt: en skinne uden klar leverandør sælger intet i stedet for at lade som om.</div></div>
+        <div class="timeline-item"><div class="timeline-date">7.–9. sep.</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Drift før lancering</strong>Komplette resultatopgørelser for admin, login med engangskode på mail, nigerianske telefonnumre normaliseret til ét format, og første hændelse fra en rigtig tester i Nigeria, der ikke kunne modtage sms-koder.</div></div>
+        <div class="timeline-item"><div class="timeline-date">14. sep.</div><div class="timeline-dot"></div><div class="timeline-copy"><strong>Refusion øvet i produktion</strong>En testbillet til én dollar købt gennem Stripe Checkout og refunderet via API; statusrute, returside og "mine billetter" fulgte med. Øvelsen afslørede, at den hostede database manglede rettigheder, som den lokale havde som standard. Rettet med en migration og tolv nye databasetests.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="graenser">
+    <div class="shell">
+      <p class="section-label">07 · Grænser og fravalg</p>
+      <h2>Hvad platformen bevidst ikke er endnu</h2>
+      <div class="limits-grid">
+        <div class="limit-card">
+          <h3>Ikke lanceret offentligt</h3>
+          <p>Appen kører i en lukket pilot med testere. Derfor står der ingen brugertal, afstemningstal eller omsætning her, og skærmbillederne viser kun den offentlige del. Admin er beskrevet i tekst, ikke vist.</p>
+        </div>
+        <div class="limit-card">
+          <h3>Ingen rigtige penge uden godkendelse</h3>
+          <p>Billetter og medlemskaber er bygget mod Stripe og Paystack, men står bag en manuel låge. Donationer og medlemskaber i naira er ikke bygget. Udbetaling til kunstnere sker manuelt og gennemgået, aldrig automatisk.</p>
+        </div>
+        <div class="limit-card">
+          <h3>Ingen livestream-leverandør</h3>
+          <p>Live-deltagelse (stem, ønsk en sang, følg den der spiller) er bygget, men selve videoen afventer et valg mellem Mux, Cloudflare Stream og Amazon IVS efter en prøve på et rigtigt netværk i Nigeria.</p>
+        </div>
+        <div class="limit-card">
+          <h3>Community udskudt</h3>
+          <p>Et bredt socialt feed med opslag, kommentarer og beskeder er bevidst fravalgt i første version. Kernen er kæden fra audition til afstemning til event til støtte, ikke endnu et socialt netværk.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section cta-card" id="kontakt">
+    <div class="shell cta-card">
+      <div>
+        <p class="section-label">08 · Kontakt</p>
+        <h2>Har du spørgsmål til platformen?</h2>
+      </div>
+      <div class="cta-actions">
+        <a class="button" href="mailto:fribert6@gmail.com">Skriv til mig</a>
+        <a class="button secondary" href="https://jonathanfribert.github.io/">Se andre projekter</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="shell foot-row">
+    <span>Jonathan Fribert · <a href="mailto:fribert6@gmail.com">fribert6@gmail.com</a> · <a href="https://github.com/JonathanFribert">github.com/JonathanFribert</a></span>
+    <span>Sat med Newsreader og IBM Plex Mono</span>
+  </div>
+</footer>
+
+<script>
+  document.documentElement.classList.remove('no-js');
+  document.documentElement.classList.add('js');
+  (function () {
+    var themeToggle = document.querySelector('.theme-toggle');
+    if (!themeToggle) return;
+    var systemDark = window.matchMedia('(prefers-color-scheme: dark)');
+    var syncAria = function () {
+      var forced = document.documentElement.getAttribute('data-theme');
+      var isDark = forced ? forced === 'dark' : systemDark.matches;
+      themeToggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+      themeToggle.setAttribute('aria-label', isDark ? 'Skift til lyst tema' : 'Skift til mørkt tema');
+    };
+    themeToggle.addEventListener('click', function () {
+      var root = document.documentElement;
+      var current = root.getAttribute('data-theme') || (systemDark.matches ? 'dark' : 'light');
+      var next = current === 'dark' ? 'light' : 'dark';
+      if ((next === 'dark') === systemDark.matches) {
+        root.removeAttribute('data-theme');
+        try { localStorage.removeItem('globetunez-case-theme'); } catch (e) {}
+      } else {
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('globetunez-case-theme', next); } catch (e) {}
+      }
+      syncAria();
+    });
+    try {
+      var saved = localStorage.getItem('globetunez-case-theme');
+      if (saved) document.documentElement.setAttribute('data-theme', saved);
+    } catch (e) {}
+    syncAria();
+  })();
+
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* Laesefremdrift i topbjaelken. */
+    var progress = document.querySelector('.read-progress');
+    if (progress) {
+      var ticking = false;
+      var paint = function () {
+        var doc = document.documentElement;
+        var max = doc.scrollHeight - window.innerHeight;
+        progress.style.width = (max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0) + '%';
+        ticking = false;
+      };
+      window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(paint); } }, { passive: true });
+      window.addEventListener('resize', paint);
+      paint();
+    }
+
+    /* Aflaesning paa commit-soejlerne: hover, tryk eller tastatur. */
+    var strip = document.querySelector('.commit-strip');
+    var readout = document.querySelector('.commit-readout');
+    if (strip && readout) {
+      var bars = Array.prototype.slice.call(strip.querySelectorAll('.commit-bar'));
+      var idle = readout.getAttribute('data-idle');
+      var current = null;
+      var show = function (bar) {
+        if (current) current.classList.remove('active');
+        current = bar;
+        if (!bar) { readout.textContent = idle; return; }
+        bar.classList.add('active');
+        var t = bar.getAttribute('title') || '';
+        var i = t.indexOf(':');
+        readout.innerHTML = '<b>' + t.slice(0, i) + '</b>' + t.slice(i);
+      };
+      var pick = function (ev) {
+        var p = ev.touches ? ev.touches[0] : ev;
+        var el = document.elementFromPoint(p.clientX, p.clientY);
+        if (el && el.classList.contains('commit-bar')) show(el);
+      };
+      strip.addEventListener('pointermove', pick);
+      strip.addEventListener('pointerdown', pick);
+      strip.addEventListener('pointerleave', function () { show(null); });
+      bars.forEach(function (b, i) {
+        b.setAttribute('tabindex', '0');
+        b.style.setProperty('--i', i);
+        b.addEventListener('focus', function () { show(b); });
+        b.addEventListener('blur', function () { show(null); });
+      });
+      show(null);
+    }
+
+    if (reduced) return;
+
+    /* Figurerne tegner sig selv, naar de kommer i syne. */
+    var figs = Array.prototype.slice.call(document.querySelectorAll('figure.fig'));
+    if ('IntersectionObserver' in window && figs.length) {
+      figs.forEach(function (f) { f.classList.add('reveal'); });
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); } });
+      }, { threshold: 0.25 });
+      figs.forEach(function (f) { io.observe(f); });
+    }
+
+    /* Noegletallene i hero taeller op; tusindtalsseparator bevares. */
+    var statsBox = document.querySelector('.stats');
+    if ('IntersectionObserver' in window && statsBox) {
+      var sep = document.documentElement.lang === 'da' ? '.' : ',';
+      var counters = Array.prototype.slice.call(statsBox.querySelectorAll('.stat-value')).map(function (el) {
+        var raw = el.textContent.trim();
+        var m = raw.match(/^([\d.,]+)(.*)$/);
+        if (!m) return null;
+        return { el: el, target: parseInt(m[1].replace(/[.,]/g, ''), 10), suffix: m[2] };
+      }).filter(Boolean);
+      var fmt = function (n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, sep); };
+      var so = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          so.unobserve(entry.target);
+          var start = null, duration = 900;
+          var step = function (ts) {
+            if (start === null) start = ts;
+            var t = Math.min(1, (ts - start) / duration);
+            var eased = 1 - Math.pow(1 - t, 3);
+            counters.forEach(function (c) { c.el.textContent = fmt(Math.round(c.target * eased)) + c.suffix; });
+            if (t < 1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+        });
+      }, { threshold: 0.3 });
+      so.observe(statsBox);
+    }
+  })();
+</script>
+</body>
+</html>
